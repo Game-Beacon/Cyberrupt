@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
   m_Name: Sample Pattern
   m_EditorClassIdentifier: 
-  _data: []
+  _data:
+  - localPosition: {x: 0.2, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.10000002, y: 0.17320508}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.09999999, y: -0.17320509}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.8660254, y: 0.5}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.00000004371139, y: 1}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.8660254, y: 0.50000006}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.8660254, y: -0.49999997}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.000000011924881, y: -1}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.8660253, y: -0.5000002}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}

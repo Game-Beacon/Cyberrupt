@@ -15,33 +15,33 @@ MonoBehaviour:
   _emitModule:
     _pattern: {fileID: 11400000, guid: df3c2adef121537449607c00ecc89d88, type: 2}
     _liveTime: 10
-    _rateOverTime: 20
+    _rateOverTime: 5
   _shapeModule:
     _shapeType: 0
-    _distributeType: 1
+    _distributeType: 0
     _spread: 90
-    _radius: 10
+    _radius: 2
     _radiusThickness: 1
     _edgeWidth: 10
-    _cycleTime: 2.19
+    _cycleTime: 2
     _burstCount: 1
   _patternModule:
     _easeType: 3
-    _scaleType: 1
+    _scaleType: 0
     _rotationType: 0
-    _easeTime: 0.1
-    _scale: 0.75
+    _easeTime: 1
+    _scale: 1
     _minScale: 0.5
     _maxScale: 1
-    _rotation: 0
+    _rotation: 90
     _minRotation: -90
     _maxRotation: 90
   _pathModule:
     _pathType: 0
     _speedType: 1
     _speed: 0
-    _minSpeed: -5
-    _maxSpeed: -15
+    _minSpeed: 5
+    _maxSpeed: 10
     _waveAmp: 3
     _waveHz: 0.25
     _waveOffest: 0

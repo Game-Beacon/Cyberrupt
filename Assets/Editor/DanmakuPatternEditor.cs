@@ -78,6 +78,8 @@ public class DanmakuPatternEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
+
         bulletIndex = EditorGUILayout.Popup("子彈樣式：", bulletIndex, bulletNames);
         drawOption = (DrawOption)EditorGUILayout.EnumPopup("繪製樣式：", drawOption);
         EditorGUILayout.Space(10);
@@ -122,7 +124,9 @@ public class DanmakuPatternEditor : Editor
 
         EditorGUILayout.Space(10);
         EditorGUILayout.HelpBox("子彈總數：" + inspecting.count.ToString(), MessageType.Info);
-        //base.OnInspectorGUI();
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
     }
 
     private void DrawPreview()

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225785a6328bcd747ba502bbad4864a9, type: 3}
   m_Name: Sample Bullet
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: 866ed5fc23d1e924795468567757c492, type: 3}
-  _radius: 0.2
+  _sprite: {fileID: 21300000, guid: ee6f2ebad0af8034d9f047eec25aaa6c, type: 3}
+  _radius: 0.12
