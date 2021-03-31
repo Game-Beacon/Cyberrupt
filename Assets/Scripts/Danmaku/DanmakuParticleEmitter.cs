@@ -175,10 +175,7 @@ public class DanmakuParticleEmitter
                     bullets.children[i].transform.position = bullets.parent + localMatrix.Transform(bullets.danmaku.data[i].localPosition);
                     Vector2 pos = bullets.children[i].transform.position;
 
-                    if (manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius))
-                        bullets.srs[i].color = Color.red;
-                    else
-                        bullets.srs[i].color = Color.white;
+                    manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius);
 
                     if (manager.OverBound(pos))
                     {
@@ -229,10 +226,7 @@ public class DanmakuParticleEmitter
                     bullets.children[i].transform.position = bullets.parent + localMatrix.Transform(bullets.danmaku.data[i].localPosition);
                     Vector2 pos = bullets.children[i].transform.position;
 
-                    if (manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius))
-                        bullets.srs[i].color = Color.red;
-                    else
-                        bullets.srs[i].color = Color.white;
+                    manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius);
 
                     if (manager.OverBound(pos))
                     {
