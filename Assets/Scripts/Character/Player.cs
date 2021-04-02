@@ -9,17 +9,32 @@ public class Player : GameBehaviour
     [SerializeField]
     private float hitRadius;
     private DanmakuManager danmakuManager;
+    private Camera cam;
+
+    public override void GameAwake()
+    {
+        DependencyContainer.AddDependency(this);
+    }
 
     public override void GameStart()
     {
         danmakuManager = DanmakuManager.instance;
         danmakuManager.SetDanmakuTarget(transform, hitRadius);
         danmakuManager.bulletHitTarget.AddListener(OnHit);
+        cam = Camera.main;
     }
 
     private void OnHit()
     {
         Debug.Log("Ouch");
+    }
+
+    public override void GameUpdate()
+    {
+        Vector2 dir = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     public override void GameFixedUpdate()

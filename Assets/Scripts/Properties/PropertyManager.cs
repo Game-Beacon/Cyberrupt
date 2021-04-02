@@ -31,8 +31,8 @@ public class PropertyManager : GameBehaviour
             return;
         }
 
-        playerBase = Resources.FindObjectsOfTypeAll<PlayerBaseData>().FirstOrDefault();
-        bossBase = Resources.FindObjectsOfTypeAll<BossBaseData>().FirstOrDefault();
+        playerBase = Resources.LoadAll<PlayerBaseData>("").FirstOrDefault();
+        bossBase = Resources.LoadAll<BossBaseData>("").FirstOrDefault();
 
         _playerData = new PlayerData(playerBase);
         _bossData = new BossData(bossBase);

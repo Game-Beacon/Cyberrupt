@@ -20,7 +20,7 @@ MonoBehaviour:
     _shapeType: 0
     _distributeType: 0
     _spread: 60
-    _radius: 2
+    _radius: 1
     _radiusThickness: 0
     _edgeWidth: 0
     _cycleTime: 1

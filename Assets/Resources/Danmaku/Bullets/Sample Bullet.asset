@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Sample Bullet
   m_EditorClassIdentifier: 
   _sprite: {fileID: 21300000, guid: ee6f2ebad0af8034d9f047eec25aaa6c, type: 3}
+  _rageSprite: {fileID: 21300000, guid: a47f8ea85d65107468d08c50ad57b7de, type: 3}
   _radius: 0.12

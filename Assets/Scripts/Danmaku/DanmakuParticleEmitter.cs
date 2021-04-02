@@ -19,6 +19,9 @@ public class DanmakuParticleEmitter
     private int _activeCount;
     public int activeCount { get { return _activeCount; } private set { } }
 
+    public bool spawnBullets;
+    public bool useRageBullet;
+
     private class ActiveBullets
     {
         public Vector2 parent;
@@ -45,17 +48,20 @@ public class DanmakuParticleEmitter
     private List<ActiveBullets> subPatterns = new List<ActiveBullets>();
     private Queue<SpriteRenderer> returnPoolQueue = new Queue<SpriteRenderer>();
 
-    public DanmakuParticleEmitter(DanmakuParticleData data, Transform t)
+    public DanmakuParticleEmitter(DanmakuParticleData data, Transform t, bool rage = false)
     {
         if (manager == null)
             manager = DanmakuManager.instance;
         danmakuData = data;
         transform = t;
+        spawnBullets = true;
+        useRageBullet = rage;
     }
 
     public void Update(float delta)
     {
-        SpawnPattern();
+        if(spawnBullets)
+            SpawnPattern();
 
         int len = patterns.Count - 1;
         for (int i = len; i >= 0; i--)
@@ -120,12 +126,25 @@ public class DanmakuParticleEmitter
                 newActive.actives = new bool[count];
                 newActive.activeCount = count;
 
-                for (int j = 0; j < count; j++)
+                if(useRageBullet)
                 {
-                    sprites[j].sprite = danmakuData.emitModule.pattern.data[j].bullet.sprite;
-                    newActive.children[j] = sprites[j].gameObject;
-                    newActive.actives[j] = true;
+                    for (int j = 0; j < count; j++)
+                    {
+                        sprites[j].sprite = danmakuData.emitModule.pattern.data[j].bullet.rageSprite;
+                        newActive.children[j] = sprites[j].gameObject;
+                        newActive.actives[j] = true;
+                    }
                 }
+                else
+                {
+                    for (int j = 0; j < count; j++)
+                    {
+                        sprites[j].sprite = danmakuData.emitModule.pattern.data[j].bullet.sprite;
+                        newActive.children[j] = sprites[j].gameObject;
+                        newActive.actives[j] = true;
+                    }
+                }
+                
 
                 newActive.timer = 0;
                 newActive.liveTime = danmakuData.emitModule.liveTime;
@@ -266,12 +285,24 @@ public class DanmakuParticleEmitter
         newActive.actives = new bool[count];
         newActive.activeCount = count;
 
-        for (int j = 0; j < count; j++)
+        if(useRageBullet)
         {
-            sprites[j].sprite = danmakuData.subEmitModule.pattern.data[j].bullet.sprite;
-            newActive.children[j] = sprites[j].gameObject;
-            newActive.actives[j] = true;
+            for (int j = 0; j < count; j++)
+            {
+                sprites[j].sprite = danmakuData.subEmitModule.pattern.data[j].bullet.rageSprite;
+                newActive.children[j] = sprites[j].gameObject;
+                newActive.actives[j] = true;
+            }
         }
+        else
+        {
+            for (int j = 0; j < count; j++)
+            {
+                sprites[j].sprite = danmakuData.subEmitModule.pattern.data[j].bullet.sprite;
+                newActive.children[j] = sprites[j].gameObject;
+                newActive.actives[j] = true;
+            }
+        } 
 
         newActive.timer = 0;
         newActive.liveTime = danmakuData.subEmitModule.easeTime;
