@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Danmaku/Bullet Data")]
 [System.Serializable]
 public class DanmakuBulletData : ScriptableObject
 {

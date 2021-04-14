@@ -203,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   callPattern: 02000000
-  shootTime: 5
+  shootTime: 7.5
 --- !u!1101 &-3895676174012339349
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   callPattern: 0000000001000000
-  shootTime: 5
+  shootTime: 7.5
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   callPattern: 03000000
-  shootTime: 5
+  shootTime: 7.5
 --- !u!1101 &5927569227658723498
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Cross
   m_EditorClassIdentifier: 
   _data:
-  - localPosition: {x: 1, y: 0}
+  - localPosition: {x: -0.3, y: 0}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
-  - localPosition: {x: 0.5, y: 0}
+  - localPosition: {x: 0.000000008940697, y: 0}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
-  - localPosition: {x: -0.000000029802322, y: 0}
+  - localPosition: {x: 0.30000004, y: 0}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
-  - localPosition: {x: -0.5, y: 0}
+  - localPosition: {x: 0.6, y: 0}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
-  - localPosition: {x: 0, y: 0.5}
+  - localPosition: {x: 0, y: 0.3}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
-  - localPosition: {x: 0, y: -0.5}
+  - localPosition: {x: 0, y: -0.3}
     bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}

@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: PlaceHolder - ShiftedCircle
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: 038d6727681432a4680a426bf8614546, type: 2}
+    _liveTime: 10
+    _rateOverTime: 1
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 1
+    _spread: 360
+    _radius: 1.5
+    _radiusThickness: 0
+    _edgeWidth: 0
+    _cycleTime: 2.5
+    _burstCount: 1
+  _patternModule:
+    _easeType: 12
+    _scaleType: 1
+    _rotationType: 1
+    _easeTime: 7.5
+    _scale: 15
+    _minScale: 7.5
+    _maxScale: 10
+    _rotation: 60
+    _minRotation: -60
+    _maxRotation: 60
+  _pathModule:
+    _pathType: 0
+    _speedType: 0
+    _speed: -5
+    _minSpeed: 0
+    _maxSpeed: 0
+    _waveAmp: 0
+    _waveHz: 0
+    _waveOffest: 0
+  _useSubEmitter: 0
+  _subEmitModule:
+    _pattern: {fileID: 0}
+    _spawnTime: 0
+    _easeType: 0
+    _easeTime: 0
+    _scale: 0
+    _rotation: 0

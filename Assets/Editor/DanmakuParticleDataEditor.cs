@@ -10,7 +10,7 @@ public class DanmakuParticleDataEditor : Editor
     bool shapeFoldout;
     bool patternFoldout;
     bool pathFoldout;
-    bool subEmitterFoldout;
+    //bool subEmitterFoldout;
 
     private void OnEnable()
     {
@@ -18,7 +18,7 @@ public class DanmakuParticleDataEditor : Editor
         shapeFoldout = false;
         patternFoldout = false;
         pathFoldout = false;
-        subEmitterFoldout = false;
+        //subEmitterFoldout = false;
     }
 
     override public void OnInspectorGUI()
@@ -36,8 +36,8 @@ public class DanmakuParticleDataEditor : Editor
         if (emitterFoldout)
         {
             GUILayout.Space(10);
-            SetSerializedProperty("_emitModule._pattern", "主彈幕", ref property, ref content);
-            EditorGUILayout.ObjectField(property, typeof(DanmakuPattern), content);
+            SetSerializedProperty("_emitModule._patterns", "主彈幕", ref property, ref content);
+            EditorGUILayout.PropertyField(property, content);
             SetSerializedProperty("_emitModule._liveTime", "存活時間", ref property, ref content);
             EditorGUILayout.Slider(property, 0.1f, 20f, content);
             SetSerializedProperty("_emitModule._rateOverTime", "發射頻率", ref property, ref content);
@@ -73,7 +73,7 @@ public class DanmakuParticleDataEditor : Editor
             SetSerializedProperty("_shapeModule._distributeType", "發射分佈", ref property, ref content);
             EditorGUILayout.PropertyField(property, content);
 
-            if (data.shapeModule.distributeType == DistributeType.Repeat)
+            if (data.shapeModule.distributeType == DistributeType.Repeat || data.shapeModule.distributeType == DistributeType.RepeatRandom)
             {
                 SetSerializedProperty("_shapeModule._cycleTime", "週期", ref property, ref content);
                 EditorGUILayout.Slider(property, 0.1f, 5f, content);
@@ -157,7 +157,7 @@ public class DanmakuParticleDataEditor : Editor
             }
         }
 
-        GUILayout.Space(30);
+        /*GUILayout.Space(30);
 
         SetSerializedProperty("_useSubEmitter", "使用子發射器", ref property, ref content);
         EditorGUILayout.PropertyField(property, content);
@@ -181,7 +181,7 @@ public class DanmakuParticleDataEditor : Editor
                 SetSerializedProperty("_subEmitModule._rotation", "彈幕轉速", ref property, ref content);
                 EditorGUILayout.Slider(property, -360f, 360f, content);
             }
-        }
+        }*/
 
         serializedObject.ApplyModifiedProperties();
     }

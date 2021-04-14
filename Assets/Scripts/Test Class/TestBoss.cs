@@ -7,7 +7,7 @@ public class TestBoss : GameBehaviour
     private List<DanmakuParticleEmitter> danmakuEmitters = new List<DanmakuParticleEmitter>();
 
     [SerializeField]
-    private List<BossEmitterSetting> emitterSettings = new List<BossEmitterSetting>();
+    private List<AIEmitterSetting> emitterSettings = new List<AIEmitterSetting>();
 
     public int emitterCount;
     public bool rage;
@@ -15,7 +15,7 @@ public class TestBoss : GameBehaviour
     public override void GameFixedUpdate()
     {
         foreach (DanmakuParticleEmitter emitter in danmakuEmitters)
-            emitter.Update(Time.deltaTime * 0.85f);
+            emitter.Update(Time.deltaTime);
 
         for (int i = danmakuEmitters.Count - 1; i >= 0; i--)
             if (danmakuEmitters[i].activeCount <= 0)
@@ -26,10 +26,8 @@ public class TestBoss : GameBehaviour
 
     public DanmakuParticleEmitter AddDanmaku(int callIndex)
     {
-        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(emitterSettings[callIndex].particle, emitterSettings[callIndex].location, rage);
-        danmakuEmitters.Add(emitter);
-        return emitter;
+        //DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(emitterSettings[callIndex].particle, emitterSettings[callIndex].location, rage);
+        //danmakuEmitters.Add(emitter);
+        return null;
     }
-
-
 }

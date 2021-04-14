@@ -24,7 +24,8 @@ public enum DistributeType
 {
     Random = 0,
     Repeat = 1,
-    BurstEven = 2
+    RepeatRandom = 2,
+    BurstEven = 3
 }
 
 public enum PathType
@@ -37,8 +38,8 @@ public enum PathType
 public struct EmitModule
 {
     [SerializeField]
-    private DanmakuPattern _pattern;
-    public DanmakuPattern pattern { get { return _pattern; } private set { } }
+    private DanmakuPattern[] _patterns;
+    public DanmakuPattern[] patterns { get { return _patterns; } private set { } }
 
     [SerializeField, Range(0.1f, 20f)]
     private float _liveTime;
@@ -231,9 +232,11 @@ public static class EmitterHelper
     {
         { (ShapeType.Sector, DistributeType.Random), new PRFunction(SectorRandom) },
         { (ShapeType.Sector, DistributeType.Repeat), new PRFunction(SectorRepeat) },
+        { (ShapeType.Sector, DistributeType.RepeatRandom), new PRFunction(SectorRepeatRandom) },
         { (ShapeType.Sector, DistributeType.BurstEven), new PRFunction(SectorBurstEven)},
         { (ShapeType.Edge, DistributeType.Random), new PRFunction(EdgeRandom) },
         { (ShapeType.Edge, DistributeType.Repeat), new PRFunction(EdgeRepeat) },
+        { (ShapeType.Edge, DistributeType.RepeatRandom), new PRFunction(EdgeRepeatRandom) },
         { (ShapeType.Edge, DistributeType.BurstEven), new PRFunction(EdgeBurstEven) }
     };
 
@@ -248,6 +251,15 @@ public static class EmitterHelper
     {
         float radius = UnityEngine.Random.Range(shape.radius * (1 - shape.radiusThickness), shape.radius);
         float degree = (time % shape.cycleTime) / shape.cycleTime * shape.spread - (shape.spread / 2);
+        degree *= Mathf.Deg2Rad;
+        return new Vector3(radius, degree, degree);
+    }
+
+    private static Vector3 SectorRepeatRandom(ShapeModule shape, float time, int index)
+    {
+        float radius = UnityEngine.Random.Range(shape.radius * (1 - shape.radiusThickness), shape.radius);
+        float degree = (time % shape.cycleTime) / shape.cycleTime * shape.spread - (shape.spread / 2);
+        degree += UnityEngine.Random.Range(shape.spread * -0.02f, shape.spread * 0.02f);
         degree *= Mathf.Deg2Rad;
         return new Vector3(radius, degree, degree);
     }
@@ -277,6 +289,13 @@ public static class EmitterHelper
     private static Vector3 EdgeRepeat(ShapeModule shape, float time, int index)
     {
         float radius = (time % shape.cycleTime) / shape.cycleTime * shape.edgeWidth - (shape.edgeWidth / 2);
+        return new Vector3(radius, 90 * Mathf.Deg2Rad, 0);
+    }
+
+    private static Vector3 EdgeRepeatRandom(ShapeModule shape, float time, int index)
+    {
+        float radius = (time % shape.cycleTime) / shape.cycleTime * shape.edgeWidth - (shape.edgeWidth / 2);
+        radius += UnityEngine.Random.Range(shape.edgeWidth * -0.02f, shape.edgeWidth * 0.02f);
         return new Vector3(radius, 90 * Mathf.Deg2Rad, 0);
     }
 

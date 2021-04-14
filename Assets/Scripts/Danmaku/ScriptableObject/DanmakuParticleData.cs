@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Danmaku/Particle Data")]
 public class DanmakuParticleData : ScriptableObject
 {
     [SerializeField]
@@ -21,11 +21,11 @@ public class DanmakuParticleData : ScriptableObject
     private PathModule _pathModule;
     public PathModule pathModule { get { return _pathModule; } private set { } }
 
-    [SerializeField]
+    /*[SerializeField]
     private bool _useSubEmitter;
     public bool useSubEmitter { get { return _useSubEmitter; } private set { } }
 
     [SerializeField]
     private SubEmitModule _subEmitModule;
-    public SubEmitModule subEmitModule { get { return _subEmitModule; } private set { } }
+    public SubEmitModule subEmitModule { get { return _subEmitModule; } private set { } }*/
 }

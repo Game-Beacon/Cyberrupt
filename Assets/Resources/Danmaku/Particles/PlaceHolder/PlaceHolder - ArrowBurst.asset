@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PlaceHolder - ArrowBurst
   m_EditorClassIdentifier: 
   _emitModule:
-    _pattern: {fileID: 11400000, guid: a4133ac5d3d90724e8323fadf151c0fd, type: 2}
+    _patterns:
+    - {fileID: 11400000, guid: a4133ac5d3d90724e8323fadf151c0fd, type: 2}
     _liveTime: 10
     _rateOverTime: 1.5
   _shapeModule:

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 [System.Serializable]
 public struct DanmakuBullet
 {
@@ -10,7 +9,7 @@ public struct DanmakuBullet
     public DanmakuBulletData bullet;
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Danmaku/Pattern Data")]
 public class DanmakuPattern : ScriptableObject
 {
     [SerializeField]

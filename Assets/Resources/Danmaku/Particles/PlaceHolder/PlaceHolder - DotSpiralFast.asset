@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PlaceHolder - DotSpiralFast
   m_EditorClassIdentifier: 
   _emitModule:
-    _pattern: {fileID: 11400000, guid: 601ccc06c821c8d47b79b9d402e041a2, type: 2}
+    _patterns:
+    - {fileID: 11400000, guid: 601ccc06c821c8d47b79b9d402e041a2, type: 2}
     _liveTime: 10
     _rateOverTime: 20
   _shapeModule:
@@ -23,7 +24,7 @@ MonoBehaviour:
     _radius: 0
     _radiusThickness: 0
     _edgeWidth: 0
-    _cycleTime: 1.25
+    _cycleTime: 0.85
     _burstCount: 1
   _patternModule:
     _easeType: 9

@@ -96,6 +96,17 @@ public struct Matrix2x2
         };
     }
 
+    public static Matrix2x2 ScaleMatrix(float xScale, float yScale)
+    {
+        return new Matrix2x2
+        {
+            m00 = xScale,
+            m01 = 0,
+            m10 = 0,
+            m11 = yScale
+        };
+    }
+
     public static Matrix2x2 RotationMatrix(float radian)
     {
         float cos = Mathf.Cos(radian);

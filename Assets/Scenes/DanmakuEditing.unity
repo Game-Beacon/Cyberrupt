@@ -235,7 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  particle: {fileID: 11400000, guid: ef92c54d80b49e64db2cf1645ad3c2b0, type: 2}
+  particle: {fileID: 11400000, guid: 105492d64e62c5e45b8338724acab8b7, type: 2}
 --- !u!4 &1362740591
 Transform:
   m_ObjectHideFlags: 0
@@ -281,7 +281,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  usePS: 0
   poolPrefab: {fileID: 5929190718375520640, guid: 916f2e9d04be0de49994d0862ff3095d,
+    type: 3}
+  poolParticle: {fileID: 3465454291035144216, guid: e5e545fe417bbca46845372b6fbc5523,
     type: 3}
   poolSize: 2000
   poolCount: 0
@@ -289,6 +292,10 @@ MonoBehaviour:
     parent: {fileID: 1525938707}
     xSize: 24.2
     ySize: 15.8
+  _screen:
+    parent: {fileID: 1525938707}
+    xSize: 19.2
+    ySize: 10.8
   _target:
     target: {fileID: 0}
     radius: 0
