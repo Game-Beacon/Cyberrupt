@@ -212,15 +212,20 @@ public struct DanmakuBound
 [System.Serializable]
 public class DanmakuTarget
 {
-    public Transform target;
-    public float radius;
+    private IDanmakuTarget danmakuTarget;
 
+    public DanmakuTarget(IDanmakuTarget target)
+    {
+        danmakuTarget = target;
+    }
 
     public bool TouchTarget(Vector2 position, float r)
     {
-        if (target == null)
+        if (danmakuTarget == null || danmakuTarget.target == null)
             return false;
-        return ((Vector2)target.transform.position - position).magnitude < radius + r;
+        if (danmakuTarget.isImmune)
+            return false;
+        return ((Vector2)danmakuTarget.target.transform.position - position).magnitude < danmakuTarget.hitRadius + r;
     }
 }
 

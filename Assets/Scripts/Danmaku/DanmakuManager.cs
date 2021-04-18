@@ -119,13 +119,9 @@ public class DanmakuManager : GameBehaviour
             pool.Enqueue(sprites.Dequeue());
     }
 
-    public void SetDanmakuTarget(Transform transform, float r)
+    public void SetDanmakuTarget(IDanmakuTarget target)
     {
-        _target = new DanmakuTarget()
-        {
-            target = transform,
-            radius = r
-        };
+        _target = new DanmakuTarget(target);
     }
 
     public bool OverBound(Vector2 position)
@@ -135,6 +131,8 @@ public class DanmakuManager : GameBehaviour
 
     public bool TouchTarget(Vector2 position, float radius)
     {
+        if (_target == null)
+            return false;
         bool result = _target.TouchTarget(position, radius);
         if(result)
             bulletHitTarget.Invoke();
@@ -160,5 +158,7 @@ public class DanmakuManager : GameBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(transform.position, new Vector3(_bound.xSize, _bound.ySize));
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, new Vector3(_screen.xSize, _screen.ySize));
     }
 }

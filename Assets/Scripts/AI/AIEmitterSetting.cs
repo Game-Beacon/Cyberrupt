@@ -2,25 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "AI/Emitter Setting")]
 [System.Serializable]
-public struct AIEmitterSetting
+public class AIEmitterSetting : ScriptableObject 
 {
-    /*public bool useParentTransform;
-    public DanmakuParticleData particle;
-    public Vector2 localPosition;
-    public float localRotation;
+    public DanmakuParticleData data;
+    public bool followParent;
+    public Vector2 position;
+    public float rotation;
+    public float time;
+    public bool updatePosition;
+    public bool updateRotation;
+    public bool updateScale;
 
-    public DanmakuParticleEmitter MakeEmitter(Transform t, bool raged)
+    public DanmakuParticleEmitter MakeEmitter(Transform parent)
     {
-        GameObject newGO = new GameObject();
-        if (useParentTransform)
-            newGO.transform.SetParent(t);
-
-        newGO.transform.localPosition = localPosition;
-        newGO.transform.localRotation = Quaternion.Euler(0, 0, localRotation);
-
-        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(particle, newGO.transform, raged);
-
+        GameObject go = new GameObject();
+        if (parent != null)
+            go.transform.SetParent(parent);
+        go.transform.localPosition = position;
+        go.transform.localRotation = Quaternion.Euler(0, 0, rotation);
+        if (!followParent)
+            go.transform.SetParent(null);
+        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, go.transform, time);
         return emitter;
-    }*/
+    }
 }

@@ -4,12 +4,6 @@ using UnityEngine.Events;
 
 public class AIStateMachine : GameBehaviour
 {
-    protected float _maxHp;
-    public float maxHp { get { return _maxHp; } private set { } }
-
-    protected float _hp;
-    public float hp { get { return _hp; } private set { } }
-
     protected Transform _target;
     public Transform target { get { return _target; } private set { } }
 
@@ -27,6 +21,10 @@ public class AIStateMachine : GameBehaviour
 
     protected bool interruptState = false;
 
+    protected UnityEvent _OnStart = new UnityEvent();
+    public UnityEvent OnStart { get { return _OnStart; } private set { } }
+    protected UnityEvent _OnUpdateTransform = new UnityEvent();
+    public UnityEvent OnUpdateTransform { get { return _OnUpdateTransform; } private set { } }
     protected UnityEvent _EnterNewState = new UnityEvent();
     public UnityEvent EnterNewState { get { return _EnterNewState; } private set { } }
     protected UnityEvent _ExitState = new UnityEvent();
@@ -36,10 +34,7 @@ public class AIStateMachine : GameBehaviour
     {
         foreach (AIState state in AIStates)
             state.SetMachine(this);
-        MachineAwake();
     }
-
-    protected virtual void MachineAwake() { }
 
     public sealed override void GameStart()
     {
@@ -48,15 +43,13 @@ public class AIStateMachine : GameBehaviour
             stateIndexes[i] = i;
         RefreshStateIndexes();
 
-        MachineStart();
+        _OnStart.Invoke();
     }
-
-    protected virtual void MachineStart() { }
 
     public sealed override void GameFixedUpdate()
     {
         if (_currentState == null || !_currentState.overrideTransformUpdate)
-            UpdateTransform();
+            _OnUpdateTransform.Invoke();
 
         pickStateTimer -= Time.fixedDeltaTime;
         pickStateTimer = Mathf.Max(pickStateTimer, 0);
@@ -64,8 +57,6 @@ public class AIStateMachine : GameBehaviour
         if (pickStateTimer <= 0)
             UpdateStateMachine();
     }
-
-    protected virtual void UpdateTransform() { }
 
     private void UpdateStateMachine()
     {

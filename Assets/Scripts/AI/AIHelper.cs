@@ -32,39 +32,16 @@ public class AIHelper : GameBehaviour
         particleDict.Clear();
     }
 
-    public DanmakuParticleEmitter SpawnParticle(DanmakuParticleData data, GameObject origin, bool followOrigin, Vector2 position, float rotation, float time)
+    public void SpawnParticle(AIEmitterSetting setting, GameObject parent, float targetStrenth, int index)
     {
-        GameObject go = new GameObject();
-        if (origin != null)
-            go.transform.SetParent(origin.transform);
-        go.transform.localPosition = position;
-        go.transform.localRotation = Quaternion.Euler(0, 0, rotation);
-        if(!followOrigin)
-            go.transform.SetParent(null);
-        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, go.transform, time);
-
-        return emitter;
+        DanmakuParticleEmitter emitter = setting.MakeEmitter((parent == null)? null : parent.transform);
+        if (currentState != null)
+            currentState.AddParticles(emitter);
+        particleDict.Add(index, emitter);
     }
 
-    public void SaveParticle(int key, DanmakuParticleEmitter particle)
+    public void SetParticleUpdate(int index, bool updatePosition, bool updateRotation, bool updateScale)
     {
-        particleDict.Add(key, particle);
-    }
-
-    public DanmakuParticleEmitter ExtractParticle(int key)
-    {
-        DanmakuParticleEmitter particle = particleDict[key];
-        particleDict.Remove(key);
-        return particle;
-    }
-
-    public void SetParticleUpdate(DanmakuParticleEmitter particle, bool updatePosition, bool updateRotation, bool updateScale)
-    {
-        particle.SetUpdate(updatePosition, updateRotation, updateScale);
-    }
-
-    public void Test(Vector2[] vector2s)
-    {
-
+        particleDict[index].SetUpdate(updatePosition, updateRotation, updateScale);
     }
 }

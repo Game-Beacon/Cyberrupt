@@ -2,14 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : GameBehaviour
+public class Player : GameBehaviour, IDanmakuTarget
 {
+    public Transform target { get { return transform; } }
+    public float hitRadius { get { return _hitRadius; } }
+    public bool isImmune { get { return isDashing | isHurt | isInIFrame; } }
+
+    //TODO: Might have to turn these things into a scriptable object
     [SerializeField]
     private float speed;
     [SerializeField]
-    private float hitRadius;
+    private float _hitRadius;
+    [SerializeField]
+    private float dashSpeed;
+    [SerializeField]
+    private float dashTime;
+    [SerializeField]
+    private float iTimeAfterDash;
+    [SerializeField]
+    private float dashCoolDown;
+    [SerializeField]
+    private float hurtTime;
+
+    private Rigidbody2D rb;
     private DanmakuManager danmakuManager;
     private Camera cam;
+
+    private bool isHurt = false;
+    private bool isDashing = false;
+    private bool isInIFrame = false;
+    private bool canDash = true;
 
     public override void GameAwake()
     {
@@ -19,17 +41,28 @@ public class Player : GameBehaviour
     public override void GameStart()
     {
         danmakuManager = DanmakuManager.instance;
-        danmakuManager.SetDanmakuTarget(transform, hitRadius);
+        danmakuManager.SetDanmakuTarget(this);
         danmakuManager.bulletHitTarget.AddListener(OnHit);
+        rb = GetComponent<Rigidbody2D>();
         cam = Camera.main;
     }
 
     private void OnHit()
     {
-        Debug.Log("Ouch");
+        if (!isImmune)
+        {
+            Debug.Log("Ouch");
+            StartCoroutine(AfterHurt(hurtTime));
+        } 
     }
 
     public override void GameUpdate()
+    {
+        LookAtMouse();
+        MoveAndDash();
+    }
+
+    private void LookAtMouse()
     {
         Vector2 dir = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
 
@@ -37,8 +70,11 @@ public class Player : GameBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
-    public override void GameFixedUpdate()
+    private void MoveAndDash()
     {
+        if (isDashing)
+            return;
+
         Vector2 dir = Vector2.zero;
 
         if (Input.GetKey(KeyCode.W))
@@ -50,8 +86,42 @@ public class Player : GameBehaviour
         if (Input.GetKey(KeyCode.D))
             dir += Vector2.right;
 
-        if (dir.magnitude > 0)
-            transform.position += (Vector3)dir.normalized * speed * Time.fixedDeltaTime;
+        if (canDash && Input.GetKeyDown(KeyCode.Space) && dir.magnitude > 0)
+        {
+            StartCoroutine(Dash(dir));
+            return;
+        }
+
+        
+        rb.velocity = dir.normalized * speed;
+    }
+
+    IEnumerator Dash(Vector2 dir)
+    {
+        isDashing = true;
+        rb.velocity = dir.normalized * dashSpeed;
+        yield return new WaitForSeconds(dashTime);
+        isInIFrame = true;
+        isDashing = false;
+        StartCoroutine(DashCoolDown(dashCoolDown));
+        yield return new WaitForSeconds(iTimeAfterDash);
+        isInIFrame = false;
+    }
+
+    IEnumerator DashCoolDown(float coolDown)
+    {
+        canDash = false;
+        yield return new WaitForSeconds(coolDown);
+        canDash = true;
+    }
+
+    IEnumerator AfterHurt(float hurtTime)
+    {
+        isHurt = true;
+        Debug.Log("start hurt");
+        yield return new WaitForSeconds(hurtTime);
+        Debug.Log("end hurt");
+        isHurt = false;
     }
 
     private void OnDrawGizmos()

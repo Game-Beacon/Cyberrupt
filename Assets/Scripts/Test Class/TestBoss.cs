@@ -2,32 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestBoss : GameBehaviour
+public class TestBoss : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 {
-    private List<DanmakuParticleEmitter> danmakuEmitters = new List<DanmakuParticleEmitter>();
+    private Transform _target;
+    public Transform target { get { return _target; } }
 
+    private AIStateMachine _stateMachine;
+    public AIStateMachine stateMachine { get { return _stateMachine; } }
+
+    private SpawnDanmakuHelper _danmakuHelper;
+    public SpawnDanmakuHelper danmakuHelper { get { return _danmakuHelper; } }
+
+    //====================
+
+    private Player player;
+    
     [SerializeField]
-    private List<AIEmitterSetting> emitterSettings = new List<AIEmitterSetting>();
+    private float speed;
 
-    public int emitterCount;
-    public bool rage;
-
-    public override void GameFixedUpdate()
+    protected override void EnemyAwake()
     {
-        foreach (DanmakuParticleEmitter emitter in danmakuEmitters)
-            emitter.Update(Time.deltaTime);
+        _stateMachine = GetComponent<AIStateMachine>();
+        _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
 
-        for (int i = danmakuEmitters.Count - 1; i >= 0; i--)
-            if (danmakuEmitters[i].activeCount <= 0)
-                danmakuEmitters.RemoveAt(i);
-
-        emitterCount = danmakuEmitters.Count;
+        _stateMachine.OnUpdateTransform.AddListener(UpdateTransform);
     }
 
-    public DanmakuParticleEmitter AddDanmaku(int callIndex)
+    protected override void EnemyStart()
     {
-        //DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(emitterSettings[callIndex].particle, emitterSettings[callIndex].location, rage);
-        //danmakuEmitters.Add(emitter);
-        return null;
+        player = DependencyContainer.GetDependency<Player>() as Player;
+        _target = player.transform;
     }
+
+    private void UpdateTransform()
+    {
+        Vector2 direction = _target.position - transform.position;
+        transform.position += (Vector3)direction.normalized * speed * Time.fixedDeltaTime;
+    }
+
+    /*protected override void MachineAwake()
+    {
+        _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
+        _EnterNewState.AddListener(_danmakuHelper.StopAll);
+        _ExitState.AddListener(_danmakuHelper.StopAll);
+    }
+
+    protected override void MachineStart()
+    {
+        player = DependencyContainer.GetDependency<Player>() as Player;
+        _target = player.transform;
+    }
+
+    protected override void UpdateTransform()
+    {
+        Vector2 direction = _target.position - transform.position;
+        transform.position += (Vector3)direction.normalized * speed * Time.fixedDeltaTime;
+    }
+
+    protected override void MachineFixedUpdate()
+    {
+        foreach(GameObject obj in lookAts)
+        {
+            Vector2 dir = _target.position - obj.transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            obj.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    public override void GameUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            InterruptState();
+    }*/
 }

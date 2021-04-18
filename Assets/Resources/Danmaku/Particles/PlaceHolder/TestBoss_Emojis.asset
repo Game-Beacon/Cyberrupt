@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: TestBoss_Emojis
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: df3c2adef121537449607c00ecc89d88, type: 2}
+    - {fileID: 11400000, guid: 57398829deac74a4289480d8aefe1915, type: 2}
+    - {fileID: 11400000, guid: 5502eddf74d50e5468fabfaab0e5dffd, type: 2}
+    _liveTime: 10
+    _rateOverTime: 4
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 0
+    _spread: 90
+    _radius: 0
+    _radiusThickness: 0
+    _edgeWidth: 0
+    _cycleTime: 1
+    _burstCount: 1
+  _patternModule:
+    _easeType: 3
+    _scaleType: 0
+    _rotationType: 1
+    _easeTime: 1
+    _scale: 0.75
+    _minScale: 0
+    _maxScale: 0
+    _rotation: 0
+    _minRotation: -180
+    _maxRotation: 180
+  _pathModule:
+    _pathType: 0
+    _speedType: 1
+    _speed: 0
+    _minSpeed: 5
+    _maxSpeed: 7.5
+    _waveAmp: 0
+    _waveHz: 0
+    _waveOffest: 0

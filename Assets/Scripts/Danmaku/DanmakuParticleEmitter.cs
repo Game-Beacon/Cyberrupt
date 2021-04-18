@@ -61,10 +61,10 @@ public class DanmakuParticleEmitter : IDanmaku
     public DanmakuParticleEmitter(DanmakuParticleData data, Transform t, float spawn = -1, bool rage = false)
     {
         if (manager == null)
-        {
             manager = DanmakuManager.instance;
+        if(manager != null)
             manager.AddDanmaku(this);
-        }
+
         danmakuData = data;
         transform = t;
         spawnTime = spawn;
@@ -91,14 +91,7 @@ public class DanmakuParticleEmitter : IDanmaku
         shootDelta -= delta;
 
         manager.RecycleBullet(ref returnPoolQueue);
-    }
-
-    public void SetUpdate(bool position, bool rotation, bool scale)
-    {
-        updatePosition = position;
-        updateRotation = rotation;
-        updateScale = scale;
-    }
+    }   
 
     private void SpawnPattern()
     {
@@ -220,9 +213,7 @@ public class DanmakuParticleEmitter : IDanmaku
                     bullets.children[i].transform.position = bullets.parent + localMatrix.Transform(bullets.danmaku.data[i].localPosition);
                     Vector2 pos = bullets.children[i].transform.position;
 
-                    manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius);
-
-                    if (manager.OverBound(pos))
+                    if (manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius) || manager.OverBound(pos))
                     {
                         manager.RequestParticlePlay(bullets.children[i].transform.position);
                         bullets.actives[i] = false;
@@ -245,9 +236,29 @@ public class DanmakuParticleEmitter : IDanmaku
         bullets.timer += delta;
     }
 
+    public void SetUpdate(bool position, bool rotation, bool scale)
+    {
+        updatePosition = position;
+        updateRotation = rotation;
+        updateScale = scale;
+    }
+
+    public void StopSpawnBullets()
+    {
+        _spawnBullets = false;
+    }
+
+    public void KillAllBullets()
+    {
+        _spawnBullets = false;
+        int len = patterns.Count - 1;
+        for (int i = len; i >= 0; i--)
+            patterns[i].timer = patterns[i].liveTime + 1;
+    }
+
     public void OnDispose()
     {
-        Transform t = transform;
-        Object.Destroy(t.gameObject);
+        //Transform t = transform;
+        //Object.Destroy(t.gameObject);
     }
 }

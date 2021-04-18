@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: TestBoss_StasisFire
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
+    _liveTime: 10
+    _rateOverTime: 50
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 2
+    _spread: 90
+    _radius: 2
+    _radiusThickness: 0.25
+    _edgeWidth: 0
+    _cycleTime: 0.35
+    _burstCount: 5
+  _patternModule:
+    _easeType: 3
+    _scaleType: 0
+    _rotationType: 0
+    _easeTime: 1
+    _scale: 1
+    _minScale: 15
+    _maxScale: 25
+    _rotation: 0
+    _minRotation: 0
+    _maxRotation: 0
+  _pathModule:
+    _pathType: 0
+    _speedType: 1
+    _speed: 7.5
+    _minSpeed: 6
+    _maxSpeed: 8.5
+    _waveAmp: 3
+    _waveHz: 0.5
+    _waveOffest: 0

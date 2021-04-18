@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UltEvents;
 
 public abstract class AIState : MonoBehaviour
@@ -12,7 +11,7 @@ public abstract class AIState : MonoBehaviour
     protected bool _overrideTransformUpdate;
     public bool overrideTransformUpdate { get { return _overrideTransformUpdate; } private set { } }
     
-    protected List<(DanmakuParticleEmitter, float)> followParticles = new List<(DanmakuParticleEmitter, float)>();
+    protected List<DanmakuParticleEmitter> particles = new List<DanmakuParticleEmitter>();
     protected List<IEnumerator> asyncs = new List<IEnumerator>();
 
     [SerializeField]
@@ -30,7 +29,7 @@ public abstract class AIState : MonoBehaviour
 
     protected void SelfEndState()
     {
-        stateMachine.InterruptState();
+        StartCoroutine(EndStateOneFrameLater());
     }
 
     public void StateEnter()
@@ -48,22 +47,6 @@ public abstract class AIState : MonoBehaviour
         if (_overrideTransformUpdate)
             UpdateTransform(delta);
 
-        if(stateMachine.target != null)
-        {
-            foreach ((DanmakuParticleEmitter, float) data in followParticles)
-            {
-                if (data.Item2 == 0)
-                    continue;
-
-                Transform t = data.Item1.parent;
-                Vector2 lookAt = stateMachine.target.position - t.position;
-                float angle = Mathf.Atan2(lookAt.y, lookAt.x) * Mathf.Rad2Deg;
-                Quaternion quaternion = Quaternion.Euler(0, 0, angle);
-
-                t.rotation = Quaternion.Slerp(t.rotation, quaternion, data.Item2);
-            }
-        }
-
         OnStateUpdate(delta);
     }
 
@@ -73,7 +56,7 @@ public abstract class AIState : MonoBehaviour
 
     public void StateExit()
     {
-        followParticles.Clear();
+        particles.Clear();
         OnExit.Invoke();
         StopAllCoroutines();
         asyncs.Clear();
@@ -82,8 +65,14 @@ public abstract class AIState : MonoBehaviour
 
     protected virtual void OnStateExit() { }
 
-    public void AddFollowParticles(DanmakuParticleEmitter particle, float followStr)
+    public void AddParticles(DanmakuParticleEmitter particle)
     {
-        followParticles.Add((particle, followStr));
+        particles.Add(particle);
+    }
+
+    IEnumerator EndStateOneFrameLater()
+    {
+        yield return new WaitForFixedUpdate();
+        stateMachine.InterruptState();
     }
 }
