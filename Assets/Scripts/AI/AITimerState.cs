@@ -5,8 +5,8 @@ using UnityEngine;
 public class AITimerState : AIState
 {
     [SerializeField]
-    private float time;
-    private float timer;
+    protected float time;
+    protected float timer;
 
     /// <summary>
     /// 在複寫時請保留base

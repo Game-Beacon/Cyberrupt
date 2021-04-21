@@ -4,6 +4,8 @@ using UltEvents;
 
 public class Enemy : GameBehaviour
 {
+    private static EnemyManager manager = null;
+
     [SerializeField]
     protected float _maxHP;
     public float maxHP { get { return _maxHP; } }
@@ -21,6 +23,13 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameAwake()
     {
+        if (manager == null)
+            manager = EnemyManager.instance;
+        if (manager != null)
+            manager.AddEnemy(this);
+
+        OnDeath += Die;
+
         EnemyAwake();
         OnSpawn.Invoke();
     }
@@ -38,7 +47,11 @@ public class Enemy : GameBehaviour
     {
         EnemyUpdate();
         if (_hp <= 0)
+        {
+            if (manager != null)
+                manager.RemoveEnemy(this);
             OnDeath.Invoke();
+        }   
     }
 
     protected virtual void EnemyUpdate() { }
@@ -57,5 +70,11 @@ public class Enemy : GameBehaviour
     {
         _maxHP = max;
         _hp = _maxHP;
+    }
+
+    protected void Die()
+    {
+        update = false;
+        KillBehaviour(true);
     }
 }

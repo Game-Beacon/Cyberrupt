@@ -13,6 +13,9 @@ public class TestBossState_Pistol : AIState
     [SerializeField]
     private Transform shooter;
 
+    [Space(20)]
+    [SerializeField]
+    private float shootSpread;
     [SerializeField]
     private int totalShootTimes = 4;
     [SerializeField]
@@ -58,7 +61,9 @@ public class TestBossState_Pistol : AIState
 
         if (shootTimes < totalShootTimes && timer >= shootTimes * shootGap)
         {
-            Instantiate(Bullet, shooter.position, shooter.rotation);
+            float spread = Random.Range(-shootSpread / 2f, shootSpread / 2f);
+            Quaternion rotation = Quaternion.Euler(0, 0, shooter.rotation.eulerAngles.z + spread);
+            Instantiate(Bullet, shooter.position, rotation);
             shootTimes += 1;
             if(shootTimes == totalShootTimes)
             {

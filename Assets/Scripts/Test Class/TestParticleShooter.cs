@@ -13,11 +13,6 @@ public class TestParticleShooter : GameBehaviour
         emitter = new DanmakuParticleEmitter(particle, transform);
     }
 
-    public override void GameFixedUpdate()
-    {
-        emitter.Update(Time.fixedDeltaTime);
-    }
-
     private void OnDrawGizmos()
     {
         if (particle == null)

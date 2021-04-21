@@ -1,20 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class WeaponBullet : GameBehaviour
 {
-    private Rigidbody2D rb;
-    
+    [SerializeField]
+    protected WeaponCollsionLayer collisionLayer = null;
+
+    protected Rigidbody2D rb;
+
     protected float damage;
     protected float speed;
     protected Vector2 direction;
 
     public override void GameAwake()
     {
+        if (collisionLayer == null)
+            collisionLayer = Resources.FindObjectsOfTypeAll<WeaponCollsionLayer>().FirstOrDefault();
+
         if (!TryGetComponent(out rb))
-            Debug.LogWarning("There's no rigidbody2D attached to " + gameObject.name);
+            Debug.LogError("There's no rigidbody2D attached to " + gameObject.name);
     }
 
     public void SetBulletProperty(float Damage, float Speed, Vector2 Direction)
@@ -24,14 +29,24 @@ public abstract class WeaponBullet : GameBehaviour
         direction = Direction;
     }
 
-    protected virtual void OnHit()
+    protected virtual void OnHitEnemy(GameObject hitObject)
     {
+        Enemy enemy = hitObject.GetComponent<Enemy>();
+        enemy.ApplyDamage(damage);
+        KillBehaviour(true);
+    }
 
+    protected virtual void OnHitWall(GameObject hitObject)
+    {
+        KillBehaviour(true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        OnHit();
+        if (((1 << collision.collider.gameObject.layer) & collisionLayer.enemyMask) != 0)
+            OnHitEnemy(collision.collider.gameObject);
+        if (((1 << collision.collider.gameObject.layer) & collisionLayer.wallMask) != 0)
+            OnHitWall(collision.collider.gameObject);
     }
 
     //TODO (for this class)：

@@ -32,6 +32,7 @@ public class AIStateMachine : GameBehaviour
 
     public sealed override void GameAwake()
     {
+        pickStateTimer = pickStateTime;
         foreach (AIState state in AIStates)
             state.SetMachine(this);
     }
@@ -86,6 +87,9 @@ public class AIStateMachine : GameBehaviour
 
     private void RefreshStateIndexes()
     {
+        if (AIStates.Count == 0)
+            return;
+
         for (int i = 0; i < AIStates.Count; i++)
         {
             int rand = Random.Range(0, AIStates.Count);
@@ -103,5 +107,10 @@ public class AIStateMachine : GameBehaviour
     public void InterruptState()
     {
         interruptState = true;
+    }
+
+    public void SetPickStateTimeRand(float randomness)
+    {
+        pickStateTime *= Random.Range(1 - 0.5f * randomness, 1 + 0.5f * randomness);
     }
 }

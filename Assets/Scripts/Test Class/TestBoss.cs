@@ -39,39 +39,4 @@ public class TestBoss : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         Vector2 direction = _target.position - transform.position;
         transform.position += (Vector3)direction.normalized * speed * Time.fixedDeltaTime;
     }
-
-    /*protected override void MachineAwake()
-    {
-        _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
-        _EnterNewState.AddListener(_danmakuHelper.StopAll);
-        _ExitState.AddListener(_danmakuHelper.StopAll);
-    }
-
-    protected override void MachineStart()
-    {
-        player = DependencyContainer.GetDependency<Player>() as Player;
-        _target = player.transform;
-    }
-
-    protected override void UpdateTransform()
-    {
-        Vector2 direction = _target.position - transform.position;
-        transform.position += (Vector3)direction.normalized * speed * Time.fixedDeltaTime;
-    }
-
-    protected override void MachineFixedUpdate()
-    {
-        foreach(GameObject obj in lookAts)
-        {
-            Vector2 dir = _target.position - obj.transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            obj.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
-    }
-
-    public override void GameUpdate()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-            InterruptState();
-    }*/
 }

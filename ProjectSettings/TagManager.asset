@@ -15,9 +15,9 @@ TagManager:
   - 
   - Player
   - Enemy
+  - Screen
   - Wall
-  - 
-  - 
+  - Weapon
   - 
   - 
   - 

@@ -42,15 +42,24 @@ public class TestBossState_CannonCrown : AIState
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(stateMachine != null && stateMachine.currentState == this && coolDownTimer <= 0)
+        if(stateMachine != null && stateMachine.currentState == this && coolDownTimer <= 0 && shootTimes < totalShootTimes)
         {
             coolDownTimer = shootCoolDown;
             OnSuccessCollide.Invoke();
             shootTimes++;
             if (shootTimes >= totalShootTimes)
-                SelfEndState();
+            {
+                StartCoroutine(EndDelay());
+                velocity = Vector2.zero;
+            }
         }
         
         velocity = Vector2.Reflect(velocity, collision.contacts[0].normal);
+    }
+
+    IEnumerator EndDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        SelfEndState();
     }
 }

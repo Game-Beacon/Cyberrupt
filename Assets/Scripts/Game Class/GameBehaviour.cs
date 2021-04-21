@@ -43,7 +43,14 @@ public class GameBehaviour : MonoBehaviour
         game.RemoveAndKillBehaviour(this);
 
         if (killGameObject)
+        {
             _destroyGameObjectWhenKilled = true;
+            GameBehaviour[] behaviours = GetComponentsInChildren<GameBehaviour>();
+
+            for (int i = 0; i < behaviours.Length; i++)
+                if (behaviours[i] != this)
+                    behaviours[i].KillBehaviour(false);
+        } 
         else
             _destroyGameObjectWhenKilled = false;
 
