@@ -464,7 +464,7 @@ MonoBehaviour:
   _executeOrder: 0
   AIStates:
   - {fileID: 4449040837001671056}
-  pickStateTime: 0.25
+  pickStateTime: 0.2
 --- !u!114 &4449040837001671056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
     _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
-  time: 0.25
+  time: 0.2
 --- !u!1 &3984703758384267122
 GameObject:
   m_ObjectHideFlags: 0

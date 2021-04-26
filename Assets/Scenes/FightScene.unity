@@ -442,7 +442,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashTime: 0.15
   iTimeAfterDash: 0.05
-  dashCoolDown: 0.25
+  dashCoolDown: 0.4
   hurtTime: 2
 --- !u!4 &182293012
 Transform:
