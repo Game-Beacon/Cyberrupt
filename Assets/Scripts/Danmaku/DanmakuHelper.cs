@@ -192,7 +192,7 @@ public struct SubEmitModule
 }
 
 [System.Serializable]
-public struct DanmakuBound
+public struct Bound
 {
     public Transform parent;
     public float xSize;

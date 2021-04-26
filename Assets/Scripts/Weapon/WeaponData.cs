@@ -36,6 +36,11 @@ public class WeaponData : ScriptableObject
     private float _speed;
     public float speed { get { return _speed; } private set { } }
 
+    //射速偏差
+    [SerializeField, Range(0, 1)]
+    private float _speedRand;
+    public float speedRand { get { return _speedRand; } private set { } }
+
     //頻率(或是充能型武器的射擊延遲)
     [SerializeField]
     private float _frequency;

@@ -15,8 +15,9 @@ MonoBehaviour:
   _weaponName: Base
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
   _damage: 5
-  _spreadAngle: 5
+  _spreadAngle: 10
   _speed: 17.5
+  _speedRand: 0
   _frequency: 7.5
   _cps: 1
   _shootType: 1

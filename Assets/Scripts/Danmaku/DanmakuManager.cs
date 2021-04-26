@@ -24,9 +24,7 @@ public class DanmakuManager : GameBehaviour
     private int poolCount;
 
     [SerializeField]
-    private DanmakuBound _bound;
-    [SerializeField]
-    private DanmakuBound _screen;
+    private Bound _bound;
 
     [SerializeField]
     private DanmakuTarget _target = null;
@@ -139,16 +137,6 @@ public class DanmakuManager : GameBehaviour
         return result;
     }
 
-    public Vector2 GetRandomInScreen()
-    {
-        float maxX = _screen.parent.position.x + (_screen.xSize / 2);
-        float minX = _screen.parent.position.x - (_screen.xSize / 2);
-        float maxY = _screen.parent.position.y + (_screen.ySize / 2);
-        float minY = _screen.parent.position.y - (_screen.ySize / 2);
-
-        return new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-    }
-
     public void AddDanmaku(IDanmaku danmaku)
     {
         danmakus.Add(danmaku);
@@ -158,7 +146,5 @@ public class DanmakuManager : GameBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireCube(transform.position, new Vector3(_bound.xSize, _bound.ySize));
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(_screen.xSize, _screen.ySize));
     }
 }

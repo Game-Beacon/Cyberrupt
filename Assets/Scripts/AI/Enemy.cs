@@ -4,7 +4,7 @@ using UltEvents;
 
 public class Enemy : GameBehaviour
 {
-    private static EnemyManager manager = null;
+    protected static EnemyManager manager = null;
 
     [SerializeField]
     protected float _maxHP;
@@ -21,13 +21,11 @@ public class Enemy : GameBehaviour
     [SerializeField]
     protected UltEvent OnDeath = new UltEvent();
 
+    protected bool _canAttack = true;
+    public bool canAttack { get { return _canAttack; } }
+
     public override sealed void GameAwake()
     {
-        if (manager == null)
-            manager = EnemyManager.instance;
-        if (manager != null)
-            manager.AddEnemy(this);
-
         OnDeath += Die;
 
         EnemyAwake();
@@ -38,6 +36,10 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameStart()
     {
+        if (manager == null)
+            manager = EnemyManager.instance;
+        if (manager != null)
+            manager.AddEnemy(this);
         EnemyStart();
     }
 
@@ -45,6 +47,7 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameUpdate()
     {
+        _canAttack = manager.InScreen(transform.position);
         EnemyUpdate();
         if (_hp <= 0)
         {

@@ -106,7 +106,9 @@ public class Weapon
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             Vector2 direction = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
             WeaponBullet bullet = Object.Instantiate(data.bullet, muzzle.position, rotation);
-            bullet.SetBulletProperty(data.damage, data.speed, direction);
+
+            float multiplier = 1 + Random.Range(-data.speedRand / 2f, data.speedRand / 2f);
+            bullet.SetBulletProperty(data.damage, data.speed * multiplier, direction);
         }
     }
 }

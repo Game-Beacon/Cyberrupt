@@ -4,6 +4,7 @@ using UnityEngine.Events;
 
 public class AIStateMachine : GameBehaviour
 {
+    protected Enemy enemy;
     protected Transform _target;
     public Transform target { get { return _target; } private set { } }
 
@@ -32,6 +33,7 @@ public class AIStateMachine : GameBehaviour
 
     public sealed override void GameAwake()
     {
+        enemy = GetComponent<Enemy>();
         pickStateTimer = pickStateTime;
         foreach (AIState state in AIStates)
             state.SetMachine(this);
@@ -52,11 +54,14 @@ public class AIStateMachine : GameBehaviour
         if (_currentState == null || !_currentState.overrideTransformUpdate)
             _OnUpdateTransform.Invoke();
 
-        pickStateTimer -= Time.fixedDeltaTime;
-        pickStateTimer = Mathf.Max(pickStateTimer, 0);
+        if(enemy.canAttack)
+        {
+            pickStateTimer -= Time.fixedDeltaTime;
+            pickStateTimer = Mathf.Max(pickStateTimer, 0);
 
-        if (pickStateTimer <= 0)
-            UpdateStateMachine();
+            if (pickStateTimer <= 0)
+                UpdateStateMachine();
+        }
     }
 
     private void UpdateStateMachine()

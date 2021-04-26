@@ -6,9 +6,11 @@ public class Player : GameBehaviour, IDanmakuTarget
 {
     public Transform target { get { return transform; } }
     public float hitRadius { get { return _hitRadius; } }
-    public bool isImmune { get { return isDashing | isHurt | isInIFrame; } }
+    public bool isImmune { get { return isDashing | isHurt | isInIFrame | isDead; } }
 
     //TODO: Might have to turn these things into a scriptable object
+    [SerializeField]
+    private int _hp;
     [SerializeField]
     private float speed;
     [SerializeField]
@@ -28,9 +30,14 @@ public class Player : GameBehaviour, IDanmakuTarget
     private DanmakuManager danmakuManager;
     private Camera cam;
 
+    public int hp { get { return _hp; } }
+    public IntEvent OnHpChange { get; } = new IntEvent();
+    public GameEvent OnDied { get; } = new GameEvent();
+
     private bool isHurt = false;
     private bool isDashing = false;
     private bool isInIFrame = false;
+    private bool isDead = false;
     private bool canDash = true;
 
     public override void GameAwake()
@@ -51,7 +58,14 @@ public class Player : GameBehaviour, IDanmakuTarget
     {
         if (!isImmune)
         {
-            Debug.Log("Ouch");
+            _hp--;
+            OnHpChange.Invoke(_hp);
+            if(_hp == 0)
+            {
+                isDead = true;
+                update = false;
+                OnDied.Invoke();
+            }
             StartCoroutine(AfterHurt(hurtTime));
         } 
     }

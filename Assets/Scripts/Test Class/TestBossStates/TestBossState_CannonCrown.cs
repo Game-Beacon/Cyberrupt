@@ -8,6 +8,9 @@ public class TestBossState_CannonCrown : AIState
     [Space(20)]
 
     [SerializeField]
+    private LayerMask hitLayer;
+
+    [SerializeField]
     private float speed;
     private Vector2 velocity;
 
@@ -42,7 +45,7 @@ public class TestBossState_CannonCrown : AIState
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(stateMachine != null && stateMachine.currentState == this && coolDownTimer <= 0 && shootTimes < totalShootTimes)
+        if(stateMachine != null && stateMachine.currentState == this && ((1 << collision.gameObject.layer) & hitLayer) != 0 && coolDownTimer <= 0 && shootTimes < totalShootTimes)
         {
             coolDownTimer = shootCoolDown;
             OnSuccessCollide.Invoke();
@@ -52,9 +55,13 @@ public class TestBossState_CannonCrown : AIState
                 StartCoroutine(EndDelay());
                 velocity = Vector2.zero;
             }
+           
         }
-        
-        velocity = Vector2.Reflect(velocity, collision.contacts[0].normal);
+
+        if (((1 << collision.gameObject.layer) & hitLayer) != 0)
+            velocity = Vector2.Reflect(velocity, collision.contacts[0].normal);
+        else
+            velocity = velocity.normalized * speed;
     }
 
     IEnumerator EndDelay()

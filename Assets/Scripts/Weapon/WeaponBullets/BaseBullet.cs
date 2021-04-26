@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class BaseBullet : WeaponBullet
 {
+    public override void GameStart()
+    {
+        rb.velocity = direction * speed;
+    }
+
     public override void GameUpdate()
     {
-        transform.position += (Vector3)direction * speed * Time.deltaTime;
+        float currentSpeed = Mathf.Clamp(rb.velocity.magnitude, speed / 1.5f, speed);
+
+        rb.velocity = rb.velocity.normalized * currentSpeed;
+
+        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7a575e322f85414fb229c1ac8dbe15c, type: 3}
-  m_Name: Collsion Layer
+  m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
+  m_Name: DotShifted
   m_EditorClassIdentifier: 
-  _enemyMask:
-    serializedVersion: 2
-    m_Bits: 16896
-  _wallMask:
-    serializedVersion: 2
-    m_Bits: 2048
+  _data:
+  - localPosition: {x: 1, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}

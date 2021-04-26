@@ -10,39 +10,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
-  m_Name: Turret_Barrage 1
+  m_Name: Singularity_Counter
   m_EditorClassIdentifier: 
   _emitModule:
     _patterns:
-    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
-    _liveTime: 10
+    - {fileID: 11400000, guid: 725b6d7552b6e0745b41af799da7563a, type: 2}
+    _liveTime: 2
     _rateOverTime: 0.1
   _shapeModule:
-    _shapeType: 1
-    _distributeType: 3
-    _spread: 0
+    _shapeType: 0
+    _distributeType: 0
+    _spread: 360
     _radius: 0
     _radiusThickness: 0
     _edgeWidth: 0
-    _cycleTime: 0.1
-    _burstCount: 1
+    _cycleTime: 0
+    _burstCount: 3
   _patternModule:
-    _easeType: 9
-    _scaleType: 0
+    _easeType: 24
+    _scaleType: 1
     _rotationType: 0
-    _easeTime: 0.25
-    _scale: 1
-    _minScale: 0
-    _maxScale: 0
+    _easeTime: 1.75
+    _scale: 3.75
+    _minScale: 1.5
+    _maxScale: 3.5
     _rotation: 0
     _minRotation: 0
     _maxRotation: 0
   _pathModule:
     _pathType: 0
     _speedType: 0
-    _speed: 8
-    _minSpeed: 0
-    _maxSpeed: 0
+    _speed: 0
+    _minSpeed: 1
+    _maxSpeed: 1.5
     _waveAmp: 0
     _waveHz: 0
     _waveOffest: 0

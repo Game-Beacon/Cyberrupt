@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emitModule:
     _patterns:
-    - {fileID: 11400000, guid: b6b19002b991fdf4e94b9098e7cf8bcf, type: 2}
+    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
     _liveTime: 10
     _rateOverTime: 0.1
   _shapeModule:
     _shapeType: 0
     _distributeType: 3
-    _spread: 90
+    _spread: 120
     _radius: 0
     _radiusThickness: 0
     _edgeWidth: 0
     _cycleTime: 0
-    _burstCount: 1
+    _burstCount: 5
   _patternModule:
     _easeType: 3
     _scaleType: 0

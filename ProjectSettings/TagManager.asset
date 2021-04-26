@@ -18,8 +18,8 @@ TagManager:
   - Screen
   - Wall
   - Weapon
-  - 
-  - 
+  - WeakWeapon
+  - WeakEnemy
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1216555313
+    locked: 0
+  - name: Weapon
+    uniqueID: 1098764761
     locked: 0
   - name: Bullet
     uniqueID: 3729755199
