@@ -47,14 +47,10 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameUpdate()
     {
-        _canAttack = manager.InScreen(transform.position);
+        _canAttack = (manager == null)? true : manager.InScreen(transform.position);
         EnemyUpdate();
         if (_hp <= 0)
-        {
-            if (manager != null)
-                manager.RemoveEnemy(this);
             OnDeath.Invoke();
-        }   
     }
 
     protected virtual void EnemyUpdate() { }
@@ -75,8 +71,10 @@ public class Enemy : GameBehaviour
         _hp = _maxHP;
     }
 
-    protected void Die()
+    public void Die()
     {
+        if (manager != null)
+            manager.RemoveEnemy(this);
         update = false;
         KillBehaviour(true);
     }

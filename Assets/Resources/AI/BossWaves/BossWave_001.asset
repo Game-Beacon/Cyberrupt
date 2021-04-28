@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225785a6328bcd747ba502bbad4864a9, type: 3}
-  m_Name: Sample Bullet
+  m_Script: {fileID: 11500000, guid: 7bec4cb975b5a1c4f9b76515742aab57, type: 3}
+  m_Name: BossWave_001
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: ee6f2ebad0af8034d9f047eec25aaa6c, type: 3}
-  _rageSprite: {fileID: 21300000, guid: a47f8ea85d65107468d08c50ad57b7de, type: 3}
-  _radius: 0.15
+  _nextWaveDelay: 0
+  _difficulty: 0

@@ -85,9 +85,9 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
-        foreach(Enemy shield in shields)
-            if(shield != null)
-                shield.KillBehaviour(true);
+        foreach (Enemy shield in shields)
+            if (shield != null)
+                shield.Die();
         Destroy(parent.gameObject, 0.03f);
         Destroy(root.gameObject, 0.03f);
     }

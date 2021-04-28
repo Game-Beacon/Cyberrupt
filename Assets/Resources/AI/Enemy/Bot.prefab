@@ -117,7 +117,7 @@ MonoBehaviour:
   _executeOrder: 0
   AIStates:
   - {fileID: 3269894792829722950}
-  pickStateTime: 2.5
+  pickStateTime: 1.5
 --- !u!114 &3269894792829722951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,9 +142,10 @@ MonoBehaviour:
     _PersistentCalls: []
   speed: 1.5
   radius: 1.5
-  keepDistance: 2.5
+  keepDistance: 4
   targetStrenth: 0.5
-  avoidStrenth: 0.5
+  avoidStrenth: 1
+  alignmentStrenth: 0.2
   cohesionStrenth: 0.2
   steerStrenth: 0.05
   gradient:
@@ -196,7 +197,7 @@ MonoBehaviour:
     _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
-  time: 0.5
+  time: 0.1
   Level1:
     _PersistentCalls:
     - _Target: {fileID: 3269894792829722949}

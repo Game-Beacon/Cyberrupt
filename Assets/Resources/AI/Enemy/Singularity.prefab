@@ -180,7 +180,7 @@ MonoBehaviour:
   OnDeath:
     _PersistentCalls: []
   parent: {fileID: 8930571900753017793}
-  speed: 0.35
+  speed: 0.75
 --- !u!114 &362938149
 MonoBehaviour:
   m_ObjectHideFlags: 0

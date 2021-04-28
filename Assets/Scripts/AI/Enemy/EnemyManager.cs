@@ -7,7 +7,12 @@ public class EnemyManager : GameBehaviour
     private static EnemyManager _instance;
     public static EnemyManager instance { get { return _instance; } }
 
-    private HashSet<Enemy> enemies = new HashSet<Enemy>();
+    private List<Enemy> enemies = new List<Enemy>();
+
+    private EnemyWave[] enemyWaves;
+    private EnemyWave[] bossWaves;
+    private int wave = 0;
+    public int enemyCount { get { return enemies.Count; } }
 
     [SerializeField]
     private Bound _screen;
@@ -21,6 +26,20 @@ public class EnemyManager : GameBehaviour
             KillBehaviour(true);
             return;
         }
+
+        Object[] obj = Resources.LoadAll("AI/Waves", typeof(EnemyWave));
+        enemyWaves = new EnemyWave[obj.Length];
+
+        for (int i = 0; i < obj.Length; i++)
+            enemyWaves[i] = (EnemyWave)obj[i];
+
+        obj = Resources.LoadAll("AI/BossWaves", typeof(EnemyWave));
+        bossWaves = new EnemyWave[obj.Length];
+
+        for (int i = 0; i < obj.Length; i++)
+            bossWaves[i] = (EnemyWave)obj[i];
+
+        SpawnWave();
     }
 
     public void AddEnemy(Enemy enemy)
@@ -33,6 +52,28 @@ public class EnemyManager : GameBehaviour
     {
         if (enemies.Contains(enemy))
             enemies.Remove(enemy);
+        if (enemyCount == 0)
+            SpawnWave();
+    }
+
+    public void SpawnWave()
+    {
+        wave++;
+
+        if(wave % 10 == 0)
+        {
+            int index = Random.Range(0, bossWaves.Length);
+
+            foreach (EnemySpawnData data in bossWaves[index].spawns)
+                Instantiate(data.enemy, data.position, Quaternion.identity);
+        }
+        else
+        {
+            int index = Random.Range(0, enemyWaves.Length);
+
+            foreach (EnemySpawnData data in enemyWaves[index].spawns)
+                Instantiate(data.enemy, data.position, Quaternion.identity);
+        }
     }
 
     public bool InScreen(Vector2 position)

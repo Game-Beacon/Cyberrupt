@@ -31,11 +31,16 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     [SerializeField, Range(0, 1)]
     private float avoidStrenth;
     [SerializeField, Range(0, 1)]
+    private float alignmentStrenth;
+    [SerializeField, Range(0, 1)]
     private float cohesionStrenth;
     [SerializeField, Range(0, 0.5f)]
     private float steerStrenth;
 
-    private Vector2 direction;
+    private bool followMirror = false;
+
+    private Vector2 _direction;
+    public Vector2 direction { get { return _direction; } }
 
     private int _level = 1;
     public int level { get { return _level; } private set { } }
@@ -55,9 +60,11 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         _stateMachine.OnUpdateTransform.AddListener(UpdateTransform);
         _stateMachine.SetPickStateTimeRand(0.25f);
         
-        float angle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
-        direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+        float angle = /*transform.rotation.eulerAngles.z*/ Random.Range(0f, 360f) * Mathf.Deg2Rad;
+        _direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         radiusSquare = radius * radius;
+
+        followMirror = (bots.Count % 2 == 0);
 
         sr = GetComponentInChildren<SpriteRenderer>();
         bots.Add(this);
@@ -72,16 +79,18 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private void UpdateTransform()
     {
         //Make the "Boids" like movement
-        Vector2 targetVector = (_target.position - transform.position).normalized;
+        Vector2 targetVector = _target.position - transform.position;
         Vector2 avoidVector = Vector2.zero;
+        Vector2 alignmentVector = _direction;
         Vector2 cohesionVector = Vector2.zero;
+
+        float distance = targetVector.magnitude;
+        targetVector = targetVector.normalized;
 
         Vector2 massCenter = transform.position;
         int mass = 1;
 
         int surroundings = 0;
-
-        float distance = (_target.position - transform.position).magnitude;
 
         foreach (Bot bot in bots)
         {
@@ -99,6 +108,9 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
                 surroundings++;
                 massCenter += (Vector2)bot.transform.position;
                 avoidVector += vect.normalized * (radiusSquare - sqrMagnitude) / radiusSquare;
+
+                //Alignment
+                alignmentVector += bot.direction;
             }
         }
 
@@ -109,9 +121,9 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
             avoidVector = avoidVector.normalized;
 
         //Deal with position
-        Vector2 finalVector = (avoidVector * avoidStrenth + targetVector * targetStrenth + cohesionVector * cohesionStrenth).normalized;
-        direction = Vector2.Lerp(direction, finalVector, 0.2f).normalized;
-        transform.position += (Vector3)direction * speed * Mathf.Clamp01((2 * distance / keepDistance) - 1f) * Time.fixedDeltaTime;
+        Vector2 finalVector = (avoidVector * avoidStrenth + targetVector * targetStrenth + cohesionVector * cohesionStrenth + alignmentVector * alignmentStrenth).normalized;
+        _direction = Vector2.Lerp(_direction, finalVector, 0.2f).normalized;
+        transform.position += (Vector3)_direction * speed * Mathf.Clamp01((2 * distance / keepDistance) - 1f) * Time.fixedDeltaTime;
 
         //Deal with rotation
         float angle = Mathf.Atan2(targetVector.y, targetVector.x) * Mathf.Rad2Deg;
@@ -119,9 +131,9 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         transform.rotation = Quaternion.Slerp(transform.rotation, quaternion, steerStrenth);
 
         //Set the level of this bot based on it's surroundings.
-        if (surroundings < 2)
+        if (surroundings < 3)
             _level = 1;
-        else if (surroundings < 4)
+        else if (surroundings < 5)
             _level = 2;
         else
             _level = 3;
