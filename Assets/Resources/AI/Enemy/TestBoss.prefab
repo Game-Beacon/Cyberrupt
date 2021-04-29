@@ -161,8 +161,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  _maxHP: 2250
-  _hp: 2250
+  _maxHP: 1750
+  _hp: 1750
   OnSpawn:
     _PersistentCalls: []
   OnHit:

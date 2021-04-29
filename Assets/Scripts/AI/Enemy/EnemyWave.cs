@@ -20,6 +20,8 @@ public struct EnemySpawnData
 [CreateAssetMenu(menuName = "Enemy/EnemyWave")]
 public class EnemyWave : ScriptableObject
 {
+    [SerializeField]
+    [HideInInspector]
     private List<EnemySpawnData> _spawns = new List<EnemySpawnData>();
     public List<EnemySpawnData> spawns { get { return _spawns; } private set { } }
 

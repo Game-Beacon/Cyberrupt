@@ -53,6 +53,7 @@ public class EnemyWaveEditor : Editor
 
     public override void OnInspectorGUI()
     {
+        serializedObject.Update();
         enemyIndex = EditorGUILayout.Popup("敵人種類：", enemyIndex, enemyNames);
 
         if (enemyIndex != 0)
@@ -72,7 +73,14 @@ public class EnemyWaveEditor : Editor
         }
 
         EditorGUILayout.Space(20);
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
+
         base.OnInspectorGUI();
+
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
     }
 
     private void AddEnemy()
@@ -89,6 +97,9 @@ public class EnemyWaveEditor : Editor
 
     private void OnDisable()
     {
+        serializedObject.ApplyModifiedProperties();
+        EditorUtility.SetDirty(target);
+
         inspecting = null;
         DestroyAllViewObject();
         SceneView.duringSceneGui -= OnSceneGUI;

@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bec4cb975b5a1c4f9b76515742aab57, type: 3}
   m_Name: Wave_002
   m_EditorClassIdentifier: 
+  _spawns:
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: 5, y: -6.5}
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: -5, y: -6.5}
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: -5, y: 6.5}
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: 5, y: 6.5}
   _nextWaveDelay: 0
   _difficulty: 0
