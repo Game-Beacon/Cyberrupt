@@ -132,9 +132,9 @@ public class Player : GameBehaviour, IDanmakuTarget
     IEnumerator AfterHurt(float hurtTime)
     {
         isHurt = true;
-        Debug.Log("start hurt");
+        //Debug.Log("start hurt");
         yield return new WaitForSeconds(hurtTime);
-        Debug.Log("end hurt");
+        //Debug.Log("end hurt");
         isHurt = false;
     }
 

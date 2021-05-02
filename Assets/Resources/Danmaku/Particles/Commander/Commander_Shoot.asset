@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
-  m_Name: Bot_Level3OneShot
+  m_Name: Commander_Shoot
   m_EditorClassIdentifier: 
   _emitModule:
     _patterns:
-    - {fileID: 11400000, guid: b6b19002b991fdf4e94b9098e7cf8bcf, type: 2}
+    - {fileID: 11400000, guid: caccba61fbe5c2340900e4b200db8a13, type: 2}
     _liveTime: 10
     _rateOverTime: 0.1
   _shapeModule:
@@ -31,7 +31,7 @@ MonoBehaviour:
     _scaleType: 0
     _rotationType: 0
     _easeTime: 0.5
-    _scale: 1
+    _scale: 1.5
     _minScale: 0
     _maxScale: 0
     _rotation: 180
@@ -40,9 +40,9 @@ MonoBehaviour:
   _pathModule:
     _pathType: 0
     _speedType: 0
-    _speed: 6.5
+    _speed: 5
     _minSpeed: 0
     _maxSpeed: 0
-    _waveAmp: 3
-    _waveHz: 0.75
+    _waveAmp: 0
+    _waveHz: 0
     _waveOffest: 0

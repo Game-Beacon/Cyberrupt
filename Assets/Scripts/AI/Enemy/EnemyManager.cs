@@ -60,8 +60,8 @@ public class EnemyManager : GameBehaviour
     {
         wave++;
 
-        Debug.Log("Spawn");
-        if(wave % 10 == 0)
+        //Debug.Log("Spawn");
+        if(wave % 4 == 0)
         {
             int index = Random.Range(0, bossWaves.Length);
 

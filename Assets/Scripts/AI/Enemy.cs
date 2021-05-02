@@ -16,10 +16,13 @@ public class Enemy : GameBehaviour
 
     [SerializeField]
     protected UltEvent OnSpawn = new UltEvent();
+    public UltEvent OnEnemySpawn { get { return OnSpawn; } }
     [SerializeField]
     protected UltEvent OnHit = new UltEvent();
+    public UltEvent OnEnemyHit { get { return OnHit; } }
     [SerializeField]
     protected UltEvent OnDeath = new UltEvent();
+    public UltEvent OnEnemyDeath { get { return OnDeath; } }
 
     protected bool _canAttack = true;
     public bool canAttack { get { return _canAttack; } }
