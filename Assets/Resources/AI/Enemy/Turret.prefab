@@ -444,6 +444,8 @@ MonoBehaviour:
   lr: {fileID: 2163395372375072314}
   pathLength: 30
   pathSpeed: 1.25
+  segmentCount: 24
+  segmentDuration: 3
   lockStrenth: 0.25
   shields:
   - {fileID: 5837541749256338119}
@@ -1007,7 +1009,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 3
+    textureMode: 1
     shadowBias: 0
     generateLightingData: 0
   m_UseWorldSpace: 1
