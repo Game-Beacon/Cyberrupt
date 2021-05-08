@@ -10,8 +10,11 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     //TODO: Might have to turn these things into a scriptable object
     [SerializeField]
-    private int _hp;
+    private int _maxHp;
     [SerializeField]
+    private int _hp;
+
+    [Space(20), SerializeField]
     private float speed;
     [SerializeField]
     private float _hitRadius;
@@ -27,10 +30,13 @@ public class Player : GameBehaviour, IDanmakuTarget
     private float hurtTime;
 
     private Rigidbody2D rb;
+    private WeaponController _weaponController;
     private DanmakuManager danmakuManager;
     private Camera cam;
 
+    public int maxHp { get { return _maxHp; } }
     public int hp { get { return _hp; } }
+    public WeaponController weaponController { get { return _weaponController; } }
     public IntEvent OnHpChange { get; } = new IntEvent();
     public GameEvent OnDied { get; } = new GameEvent();
 
@@ -43,6 +49,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     public override void GameAwake()
     {
         DependencyContainer.AddDependency(this);
+        _weaponController = GetComponent<WeaponController>();
     }
 
     public override void GameStart()
@@ -74,6 +81,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     {
         LookAtMouse();
         MoveAndDash();
+        _weaponController.UpdateController();
     }
 
     private void LookAtMouse()
