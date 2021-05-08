@@ -209,6 +209,8 @@ public struct Bound
     }
 }
 
+//Note : The implementation of DanmakuTarget and DanmakuObstacle is kinda bad.
+//(Since they are almost identical.)
 [System.Serializable]
 public class DanmakuTarget
 {
@@ -224,6 +226,23 @@ public class DanmakuTarget
         if (danmakuTarget == null || danmakuTarget.target == null)
             return false;
         if (danmakuTarget.isImmune)
+            return false;
+        return ((Vector2)danmakuTarget.target.transform.position - position).magnitude < danmakuTarget.hitRadius + r;
+    }
+}
+
+[System.Serializable]
+public class DanmakuObstacle
+{
+    private IDanmakuTarget danmakuTarget;
+    public DanmakuObstacle(IDanmakuTarget target)
+    {
+        danmakuTarget = target;
+    }
+
+    public bool TouchObstacle(Vector2 position, float r)
+    {
+        if (danmakuTarget == null || danmakuTarget.target == null)
             return false;
         return ((Vector2)danmakuTarget.target.transform.position - position).magnitude < danmakuTarget.hitRadius + r;
     }

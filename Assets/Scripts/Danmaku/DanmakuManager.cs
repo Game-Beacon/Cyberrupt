@@ -30,6 +30,8 @@ public class DanmakuManager : GameBehaviour
     private DanmakuTarget _target = null;
     public DanmakuTarget target { get { return _target; } private set { } }
 
+    private List<DanmakuObstacle> obstacles = new List<DanmakuObstacle>();
+
     private UnityEvent _bulletHitTarget = new UnityEvent();
     public UnityEvent bulletHitTarget { get { return _bulletHitTarget; } private set { } }
 
@@ -122,9 +124,26 @@ public class DanmakuManager : GameBehaviour
         _target = new DanmakuTarget(target);
     }
 
+    public DanmakuObstacle AddObstacle(IDanmakuTarget target)
+    {
+        DanmakuObstacle obstacle = new DanmakuObstacle(target);
+        obstacles.Add(obstacle);
+        return obstacle;
+    }
+
+    public void RemoveObstacle(DanmakuObstacle obstacle)
+    {
+        obstacles.Remove(obstacle);
+    }
+
     public bool OverBound(Vector2 position)
     {
-        return _bound.OverBound(position);
+        if (_bound.OverBound(position))
+            return true;
+        foreach (DanmakuObstacle obstacle in obstacles)
+            if (obstacle.TouchObstacle(position, 0))
+                return true;
+        return false;
     }
 
     public bool TouchTarget(Vector2 position, float radius)
