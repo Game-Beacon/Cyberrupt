@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: BaseWeapon
   m_EditorClassIdentifier: 
   _weaponName: Base
+  _icon: {fileID: 21300000, guid: 0d659c32757005745ad6f514850fd951, type: 3}
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
   _damage: 5
   _spreadAngle: 10

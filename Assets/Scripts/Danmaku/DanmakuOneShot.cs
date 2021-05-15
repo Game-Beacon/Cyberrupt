@@ -51,7 +51,7 @@ public class DanmakuOneShot : IDanmaku
         for (int i = 0; i < pattern.count; i++)
         {
             bullets[i].sr = sprites[i];
-            bullets[i].sr.sprite = (useRageBullet) ? pattern.data[i].bullet.rageSprite : pattern.data[i].bullet.sprite;
+            //bullets[i].sr.sprite = (useRageBullet) ? pattern.data[i].bullet.rageSprite : pattern.data[i].bullet.sprite;
             bullets[i].gameObject = sprites[i].gameObject;
             bullets[i].gameObject.transform.position = worldPosition;
             bullets[i].isActive = true;

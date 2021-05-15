@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
   _weaponName: Galting
+  _icon: {fileID: 21300000, guid: 0c1de6b2f4bf6d8489995450096d9eb6, type: 3}
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
-  _damage: 4
+  _damage: 5
   _spreadAngle: 20
   _speed: 20
   _speedRand: 0

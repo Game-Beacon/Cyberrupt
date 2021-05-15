@@ -213,12 +213,14 @@ MonoBehaviour:
   _executeOrder: 0
   _maxHP: 25
   _hp: 25
+  _isSideProduction: 1
   OnSpawn:
     _PersistentCalls: []
   OnHit:
     _PersistentCalls: []
   OnDeath:
     _PersistentCalls: []
+  main: {fileID: 3371854197094663336}
   parent: {fileID: 458066294798994536}
   angularSpeed: 90
 --- !u!1 &1173196831635879600
@@ -433,6 +435,7 @@ MonoBehaviour:
   _executeOrder: 0
   _maxHP: 30
   _hp: 30
+  _isSideProduction: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -445,9 +448,6 @@ MonoBehaviour:
   pathLength: 30
   pathSpeed: 1.25
   lockStrenth: 0.25
-  shields:
-  - {fileID: 5837541749256338119}
-  - {fileID: 2215046201128484765}
 --- !u!114 &4157780920542793556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,12 +751,14 @@ MonoBehaviour:
   _executeOrder: 0
   _maxHP: 25
   _hp: 25
+  _isSideProduction: 1
   OnSpawn:
     _PersistentCalls: []
   OnHit:
     _PersistentCalls: []
   OnDeath:
     _PersistentCalls: []
+  main: {fileID: 3371854197094663336}
   parent: {fileID: 561785232014449370}
   angularSpeed: 90
 --- !u!1 &3984703758475839824

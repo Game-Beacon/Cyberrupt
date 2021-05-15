@@ -17,4 +17,4 @@ MonoBehaviour:
     m_Bits: 16896
   _wallMask:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 1024

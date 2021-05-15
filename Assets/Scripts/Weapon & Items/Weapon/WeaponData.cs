@@ -18,6 +18,10 @@ public class WeaponData : ScriptableObject
     public string weaponName { get { return _weaponName; } private set { } }
 
     [SerializeField]
+    private Sprite _icon;
+    public Sprite icon { get { return _icon; } }
+
+    [SerializeField]
     private WeaponBullet _bullet;
     public WeaponBullet bullet { get { return _bullet; } private set { } }
 

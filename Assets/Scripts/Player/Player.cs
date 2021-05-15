@@ -77,6 +77,12 @@ public class Player : GameBehaviour, IDanmakuTarget
         } 
     }
 
+    public void AddHp(int count)
+    {
+        _hp = (_hp + count > _maxHp) ? _maxHp : _hp + count;
+        OnHpChange.Invoke(_hp);
+    }
+
     public override void GameUpdate()
     {
         LookAtMouse();

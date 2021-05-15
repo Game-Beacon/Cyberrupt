@@ -239,7 +239,7 @@ public class DanmakuPatternEditor : Editor
         foreach (DanmakuBullet data in inspecting.data)
         {
             Vector2 bulletPos = data.localPosition;
-            renderers[i].sprite = data.bullet.sprite;
+            renderers[i].sprite = data.bullet.sprites[0];
             renderers[i].gameObject.transform.position = bulletPos;
             DrawWireSolidDisc(bulletPos, data.bullet.radius, Color.red);
             i++;

@@ -8,6 +8,7 @@ public class PlayerUI : GameBehaviour
     private Player player;
     private PlayerUISetting setting;
 
+    //Health and Bomb
     [SerializeField]
     private GameObject playerHpBar;
     private List<Image> hpBar = new List<Image>();
@@ -15,15 +16,32 @@ public class PlayerUI : GameBehaviour
     private GameObject playerBombBar;
     private List<Image> bombBar = new List<Image>();
 
+    //Weapon
+    [SerializeField]
+    private Image weaponIcon;
+    [SerializeField]
+    private TextMeshProUGUI weaponName;
+    [SerializeField]
+    private TextMeshProUGUI weaponAmmo;
+
 
     public override void GameStart()
     {
+        if(setting == null)
         setting = PlayerUISetting.instance;
         player = DependencyContainer.GetDependency<Player>() as Player;
         
         player.OnHpChange.AddListener(UpdateHp);
         player.weaponController.OnBombCountChange.AddListener(UpdateBomb);
         SetHPAndBomb();
+
+        player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
+        SetWeapon();
+    }
+
+    public override void GameUpdate()
+    {
+        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
     }
 
     private void SetHPAndBomb()
@@ -40,6 +58,13 @@ public class PlayerUI : GameBehaviour
             bombBar.Add(bomb.GetComponent<Image>());
             bombBar[i].sprite = setting.bomb;
         }
+    }
+
+    private void SetWeapon()
+    {
+        weaponIcon.sprite = player.weaponController.currentWeapon.data.icon;
+        weaponName.text = player.weaponController.currentWeapon.data.weaponName;
+        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
     }
 
     public void UpdateHp(int hp)
@@ -71,5 +96,13 @@ public class PlayerUI : GameBehaviour
                 Destroy(bomb);
             }
         }
+    }
+
+    public void UpdateWeapon(object weaponRaw)
+    {
+        Weapon weapon = weaponRaw as Weapon;
+        weaponIcon.sprite = weapon.data.icon;
+        weaponName.text = weapon.data.weaponName;
+        weaponAmmo.text = (weapon.ammoCount < 0) ? "∞" : weapon.ammoCount.ToString();
     }
 }

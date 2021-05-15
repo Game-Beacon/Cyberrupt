@@ -14,15 +14,17 @@ public class Enemy : GameBehaviour
     protected float _hp;
     public float hp { get { return _hp; } }
 
+    //這個怪物是其他怪召喚出來的嗎？（比方說砲台的盾，以及生砲灰的生出的砲灰）
     [SerializeField]
-    protected UltEvent OnSpawn = new UltEvent();
-    public UltEvent OnEnemySpawn { get { return OnSpawn; } }
+    protected bool _isSideProduction = false;
+    public bool isSideProduction { get { return _isSideProduction; } }
+
     [SerializeField]
-    protected UltEvent OnHit = new UltEvent();
-    public UltEvent OnEnemyHit { get { return OnHit; } }
+    public UltEvent OnSpawn = new UltEvent();
     [SerializeField]
-    protected UltEvent OnDeath = new UltEvent();
-    public UltEvent OnEnemyDeath { get { return OnDeath; } }
+    public UltEvent OnHit = new UltEvent();
+    [SerializeField]
+    public UltEvent OnDeath = new UltEvent();
 
     protected bool _canAttack = true;
     public bool canAttack { get { return _canAttack; } }
@@ -41,7 +43,7 @@ public class Enemy : GameBehaviour
     {
         if (manager == null)
             manager = EnemyManager.instance;
-        if (manager != null)
+        if (manager != null && !_isSideProduction)
             manager.AddEnemy(this);
         EnemyStart();
     }
@@ -76,9 +78,15 @@ public class Enemy : GameBehaviour
 
     public void Die()
     {
-        if (manager != null)
+        if (manager != null && !_isSideProduction)
             manager.RemoveEnemy(this);
         update = false;
         KillBehaviour(true);
+    }
+
+    //設定此怪物是否為其他怪物的副產物
+    public void SetSideProduction(bool value)
+    {
+        _isSideProduction = value;
     }
 }

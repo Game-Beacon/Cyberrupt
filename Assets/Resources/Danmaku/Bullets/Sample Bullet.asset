@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225785a6328bcd747ba502bbad4864a9, type: 3}
   m_Name: Sample Bullet
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 21300000, guid: ee6f2ebad0af8034d9f047eec25aaa6c, type: 3}
-  _rageSprite: {fileID: 21300000, guid: a47f8ea85d65107468d08c50ad57b7de, type: 3}
-  _radius: 0.15
+  _sprites:
+  - {fileID: -4378938490126327279, guid: f865926bca28d294189c85108e1817d4, type: 3}
+  - {fileID: -1431969808300282153, guid: f865926bca28d294189c85108e1817d4, type: 3}
+  - {fileID: 2781966728782738360, guid: f865926bca28d294189c85108e1817d4, type: 3}
+  - {fileID: -6922999959840018168, guid: f865926bca28d294189c85108e1817d4, type: 3}
+  _frame: 5
+  _radius: 0.27

@@ -28,8 +28,6 @@ public class DanmakuParticleEmitter : IDanmaku
     private bool updateRotation = true;
     private bool updateScale = true;
 
-    private bool useRageBullet;
-
     private class ActiveBullets
     {
         public Vector2 parent;
@@ -47,6 +45,7 @@ public class DanmakuParticleEmitter : IDanmaku
         public SpriteRenderer[] srs;
 
         public int activeCount;
+        public int tick;
         public float timer;
         public float scaleTimer;
         public float rotationTimer;
@@ -58,7 +57,7 @@ public class DanmakuParticleEmitter : IDanmaku
     private List<ActiveBullets> patterns = new List<ActiveBullets>();
     private Queue<SpriteRenderer> returnPoolQueue = new Queue<SpriteRenderer>();
 
-    public DanmakuParticleEmitter(DanmakuParticleData data, Transform t, float spawn = -1, bool rage = false)
+    public DanmakuParticleEmitter(DanmakuParticleData data, Transform t, float spawn = -1)
     {
         if (manager == null)
             manager = DanmakuManager.instance;
@@ -68,7 +67,6 @@ public class DanmakuParticleEmitter : IDanmaku
         danmakuData = data;
         transform = t;
         spawnTime = spawn;
-        useRageBullet = rage;
     }
 
     public void Update(float delta)
@@ -138,25 +136,12 @@ public class DanmakuParticleEmitter : IDanmaku
                 newActive.actives = new bool[count];
                 newActive.activeCount = count;
 
-                if(useRageBullet)
+                for (int j = 0; j < count; j++)
                 {
-                    for (int j = 0; j < count; j++)
-                    {
-                        sprites[j].sprite = pattern.data[j].bullet.rageSprite;
-                        newActive.children[j] = sprites[j].gameObject;
-                        newActive.children[j].transform.position = newActive.parent;
-                        newActive.actives[j] = true;
-                    }
-                }
-                else
-                {
-                    for (int j = 0; j < count; j++)
-                    {
-                        sprites[j].sprite = pattern.data[j].bullet.sprite;
-                        newActive.children[j] = sprites[j].gameObject;
-                        newActive.children[j].transform.position = newActive.parent;
-                        newActive.actives[j] = true;
-                    }
+                    sprites[j].sprite = pattern.data[j].bullet.sprites[0];
+                    newActive.children[j] = sprites[j].gameObject;
+                    newActive.children[j].transform.position = newActive.parent;
+                    newActive.actives[j] = true;
                 }
                 
                 newActive.positionTimer = 0;
@@ -213,6 +198,12 @@ public class DanmakuParticleEmitter : IDanmaku
                     bullets.children[i].transform.position = bullets.parent + localMatrix.Transform(bullets.danmaku.data[i].localPosition);
                     Vector2 pos = bullets.children[i].transform.position;
 
+                    if(bullets.danmaku.data[i].bullet.sprites.Count > 1 && bullets.tick % bullets.danmaku.data[i].bullet.frame == 0)
+                    {
+                        int spriteIndex = (bullets.tick / bullets.danmaku.data[i].bullet.frame) % bullets.danmaku.data[i].bullet.sprites.Count;
+                        bullets.srs[i].sprite = bullets.danmaku.data[i].bullet.sprites[spriteIndex];
+                    }
+
                     if (manager.TouchTarget(pos, bullets.danmaku.data[i].bullet.radius) || manager.OverBound(pos))
                     {
                         manager.RequestParticlePlay(bullets.children[i].transform.position);
@@ -234,6 +225,7 @@ public class DanmakuParticleEmitter : IDanmaku
             bullets.scaleTimer += delta;
 
         bullets.timer += delta;
+        bullets.tick += 1;
     }
 
     public void SetUpdate(bool position, bool rotation, bool scale)
