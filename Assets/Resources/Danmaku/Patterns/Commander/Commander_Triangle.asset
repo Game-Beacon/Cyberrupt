@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
+  m_Name: Commander_Triangle
+  m_EditorClassIdentifier: 
+  _data:
+  - localPosition: {x: 1, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.84999996, y: 0.08660254}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.7, y: 0.17320508}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.54999995, y: 0.25980762}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.39999998, y: 0.34641016}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.24999997, y: 0.4330127}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.09999993, y: 0.51961523}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.050000023, y: 0.60621774}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.20000006, y: 0.6928203}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.35000002, y: 0.7794228}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.50000006, y: 0.8660254}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.50000006, y: 0.6928203}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.5, y: 0.51961523}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.5, y: 0.34641013}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.5, y: 0.17320505}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.5, y: -0.000000029802322}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.49999997, y: -0.17320515}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.49999997, y: -0.34641019}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.49999994, y: -0.5196153}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.49999994, y: -0.6928203}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.4999999, y: -0.86602545}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.3499999, y: -0.7794229}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.19999993, y: -0.6928203}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.04999992, y: -0.60621774}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.10000006, y: -0.5196152}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.25000006, y: -0.43301263}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.40000007, y: -0.34641007}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.55, y: -0.25980753}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.70000005, y: -0.17320494}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.84999996, y: -0.086602405}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}

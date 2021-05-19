@@ -20,9 +20,9 @@ TagManager:
   - Weapon
   - WeakWeapon
   - WeakEnemy
-  - 
-  - 
-  - 
+  - Hazardous
+  - Bomb
+  - GhostEnemy
   - 
   - 
   - 
@@ -44,11 +44,11 @@ TagManager:
   - name: Background
     uniqueID: 825687553
     locked: 0
-  - name: Character
-    uniqueID: 1216555313
-    locked: 0
   - name: PlayerBullet
     uniqueID: 1098764761
+    locked: 0
+  - name: Character
+    uniqueID: 1216555313
     locked: 0
   - name: PickUp
     uniqueID: 384155757

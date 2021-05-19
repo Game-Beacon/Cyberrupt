@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: HeartBleed_Spiral
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: 0d4190c495a396f4cbe3c9d505b773dc, type: 2}
+    _liveTime: 10
+    _rateOverTime: 20
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 1
+    _spread: 360
+    _radius: 0
+    _radiusThickness: 0
+    _edgeWidth: 0
+    _cycleTime: 5
+    _reverseCycle: 0
+    _burstCount: 1
+  _patternModule:
+    _easeType: 1
+    _scaleType: 0
+    _rotationType: 0
+    _easeTime: 4
+    _scale: 75
+    _minScale: 75
+    _maxScale: 100
+    _rotation: 0
+    _minRotation: 0
+    _maxRotation: 0
+  _pathModule:
+    _pathType: 0
+    _speedType: 0
+    _speed: 0
+    _minSpeed: 0
+    _maxSpeed: 0
+    _waveAmp: 0
+    _waveHz: 0
+    _waveOffest: 0

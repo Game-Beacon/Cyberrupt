@@ -132,8 +132,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  _maxHP: 150
-  _hp: 150
+  _maxHP: 80
+  _hp: 80
+  _isSideProduction: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -289,7 +290,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1216555313
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: 7550df53602deb8438280d11601a8e4e, type: 3}
   m_Color: {r: 1, g: 0, b: 0.2509804, a: 1}

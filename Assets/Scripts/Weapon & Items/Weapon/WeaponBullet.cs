@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class WeaponBullet : GameBehaviour
 {
     [SerializeField]
-    protected WeaponCollsionLayer collisionLayer = null;
+    protected CollisionLayer collisionLayer = null;
 
     protected Rigidbody2D rb;
 
@@ -16,7 +16,7 @@ public abstract class WeaponBullet : GameBehaviour
     public override void GameAwake()
     {
         if (collisionLayer == null)
-            collisionLayer = Resources.FindObjectsOfTypeAll<WeaponCollsionLayer>().FirstOrDefault();
+            collisionLayer = CollisionLayer.instance;
 
         if (!TryGetComponent(out rb))
             Debug.LogError("There's no rigidbody2D attached to " + gameObject.name);
@@ -32,6 +32,8 @@ public abstract class WeaponBullet : GameBehaviour
     protected virtual void OnHitEnemy(GameObject hitObject)
     {
         Enemy enemy = hitObject.GetComponent<Enemy>();
+        if (enemy == null)
+            enemy = hitObject.GetComponentInParent<Enemy>();
         enemy.ApplyDamage(damage);
         KillBehaviour(true);
     }
@@ -43,9 +45,9 @@ public abstract class WeaponBullet : GameBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (((1 << collision.collider.gameObject.layer) & collisionLayer.enemyMask) != 0)
+        if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.enemyMask))
             OnHitEnemy(collision.collider.gameObject);
-        if (((1 << collision.collider.gameObject.layer) & collisionLayer.wallMask) != 0)
+        if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.screenMask))
             OnHitWall(collision.collider.gameObject);
     }
 

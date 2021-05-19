@@ -39,6 +39,8 @@ public class Bomb : GameBehaviour, IDanmakuTarget
         else
             currentHitRadius = EaseLibrary.CallEaseFunction(ease, timer / expandTime) * _hitRadius;
 
+        transform.localScale = new Vector3(currentHitRadius, currentHitRadius, currentHitRadius);
+
         if(timer >= bombTime)
         {
             KillBehaviour(true);

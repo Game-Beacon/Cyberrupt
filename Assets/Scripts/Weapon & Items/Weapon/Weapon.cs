@@ -77,6 +77,7 @@ public class Weapon
             CreateBullets();
             coolDown = coolDownTime;
             _ammoCount--;
+            controller.CancelKeyDown();
         }
 
         if(_data.shootType == WeaponShootType.Charge)
@@ -86,6 +87,7 @@ public class Weapon
                 CreateBullets();
                 coolDown = coolDownTime;
                 _ammoCount--;
+                controller.CancelKeyUp();
             }
             chargeMeter = 0;
         }

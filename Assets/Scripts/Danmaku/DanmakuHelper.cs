@@ -77,9 +77,13 @@ public struct ShapeModule
     private float _edgeWidth;
     public float edgeWidth { get { return _edgeWidth; } private set { } }
 
-    [SerializeField, Range(0.1f, 5f)]
+    [SerializeField, Range(0.1f, 10f)]
     private float _cycleTime;
     public float cycleTime { get { return _cycleTime; } private set { } }
+
+    [SerializeField]
+    private bool _reverseCycle;
+    public bool reverseCycle { get { return _reverseCycle; } private set { } }
 
     [SerializeField, Range(1, 30)]
     private int _burstCount;
@@ -276,6 +280,7 @@ public static class EmitterHelper
         float radius = UnityEngine.Random.Range(shape.radius * (1 - shape.radiusThickness), shape.radius);
         float degree = (time % shape.cycleTime) / shape.cycleTime * shape.spread - (shape.spread / 2);
         degree *= Mathf.Deg2Rad;
+        degree = (shape.reverseCycle)? -degree : degree;
         return new Vector3(radius, degree, degree);
     }
 
@@ -285,6 +290,7 @@ public static class EmitterHelper
         float degree = (time % shape.cycleTime) / shape.cycleTime * shape.spread - (shape.spread / 2);
         degree += UnityEngine.Random.Range(shape.spread * -0.02f, shape.spread * 0.02f);
         degree *= Mathf.Deg2Rad;
+        degree = (shape.reverseCycle) ? -degree : degree;
         return new Vector3(radius, degree, degree);
     }
 
@@ -313,6 +319,7 @@ public static class EmitterHelper
     private static Vector3 EdgeRepeat(ShapeModule shape, float time, int index)
     {
         float radius = (time % shape.cycleTime) / shape.cycleTime * shape.edgeWidth - (shape.edgeWidth / 2);
+        radius = (shape.reverseCycle) ? -radius : radius;
         return new Vector3(radius, 90 * Mathf.Deg2Rad, 0);
     }
 
@@ -320,6 +327,7 @@ public static class EmitterHelper
     {
         float radius = (time % shape.cycleTime) / shape.cycleTime * shape.edgeWidth - (shape.edgeWidth / 2);
         radius += UnityEngine.Random.Range(shape.edgeWidth * -0.02f, shape.edgeWidth * 0.02f);
+        radius = (shape.reverseCycle) ? -radius : radius;
         return new Vector3(radius, 90 * Mathf.Deg2Rad, 0);
     }
 

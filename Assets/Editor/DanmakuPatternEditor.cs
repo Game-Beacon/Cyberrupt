@@ -38,6 +38,9 @@ public class DanmakuPatternEditor : Editor
     Vector2 pointB;                 //點B（line適用）
     int bulletCountForLine;         //線的子彈數（line適用）
 
+    //修改彈幕用
+    Vector2 offset;
+
     private void OnEnable()
     {
         inspecting = (DanmakuPattern)target;
@@ -121,6 +124,15 @@ public class DanmakuPatternEditor : Editor
 
         if (GUILayout.Button("清空彈幕"))
             inspecting.ResetPattern();
+
+        EditorGUILayout.Space(10);
+        offset = EditorGUILayout.Vector2Field("彈幕位移：", offset);
+
+        if (GUILayout.Button("移動彈幕"))
+        {
+            inspecting.OffsetBullets(offset);
+            offset = Vector2.zero;
+        }
 
         EditorGUILayout.Space(10);
         EditorGUILayout.HelpBox("子彈總數：" + inspecting.count.ToString(), MessageType.Info);

@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: HeartBleed_BloodSplash
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
+    - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
+    - {fileID: 11400000, guid: e26d7fead521324439da7681ce207b2b, type: 2}
+    - {fileID: 11400000, guid: 1b32392abc6a5d141bef1a39ab1f3b0f, type: 2}
+    - {fileID: 11400000, guid: ac2844a2a78486a41bebcb7c38fc929f, type: 2}
+    - {fileID: 11400000, guid: 5de546b4376b38540994f61c45686efc, type: 2}
+    _liveTime: 10
+    _rateOverTime: 1
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 0
+    _spread: 360
+    _radius: 0
+    _radiusThickness: 0
+    _edgeWidth: 0
+    _cycleTime: 0
+    _reverseCycle: 0
+    _burstCount: 30
+  _patternModule:
+    _easeType: 0
+    _scaleType: 0
+    _rotationType: 0
+    _easeTime: 0
+    _scale: 1
+    _minScale: 0
+    _maxScale: 0
+    _rotation: 0
+    _minRotation: 0
+    _maxRotation: 0
+  _pathModule:
+    _pathType: 0
+    _speedType: 1
+    _speed: 0
+    _minSpeed: 3
+    _maxSpeed: 7.5
+    _waveAmp: 0
+    _waveHz: 0
+    _waveOffest: 0

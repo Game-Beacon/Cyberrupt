@@ -22,6 +22,8 @@ public class WeaponController : GameBehaviour
     public float timer { get { return _timer; } }
     public int bombCount { get { return _bombCount; } }
 
+    private bool keyDown, keyUp;
+
     public GameEvent OnKeyDown { get; } = new GameEvent();
     public GameEvent OnKey { get; } = new GameEvent();
     public GameEvent OnKeyUp { get; } = new GameEvent();
@@ -42,10 +44,15 @@ public class WeaponController : GameBehaviour
         _timer += Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
-            OnKeyDown.Invoke();
+            keyDown = true;
         if (Input.GetKey(KeyCode.Mouse0))
             OnKey.Invoke();
         if (Input.GetKeyUp(KeyCode.Mouse0))
+            keyUp = true;
+
+        if (keyDown)
+            OnKeyDown.Invoke();
+        if(keyUp)
             OnKeyUp.Invoke();
 
         if (_currentWeapon.ammoCount == 0)
@@ -113,5 +120,15 @@ public class WeaponController : GameBehaviour
             OnWeaponChange.Invoke(_currentWeapon);
         }
         weapons.Remove(weapon);
+    }
+
+    public void CancelKeyDown()
+    {
+        keyDown = false;
+    }
+
+    public void CancelKeyUp()
+    {
+        keyUp = false;
     }
 }

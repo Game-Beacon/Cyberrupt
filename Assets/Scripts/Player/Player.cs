@@ -8,8 +8,11 @@ public class Player : GameBehaviour, IDanmakuTarget
     public float hitRadius { get { return _hitRadius; } }
     public bool isImmune { get { return isDashing | isHurt | isInIFrame | isDead; } }
 
-    //TODO: Might have to turn these things into a scriptable object
     [SerializeField]
+    private Transform muzzle;
+
+    //TODO: Might have to turn these things into a scriptable object
+    [Space(20),SerializeField]
     private int _maxHp;
     [SerializeField]
     private int _hp;
@@ -61,7 +64,7 @@ public class Player : GameBehaviour, IDanmakuTarget
         cam = Camera.main;
     }
 
-    private void OnHit()
+    public void OnHit()
     {
         if (!isImmune)
         {
@@ -95,7 +98,7 @@ public class Player : GameBehaviour, IDanmakuTarget
         Vector2 dir = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
 
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        muzzle.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void MoveAndDash()
@@ -146,9 +149,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     IEnumerator AfterHurt(float hurtTime)
     {
         isHurt = true;
-        //Debug.Log("start hurt");
         yield return new WaitForSeconds(hurtTime);
-        //Debug.Log("end hurt");
         isHurt = false;
     }
 

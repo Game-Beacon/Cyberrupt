@@ -67,6 +67,7 @@ public class DanmakuParticleEmitter : IDanmaku
         danmakuData = data;
         transform = t;
         spawnTime = spawn;
+        Update(0);
     }
 
     public void Update(float delta)
@@ -102,14 +103,17 @@ public class DanmakuParticleEmitter : IDanmaku
 
         if (shootDelta <= 0)
         {
-            DanmakuPattern pattern = danmakuData.emitModule.patterns[Random.Range(0, danmakuData.emitModule.patterns.Length)];
-            int count = pattern.count;
+            DanmakuPattern pattern;
+            int patternLen = danmakuData.emitModule.patterns.Length;
+            int count;
             int burst = danmakuData.shapeModule.burstCount;
 
             shootDelta = danmakuData.emitModule.shootDelta;
 
             for (int i = 0; i < burst; i++)
             {
+                pattern = danmakuData.emitModule.patterns[Random.Range(0, patternLen)];
+                count = pattern.count;
                 List<SpriteRenderer> sprites = new List<SpriteRenderer>();
                 manager.RequestBullets(count, ref sprites);
 
