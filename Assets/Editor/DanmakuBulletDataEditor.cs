@@ -35,8 +35,8 @@ public class DanmakuBulletDataEditor : Editor
 
     public void OnSceneGUI(SceneView scene)
     {
-        if (inspecting.sprite != null)
-            renderer.sprite = inspecting.sprite;
+        if (inspecting.sprites != null)
+            renderer.sprite = inspecting.sprites[0];
         else
             renderer.sprite = null;
 

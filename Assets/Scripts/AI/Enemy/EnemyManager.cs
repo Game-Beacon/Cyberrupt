@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class EnemyManager : GameBehaviour
 {
-    private static EnemyManager _instance;
-    public static EnemyManager instance { get { return _instance; } }
+    public static EnemyManager instance { get; private set; }
 
     private List<Enemy> enemies = new List<Enemy>();
 
@@ -17,10 +16,12 @@ public class EnemyManager : GameBehaviour
     [SerializeField]
     private Bound _screen;
 
+    public GameObjectEvent OnEnemyDied { get; } = new GameObjectEvent();
+
     public override void GameAwake()
     {
-        if (_instance == null)
-            _instance = this;
+        if (instance == null)
+            instance = this;
         else
         {
             KillBehaviour(true);
@@ -54,6 +55,8 @@ public class EnemyManager : GameBehaviour
             enemies.Remove(enemy);
         if (enemyCount == 0)
             SpawnWave();
+
+        OnEnemyDied.Invoke(enemy.gameObject);
     }
 
     public void SpawnWave()

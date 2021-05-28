@@ -76,7 +76,9 @@ public class DanmakuParticleDataEditor : Editor
             if (data.shapeModule.distributeType == DistributeType.Repeat || data.shapeModule.distributeType == DistributeType.RepeatRandom)
             {
                 SetSerializedProperty("_shapeModule._cycleTime", "週期", ref property, ref content);
-                EditorGUILayout.Slider(property, 0.1f, 5f, content);
+                EditorGUILayout.Slider(property, 0.1f, 10f, content);
+                SetSerializedProperty("_shapeModule._reverseCycle", "週期反轉?", ref property, ref content);
+                EditorGUILayout.PropertyField(property, content);
             }
         }
 

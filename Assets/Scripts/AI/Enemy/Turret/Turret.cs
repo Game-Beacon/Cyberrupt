@@ -35,8 +35,11 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     [SerializeField, Range(0, 0.5f)]
     private float lockStrenth;
 
-    [SerializeField]
-    private List<Enemy> shields = new List<Enemy>();
+    //用來判斷砲台是否"離開"螢幕邊界
+    //CanAttack的判斷標準是敵人的位置是否在螢幕內
+    //如果上一個frame的CanAttack為true，這個frame卻為false，那就代表敵人的座標已經離開邊界
+    private bool previousCanAttack;
+
     private Player player;
 
     private Vector2 startPosition;
@@ -48,6 +51,8 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     protected override void EnemyAwake()
     {
+        previousCanAttack = false;
+
         _stateMachine = GetComponent<AIStateMachine>();
         _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
         _stateMachine.OnUpdateTransform.AddListener(UpdateTransform);
@@ -58,6 +63,14 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         player = DependencyContainer.GetDependency<Player>() as Player;
         _target = player.transform;
         StartCoroutine(CreatePath());
+    }
+
+    protected override void EnemyUpdate()
+    {
+        if (previousCanAttack == true && _canAttack == false)
+            StartCoroutine(DelayKill());
+
+        previousCanAttack = _canAttack;
     }
 
     private IEnumerator CreatePath()
@@ -92,9 +105,6 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         // Move
         currentPosition += pathDirection * Mathf.Min((endPosition - currentPosition).magnitude, pathSpeed * Time.fixedDeltaTime);
         root.position = currentPosition;
-        // Death checking
-        if((currentPosition - endPosition).sqrMagnitude < 0.5f)
-            Die();
         // Update rotation
         Vector2 direction = target.position - parent.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -104,12 +114,13 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
-        foreach(Enemy shield in shields)
-        {
-            if(shield != null)
-                shield.Die();
-        }
         Destroy(parent.gameObject, 0.03f);
         Destroy(root.gameObject, 0.03f);
+    }
+
+    IEnumerator DelayKill()
+    {
+        yield return new WaitForSeconds(1);
+        Die();
     }
 }

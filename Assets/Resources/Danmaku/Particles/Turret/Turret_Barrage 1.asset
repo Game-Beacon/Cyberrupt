@@ -40,7 +40,7 @@ MonoBehaviour:
   _pathModule:
     _pathType: 0
     _speedType: 0
-    _speed: 8
+    _speed: 7
     _minSpeed: 0
     _maxSpeed: 0
     _waveAmp: 0

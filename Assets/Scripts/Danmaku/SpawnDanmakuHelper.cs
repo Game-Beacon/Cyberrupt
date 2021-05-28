@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SpawnDanmakuHelper : GameBehaviour
 {
-    private bool isRage = false;
-
     private Dictionary<int, DanmakuParticleEmitter> particleDict = new Dictionary<int, DanmakuParticleEmitter>();
 
     public override void GameAwake()
@@ -17,14 +15,9 @@ public class SpawnDanmakuHelper : GameBehaviour
         }
     }
 
-    public void SetRage(bool rage)
-    {
-        isRage = rage;
-    }
-
     public void SpawnParticle(DanmakuParticleData data, GameObject parent, float time, bool updatePosition, bool updateRotation, bool updateScale, int key)
     {
-        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, time, isRage);
+        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, time);
         emitter.SetUpdate(updatePosition, updateRotation, updateScale);
         if (particleDict.ContainsKey(key))
             particleDict[key] = emitter;
@@ -34,7 +27,7 @@ public class SpawnDanmakuHelper : GameBehaviour
 
     public void SpawnOneShot(DanmakuParticleData data, GameObject parent, bool updatePosition, bool updateRotation, bool updateScale, int key)
     {
-        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, 0, isRage);
+        DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, 0);
         emitter.SetUpdate(updatePosition, updateRotation, updateScale);
         if (particleDict.ContainsKey(key))
             particleDict[key] = emitter;

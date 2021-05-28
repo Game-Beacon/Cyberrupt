@@ -8,12 +8,12 @@ public class DanmakuBulletData : ScriptableObject
 {
     //子彈的圖案
     [SerializeField]
-    private Sprite _sprite;
-    public Sprite sprite { get { return _sprite; } private set { } }
+    private List<Sprite> _sprites;
+    public List<Sprite> sprites { get { return _sprites; } private set { } }
 
     [SerializeField]
-    private Sprite _rageSprite;
-    public Sprite rageSprite { get { return _rageSprite; } private set { } }
+    private int _frame;
+    public int frame { get { return _frame; } }
 
     //子彈的半徑（一律假設子彈是圓形，碰撞處理比較方便）
     [SerializeField, Range(0f,2f)]

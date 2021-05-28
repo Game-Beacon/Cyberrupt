@@ -26,6 +26,15 @@ public class DanmakuPattern : ScriptableObject
             _data.Add(new DanmakuBullet() { bullet = b, localPosition = positions[i] });
     }
 
+    public void OffsetBullets(Vector2 delta)
+    {
+        for(int i = 0; i < _data.Count; i ++)
+        {
+            DanmakuBullet bullet = new DanmakuBullet() { bullet = _data[i].bullet, localPosition = _data[i].localPosition + delta };
+            _data[i] = bullet;
+        }
+    }
+
     /// <summary>
     /// 清空彈幕。（請不要在程式運行中呼叫此程式，這是給編輯器用的。）
     /// </summary>

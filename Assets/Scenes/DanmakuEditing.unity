@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  particle: {fileID: 11400000, guid: bf5132985961c774ab0ba0a523fed388, type: 2}
+  particle: {fileID: 11400000, guid: 03cac4e09259f734caa950ff5281856a, type: 2}
 --- !u!4 &1362740591
 Transform:
   m_ObjectHideFlags: 0
@@ -343,10 +343,6 @@ MonoBehaviour:
     parent: {fileID: 1525938707}
     xSize: 24.2
     ySize: 15.8
-  _screen:
-    parent: {fileID: 1525938707}
-    xSize: 19.2
-    ySize: 10.8
 --- !u!4 &1525938707
 Transform:
   m_ObjectHideFlags: 0

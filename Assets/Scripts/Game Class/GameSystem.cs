@@ -38,7 +38,7 @@ public class GameSystem : MonoBehaviour
     private void Update()
     {
         foreach (GameBehaviour behaviour in behaviours)
-            if (behaviour.update)
+            if (behaviour != null && behaviour.update)
                 behaviour.GameUpdate();
     }
 
@@ -60,6 +60,13 @@ public class GameSystem : MonoBehaviour
                 b.GameStart();
         }
 
+        //如果某個物件因某種原因丟失reference的話（通常是因為在destroy時沒解除綁定），移除該reference
+        for (int i = behaviours.Count - 1; i >= 0; i--)
+        {
+            if (behaviours[i] == null)
+                behaviours.RemoveAt(i);
+        }
+
         behaviours.Sort(delegate (GameBehaviour a, GameBehaviour b)
         {
             return a.executeOrder.CompareTo(b.executeOrder);
@@ -68,18 +75,22 @@ public class GameSystem : MonoBehaviour
         while (destroyQueue.Count > 0)
         {
             GameBehaviour behaviour = destroyQueue.Dequeue();
-            behaviours.Remove(behaviour);
-            if (behaviour.destroyGameObjectWhenKilled)
-                Destroy(behaviour.gameObject);
-            else
-                Destroy(behaviour);
+            if(behaviours.Contains(behaviour))
+            {
+                behaviours.Remove(behaviour);
+                if (behaviour.destroyGameObjectWhenKilled)
+                    Destroy(behaviour.gameObject);
+                else
+                    Destroy(behaviour);
+            }
         }
     }
 
     private void FixedUpdate()
     {
         foreach (GameBehaviour behaviour in behaviours)
-            behaviour.GameFixedUpdate();
+            if (behaviour != null)
+                behaviour.GameFixedUpdate();
     }
 
     public void AddBehaviour(GameBehaviour behaviour, ref int id)

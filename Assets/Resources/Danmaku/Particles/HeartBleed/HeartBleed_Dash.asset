@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed598f3baf82df94b883ee7a851d3a24, type: 3}
+  m_Name: HeartBleed_Dash
+  m_EditorClassIdentifier: 
+  _emitModule:
+    _patterns:
+    - {fileID: 11400000, guid: 601ccc06c821c8d47b79b9d402e041a2, type: 2}
+    _liveTime: 1
+    _rateOverTime: 50
+  _shapeModule:
+    _shapeType: 0
+    _distributeType: 1
+    _spread: 360
+    _radius: 0
+    _radiusThickness: 0
+    _edgeWidth: 0
+    _cycleTime: 0.75
+    _reverseCycle: 0
+    _burstCount: 1
+  _patternModule:
+    _easeType: 10
+    _scaleType: 0
+    _rotationType: 0
+    _easeTime: 1
+    _scale: 8
+    _minScale: 0
+    _maxScale: 0
+    _rotation: 0
+    _minRotation: -90
+    _maxRotation: 90
+  _pathModule:
+    _pathType: 0
+    _speedType: 0
+    _speed: 0
+    _minSpeed: 1
+    _maxSpeed: 2
+    _waveAmp: 0
+    _waveHz: 0
+    _waveOffest: 0

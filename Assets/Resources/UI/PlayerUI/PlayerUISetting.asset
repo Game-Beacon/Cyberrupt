@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c77bfe5d98c0a242a1d20342b5cbd86, type: 3}
+  m_Name: PlayerUISetting
+  m_EditorClassIdentifier: 
+  _heartSpriteDisplayer: {fileID: 290811887877191612, guid: d7d9a279b8421894b98ce7a6dcb496ea,
+    type: 3}
+  _heart: {fileID: 21300000, guid: 8f521c83d04bede4cab23c03e69be9b5, type: 3}
+  _heartEmpty: {fileID: 21300000, guid: c4ab7fd071606834da3bdf3475af588d, type: 3}
+  _bombSpriteDisplayer: {fileID: 7680186614552093511, guid: 07367062328a93344a0336751a026778,
+    type: 3}
+  _bomb: {fileID: 21300000, guid: 050e340ae8bd16a43ad7bb540397152a, type: 3}
