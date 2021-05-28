@@ -444,8 +444,9 @@ MonoBehaviour:
   lr: {fileID: 2163395372375072314}
   pathLength: 30
   pathSpeed: 1.25
-  segmentCount: 24
-  segmentDuration: 3
+  pathDuration: 5
+  pathPeek: {fileID: 3743269669092894367, guid: b9185183b6a536e42838f1b005651504,
+    type: 3}
   lockStrenth: 0.25
   shields:
   - {fileID: 5837541749256338119}
