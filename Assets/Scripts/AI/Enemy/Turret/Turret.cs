@@ -27,6 +27,9 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private float pathSpeed;
     [SerializeField]
     private float pathDuration;
+    [SerializeField]
+    [Tooltip("A GameObject that will be placed the end of path during generation")]
+    private GameObject pathPeek;
     // Add this for padding
     [Header("")]
     [SerializeField, Range(0, 0.5f)]
@@ -64,16 +67,20 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         Vector2 pinpoint = manager.GetRandomPointInScreen(2.5f);
         endPosition = startPosition + (pinpoint - startPosition).normalized * pathLength;
         pathDirection = (endPosition - startPosition).normalized;
+        var peek = Instantiate(this.pathPeek, this.root);
         // Setup path start point
         lr.positionCount = 2;
         lr.SetPosition(0, currentPosition);
         // Iterate endpoint overtime
         for(float t = 0; t < this.pathDuration; t += Time.deltaTime)
         {
-            lr.SetPosition(1, Vector3.Lerp(currentPosition, endPosition, t / this.pathDuration));
+            var railEnd = Vector3.Lerp(currentPosition, endPosition, t / this.pathDuration);
+            lr.SetPosition(1, railEnd);
+            peek.transform.position = railEnd;
             yield return null;
         }
         // Mark path as ready
+        Destroy(peek);
         this.isPathReady = true;
     }
 
@@ -98,7 +105,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     public override void OnKilled()
     {
         foreach(Enemy shield in shields)
-            shield?.Die();
+        {
+            if(shield != null)
+                shield.Die();
+        }
         Destroy(parent.gameObject, 0.03f);
         Destroy(root.gameObject, 0.03f);
     }
