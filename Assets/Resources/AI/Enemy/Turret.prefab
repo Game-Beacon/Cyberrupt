@@ -552,6 +552,9 @@ MonoBehaviour:
   lr: {fileID: 2163395372375072314}
   pathLength: 30
   pathSpeed: 1.25
+  pathDuration: 5
+  pathPeek: {fileID: 3743269669092894367, guid: b9185183b6a536e42838f1b005651504,
+    type: 3}
   lockStrenth: 0.25
 --- !u!114 &4157780920542793556
 MonoBehaviour:
@@ -1377,7 +1380,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 3
+    textureMode: 1
     shadowBias: 0
     generateLightingData: 0
   m_UseWorldSpace: 1
