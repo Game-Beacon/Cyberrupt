@@ -63,7 +63,6 @@ public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
             GameObject go = Instantiate(bot, transform.position + new Vector3(Mathf.Cos(rand), Mathf.Sin(rand)) * spawnRadius, Quaternion.identity);
             Enemy newBot = go.GetComponent<Enemy>();
-            newBot.SetSideProduction(true);
             newBot.OnDeath.AddPersistentCall((Action)BotKilled);
             spawnCount++;
             timer = baseSpawnTime + spawnTimeDelta * spawnCount;

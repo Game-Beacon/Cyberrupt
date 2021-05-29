@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emitModule:
     _patterns:
-    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
+    - {fileID: 11400000, guid: 1b32392abc6a5d141bef1a39ab1f3b0f, type: 2}
     _liveTime: 10
     _rateOverTime: 0.1
   _shapeModule:
@@ -25,6 +25,7 @@ MonoBehaviour:
     _radiusThickness: 0
     _edgeWidth: 0
     _cycleTime: 0.1
+    _reverseCycle: 0
     _burstCount: 1
   _patternModule:
     _easeType: 9
@@ -40,7 +41,7 @@ MonoBehaviour:
   _pathModule:
     _pathType: 0
     _speedType: 0
-    _speed: 7
+    _speed: 6
     _minSpeed: 0
     _maxSpeed: 0
     _waveAmp: 0

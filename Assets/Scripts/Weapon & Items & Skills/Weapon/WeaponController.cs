@@ -27,7 +27,7 @@ public class WeaponController : GameBehaviour
     public GameEvent OnKeyDown { get; } = new GameEvent();
     public GameEvent OnKey { get; } = new GameEvent();
     public GameEvent OnKeyUp { get; } = new GameEvent();
-    public ObjectEvent OnWeaponChange { get; } = new ObjectEvent();
+    public ObjectEvent<Weapon> OnWeaponChange { get; } = new ObjectEvent<Weapon>();
     public IntEvent OnBombCountChange { get; } = new IntEvent();
 
     public override void GameAwake()
@@ -78,7 +78,6 @@ public class WeaponController : GameBehaviour
         _currentWeapon = weapons[index];
         _currentWeapon.OnSelected();
         OnWeaponChange.Invoke(_currentWeapon);
-        Debug.Log("Switch Weapon! " + _currentWeapon.data.weaponName + " : " + _currentWeapon.ammoCount);
     }
 
     public void AddBomb(int count)

@@ -38,7 +38,7 @@ public class PickUpManager : GameBehaviour
         killCount++;
 
         float rand = Random.Range(0f, 1f);
-        if(rand < killCount)
+        if(rand < killCount / 100f)
         {
             PickUpInstance emptyPickUp = Instantiate(pickUp, spawner.transform.position, Quaternion.identity);
             emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);

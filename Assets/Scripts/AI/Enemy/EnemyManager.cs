@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyManager : GameBehaviour
 {
@@ -17,6 +18,9 @@ public class EnemyManager : GameBehaviour
     private Bound _screen;
 
     public GameObjectEvent OnEnemyDied { get; } = new GameObjectEvent();
+
+    public IntEvent OnWaveAdvance { get; } = new IntEvent();
+    public ObjectEvent<Enemy> OnBossSpawn { get; } = new ObjectEvent<Enemy>();
 
     public override void GameAwake()
     {
@@ -39,8 +43,15 @@ public class EnemyManager : GameBehaviour
 
         for (int i = 0; i < obj.Length; i++)
             bossWaves[i] = (EnemyWave)obj[i];
+    }
 
+    public override void GameUpdate()
+    {
+        //訂閱者要在GameStart才能安全獲取EnemyManager的instance（無法保證GameAwake的執行順序）
+        //為了確保所有訂閱者都不會漏接事件，把事件最早發生的情形挪到第一個frame的update中
+        //但是這感覺不是個好方法...
         SpawnWave();
+        update = false;
     }
 
     public void AddEnemy(Enemy enemy)
@@ -63,13 +74,18 @@ public class EnemyManager : GameBehaviour
     {
         wave++;
 
+        OnWaveAdvance.Invoke(wave);
+
         //Debug.Log("Spawn");
-        if(wave % 4 == 0)
+        if(wave % 10 == 0)
         {
             int index = Random.Range(0, bossWaves.Length);
 
-            foreach (EnemySpawnData data in bossWaves[index].spawns)
-                Instantiate(data.enemy, data.position, Quaternion.identity);
+            //TODO: 目前這方法是假設在打BOSS時只有1隻BOSS，如果BOSS的形式是多隻的話會出事
+            //或許有更好的解法?
+            EnemySpawnData data = bossWaves[index].spawns[0];
+            Enemy boss = Instantiate(data.enemy, data.position, Quaternion.identity).GetComponent<Enemy>();
+            OnBossSpawn.Invoke(boss);
         }
         else
         {

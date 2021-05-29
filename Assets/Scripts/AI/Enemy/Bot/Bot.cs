@@ -37,8 +37,6 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     [SerializeField, Range(0, 0.5f)]
     private float steerStrenth;
 
-    private bool followMirror = false;
-
     private Vector2 _direction;
     public Vector2 direction { get { return _direction; } }
 
@@ -63,8 +61,6 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         float angle = /*transform.rotation.eulerAngles.z*/ Random.Range(0f, 360f) * Mathf.Deg2Rad;
         _direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
         radiusSquare = radius * radius;
-
-        followMirror = (bots.Count % 2 == 0);
 
         sr = GetComponentInChildren<SpriteRenderer>();
         bots.Add(this);

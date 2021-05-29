@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -31,7 +31,7 @@ public class GameSystem : MonoBehaviour
 
     private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     // Update is called once per frame
@@ -44,7 +44,9 @@ public class GameSystem : MonoBehaviour
 
     private void LateUpdate()
     {
-        while(awakeQueue.Count > 0)
+        bool behavioursChanged = (awakeQueue.Count > 0);
+
+        while (awakeQueue.Count > 0)
         {
             GameBehaviour b = awakeQueue.Dequeue();
             behaviours.Add(b);
@@ -67,10 +69,13 @@ public class GameSystem : MonoBehaviour
                 behaviours.RemoveAt(i);
         }
 
-        behaviours.Sort(delegate (GameBehaviour a, GameBehaviour b)
+        if(behavioursChanged)
         {
-            return a.executeOrder.CompareTo(b.executeOrder);
-        });
+            behaviours.Sort(delegate (GameBehaviour a, GameBehaviour b)
+            {
+                return a.executeOrder.CompareTo(b.executeOrder);
+            });
+        }
 
         while (destroyQueue.Count > 0)
         {
@@ -112,9 +117,11 @@ public class GameSystem : MonoBehaviour
         destroyQueue.Enqueue(behaviour);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    void OnSceneUnloaded(Scene scene)
     {
-        //Debug.Log("OnSceneLoaded");
+        //這是為了確保所有非static/singleton的物體會在場景轉換時自動清除reference
+        DependencyContainer.Clear();
+
         int len = behaviours.Count - 1;
         for (int i = len; i >= 0; i--)
         {

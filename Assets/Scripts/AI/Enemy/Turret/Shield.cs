@@ -28,6 +28,7 @@ public class Shield : Enemy
     {
         if (main != null)
             main.OnDeath -= Die;
-        Destroy(parent.gameObject, 0.1f);
+        if (parent != null)
+            DestroySafe(parent.gameObject/*, 0.1f*/);
     }
 }

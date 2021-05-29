@@ -98,8 +98,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
-        Destroy(parent.gameObject, 0.03f);
-        Destroy(root.gameObject, 0.03f);
+        if (parent != null)
+            DestroySafe(parent.gameObject/*, 0.03f*/);
+        if (root != null)
+            DestroySafe(root.gameObject/*, 0.03f*/);
     }
 
     IEnumerator DelayKill()

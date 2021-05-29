@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BossWave_001
   m_EditorClassIdentifier: 
   _spawns:
-  - enemy: {fileID: 8857558748932324759, guid: 37aff673241b95749821afeabd79bfcb, type: 3}
+  - enemy: {fileID: 7687829999302750034, guid: 26252a85d73b7134cbc7067d070c8459, type: 3}
     position: {x: 11, y: 0}
   _nextWaveDelay: 0
   _difficulty: 0
