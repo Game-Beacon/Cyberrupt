@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
 
 public class PlayerUI : GameBehaviour
 {
@@ -24,6 +26,9 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private TextMeshProUGUI weaponAmmo;
 
+    //Wave
+    [SerializeField]
+    private TextMeshProUGUI waveText;
 
     public override void GameStart()
     {
@@ -37,6 +42,8 @@ public class PlayerUI : GameBehaviour
 
         player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
         SetWeapon();
+
+        EnemyManager.instance.OnWaveAdvance.AddListener(SetWaveText);
     }
 
     public override void GameUpdate()
@@ -98,11 +105,25 @@ public class PlayerUI : GameBehaviour
         }
     }
 
-    public void UpdateWeapon(object weaponRaw)
+    public void UpdateWeapon(Weapon weapon)
     {
-        Weapon weapon = weaponRaw as Weapon;
         weaponIcon.sprite = weapon.data.icon;
         weaponName.text = weapon.data.weaponName;
         weaponAmmo.text = (weapon.ammoCount < 0) ? "∞" : weapon.ammoCount.ToString();
+    }
+
+    public void SetWaveText(int wave)
+    {
+        waveText.text = "Wave " + wave.ToString();
+        waveText.color = Color.white;
+        StartCoroutine(WaveTextFade());
+    }
+
+    private IEnumerator WaveTextFade()
+    {
+        yield return new WaitForSeconds(1f);
+        waveText.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        waveText.text = "";
     }
 }

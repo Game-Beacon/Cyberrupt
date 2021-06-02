@@ -62,4 +62,16 @@ public class GameBehaviour : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _persistent = true;
     }
+
+    public static void DestroySafe(Object obj)
+    {
+        if (obj != null)
+            Destroy(obj);
+        else
+        {
+#if UNITY_EDITOR
+            Debug.LogWarning("You're trying to destroy an object which is either missing or null. To prevent raising an excpetion, the destroy command is not performed.");
+#endif
+        }
+    }
 }

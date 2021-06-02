@@ -43,6 +43,7 @@ public class Singularity : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
-        Destroy(parent.gameObject, 0.1f);
+        if (parent != null)
+            DestroySafe(parent.gameObject);
     }
 }

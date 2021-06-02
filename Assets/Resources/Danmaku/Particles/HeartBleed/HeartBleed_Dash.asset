@@ -15,7 +15,7 @@ MonoBehaviour:
   _emitModule:
     _patterns:
     - {fileID: 11400000, guid: 601ccc06c821c8d47b79b9d402e041a2, type: 2}
-    _liveTime: 1
+    _liveTime: 0.6
     _rateOverTime: 50
   _shapeModule:
     _shapeType: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
     _easeType: 10
     _scaleType: 0
     _rotationType: 0
-    _easeTime: 1
-    _scale: 8
+    _easeTime: 0.6
+    _scale: 5
     _minScale: 0
     _maxScale: 0
     _rotation: 0

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  particle: {fileID: 11400000, guid: 03cac4e09259f734caa950ff5281856a, type: 2}
+  particle: {fileID: 11400000, guid: 0877c007900c7a944b6bff4176a5750f, type: 2}
 --- !u!4 &1362740591
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  usePS: 0
+  usePS: 1
   poolPrefab: {fileID: 5929190718375520640, guid: 916f2e9d04be0de49994d0862ff3095d,
     type: 3}
   poolParticle: {fileID: 3465454291035144216, guid: e5e545fe417bbca46845372b6fbc5523,

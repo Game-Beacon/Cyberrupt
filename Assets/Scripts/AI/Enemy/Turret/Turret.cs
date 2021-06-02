@@ -14,18 +14,24 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     public SpawnDanmakuHelper danmakuHelper { get { return _danmakuHelper; } }
 
     //====================
-
     [SerializeField]
     private Transform parent;
     [SerializeField]
     private Transform root;
+    [Header("Path")]
     [SerializeField]
     private LineRenderer lr;
     [SerializeField]
     private float pathLength;
     [SerializeField]
     private float pathSpeed;
-
+    [SerializeField]
+    private float pathDuration;
+    [SerializeField]
+    [Tooltip("A GameObject that will be placed the end of path during generation")]
+    private GameObject pathPeek;
+    // Add this for padding
+    [Header("")]
     [SerializeField, Range(0, 0.5f)]
     private float lockStrenth;
 
@@ -40,6 +46,8 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private Vector2 currentPosition;
     private Vector2 endPosition;
     private Vector2 pathDirection;
+    // Denote whether the path finishing generation
+    private bool isPathReady;
 
     protected override void EnemyAwake()
     {
@@ -47,7 +55,6 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
         _stateMachine = GetComponent<AIStateMachine>();
         _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
-
         _stateMachine.OnUpdateTransform.AddListener(UpdateTransform);
     }
 
@@ -55,7 +62,7 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     {
         player = DependencyContainer.GetDependency<Player>() as Player;
         _target = player.transform;
-        CreatePath();
+        StartCoroutine(CreatePath());
     }
 
     protected override void EnemyUpdate()
@@ -66,30 +73,39 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         previousCanAttack = _canAttack;
     }
 
-    private void CreatePath()
+    private IEnumerator CreatePath()
     {
         startPosition = transform.position;
         currentPosition = startPosition;
         Vector2 pinpoint = manager.GetRandomPointInScreen(2.5f);
         endPosition = startPosition + (pinpoint - startPosition).normalized * pathLength;
         pathDirection = (endPosition - startPosition).normalized;
-
+        var peek = Instantiate(this.pathPeek, this.root);
+        // Setup path start point
         lr.positionCount = 2;
         lr.SetPosition(0, currentPosition);
-        lr.SetPosition(1, endPosition);
+        // Iterate endpoint overtime
+        for(float t = 0; t < this.pathDuration; t += Time.deltaTime)
+        {
+            var railEnd = Vector3.Lerp(currentPosition, endPosition, t / this.pathDuration);
+            lr.SetPosition(1, railEnd);
+            peek.transform.position = railEnd;
+            yield return null;
+        }
+        // Mark path as ready
+        Destroy(peek);
+        this.isPathReady = true;
     }
 
     private void UpdateTransform()
     {
+        // Freeze before path finish
+        if(!this.isPathReady)
+            return;
+        // Move
         currentPosition += pathDirection * Mathf.Min((endPosition - currentPosition).magnitude, pathSpeed * Time.fixedDeltaTime);
         root.position = currentPosition;
-
-        lr.SetPosition(0, currentPosition);
-        lr.SetPosition(1, endPosition);
-
-        /*if ((currentPosition - endPosition).sqrMagnitude < 0.5f)
-            Die();*/
-
+        // Update rotation
         Vector2 direction = target.position - parent.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         Quaternion lookAt = Quaternion.Euler(0, 0, angle);
@@ -98,8 +114,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
-        Destroy(parent.gameObject, 0.03f);
-        Destroy(root.gameObject, 0.03f);
+        if (parent != null)
+            DestroySafe(parent.gameObject/*, 0.03f*/);
+        if (root != null)
+            DestroySafe(root.gameObject/*, 0.03f*/);
     }
 
     IEnumerator DelayKill()

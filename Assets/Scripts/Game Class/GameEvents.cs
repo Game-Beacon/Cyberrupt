@@ -6,4 +6,4 @@ public class IntEvent : UnityEvent<int> { }
 public class FloatEvent : UnityEvent<float> { }
 public class BoolEvent : UnityEvent<bool> { }
 public class GameObjectEvent : UnityEvent<GameObject> { }
-public class ObjectEvent : UnityEvent<object> { }
+public class ObjectEvent<T> : UnityEvent<T> { }
