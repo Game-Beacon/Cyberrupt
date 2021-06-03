@@ -14,11 +14,15 @@ public class EnemyManager : GameBehaviour
     private int wave = 0;
     public int enemyCount { get { return enemies.Count; } }
 
-    [SerializeField]
+    /*[SerializeField]
     private Bound _screen;
 
-    public GameObjectEvent OnEnemyDied { get; } = new GameObjectEvent();
+    public float GetWorldScreenMinX { get { return _screen.parent.position.x - (_screen.xSize / 2); } }
+    public float GetWorldScreenMaxX { get { return _screen.parent.position.x + (_screen.xSize / 2); } }
+    public float GetWorldScreenMinY { get { return _screen.parent.position.y - (_screen.ySize / 2); } }
+    public float GetWorldScreenMaxY { get { return _screen.parent.position.y + (_screen.ySize / 2); } }*/
 
+    public GameObjectEvent OnEnemyDied { get; } = new GameObjectEvent();
     public IntEvent OnWaveAdvance { get; } = new IntEvent();
     public ObjectEvent<Enemy> OnBossSpawn { get; } = new ObjectEvent<Enemy>();
 
@@ -96,7 +100,7 @@ public class EnemyManager : GameBehaviour
         }
     }
 
-    public bool InScreen(Vector2 position)
+    /*public bool InScreen(Vector2 position)
     {
         return !_screen.OverBound(position);
     }
@@ -109,11 +113,11 @@ public class EnemyManager : GameBehaviour
         float minY = _screen.parent.position.y - (_screen.ySize / 2) + edge;
 
         return new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-    }
+    }*/
 
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(transform.position, new Vector3(_screen.xSize, _screen.ySize));
-    }
+    }*/
 }

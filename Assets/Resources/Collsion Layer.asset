@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Bits: 1024
   _hazardousMask:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 163840
   _bombMask:
     serializedVersion: 2
     m_Bits: 65536

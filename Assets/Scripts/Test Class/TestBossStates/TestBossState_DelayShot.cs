@@ -51,7 +51,7 @@ public class TestBossState_DelayShot : AIState
             OnSpawn.Invoke();
             shootTimes += 1;
             IEnumerator enumerator = DelayShoot(shootDelay);
-            asyncs.Add(enumerator);
+            //asyncs.Add(enumerator);
             StartCoroutine(enumerator);
         }
 
@@ -71,7 +71,7 @@ public class TestBossState_DelayShot : AIState
         if (shootTimes == totalShootTimes)
         {
             IEnumerator enumerator = EndDelay(endDelay);
-            asyncs.Add(enumerator);
+            //asyncs.Add(enumerator);
             StartCoroutine(enumerator);
         }  
     }

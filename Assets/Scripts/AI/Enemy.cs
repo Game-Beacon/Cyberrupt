@@ -5,6 +5,7 @@ using UltEvents;
 public class Enemy : GameBehaviour
 {
     protected static EnemyManager manager = null;
+    protected static ScreenBound screen = null;
 
     [SerializeField]
     protected float _maxHP;
@@ -34,7 +35,6 @@ public class Enemy : GameBehaviour
         OnDeath += Die;
 
         EnemyAwake();
-        OnSpawn.Invoke();
     }
 
     protected virtual void EnemyAwake() { }
@@ -45,6 +45,9 @@ public class Enemy : GameBehaviour
             manager = EnemyManager.instance;
         if (manager != null && !_isSideProduction)
             manager.AddEnemy(this);
+        if (screen == null)
+            screen = ScreenBound.instance;
+        OnSpawn.Invoke();
         EnemyStart();
     }
 
@@ -52,7 +55,7 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameUpdate()
     {
-        _canAttack = (manager == null)? true : manager.InScreen(transform.position);
+        _canAttack = (manager == null)? true : screen.InScreen(transform.position);
         EnemyUpdate();
         if (_hp <= 0)
             OnDeath.Invoke();
@@ -60,14 +63,10 @@ public class Enemy : GameBehaviour
 
     protected virtual void EnemyUpdate() { }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        OnHit.Invoke();
-    }
-
     public void ApplyDamage(float damage)
     {
         _hp -= damage;
+        OnHit.Invoke();
     }
 
     public void SetHP(float max)

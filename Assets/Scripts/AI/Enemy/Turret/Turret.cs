@@ -77,7 +77,7 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     {
         startPosition = transform.position;
         currentPosition = startPosition;
-        Vector2 pinpoint = manager.GetRandomPointInScreen(2.5f);
+        Vector2 pinpoint = screen.GetRandomPointInScreen(2.5f);
         endPosition = startPosition + (pinpoint - startPosition).normalized * pathLength;
         pathDirection = (endPosition - startPosition).normalized;
         var peek = Instantiate(this.pathPeek, this.root);
