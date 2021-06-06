@@ -43,7 +43,7 @@ public class TestBossState_Pistol : AIState
             target = enemyTarget.target;
 
         IEnumerator enumerator = StartDelay(startDelay);
-        asyncs.Add(enumerator);
+        //asyncs.Add(enumerator);
         StartCoroutine(enumerator);
     }
 
@@ -68,7 +68,7 @@ public class TestBossState_Pistol : AIState
             if(shootTimes == totalShootTimes)
             {
                 IEnumerator enumerator = EndDelay(endDelay);
-                asyncs.Add(enumerator);
+                //asyncs.Add(enumerator);
                 StartCoroutine(enumerator);
             }
         }

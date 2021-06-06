@@ -5,13 +5,14 @@ using UnityEngine;
 public class SpawnDanmakuHelper : GameBehaviour
 {
     private Dictionary<int, DanmakuParticleEmitter> particleDict = new Dictionary<int, DanmakuParticleEmitter>();
+    private List<DanmakuParticleEmitter> overWriteParticle = new List<DanmakuParticleEmitter>();
 
     public override void GameAwake()
     {
         AIStateMachine stateMachine;
         if(TryGetComponent(out stateMachine))
         {
-            stateMachine.ExitState.AddListener(StopAll);
+            stateMachine.ExitState.AddListener(StopAllOverWrite);
         }
     }
 
@@ -20,7 +21,10 @@ public class SpawnDanmakuHelper : GameBehaviour
         DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, time);
         emitter.SetUpdate(updatePosition, updateRotation, updateScale);
         if (particleDict.ContainsKey(key))
+        {
+            overWriteParticle.Add(particleDict[key]);
             particleDict[key] = emitter;
+        } 
         else
             particleDict.Add(key, emitter);
     }
@@ -30,7 +34,10 @@ public class SpawnDanmakuHelper : GameBehaviour
         DanmakuParticleEmitter emitter = new DanmakuParticleEmitter(data, parent.transform, 0);
         emitter.SetUpdate(updatePosition, updateRotation, updateScale);
         if (particleDict.ContainsKey(key))
+        {
+            overWriteParticle.Add(particleDict[key]);
             particleDict[key] = emitter;
+        }
         else
             particleDict.Add(key, emitter);
     }
@@ -41,17 +48,20 @@ public class SpawnDanmakuHelper : GameBehaviour
             particleDict[key].SetUpdate(updatePosition, updateRotation, updateScale);
     }
 
-    public void StopAll()
+    private void StopAllOverWrite()
     {
-        foreach (int i in particleDict.Keys)
-            particleDict[i].StopSpawnBullets();
-        particleDict.Clear();
+        foreach (DanmakuParticleEmitter emitter in overWriteParticle)
+            emitter.StopSpawnBullets();
+        overWriteParticle.Clear();
     }
 
     public void KillAll()
     {
         foreach (int i in particleDict.Keys)
             particleDict[i].KillAllBullets();
+        foreach (DanmakuParticleEmitter emitter in overWriteParticle)
+            emitter.KillAllBullets();
         particleDict.Clear();
+        overWriteParticle.Clear();
     }
 }

@@ -236,7 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  particle: {fileID: 11400000, guid: 0877c007900c7a944b6bff4176a5750f, type: 2}
+  particle: {fileID: 11400000, guid: 5f429aff8f9e73142b3131e104fb24c9, type: 2}
 --- !u!4 &1362740591
 Transform:
   m_ObjectHideFlags: 0

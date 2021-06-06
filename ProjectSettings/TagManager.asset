@@ -19,10 +19,10 @@ TagManager:
   - Wall
   - Weapon
   - WeakWeapon
-  - WeakEnemy
+  - PhantomEnemy
   - Hazardous
   - Bomb
-  - GhostEnemy
+  - HittableHazardous
   - 
   - 
   - 

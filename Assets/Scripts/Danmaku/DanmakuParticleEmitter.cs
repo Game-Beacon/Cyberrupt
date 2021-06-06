@@ -101,14 +101,12 @@ public class DanmakuParticleEmitter : IDanmaku
             return;
         }  
 
-        if (shootDelta <= 0)
+        while (shootDelta <= 0)
         {
             DanmakuPattern pattern;
             int patternLen = danmakuData.emitModule.patterns.Length;
             int count;
             int burst = danmakuData.shapeModule.burstCount;
-
-            shootDelta = danmakuData.emitModule.shootDelta;
 
             for (int i = 0; i < burst; i++)
             {
@@ -122,7 +120,7 @@ public class DanmakuParticleEmitter : IDanmaku
 
                 ActiveBullets newActive = new ActiveBullets();
 
-                Vector3 rawPR = EmitterHelper.GetInitPositionAndRotation(danmakuData.shapeModule, time, i);
+                Vector3 rawPR = EmitterHelper.GetInitPositionAndRotation(danmakuData.shapeModule, time + shootDelta, i);
                 Vector2 rawOffset = rawPR.x * new Vector2(Mathf.Cos(rawPR.y), Mathf.Sin(rawPR.y));
                 Vector2 offset = Matrix2x2.RotationMatrix(worldRotation * Mathf.Deg2Rad).Transform(rawOffset);
 
@@ -148,9 +146,10 @@ public class DanmakuParticleEmitter : IDanmaku
                     newActive.actives[j] = true;
                 }
                 
-                newActive.positionTimer = 0;
-                newActive.rotationTimer = 0;
-                newActive.scaleTimer = 0;
+                newActive.timer = -shootDelta;
+                newActive.positionTimer = -shootDelta;
+                newActive.rotationTimer = -shootDelta;
+                newActive.scaleTimer = -shootDelta;
                 newActive.liveTime = danmakuData.emitModule.liveTime;
                 newActive.isMain = true;
 
@@ -160,6 +159,8 @@ public class DanmakuParticleEmitter : IDanmaku
                 patterns.Add(newActive);
                 _activeCount += count;
             }
+
+            shootDelta += danmakuData.emitModule.shootDelta;
         }
     }
 

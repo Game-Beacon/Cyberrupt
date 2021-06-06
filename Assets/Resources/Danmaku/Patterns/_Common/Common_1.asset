@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bec4cb975b5a1c4f9b76515742aab57, type: 3}
-  m_Name: BossWave_001
+  m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
+  m_Name: Common_1
   m_EditorClassIdentifier: 
-  _spawns:
-  - enemy: {fileID: 7687829999302750034, guid: 26252a85d73b7134cbc7067d070c8459, type: 3}
-    position: {x: 11, y: 0}
-  _nextWaveDelay: 0
-  _difficulty: 0
+  _data:
+  - localPosition: {x: 0, y: 0}
+    bullet: {fileID: 11400000, guid: 32a7387c60f601247ab4e8b5facd24f2, type: 2}

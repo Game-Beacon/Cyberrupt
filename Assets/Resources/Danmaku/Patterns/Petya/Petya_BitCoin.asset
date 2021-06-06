@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
+  m_Name: Petya_BitCoin
+  m_EditorClassIdentifier: 
+  _data:
+  - localPosition: {x: -0.6, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.20000002, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.0000000037252903, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.6, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.20000002, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.0000000037252903, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.6, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.20000002, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.0000000037252903, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0.6}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0.4}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0.2}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: -0.2}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: -0.4}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: -0.6}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.4, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.39999998, y: 0.05358982}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.54641014, y: 0.19999993}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.6, y: 0.40000007}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.54641014, y: 0.6}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.40000004, y: 0.74641013}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.20000006, y: 0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: -0.8}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.39999998, y: -0.7464102}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.54641014, y: -0.6000001}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.6, y: -0.39999995}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.54641014, y: -0.19999997}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.40000004, y: -0.05358985}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.20000006, y: 0}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: 1}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.2, y: 1}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: -0.2, y: -1}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}
+  - localPosition: {x: 0.2, y: -1}
+    bullet: {fileID: 11400000, guid: b0c4c6eed149c6e49bcaf4125afdd0a7, type: 2}

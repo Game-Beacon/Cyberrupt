@@ -43,13 +43,21 @@ public abstract class WeaponBullet : GameBehaviour
         KillBehaviour(true);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.enemyMask))
+            OnHitEnemy(collision.gameObject);
+        if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.screenMask))
+            OnHitWall(collision.gameObject);
+    }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.enemyMask))
             OnHitEnemy(collision.collider.gameObject);
         if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.screenMask))
             OnHitWall(collision.collider.gameObject);
-    }
+    }*/
 
     //TODO (for this class)：
     //Build something that acts like a constructor.

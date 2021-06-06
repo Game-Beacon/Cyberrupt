@@ -10,9 +10,6 @@ public abstract class AIState : MonoBehaviour
     [SerializeField]
     protected bool _overrideTransformUpdate;
     public bool overrideTransformUpdate { get { return _overrideTransformUpdate; } private set { } }
-    
-    protected List<DanmakuParticleEmitter> particles = new List<DanmakuParticleEmitter>();
-    protected List<IEnumerator> asyncs = new List<IEnumerator>();
 
     [SerializeField]
     protected UltEvent OnEnter = new UltEvent();
@@ -56,19 +53,12 @@ public abstract class AIState : MonoBehaviour
 
     public void StateExit()
     {
-        particles.Clear();
         OnExit.Invoke();
         StopAllCoroutines();
-        asyncs.Clear();
         OnStateExit();
     }
 
     protected virtual void OnStateExit() { }
-
-    public void AddParticles(DanmakuParticleEmitter particle)
-    {
-        particles.Add(particle);
-    }
 
     IEnumerator EndStateOneFrameLater()
     {

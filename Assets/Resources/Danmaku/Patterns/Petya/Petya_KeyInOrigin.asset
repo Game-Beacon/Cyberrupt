@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d488a9b8e859ae40847d8e8b23d91d2, type: 3}
+  m_Name: Petya_KeyInOrigin
+  m_EditorClassIdentifier: 
+  _data:
+  - localPosition: {x: 0.5, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.45677269, y: 0.20336832}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.33456528, y: 0.37157243}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.15450847, y: 0.47552827}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.052264214, y: 0.49726096}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.25, y: 0.4330127}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.4045086, y: 0.2938926}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.48907375, y: 0.103955805}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.48907375, y: -0.103955895}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.4045086, y: -0.29389256}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.25, y: -0.43301272}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: -0.052264214, y: -0.49726096}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.15450859, y: -0.47552824}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.3345654, y: -0.37157238}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.4567728, y: -0.20336825}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.5, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.7, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 0.9, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.1, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.3, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.5, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.7, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.9, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 2.1, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 2.3, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 2.5, y: 0}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 2.5, y: 0.2}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 2.5, y: 0.4}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}
+  - localPosition: {x: 1.7, y: 0.2}
+    bullet: {fileID: 11400000, guid: 8143a13513f3fe24599803440938705e, type: 2}

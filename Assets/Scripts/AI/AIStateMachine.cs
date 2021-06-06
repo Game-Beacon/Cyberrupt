@@ -59,7 +59,7 @@ public class AIStateMachine : GameBehaviour
             pickStateTimer -= Time.fixedDeltaTime;
             pickStateTimer = Mathf.Max(pickStateTimer, 0);
 
-            if (pickStateTimer <= 0)
+            if (AIStates.Count > 0 && pickStateTimer <= 0)
                 UpdateStateMachine();
         }
     }
