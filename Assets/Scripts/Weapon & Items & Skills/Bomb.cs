@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Bomb : GameBehaviour, IDanmakuTarget
 {
@@ -11,7 +9,8 @@ public class Bomb : GameBehaviour, IDanmakuTarget
     private float currentHitRadius = 0;
     public float hitRadius { get { return currentHitRadius; } }
 
-    public bool isImmune => throw new System.NotImplementedException();
+    public bool isImmune =>
+        throw new System.NotImplementedException();
 
     //====================
 
@@ -24,29 +23,30 @@ public class Bomb : GameBehaviour, IDanmakuTarget
 
     private DanmakuManager danmakuManager;
     private DanmakuObstacle obstacle;
+    private CircleCollider2D circleCollider;
     private float timer = 0;
 
     public override void GameStart()
     {
         danmakuManager = DanmakuManager.instance;
         obstacle = danmakuManager.AddObstacle(this);
+        circleCollider = GetComponent<CircleCollider2D>();
     }
 
     public override void GameUpdate()
     {
-        if (timer >= expandTime)
+        // Update hit radius
+        if(timer >= expandTime)
             currentHitRadius = _hitRadius;
         else
             currentHitRadius = EaseLibrary.CallEaseFunction(ease, timer / expandTime) * _hitRadius;
-
-        transform.localScale = new Vector3(currentHitRadius, currentHitRadius, currentHitRadius);
-
+        circleCollider.radius = currentHitRadius;
+        // Kill at timer end
         if(timer >= bombTime)
         {
             KillBehaviour(true);
             update = false;
         }
-
         timer += Time.deltaTime;
     }
 
