@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UniRx;
+using UnityEngine;
 
 public class PlayerAnimate : GameBehaviour
 {
@@ -10,18 +9,25 @@ public class PlayerAnimate : GameBehaviour
     [SerializeField]
     [Tooltip("Offset of face when moving")]
     private float offset;
+    [SerializeField]
+    private float emitInterval;
     private Player player;
+
+    private ParticleSystem particle;
+    private float emitTimer;
 
     public override void GameStart()
     {
+        this.particle = GetComponentInChildren<ParticleSystem>();
         this.player = GetComponent<Player>();
         this.player.IsDashing
             .Skip(1)
-            .Subscribe(d => {
+            .Subscribe(d =>
+            {
                 // Start dashing
                 if(d)
                 {
-                    if(Mathf.Abs (this.player.velocity.x) > 0)
+                    if(Mathf.Abs(this.player.velocity.x) > 0)
                         transform.DOScaleY(0.5f, 0.1f);
                     else
                         transform.DOScaleX(0.5f, 0.1f);
@@ -39,7 +45,32 @@ public class PlayerAnimate : GameBehaviour
 
     public override void GameUpdate()
     {
-        var dir = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+        var dir = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2) transform.position;
+        // Move face toward mouse position
         this.face.DOLocalMove(dir.normalized * this.offset, 0.1f);
+        if(this.player.velocity.sqrMagnitude > 0)
+        {
+            this.emitTimer -= Time.deltaTime;
+            if(this.emitTimer <= 0)
+            {
+                this.emitTimer = this.emitInterval;
+                this.trailEmit(5);
+            }
+        }
+        else
+        {
+            this.emitTimer = 0;
+        }
+    }
+
+    private void trailEmit(int count)
+    {
+        var angle = Mathf.Atan2(this.player.velocity.y, this.player.velocity.x) * Mathf.Rad2Deg;
+        angle = Mathf.Repeat(angle + 180, 360);
+        var shape = this.particle.shape;
+        var newRotate = shape.rotation;
+        newRotate.x = -angle;
+        shape.rotation = newRotate;
+        this.particle.Emit(5);
     }
 }
