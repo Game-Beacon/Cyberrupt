@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using DG.Tweening;
 using UniRx;
 
@@ -9,7 +10,6 @@ public class PlayerAnimate : GameBehaviour
     [SerializeField]
     [Tooltip("Offset of face when moving")]
     private float offset;
-
     private Player player;
 
     public override void GameStart()
@@ -28,13 +28,18 @@ public class PlayerAnimate : GameBehaviour
                 }
                 // End dashing
                 else
-                    transform.DOScale(Vector3.one, 0.1f);
+                {
+                    DOTween.Sequence()
+                        .Append(transform.DOScale(Vector3.one, 0.1f))
+                        .Append(transform.DOPunchScale(Vector3.one * 0.25f, 0.2f));
+                }
             })
             .AddTo(this);
     }
 
     public override void GameUpdate()
     {
-        this.face.DOLocalMove(this.player.velocity.normalized * this.offset, 0.1f);
+        var dir = (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2)transform.position;
+        this.face.DOLocalMove(dir.normalized * this.offset, 0.1f);
     }
 }
