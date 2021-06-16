@@ -336,9 +336,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
   _maxHP: 1250
   _hp: 1250
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -592,8 +594,8 @@ MonoBehaviour:
   length: 30
   reachMaxLengthTime: 1.5
   laserEase: 2
-  rotateForce: 180
-  rotateIncrement: 0.04
+  rotateForce: 90
+  rotateIncrement: 0.03
 --- !u!114 &8885105824843755112
 MonoBehaviour:
   m_ObjectHideFlags: 0

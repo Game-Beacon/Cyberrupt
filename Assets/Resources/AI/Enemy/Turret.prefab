@@ -231,9 +231,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: fd118b186da93a34085cd68fe04a505b, type: 2}
   _maxHP: 15
   _hp: 15
-  _isSideProduction: 1
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -260,7 +262,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.048, y: 2.048}
+    oldSize: {x: 1.7066667, y: 1.7066667}
     newSize: {x: 0.24363637, y: 0.96363634}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -538,9 +540,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: d90242bda5598e745bfa653e49886d6c, type: 2}
   _maxHP: 15
   _hp: 15
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -549,6 +553,9 @@ MonoBehaviour:
     _PersistentCalls: []
   parent: {fileID: 4661807901048955463}
   root: {fileID: 3984703758475839825}
+  shields:
+  - {fileID: 5837541749256338119}
+  - {fileID: 6594436733728247707}
   lr: {fileID: 2163395372375072314}
   pathLength: 30
   pathSpeed: 1.25
@@ -765,9 +772,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: fd118b186da93a34085cd68fe04a505b, type: 2}
   _maxHP: 15
   _hp: 15
-  _isSideProduction: 1
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -794,7 +803,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.048, y: 2.048}
+    oldSize: {x: 1.7066667, y: 1.7066667}
     newSize: {x: 0.24363637, y: 0.96363634}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

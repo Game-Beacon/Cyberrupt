@@ -7,19 +7,27 @@ public abstract class WeaponBullet : GameBehaviour
     [SerializeField]
     protected CollisionLayer collisionLayer = null;
 
-    protected Rigidbody2D rb;
+    protected Rigidbody2D _rb;
+    public Rigidbody2D rb { get { return _rb; } protected set { } }
 
     protected float damage;
     protected float speed;
     protected Vector2 direction;
+    protected bool canKillBullet = false;
+
+    protected BulletModifier[] modifiers;
 
     public override void GameAwake()
     {
         if (collisionLayer == null)
             collisionLayer = CollisionLayer.instance;
 
-        if (!TryGetComponent(out rb))
+        if (!TryGetComponent(out _rb))
             Debug.LogError("There's no rigidbody2D attached to " + gameObject.name);
+
+        modifiers = GetComponents<BulletModifier>();
+        if (modifiers == null)
+            modifiers = new BulletModifier[0];
     }
 
     public void SetBulletProperty(float Damage, float Speed, Vector2 Direction)
@@ -29,34 +37,57 @@ public abstract class WeaponBullet : GameBehaviour
         direction = Direction;
     }
 
-    protected virtual void OnHitEnemy(GameObject hitObject)
+    public override void GameFixedUpdate()
     {
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
+        if (raycast.collider != null)
+            OnHitWall(raycast);
+    }
+
+    protected virtual void OnHitEnemy(Collider2D collision)
+    {
+        GameObject hitObject = collision.gameObject;
+
         Enemy enemy = hitObject.GetComponent<Enemy>();
         if (enemy == null)
             enemy = hitObject.GetComponentInParent<Enemy>();
         enemy.ApplyDamage(damage);
-        KillBehaviour(true);
+
+        foreach (BulletModifier modifier in modifiers)
+            modifier.OnHitEnemy(this, collision);
+
+        if (canKillBullet || modifiers.Length == 0)
+            KillBehaviour(true);
     }
 
-    protected virtual void OnHitWall(GameObject hitObject)
+    protected virtual void OnHitWall(RaycastHit2D raycast)
     {
-        KillBehaviour(true);
+        foreach (BulletModifier modifier in modifiers)
+            modifier.OnHitWall(this, raycast);
+
+        if (canKillBullet || modifiers.Length == 0)
+            KillBehaviour(true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.enemyMask))
-            OnHitEnemy(collision.gameObject);
-        if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.screenMask))
-            OnHitWall(collision.gameObject);
+            OnHitEnemy(collision);
+        /*if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.screenMask))
+            OnHitWall(collision);*/
+    }
+
+    public void SetKillBullet(bool value)
+    {
+        canKillBullet |= value;
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)
     {
         if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.enemyMask))
-            OnHitEnemy(collision.collider.gameObject);
+            OnHitEnemy(collision);
         if (CollisionLayer.CollideWithMask(collision.collider.gameObject, collisionLayer.screenMask))
-            OnHitWall(collision.collider.gameObject);
+            OnHitWall(collision);
     }*/
 
     //TODO (for this class)：

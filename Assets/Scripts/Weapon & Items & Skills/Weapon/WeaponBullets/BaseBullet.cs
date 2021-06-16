@@ -6,16 +6,16 @@ public class BaseBullet : WeaponBullet
 {
     public override void GameStart()
     {
-        rb.velocity = direction * speed;
+        _rb.velocity = direction * speed;
     }
 
     public override void GameUpdate()
     {
-        float currentSpeed = Mathf.Clamp(rb.velocity.magnitude, speed / 1.5f, speed);
+        float currentSpeed = Mathf.Clamp(_rb.velocity.magnitude, speed / 1.5f, speed);
 
-        rb.velocity = rb.velocity.normalized * currentSpeed;
+        _rb.velocity = _rb.velocity.normalized * currentSpeed;
 
-        float angle = Mathf.Atan2(rb.velocity.y, rb.velocity.x) * Mathf.Rad2Deg;
+        float angle = Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

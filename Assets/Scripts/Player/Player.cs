@@ -40,6 +40,8 @@ public class Player : GameBehaviour, IDanmakuTarget
     public int maxHp { get { return _maxHp; } }
     public int hp { get { return _hp; } }
     public WeaponController weaponController { get { return _weaponController; } }
+
+    public GameEvent OnReceiveDamage { get; } = new GameEvent();
     public IntEvent OnHpChange { get; } = new IntEvent();
     public GameEvent OnDied { get; } = new GameEvent();
 
@@ -69,6 +71,7 @@ public class Player : GameBehaviour, IDanmakuTarget
         if (!isImmune)
         {
             _hp--;
+            OnReceiveDamage.Invoke();
             OnHpChange.Invoke(_hp);
             if(_hp == 0)
             {

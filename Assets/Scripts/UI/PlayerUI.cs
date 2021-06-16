@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,21 @@ public class PlayerUI : GameBehaviour
     private GameObject playerBombBar;
     private List<Image> bombBar = new List<Image>();
 
+    //Score
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
+    [SerializeField]
+    private TextMeshProUGUI multiplerText;
+    [SerializeField]
+    private Slider multiplierSlider;
+
+    private float scoreMultipler = 1;
+    private float multiplierExp = 0;
+    private const float multiplierThreshold = 50;
+    private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
+
+    private int score = 0;
+
     //Weapon
     [SerializeField]
     private Image weaponIcon;
@@ -35,14 +51,23 @@ public class PlayerUI : GameBehaviour
         if(setting == null)
         setting = PlayerUISetting.instance;
         player = DependencyContainer.GetDependency<Player>() as Player;
-        
+
+        //Health and Bomb
         player.OnHpChange.AddListener(UpdateHp);
         player.weaponController.OnBombCountChange.AddListener(UpdateBomb);
         SetHPAndBomb();
 
+        //Score
+        EnemyManager.instance.OnEnemyDied.AddListener(UpdateScore);
+        player.OnReceiveDamage.AddListener(ResetMultiplier);
+        EnemyManager.instance.OnEnemySpawned.AddListener(SubscribeEnemy);
+        EnemyManager.instance.OnEnemyDied.AddListener(UnsubscribeEnemy);
+
+        //Weapon
         player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
         SetWeapon();
 
+        //Wave
         EnemyManager.instance.OnWaveAdvance.AddListener(SetWaveText);
     }
 
@@ -51,6 +76,7 @@ public class PlayerUI : GameBehaviour
         weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
     }
 
+    //Health and Bomb
     private void SetHPAndBomb()
     {
         for(int i = 0; i < player.maxHp; i++)
@@ -105,6 +131,50 @@ public class PlayerUI : GameBehaviour
         }
     }
 
+    //Score
+    public void UpdateScore(Enemy enemy)
+    {
+        score += (int)(enemy.score * scoreMultipler);
+        string scoreString = score.ToString().PadLeft(8, '0');
+        scoreText.text = scoreString;
+    }
+
+    public void UpdateMultiplier(float exp)
+    {
+        multiplierExp += exp;
+
+        int level = 0;
+        float trueThreshold = multiplierThreshold * thresholdAmp[level];
+        while (multiplierExp >= trueThreshold)
+        {
+            level++;
+            if (level == thresholdAmp.Length)
+                break;
+            trueThreshold = multiplierThreshold * thresholdAmp[level];
+        }
+
+        scoreMultipler = 1 + 0.5f * level;
+        multiplierSlider.value = Mathf.Clamp01(multiplierExp / trueThreshold);
+        multiplerText.text = "x" + scoreMultipler.ToString();
+    }
+
+    public void ResetMultiplier()
+    {
+        multiplierExp = 0;
+        UpdateMultiplier(0);
+    }
+
+    public void SubscribeEnemy(Enemy enemy)
+    {
+        enemy.OnReceiveDamage.AddListener(UpdateMultiplier);
+    }
+
+    public void UnsubscribeEnemy(Enemy enemy)
+    {
+        enemy.OnReceiveDamage.RemoveListener(UpdateMultiplier);
+    }
+
+    //Weapon
     public void UpdateWeapon(Weapon weapon)
     {
         weaponIcon.sprite = weapon.data.icon;
@@ -112,6 +182,7 @@ public class PlayerUI : GameBehaviour
         weaponAmmo.text = (weapon.ammoCount < 0) ? "∞" : weapon.ammoCount.ToString();
     }
 
+    //Wave
     public void SetWaveText(int wave)
     {
         waveText.text = "Wave " + wave.ToString();

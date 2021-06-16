@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c41f412e29db3c641b9352430fa9d836, type: 3}
-  m_Name: PlayerBase
+  m_Script: {fileID: 11500000, guid: d952b04dc3a1c16448af72ec2bb534a8, type: 3}
+  m_Name: Petya
   m_EditorClassIdentifier: 
-  _hp: 1000
-  _atk: 100
-  _def: 100
-  _sht: 100
-  _sps: 2
-  _eng: 100
+  _hp: 1500
+  _score: 25000
+  _addSpawnPickUpChance: 300

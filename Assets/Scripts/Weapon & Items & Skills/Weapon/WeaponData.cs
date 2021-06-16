@@ -64,6 +64,10 @@ public class WeaponData : ScriptableObject
     private float _chargeTime;
     public float chargeTime { get { return _chargeTime; } }
 
+    [SerializeField]
+    private GameObject _weaponChargeVFX;
+    public GameObject weaponChargeVFX { get { return _weaponChargeVFX; } }
+
     /* Something that could (should) be added in the future
      * 1. 射擊時的音效
      * 2. 充能時的音效

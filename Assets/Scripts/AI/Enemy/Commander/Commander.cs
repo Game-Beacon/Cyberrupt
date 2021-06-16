@@ -25,6 +25,8 @@ public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     [SerializeField]
     private GameObject bot;
+    [SerializeField]
+    private EnemyBaseProperty propertyForBot;
 
     [SerializeField]
     private int maxSpawnCount;
@@ -63,6 +65,7 @@ public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
             GameObject go = Instantiate(bot, transform.position + new Vector3(Mathf.Cos(rand), Mathf.Sin(rand)) * spawnRadius, Quaternion.identity);
             Enemy newBot = go.GetComponent<Enemy>();
+            newBot.OverrideProperty(propertyForBot);
             newBot.OnDeath.AddPersistentCall((Action)BotKilled);
             spawnCount++;
             timer = baseSpawnTime + spawnTimeDelta * spawnCount;
