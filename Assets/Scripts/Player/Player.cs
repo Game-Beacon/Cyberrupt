@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UniRx;
 
 public class Player : GameBehaviour, IDanmakuTarget
 {
     public Transform target { get { return transform; } }
     public float hitRadius { get { return _hitRadius; } }
-    public bool isImmune { get { return isDashing | isHurt | isInIFrame | isDead; } }
+    public bool isImmune { get { return isDashing.Value | isHurt | isInIFrame | isDead; } }
+    public ReadOnlyReactiveProperty<bool> IsDashing { get; private set; }
+    public Vector2 velocity => this.rb.velocity;
 
     [SerializeField]
     private Transform muzzle;
 
-    //TODO: Might have to turn these things into a scriptable object
-    [Space(20),SerializeField]
+    // TODO: Might have to turn these things into a scriptable object
+    [Space(20), SerializeField]
     private int _maxHp;
     [SerializeField]
     private int _hp;
@@ -44,7 +47,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     public GameEvent OnDied { get; } = new GameEvent();
 
     private bool isHurt = false;
-    private bool isDashing = false;
+    private BoolReactiveProperty isDashing = new BoolReactiveProperty();
     private bool isInIFrame = false;
     private bool isDead = false;
     private bool canDash = true;
@@ -53,6 +56,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     {
         DependencyContainer.AddDependency(this);
         _weaponController = GetComponent<WeaponController>();
+        this.IsDashing = this.isDashing.ToReadOnlyReactiveProperty();
     }
 
     public override void GameStart()
@@ -103,7 +107,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     private void MoveAndDash()
     {
-        if (isDashing)
+        if (isDashing.Value)
             return;
 
         Vector2 dir = Vector2.zero;
@@ -129,11 +133,11 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     IEnumerator Dash(Vector2 dir)
     {
-        isDashing = true;
+        isDashing.Value = true;
         rb.velocity = dir.normalized * dashSpeed;
         yield return new WaitForSeconds(dashTime);
         isInIFrame = true;
-        isDashing = false;
+        isDashing.Value = false;
         StartCoroutine(DashCoolDown(dashCoolDown));
         yield return new WaitForSeconds(iTimeAfterDash);
         isInIFrame = false;
