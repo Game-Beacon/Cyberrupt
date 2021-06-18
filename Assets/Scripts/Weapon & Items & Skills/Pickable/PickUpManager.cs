@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
-
 public class PickUpManager : GameBehaviour
 {
     public static PickUpManager instance { get; private set; }
+
     [SerializeField]
     private PickUpInstance pickUp;
     [SerializeField]
@@ -32,10 +32,13 @@ public class PickUpManager : GameBehaviour
         EnemyManager.instance.OnEnemyDied.AddListener(SpawnPickUp);
     }
 
-    private void spawn(Transform target)
+    public void Spawn(Transform target)
     {
         PickUpInstance emptyPickUp = Instantiate(pickUp, target.position, Quaternion.identity);
         emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);
+        emptyPickUp.transform
+            .DOMove(emptyPickUp.transform.position + (Vector3)Random.insideUnitCircle, 3)
+            .SetEase(Ease.OutCubic);
     }
 
     void SpawnPickUp(Enemy enemy)
@@ -44,7 +47,7 @@ public class PickUpManager : GameBehaviour
 
         while(spawnPickUpChance >= 100)
         {
-            this.spawn(enemy.transform);
+            this.Spawn(enemy.transform);
             spawnPickUpChance -= 100;
         }
 
@@ -52,7 +55,7 @@ public class PickUpManager : GameBehaviour
 
         if(rand < spawnPickUpChance)
         {
-            this.spawn(enemy.transform);
+            this.Spawn(enemy.transform);
             spawnPickUpChance = 0;
         }
 
