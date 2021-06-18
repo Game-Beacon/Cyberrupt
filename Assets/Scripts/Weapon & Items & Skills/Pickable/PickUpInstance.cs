@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 
@@ -9,11 +8,23 @@ public class PickUpInstance : GameBehaviour
     private SpriteRenderer iconDisplayer;
     [SerializeField]
     private SpriteRenderer background;
+    private SpriteRenderer[] srs => new [] { iconDisplayer, background };
 
     private IPickable pickable = null;
     private float remainTime;
 
     private LayerMask playerLayer;
+
+    private void clearTween()
+    {
+        // TODO: Move this call to a resonable location,
+        //  the transform tween is not created inside this
+        //  component, but there does not exist anyway to
+        //  get notification on destroy (or kill) event now.
+        transform.DOKill();
+        foreach(var sr in this.srs)
+            sr.DOKill();
+    }
 
     private IEnumerator gameStart()
     {
@@ -21,11 +32,9 @@ public class PickUpInstance : GameBehaviour
         yield return new WaitForSeconds(halfTime);
         halfTime = this.remainTime - halfTime;
         // Start fade out
-        foreach(var sr in new [] { iconDisplayer, background })
-        {
+        foreach(var sr in this.srs)
             sr.DOFade(0.1f, halfTime)
                 .SetEase(Ease.InBounce);
-        }
         yield return new WaitForSeconds(halfTime);
         KillBehaviour(true);
     }
@@ -40,7 +49,6 @@ public class PickUpInstance : GameBehaviour
         pickable = data;
         iconDisplayer.sprite = pickable.icon;
         playerLayer = mask;
-
         remainTime = remain;
     }
 
@@ -50,6 +58,8 @@ public class PickUpInstance : GameBehaviour
         {
             Player player = collision.gameObject.GetComponent<Player>();
             pickable.OnPick(player);
+            // Ensure that tweeners are killed
+            this.clearTween();
             KillBehaviour(true);
         }
     }
