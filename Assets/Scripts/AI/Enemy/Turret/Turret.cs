@@ -48,8 +48,6 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private Vector2 currentPosition;
     private Vector2 endPosition;
     private Vector2 pathDirection;
-    // Denote whether the path finishing generation
-    private bool isPathReady;
 
     protected override void EnemyAwake()
     {
@@ -96,14 +94,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         }
         // Mark path as ready
         Destroy(peek);
-        this.isPathReady = true;
     }
 
     private void UpdateTransform()
     {
-        // Freeze before path finish
-        if(!this.isPathReady)
-            return;
         // Move
         currentPosition += pathDirection * Mathf.Min((endPosition - currentPosition).magnitude, pathSpeed * Time.fixedDeltaTime);
         root.position = currentPosition;
