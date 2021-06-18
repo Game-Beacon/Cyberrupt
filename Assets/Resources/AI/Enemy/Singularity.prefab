@@ -9937,9 +9937,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 0}
   _maxHP: 250
   _hp: 250
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -10289,9 +10291,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: b49f7d7b9c58fdf499a6ea8186a80a1c, type: 2}
   _maxHP: 250
   _hp: 250
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3269894792829722948}
   - component: {fileID: 3269894792829722951}
   - component: {fileID: 3269894792829722950}
+  - component: {fileID: 9186848759017812562}
   m_Layer: 9
   m_Name: Bot
   m_TagString: Untagged
@@ -132,15 +133,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: 51b8e7d781045b842bb5bee289dbbc99, type: 2}
   _maxHP: 5
   _hp: 5
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
     _PersistentCalls: []
   OnDeath:
     _PersistentCalls: []
+  OnKill:
+    m_PersistentCalls:
+      m_Calls: []
   speed: 1.5
   radius: 1.5
   keepDistance: 4
@@ -364,6 +370,20 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+--- !u!114 &9186848759017812562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269894792829722944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2def62bb3eb7f4349af633bb7ed89046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
 --- !u!1 &3269894793259598281
 GameObject:
   m_ObjectHideFlags: 0

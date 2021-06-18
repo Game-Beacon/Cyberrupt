@@ -22,7 +22,8 @@ public class EnemyManager : GameBehaviour
     public float GetWorldScreenMinY { get { return _screen.parent.position.y - (_screen.ySize / 2); } }
     public float GetWorldScreenMaxY { get { return _screen.parent.position.y + (_screen.ySize / 2); } }*/
 
-    public GameObjectEvent OnEnemyDied { get; } = new GameObjectEvent();
+    public ObjectEvent<Enemy> OnEnemySpawned { get; } = new ObjectEvent<Enemy>();
+    public ObjectEvent<Enemy> OnEnemyDied { get; } = new ObjectEvent<Enemy>();
     public IntEvent OnWaveAdvance { get; } = new IntEvent();
     public ObjectEvent<Enemy> OnBossSpawn { get; } = new ObjectEvent<Enemy>();
 
@@ -61,7 +62,10 @@ public class EnemyManager : GameBehaviour
     public void AddEnemy(Enemy enemy)
     {
         if(!enemies.Contains(enemy))
+        {
             enemies.Add(enemy);
+            OnEnemySpawned.Invoke(enemy);
+        }
     }
 
     public void RemoveEnemy(Enemy enemy)
@@ -71,7 +75,7 @@ public class EnemyManager : GameBehaviour
         if (enemyCount == 0)
             SpawnWave();
 
-        OnEnemyDied.Invoke(enemy.gameObject);
+        OnEnemyDied.Invoke(enemy);
     }
 
     public void SpawnWave()

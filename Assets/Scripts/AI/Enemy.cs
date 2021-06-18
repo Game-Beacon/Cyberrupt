@@ -8,6 +8,9 @@ public class Enemy : GameBehaviour
     protected static ScreenBound screen = null;
 
     [SerializeField]
+    protected EnemyBaseProperty property;
+
+    [SerializeField]
     protected float _maxHP;
     public float maxHP { get { return _maxHP; } }
 
@@ -15,10 +18,18 @@ public class Enemy : GameBehaviour
     protected float _hp;
     public float hp { get { return _hp; } }
 
-    //這個怪物是其他怪召喚出來的嗎？（比方說砲台的盾，以及生砲灰的生出的砲灰）
     [SerializeField]
+    protected int _score;
+    public int score { get { return _score; } }
+
+    [SerializeField]
+    private float _addSpawnPickUpChance;
+    public float addSpawnPickUpChance { get { return _addSpawnPickUpChance; } private set { } }
+
+    //這個怪物是其他怪召喚出來的嗎？（比方說砲台的盾，以及生砲灰的生出的砲灰）
+    /*[SerializeField]
     protected bool _isSideProduction = false;
-    public bool isSideProduction { get { return _isSideProduction; } }
+    public bool isSideProduction { get { return _isSideProduction; } }*/
 
     [SerializeField]
     public UltEvent OnSpawn = new UltEvent();
@@ -26,13 +37,21 @@ public class Enemy : GameBehaviour
     public UltEvent OnHit = new UltEvent();
     [SerializeField]
     public UltEvent OnDeath = new UltEvent();
+    [HideInInspector]
+    public FloatEvent OnReceiveDamage { get; } = new FloatEvent();
 
+    private bool dead = false;
     protected bool _canAttack = true;
     public bool canAttack { get { return _canAttack; } }
 
     public override sealed void GameAwake()
     {
         OnDeath += Die;
+
+        _maxHP = property.hp;
+        _hp = property.hp;
+        _score = property.score;
+        _addSpawnPickUpChance = property.addSpawnPickUpChance;
 
         EnemyAwake();
     }
@@ -43,7 +62,7 @@ public class Enemy : GameBehaviour
     {
         if (manager == null)
             manager = EnemyManager.instance;
-        if (manager != null && !_isSideProduction)
+        if (manager != null /*&& !_isSideProduction*/)
             manager.AddEnemy(this);
         if (screen == null)
             screen = ScreenBound.instance;
@@ -65,7 +84,9 @@ public class Enemy : GameBehaviour
 
     public void ApplyDamage(float damage)
     {
-        _hp -= damage;
+        float before = _hp;
+        _hp = Mathf.Max(_hp - damage, 0);
+        OnReceiveDamage.Invoke(before - _hp);
         OnHit.Invoke();
     }
 
@@ -75,17 +96,21 @@ public class Enemy : GameBehaviour
         _hp = _maxHP;
     }
 
+    public void OverrideProperty(EnemyBaseProperty newProperty)
+    {
+        property = newProperty;
+    }
+
     public void Die()
     {
-        if (manager != null && !_isSideProduction)
+        //確保此函式不會執行超過兩次以上
+        if (dead)
+            return;
+        dead = true;
+
+        if (manager != null /*&& !_isSideProduction*/)
             manager.RemoveEnemy(this);
         update = false;
         KillBehaviour(true);
-    }
-
-    //設定此怪物是否為其他怪物的副產物
-    public void SetSideProduction(bool value)
-    {
-        _isSideProduction = value;
     }
 }

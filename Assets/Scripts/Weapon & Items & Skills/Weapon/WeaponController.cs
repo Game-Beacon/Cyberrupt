@@ -18,15 +18,13 @@ public class WeaponController : GameBehaviour
     public Weapon currentWeapon { get { return _currentWeapon; } }
     private List<Weapon> weapons = new List<Weapon>();
 
-    private float _timer;
-    public float timer { get { return _timer; } }
     public int bombCount { get { return _bombCount; } }
 
     private bool keyDown, keyUp;
 
-    public GameEvent OnKeyDown { get; } = new GameEvent();
-    public GameEvent OnKey { get; } = new GameEvent();
-    public GameEvent OnKeyUp { get; } = new GameEvent();
+    public FloatEvent OnKeyDown { get; } = new FloatEvent();
+    public FloatEvent OnKey { get; } = new FloatEvent();
+    public FloatEvent OnKeyUp { get; } = new FloatEvent();
     public ObjectEvent<Weapon> OnWeaponChange { get; } = new ObjectEvent<Weapon>();
     public IntEvent OnBombCountChange { get; } = new IntEvent();
 
@@ -41,19 +39,19 @@ public class WeaponController : GameBehaviour
 
     public void UpdateController()
     {
-        _timer += Time.deltaTime;
+        currentWeapon.UpdateTime(Time.deltaTime);
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             keyDown = true;
         if (Input.GetKey(KeyCode.Mouse0))
-            OnKey.Invoke();
+            OnKey.Invoke(Time.deltaTime);
         if (Input.GetKeyUp(KeyCode.Mouse0))
             keyUp = true;
 
         if (keyDown)
-            OnKeyDown.Invoke();
-        if(keyUp)
-            OnKeyUp.Invoke();
+            OnKeyDown.Invoke(Time.deltaTime);
+        if (keyUp)
+            OnKeyUp.Invoke(Time.deltaTime);
 
         if (_currentWeapon.ammoCount == 0)
             RemoveWeapon(_currentWeapon);

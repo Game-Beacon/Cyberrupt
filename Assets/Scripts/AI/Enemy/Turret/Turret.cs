@@ -18,6 +18,8 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private Transform parent;
     [SerializeField]
     private Transform root;
+    [SerializeField]
+    private List<Enemy> shields;
     [Header("Path")]
     [SerializeField]
     private LineRenderer lr;
@@ -114,6 +116,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     public override void OnKilled()
     {
+        foreach (Enemy enemy in shields)
+            if (enemy != null)
+                enemy.Die();
+
         if (parent != null)
             DestroySafe(parent.gameObject/*, 0.03f*/);
         if (root != null)

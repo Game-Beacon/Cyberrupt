@@ -9,6 +9,8 @@ public class Weapon
     private WeaponData _data;
     private int _ammoCount;
     private Transform muzzle;
+    
+    private WeaponCharger charger = null;
 
     public WeaponData data { get { return _data; } }
     public int ammoCount { get { return _ammoCount; } }
@@ -23,15 +25,13 @@ public class Weapon
         coolDownTime = 1 / _data.frequency;
     }
 
-    private float timer;
     private float coolDownTime;
     private float coolDown;
     private float chargeMeter;
 
+
     public void OnSelected()
     {
-        timer = controller.timer;
-
         if (_data.shootType == WeaponShootType.SemiAuto)
             controller.OnKeyDown.AddListener(Shoot);
         if (_data.shootType == WeaponShootType.Auto)
@@ -39,7 +39,7 @@ public class Weapon
         if (_data.shootType == WeaponShootType.Charge)
         {
             controller.OnKey.AddListener(Charge);
-            controller.OnKeyUp.AddListener(Shoot);
+            controller.OnKeyUp.AddListener(Discharge);
         }
     }
 
@@ -54,7 +54,9 @@ public class Weapon
         if (_data.shootType == WeaponShootType.Charge)
         {
             controller.OnKey.RemoveListener(Charge);
-            controller.OnKeyUp.RemoveListener(Shoot);
+            controller.OnKeyUp.RemoveListener(Discharge);
+            if (charger != null)
+                Object.Destroy(charger.gameObject);
         }
     }
 
@@ -63,42 +65,46 @@ public class Weapon
         _ammoCount += count;
     }
 
-    private void Shoot()
+    public void UpdateTime(float delta)
     {
-        float delta = controller.timer - timer;
-        timer = controller.timer;
         coolDown -= delta;
+    }
 
+    public void Shoot(float delta)
+    {
         if (coolDown > 0)
             return;
 
-        if (_data.shootType == WeaponShootType.SemiAuto || _data.shootType == WeaponShootType.Auto)
+        CreateBullets();
+        coolDown = coolDownTime;
+        _ammoCount--;
+        controller.CancelKeyDown();
+    }
+
+    public void Charge(float delta)
+    {
+        if (coolDown > 0)
+            return;
+
+        chargeMeter += delta;
+        if(charger == null)
+            charger = Object.Instantiate(_data.weaponChargeVFX.gameObject, muzzle).GetComponent<WeaponCharger>();
+        if(charger != null)
+            charger.Charge(Mathf.Clamp01(chargeMeter / _data.chargeTime));
+    }
+
+    public void Discharge(float delta)
+    {
+        if (chargeMeter >= _data.chargeTime)
         {
             CreateBullets();
             coolDown = coolDownTime;
             _ammoCount--;
-            controller.CancelKeyDown();
         }
-
-        if(_data.shootType == WeaponShootType.Charge)
-        {
-            if (chargeMeter >= _data.chargeTime)
-            {
-                CreateBullets();
-                coolDown = coolDownTime;
-                _ammoCount--;
-                controller.CancelKeyUp();
-            }
-            chargeMeter = 0;
-        }
-    }
-
-    private void Charge()
-    {
-        float delta = controller.timer - timer;
-        timer = controller.timer;
-        coolDown -= delta;
-        chargeMeter += delta;
+        if (charger != null)
+            Object.Destroy(charger.gameObject);
+        controller.CancelKeyUp();
+        chargeMeter = 0;
     }
 
     private void CreateBullets()

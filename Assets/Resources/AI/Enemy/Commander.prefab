@@ -397,9 +397,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  property: {fileID: 11400000, guid: d7590349369113a40accbd1524cc4ff0, type: 2}
   _maxHP: 50
   _hp: 50
-  _isSideProduction: 0
+  _score: 0
+  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -410,6 +412,7 @@ MonoBehaviour:
   speed: 0.75
   angularSpeed: 60
   bot: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+  propertyForBot: {fileID: 11400000, guid: 33372aa83797c124698e89c5ee7b8a39, type: 2}
   maxSpawnCount: 10
   baseSpawnTime: 0.3
   spawnTimeDelta: 0.05
