@@ -49,6 +49,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   iconDisplayer: {fileID: 2994881372245326923}
+  background: {fileID: 7229824270893172150}
 --- !u!58 &8544042577596639992
 CircleCollider2D:
   m_ObjectHideFlags: 0
