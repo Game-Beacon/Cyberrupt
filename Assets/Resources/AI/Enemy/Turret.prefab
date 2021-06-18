@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 5236658147331662890}
   - component: {fileID: 2115882395806082125}
   m_Layer: 9
-  m_Name: Sprite (3)
+  m_Name: Right Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 3371854197094663336}
   - component: {fileID: 4157780920542793556}
   - component: {fileID: 4449040837001671056}
+  - component: {fileID: 5863040275062696634}
   m_Layer: 9
   m_Name: Main
   m_TagString: Untagged
@@ -648,11 +649,37 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 1128879970992306835}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: Shoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnUpdate:
     _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
   time: 0.5
+--- !u!114 &5863040275062696634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984703758171734459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 1.5
 --- !u!1 &3984703758384267122
 GameObject:
   m_ObjectHideFlags: 0
@@ -943,7 +970,7 @@ GameObject:
   - component: {fileID: 7007819716916505807}
   - component: {fileID: 7407383548311930357}
   m_Layer: 9
-  m_Name: Sprite
+  m_Name: Gun Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1022,6 +1049,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4661807901048955463}
+  - component: {fileID: 1128879970992306835}
   m_Layer: 9
   m_Name: MainParent
   m_TagString: Untagged
@@ -1045,6 +1073,22 @@ Transform:
   m_Father: {fileID: 3984703758475839825}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!111 &1128879970992306835
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004495356514055970}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: d0ac9bcf6f8615e409485a9c12962bb8, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6350921162555678366
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,7 +1100,7 @@ GameObject:
   - component: {fileID: 4870732265092418190}
   - component: {fileID: 1780076899051300772}
   m_Layer: 9
-  m_Name: Sprite (2)
+  m_Name: Left Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1137,7 +1181,7 @@ GameObject:
   - component: {fileID: 4594338305238628509}
   - component: {fileID: 1516559824015396742}
   m_Layer: 9
-  m_Name: Sprite (1)
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

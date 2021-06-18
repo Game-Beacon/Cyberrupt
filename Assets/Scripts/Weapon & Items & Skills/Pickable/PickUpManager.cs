@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
-
 public class PickUpManager : GameBehaviour
 {
     public static PickUpManager instance { get; private set; }
+
     [SerializeField]
     private PickUpInstance pickUp;
     [SerializeField]
@@ -14,7 +14,7 @@ public class PickUpManager : GameBehaviour
 
     public override void GameAwake()
     {
-        if (instance == null)
+        if(instance == null)
             instance = this;
         else
         {
@@ -23,7 +23,7 @@ public class PickUpManager : GameBehaviour
         }
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
-        foreach (Object obj in objects)
+        foreach(Object obj in objects)
             pickables.Add(obj as ScriptableObject);
     }
 
@@ -32,14 +32,22 @@ public class PickUpManager : GameBehaviour
         EnemyManager.instance.OnEnemyDied.AddListener(SpawnPickUp);
     }
 
+    public void Spawn(Transform target)
+    {
+        PickUpInstance emptyPickUp = Instantiate(pickUp, target.position, Quaternion.identity);
+        emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);
+        emptyPickUp.transform
+            .DOMove(emptyPickUp.transform.position + (Vector3)Random.insideUnitCircle, 3)
+            .SetEase(Ease.OutCubic);
+    }
+
     void SpawnPickUp(Enemy enemy)
     {
         spawnPickUpChance += enemy.addSpawnPickUpChance;
 
         while(spawnPickUpChance >= 100)
         {
-            PickUpInstance emptyPickUp = Instantiate(pickUp, enemy.transform.position, Quaternion.identity);
-            emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);
+            this.Spawn(enemy.transform);
             spawnPickUpChance -= 100;
         }
 
@@ -47,8 +55,7 @@ public class PickUpManager : GameBehaviour
 
         if(rand < spawnPickUpChance)
         {
-            PickUpInstance emptyPickUp = Instantiate(pickUp, enemy.transform.position, Quaternion.identity);
-            emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);
+            this.Spawn(enemy.transform);
             spawnPickUpChance = 0;
         }
 
