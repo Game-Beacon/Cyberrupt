@@ -16,6 +16,12 @@ public class PlayerAnimate : GameBehaviour
     private ParticleSystem particle;
     private float emitTimer;
 
+    private void OnDestroy()
+    {
+        transform.DOKill();
+        this.face.DOKill();
+    }
+
     public override void GameStart()
     {
         this.particle = GetComponentInChildren<ParticleSystem>();
@@ -24,6 +30,7 @@ public class PlayerAnimate : GameBehaviour
             .Skip(1)
             .Subscribe(d =>
             {
+                transform.DOKill();
                 // Start dashing
                 if(d)
                 {
@@ -37,7 +44,9 @@ public class PlayerAnimate : GameBehaviour
                 {
                     DOTween.Sequence()
                         .Append(transform.DOScale(Vector3.one, 0.1f))
-                        .Append(transform.DOPunchScale(Vector3.one * 0.25f, 0.2f));
+                        .Append(transform.DOPunchScale(Vector3.one * 0.25f, 0.2f))
+                        // Recover scale
+                        .OnKill(() => transform.localScale = Vector3.one);
                 }
             })
             .AddTo(this);
@@ -47,6 +56,7 @@ public class PlayerAnimate : GameBehaviour
     {
         var dir = (Vector2) Camera.main.ScreenToWorldPoint(Input.mousePosition) - (Vector2) transform.position;
         // Move face toward mouse position
+        this.face.DOKill();
         this.face.DOLocalMove(dir.normalized * this.offset, 0.1f);
         if(this.player.velocity.sqrMagnitude > 0)
         {
@@ -71,6 +81,6 @@ public class PlayerAnimate : GameBehaviour
         var newRotate = shape.rotation;
         newRotate.x = -angle;
         shape.rotation = newRotate;
-        this.particle.Emit(5);
+        this.particle.Emit(count);
     }
 }
