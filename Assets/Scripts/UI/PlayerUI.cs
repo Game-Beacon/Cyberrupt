@@ -42,6 +42,20 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private TextMeshProUGUI weaponAmmo;
 
+    //Skill
+    [SerializeField]
+    private Image skillIconFront;
+    [SerializeField]
+    private Image skillIconBack;
+    [SerializeField]
+    private TextMeshProUGUI skillName;
+    [SerializeField]
+    private GameObject playerSkillList;
+    private SkillController playerSkillController;
+    private List<Image> skillList = new List<Image>();
+    private bool skillIsActive = false;
+
+
     //Wave
     [SerializeField]
     private TextMeshProUGUI waveText;
@@ -67,19 +81,27 @@ public class PlayerUI : GameBehaviour
         player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
         SetWeapon();
 
+        //Skill
+        playerSkillController = player.skillController;
+        playerSkillController.OnUpdateSkillList.AddListener(UpdateSkillList);
+        playerSkillController.OnActiveSkill.AddListener(SkillActive);
+        playerSkillController.OnDeactiveSkill.AddListener(SkillDeactive);
+
         //Wave
         EnemyManager.instance.OnWaveAdvance.AddListener(SetWaveText);
     }
 
     public override void GameUpdate()
     {
-        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
+        UpdateAmmoText();
+        if (skillIsActive)
+            UpdateSkillProgress();
     }
 
     //Health and Bomb
     private void SetHPAndBomb()
     {
-        for(int i = 0; i < player.maxHp; i++)
+        for(int i = 0; i < player.hp; i++)
         {
             GameObject hp = Instantiate(setting.heartSpriteDisplayer, playerHpBar.transform);
             hpBar.Add(hp.GetComponent<Image>());
@@ -102,8 +124,22 @@ public class PlayerUI : GameBehaviour
 
     public void UpdateHp(int hp)
     {
-        for (int i = 0; i < player.maxHp; i++)
-            hpBar[i].sprite = (i < hp) ? setting.heart : setting.heartEmpty;
+        while(hpBar.Count != player.hp)
+        {
+            if (hpBar.Count > player.hp)
+            {
+                Destroy(hpBar[hpBar.Count - 1].gameObject);
+                hpBar.RemoveAt(hpBar.Count - 1);
+            }  
+            else
+            {
+                GameObject newHp = Instantiate(setting.heartSpriteDisplayer, playerHpBar.transform);
+                hpBar.Add(newHp.GetComponent<Image>());
+            }
+        }
+
+        for (int i = 0; i < player.hp; i++)
+            hpBar[i].sprite = setting.heart;
     }
 
     public void UpdateBomb(int bombCount)
@@ -180,6 +216,73 @@ public class PlayerUI : GameBehaviour
         weaponIcon.sprite = weapon.data.icon;
         weaponName.text = weapon.data.weaponName;
         weaponAmmo.text = (weapon.ammoCount < 0) ? "∞" : weapon.ammoCount.ToString();
+    }
+
+    private void UpdateAmmoText()
+    {
+        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
+    }
+
+    //Skill
+    public void UpdateSkillList(List<Skill> skills)
+    {
+        if(skills.Count == 0)
+        {
+            skillIconFront.color = Color.clear;
+            skillIconBack.color = Color.clear;
+            skillName.text = "";
+        }
+        else
+        {
+            skillIconFront.color = Color.white;
+            skillIconBack.color = new Color(1, 1, 1, 0.25f);
+            skillIconFront.sprite = skills[0].icon;
+            skillIconBack.sprite = skills[0].icon;
+            skillName.text = skills[0].skillName;
+        }
+
+        if (skills.Count - 1 > skillList.Count)
+        {
+            int delta = skills.Count - 1 - skillList.Count;
+            for (int i = 0; i < delta; i++)
+            {
+                GameObject newSkill = new GameObject();
+                newSkill.transform.SetParent(playerSkillList.transform);
+                newSkill.transform.localScale = new Vector3(1, 1, 1);
+                Image newSkillImage = newSkill.AddComponent<Image>();
+                skillList.Add(newSkillImage);
+            }
+        }
+        else
+        {
+            int delta = skillList.Count - (skills.Count - 1);
+            for (int i = 0; i < delta; i++)
+            {
+                if (skillList.Count == 0)
+                    break;
+                Destroy(skillList[skillList.Count - 1].gameObject);
+                skillList.RemoveAt(skillList.Count - 1);
+            }  
+        }
+
+        for (int i = 0; i < skills.Count - 1; i++)
+            skillList[i].sprite = skills[i + 1].icon;
+    }
+
+    public void SkillActive()
+    {
+        skillIsActive = true;
+    }
+
+    public void SkillDeactive()
+    {
+        skillIsActive = false;
+        skillIconFront.fillAmount = 1;
+    }
+
+    private void UpdateSkillProgress()
+    {
+        skillIconFront.fillAmount = 1 - playerSkillController.currentSkillTask.progress;
     }
 
     //Wave

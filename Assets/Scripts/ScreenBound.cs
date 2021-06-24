@@ -30,6 +30,26 @@ public class ScreenBound : GameBehaviour
         return !_screen.OverBound(position);
     }
 
+    /// <summary>
+    /// 回傳能讓目標向量回到螢幕內的最佳解
+    /// </summary>
+    /// <param name="position">目標向量</param>
+    /// <returns>最佳解，若回傳值為零向量代表目標向量在螢幕內</returns>
+    public Vector2 SnapInScreen(Vector2 position)
+    {
+        Vector2 result = Vector2.zero;
+        if (position.x < GetWorldScreenMinX)
+            result += Vector2.right * (GetWorldScreenMinX - position.x);
+        if (position.x > GetWorldScreenMaxX)
+            result += Vector2.left * (position.x - GetWorldScreenMaxX);
+        if (position.y < GetWorldScreenMinY)
+            result += Vector2.up * (GetWorldScreenMinY - position.y);
+        if (position.y > GetWorldScreenMaxY)
+            result += Vector2.down * (position.y - GetWorldScreenMaxY);
+
+        return result;
+    }
+
     public Vector2 GetRandomPointInScreen(float edge)
     {
         float maxX = _screen.parent.position.x + (_screen.xSize / 2) - edge;

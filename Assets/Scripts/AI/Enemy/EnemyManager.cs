@@ -9,18 +9,16 @@ public class EnemyManager : GameBehaviour
 
     private List<Enemy> enemies = new List<Enemy>();
 
-    private EnemyWave[] enemyWaves;
-    private EnemyWave[] bossWaves;
-    private int wave = 0;
+    [SerializeField]
+    private EnemyWaveGroup waveGroup;
+    [SerializeField]
+    private bool spawnSpecificWave = false;
+    [SerializeField]
+    private EnemyWave specificWave;
+
+    private int waveIndex = 0;
     public int enemyCount { get { return enemies.Count; } }
-
-    /*[SerializeField]
-    private Bound _screen;
-
-    public float GetWorldScreenMinX { get { return _screen.parent.position.x - (_screen.xSize / 2); } }
-    public float GetWorldScreenMaxX { get { return _screen.parent.position.x + (_screen.xSize / 2); } }
-    public float GetWorldScreenMinY { get { return _screen.parent.position.y - (_screen.ySize / 2); } }
-    public float GetWorldScreenMaxY { get { return _screen.parent.position.y + (_screen.ySize / 2); } }*/
+    private EnemyWave[] waves;
 
     public ObjectEvent<Enemy> OnEnemySpawned { get; } = new ObjectEvent<Enemy>();
     public ObjectEvent<Enemy> OnEnemyDied { get; } = new ObjectEvent<Enemy>();
@@ -37,17 +35,8 @@ public class EnemyManager : GameBehaviour
             return;
         }
 
-        Object[] obj = Resources.LoadAll("AI/Waves", typeof(EnemyWave));
-        enemyWaves = new EnemyWave[obj.Length];
-
-        for (int i = 0; i < obj.Length; i++)
-            enemyWaves[i] = (EnemyWave)obj[i];
-
-        obj = Resources.LoadAll("AI/BossWaves", typeof(EnemyWave));
-        bossWaves = new EnemyWave[obj.Length];
-
-        for (int i = 0; i < obj.Length; i++)
-            bossWaves[i] = (EnemyWave)obj[i];
+        if (waveGroup != null)
+            waves = waveGroup.GetWaves();
     }
 
     public override void GameUpdate()
@@ -55,7 +44,7 @@ public class EnemyManager : GameBehaviour
         //訂閱者要在GameStart才能安全獲取EnemyManager的instance（無法保證GameAwake的執行順序）
         //為了確保所有訂閱者都不會漏接事件，把事件最早發生的情形挪到第一個frame的update中
         //但是這感覺不是個好方法...
-        SpawnWave();
+        MoveToNextWave();
         update = false;
     }
 
@@ -73,55 +62,42 @@ public class EnemyManager : GameBehaviour
         if (enemies.Contains(enemy))
             enemies.Remove(enemy);
         if (enemyCount == 0)
-            SpawnWave();
+            MoveToNextWave();
 
         OnEnemyDied.Invoke(enemy);
     }
 
-    public void SpawnWave()
+    public void MoveToNextWave()
     {
-        wave++;
+        waveIndex++;
 
-        OnWaveAdvance.Invoke(wave);
+        OnWaveAdvance.Invoke(waveIndex);
 
-        //Debug.Log("Spawn");
-        if(wave % 10 == 0)
+#if UNITY_EDITOR
+        if(spawnSpecificWave)
         {
-            int index = Random.Range(0, bossWaves.Length);
+            SpawnWave(specificWave);
+            return;
+        }
+#endif
+        if (waveIndex <= waves.Length)
+            SpawnWave(waves[waveIndex - 1]);
+    }
 
+    private void SpawnWave(EnemyWave wave)
+    {
+        if(wave.isBossWave)
+        {
             //TODO: 目前這方法是假設在打BOSS時只有1隻BOSS，如果BOSS的形式是多隻的話會出事
             //或許有更好的解法?
-            EnemySpawnData data = bossWaves[index].spawns[0];
+            EnemySpawnData data = wave.spawns[0];
             Enemy boss = Instantiate(data.enemy, data.position, Quaternion.identity).GetComponent<Enemy>();
             OnBossSpawn.Invoke(boss);
         }
         else
         {
-            int index = Random.Range(0, enemyWaves.Length);
-
-            foreach (EnemySpawnData data in enemyWaves[index].spawns)
+            foreach (EnemySpawnData data in wave.spawns)
                 Instantiate(data.enemy, data.position, Quaternion.identity);
         }
     }
-
-    /*public bool InScreen(Vector2 position)
-    {
-        return !_screen.OverBound(position);
-    }
-
-    public Vector2 GetRandomPointInScreen(float edge)
-    {
-        float maxX = _screen.parent.position.x + (_screen.xSize / 2) - edge;
-        float minX = _screen.parent.position.x - (_screen.xSize / 2) + edge;
-        float maxY = _screen.parent.position.y + (_screen.ySize / 2) - edge;
-        float minY = _screen.parent.position.y - (_screen.ySize / 2) + edge;
-
-        return new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-    }*/
-
-    /*private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, new Vector3(_screen.xSize, _screen.ySize));
-    }*/
 }

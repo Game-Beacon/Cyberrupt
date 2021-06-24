@@ -72,8 +72,6 @@ public class EnemyWaveEditor : Editor
             inspecting.ResetSpawnData();
         }
 
-        EditorGUILayout.Space(20);
-
         serializedObject.ApplyModifiedProperties();
         EditorUtility.SetDirty(target);
 

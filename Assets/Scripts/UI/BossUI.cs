@@ -14,7 +14,6 @@ public class BossUI : GameBehaviour
     private CanvasGroup canvasGroup;
     
     private Enemy boss = null;
-    private float maxHP;
 
     public override void GameStart()
     {
@@ -24,13 +23,13 @@ public class BossUI : GameBehaviour
     public override void GameUpdate()
     {
         if (boss != null)
-            healthBar.value = boss.hp / maxHP;
+            healthBar.value = boss.hp / boss.maxHP;
     }
 
     private void ShowBossUI(Enemy inputBoss)
     {
         boss = inputBoss;
-        maxHP = boss.maxHP;
+        bossName.text = inputBoss.Name;
         boss.OnDeath += HideBossUI;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 0.5f);
         healthBar.value = 1;

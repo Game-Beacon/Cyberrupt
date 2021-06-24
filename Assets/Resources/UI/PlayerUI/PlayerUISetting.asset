@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _heartSpriteDisplayer: {fileID: 290811887877191612, guid: d7d9a279b8421894b98ce7a6dcb496ea,
     type: 3}
-  _heart: {fileID: 21300000, guid: 8f521c83d04bede4cab23c03e69be9b5, type: 3}
-  _heartEmpty: {fileID: 21300000, guid: c4ab7fd071606834da3bdf3475af588d, type: 3}
+  _heart: {fileID: 21300000, guid: 076874ca59470154ca19d6fc33c2c834, type: 3}
   _bombSpriteDisplayer: {fileID: 7680186614552093511, guid: 07367062328a93344a0336751a026778,
     type: 3}
-  _bomb: {fileID: 21300000, guid: 050e340ae8bd16a43ad7bb540397152a, type: 3}
+  _bomb: {fileID: 21300000, guid: dd3403f46a9a86840be65c613911f084, type: 3}

@@ -448,6 +448,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 11400000, guid: 1ea9d87d04ab3764fb54e9e2ba745411, type: 2}
+  _name: Meltdown
   _maxHP: 150
   _hp: 150
   _score: 0

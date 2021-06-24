@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Enemy
   - Screen
-  - Wall
+  - 
   - Weapon
   - WeakWeapon
   - PhantomEnemy
@@ -55,4 +55,7 @@ TagManager:
     locked: 0
   - name: EnemyBullet
     uniqueID: 3729755199
+    locked: 0
+  - name: UI
+    uniqueID: 2395042715
     locked: 0

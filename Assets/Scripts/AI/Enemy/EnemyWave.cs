@@ -21,9 +21,13 @@ public struct EnemySpawnData
 public class EnemyWave : ScriptableObject
 {
     [SerializeField]
-    [HideInInspector]
     private List<EnemySpawnData> _spawns = new List<EnemySpawnData>();
     public List<EnemySpawnData> spawns { get { return _spawns; } private set { } }
+
+    //Is it a boss wave?
+    [SerializeField]
+    private bool _isBossWave;
+    public bool isBossWave { get { return _isBossWave; } private set { } }
 
     //The delay to start the new wave after the current wave is finished.
     [SerializeField]
@@ -36,7 +40,6 @@ public class EnemyWave : ScriptableObject
     public int difficulty { get { return _difficulty; } private set { } }
 
 #if UNITY_EDITOR
-
     public void AddSpawnData(EnemySpawnData data)
     {
         _spawns.Add(data);

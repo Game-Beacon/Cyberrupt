@@ -398,6 +398,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 11400000, guid: d7590349369113a40accbd1524cc4ff0, type: 2}
+  _name: Commander
   _maxHP: 50
   _hp: 50
   _score: 0

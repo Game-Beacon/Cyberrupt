@@ -11,6 +11,10 @@ public class Enemy : GameBehaviour
     protected EnemyBaseProperty property;
 
     [SerializeField]
+    protected string _name;
+    public string Name { get { return _name; } }
+
+    [SerializeField]
     protected float _maxHP;
     public float maxHP { get { return _maxHP; } }
 
@@ -41,7 +45,8 @@ public class Enemy : GameBehaviour
     public FloatEvent OnReceiveDamage { get; } = new FloatEvent();
 
     private bool dead = false;
-    protected bool _canAttack = true;
+    protected bool _canAttack = false;
+    protected bool _inScreen = false;
     public bool canAttack { get { return _canAttack; } }
 
     public override sealed void GameAwake()
@@ -74,7 +79,9 @@ public class Enemy : GameBehaviour
 
     public override sealed void GameUpdate()
     {
-        _canAttack = (manager == null)? true : screen.InScreen(transform.position);
+        _inScreen = (manager == null) ? true : screen.InScreen(transform.position);
+        if (_canAttack == false)
+            _canAttack = _inScreen;
         EnemyUpdate();
         if (_hp <= 0)
             OnDeath.Invoke();

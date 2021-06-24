@@ -5,6 +5,11 @@ public class PickUpManager : GameBehaviour
 {
     public static PickUpManager instance { get; private set; }
 
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool alwaysSpawn = false;
+#endif
+
     [SerializeField]
     private PickUpInstance pickUp;
     [SerializeField]
@@ -43,6 +48,17 @@ public class PickUpManager : GameBehaviour
 
     void SpawnPickUp(Enemy enemy)
     {
+#if UNITY_EDITOR
+        if (alwaysSpawn)
+        {
+            Spawn(enemy.transform);
+            return;
+        }
+#endif
+
+        if (enemy.addSpawnPickUpChance == 0)
+            return;
+
         spawnPickUpChance += enemy.addSpawnPickUpChance;
 
         while(spawnPickUpChance >= 100)

@@ -161,8 +161,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1216555313
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 0fd7eba5b03f53b459b5136a13cd2d1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -337,6 +337,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
+  _name: Petya
   _maxHP: 1250
   _hp: 1250
   _score: 0
@@ -862,8 +863,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1216555313
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 92aec4d48e2a22441aeb86a5d0976b42, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1000,8 +1001,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1216555313
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ec25f29cd51ef35488a83d251c26d9e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1172,8 +1173,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1216555313
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 30f41889bc817414d82ab70d2e7ddbe3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

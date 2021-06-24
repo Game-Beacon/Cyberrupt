@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Sniper Rifle
   m_EditorClassIdentifier: 
   _weaponName: Piercer
-  _icon: {fileID: 21300000, guid: a50f90eef8fc3924abd372d3f24ba819, type: 3}
+  _icon: {fileID: 21300000, guid: 98f5968afe63f4d4694fa57cd98f0c98, type: 3}
   _bullet: {fileID: 2345485212697538154, guid: 2c4ecc93e83f1544e943d1947b66d4d6, type: 3}
   _damage: 75
   _spreadAngle: 0
-  _speed: 60
+  _speed: 50
   _speedRand: 0
   _frequency: 0.667
   _cps: 1

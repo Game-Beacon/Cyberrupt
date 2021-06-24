@@ -7,7 +7,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 {
     public Transform target { get { return transform; } }
     public float hitRadius { get { return _hitRadius; } }
-    public bool isImmune { get { return isDashing.Value | isHurt | isInIFrame | isDead; } }
+    public bool isImmune { get { return isDashing.Value | isHurt | isInIFrame | isDead | isInvulnerable; } }
     public ReadOnlyReactiveProperty<bool> IsDashing { get; private set; }
     public Vector2 velocity => this.rb.velocity;
 
@@ -15,9 +15,9 @@ public class Player : GameBehaviour, IDanmakuTarget
     private Transform muzzle;
 
     // TODO: Might have to turn these things into a scriptable object
+    /*[Space(20), SerializeField]
+    private int _maxHp;*/
     [Space(20), SerializeField]
-    private int _maxHp;
-    [SerializeField]
     private int _hp;
 
     [Space(20), SerializeField]
@@ -37,12 +37,14 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     private Rigidbody2D rb;
     private WeaponController _weaponController;
+    private SkillController _skillController;
     private DanmakuManager danmakuManager;
     private Camera cam;
 
-    public int maxHp { get { return _maxHp; } }
+    /*public int maxHp { get { return _maxHp; } }*/
     public int hp { get { return _hp; } }
     public WeaponController weaponController { get { return _weaponController; } }
+    public SkillController skillController { get { return _skillController; } }
 
     public GameEvent OnReceiveDamage { get; } = new GameEvent();
     public IntEvent OnHpChange { get; } = new IntEvent();
@@ -52,12 +54,14 @@ public class Player : GameBehaviour, IDanmakuTarget
     private BoolReactiveProperty isDashing = new BoolReactiveProperty();
     private bool isInIFrame = false;
     private bool isDead = false;
+    private bool isInvulnerable = false;
     private bool canDash = true;
 
     public override void GameAwake()
     {
         DependencyContainer.AddDependency(this);
         _weaponController = GetComponent<WeaponController>();
+        _skillController = GetComponent<SkillController>();
         this.IsDashing = this.isDashing.ToReadOnlyReactiveProperty();
     }
 
@@ -89,7 +93,8 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     public void AddHp(int count)
     {
-        _hp = (_hp + count > _maxHp) ? _maxHp : _hp + count;
+        //_hp = (_hp + count > _maxHp) ? _maxHp : _hp + count;
+        _hp += count;
         OnHpChange.Invoke(_hp);
     }
 
@@ -98,6 +103,7 @@ public class Player : GameBehaviour, IDanmakuTarget
         LookAtMouse();
         MoveAndDash();
         _weaponController.UpdateController();
+        _skillController.UpdateController();
     }
 
     private void LookAtMouse()
@@ -132,6 +138,11 @@ public class Player : GameBehaviour, IDanmakuTarget
 
         
         rb.velocity = dir.normalized * speed;
+    }
+
+    public void SetInvulnerability(bool value)
+    {
+        isInvulnerable = value;
     }
 
     IEnumerator Dash(Vector2 dir)

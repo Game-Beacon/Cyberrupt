@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 50
   _score: 3000
-  _addSpawnPickUpChance: 4
+  _addSpawnPickUpChance: 5

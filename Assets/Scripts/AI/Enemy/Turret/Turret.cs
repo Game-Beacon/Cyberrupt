@@ -38,9 +38,9 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private float lockStrenth;
 
     //用來判斷砲台是否"離開"螢幕邊界
-    //CanAttack的判斷標準是敵人的位置是否在螢幕內
-    //如果上一個frame的CanAttack為true，這個frame卻為false，那就代表敵人的座標已經離開邊界
-    private bool previousCanAttack;
+    //InScreen的判斷標準是敵人的位置是否在螢幕內
+    //如果上一個frame的InScreen為true，這個frame卻為false，那就代表敵人的座標已經離開邊界
+    private bool previousInScreen;
 
     private Player player;
 
@@ -51,7 +51,7 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     protected override void EnemyAwake()
     {
-        previousCanAttack = false;
+        previousInScreen = false;
 
         _stateMachine = GetComponent<AIStateMachine>();
         _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
@@ -67,10 +67,10 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     protected override void EnemyUpdate()
     {
-        if (previousCanAttack == true && _canAttack == false)
+        if (previousInScreen == true && _inScreen == false)
             StartCoroutine(DelayKill());
 
-        previousCanAttack = _canAttack;
+        previousInScreen = _inScreen;
     }
 
     private IEnumerator CreatePath()
