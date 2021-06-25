@@ -94,7 +94,7 @@ public class GameSystem : MonoBehaviour
     private void FixedUpdate()
     {
         foreach (GameBehaviour behaviour in behaviours)
-            if (behaviour != null)
+            if (behaviour != null && behaviour.update)
                 behaviour.GameFixedUpdate();
     }
 

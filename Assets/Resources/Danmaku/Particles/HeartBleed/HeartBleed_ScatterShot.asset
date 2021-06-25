@@ -17,8 +17,10 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 1b32392abc6a5d141bef1a39ab1f3b0f, type: 2}
     - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
     - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
+    - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
+    - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
     _liveTime: 10
-    _rateOverTime: 20
+    _rateOverTime: 17.5
   _shapeModule:
     _shapeType: 0
     _distributeType: 0
@@ -44,8 +46,8 @@ MonoBehaviour:
     _pathType: 0
     _speedType: 1
     _speed: 4
-    _minSpeed: 6
-    _maxSpeed: 8
+    _minSpeed: 5
+    _maxSpeed: 7.5
     _waveAmp: 2.5
     _waveHz: 1
     _waveOffest: 0

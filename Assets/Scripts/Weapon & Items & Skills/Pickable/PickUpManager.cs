@@ -12,7 +12,6 @@ public class PickUpManager : GameBehaviour
 
     [SerializeField]
     private PickUpInstance pickUp;
-    [SerializeField]
     private LayerMask playerMask;
     private List<ScriptableObject> pickables = new List<ScriptableObject>();
     private float spawnPickUpChance = 0f;
@@ -26,6 +25,8 @@ public class PickUpManager : GameBehaviour
             KillBehaviour(true);
             return;
         }
+
+        playerMask = CollisionLayer.instance.playerMask;
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
         foreach(Object obj in objects)

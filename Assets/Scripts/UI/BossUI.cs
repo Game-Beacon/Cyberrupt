@@ -12,11 +12,14 @@ public class BossUI : GameBehaviour
     private TextMeshProUGUI bossName;
     [SerializeField]
     private CanvasGroup canvasGroup;
+    [SerializeField]
+    private UIOverlayChecker checker;
     
     private Enemy boss = null;
 
     public override void GameStart()
     {
+        checker.update = false;
         EnemyManager.instance.OnBossSpawn.AddListener(ShowBossUI);
     }
 
@@ -33,10 +36,12 @@ public class BossUI : GameBehaviour
         boss.OnDeath += HideBossUI;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 0.5f);
         healthBar.value = 1;
+        checker.update = true;
     }
 
     private void HideBossUI()
     {
+        checker.update = false;
         boss = null;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 0.5f);
     }
