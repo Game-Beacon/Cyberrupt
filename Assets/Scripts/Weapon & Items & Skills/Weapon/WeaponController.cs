@@ -11,16 +11,18 @@ public class WeaponController : GameBehaviour
     private GameObject bomb;
     [SerializeField]
     private int _bombCount;
+    public int bombCount { get { return _bombCount; } }
     [SerializeField]
     private WeaponData baseWeapon;
 
     private Weapon _currentWeapon;
     public Weapon currentWeapon { get { return _currentWeapon; } }
+    
     private List<Weapon> weapons = new List<Weapon>();
 
-    public int bombCount { get { return _bombCount; } }
-
     private bool keyDown, keyUp;
+
+    public float timeScale = 1;
 
     public FloatEvent OnKeyDown { get; } = new FloatEvent();
     public FloatEvent OnKey { get; } = new FloatEvent();
@@ -35,23 +37,25 @@ public class WeaponController : GameBehaviour
         _currentWeapon = newWeapon;
         
         weapons.Add(newWeapon);
+        update = false;
     }
 
     public void UpdateController()
     {
-        currentWeapon.UpdateTime(Time.deltaTime);
+        float delta = Time.deltaTime * timeScale;
+        currentWeapon.UpdateTime(delta);
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
             keyDown = true;
         if (Input.GetKey(KeyCode.Mouse0))
-            OnKey.Invoke(Time.deltaTime);
+            OnKey.Invoke(delta);
         if (Input.GetKeyUp(KeyCode.Mouse0))
             keyUp = true;
 
         if (keyDown)
-            OnKeyDown.Invoke(Time.deltaTime);
+            OnKeyDown.Invoke(delta);
         if (keyUp)
-            OnKeyUp.Invoke(Time.deltaTime);
+            OnKeyUp.Invoke(delta);
 
         if (_currentWeapon.ammoCount == 0)
             RemoveWeapon(_currentWeapon);

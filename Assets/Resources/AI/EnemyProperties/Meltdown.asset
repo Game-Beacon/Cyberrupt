@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d952b04dc3a1c16448af72ec2bb534a8, type: 3}
   m_Name: Meltdown
   m_EditorClassIdentifier: 
-  _hp: 150
+  _hp: 125
   _score: 8000
-  _addSpawnPickUpChance: 7.5
+  _addSpawnPickUpChance: 10

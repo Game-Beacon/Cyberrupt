@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2689939325969876543}
   - component: {fileID: 2689939325969876537}
   - component: {fileID: 2689939325969876541}
+  - component: {fileID: 3505950212219808537}
   - component: {fileID: 3584902760880935193}
   m_Layer: 8
   m_Name: Player
@@ -126,6 +127,21 @@ MonoBehaviour:
   bomb: {fileID: 4364431964054768916, guid: e07904d86f8da20429bbb3829bc1097e, type: 3}
   _bombCount: 2
   baseWeapon: {fileID: 11400000, guid: 4d0b028ef74169843823afc5ee33e951, type: 2}
+--- !u!114 &3505950212219808537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689939325969876536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32734b025c863447826bbb6e868990c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  maxSkillCount: 3
 --- !u!114 &3584902760880935193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5065,8 +5081,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 825687553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

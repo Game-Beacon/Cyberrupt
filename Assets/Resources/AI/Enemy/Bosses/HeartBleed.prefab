@@ -296,6 +296,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 11400000, guid: 8f35527e26874464a901297ff701734c, type: 2}
+  _name: Heart Bleed
   _maxHP: 1250
   _hp: 1250
   _score: 0
@@ -330,7 +331,7 @@ MonoBehaviour:
   - {fileID: 7687829999302750043}
   - {fileID: 7687829999302750040}
   - {fileID: 7687829999302750041}
-  pickStateTime: 1
+  pickStateTime: 1.75
 --- !u!114 &7687829999302750044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,9 +602,9 @@ MonoBehaviour:
     _PersistentCalls: []
   muzzle: {fileID: 7687829999842499341}
   missile: {fileID: 3777722982980106084, guid: 50959e2ec2cd32e4b83eda2be62c7e2b, type: 3}
-  spawnCount: 12
-  spawnDelay: 0.05
-  recover: 4.5
+  spawnCount: 10
+  spawnDelay: 0.1
+  recover: 5
   OnSpawn:
     _PersistentCalls: []
 --- !u!114 &7687829999302750041
@@ -645,7 +646,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 2
+        _X: 1.5
         _Y: 0
         _Z: 0
         _W: 0
@@ -686,7 +687,7 @@ MonoBehaviour:
     _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
-  time: 2
+  time: 1.5
   muzzle: {fileID: 7687830000904834822}
 --- !u!1 &7687829999369061220
 GameObject:

@@ -12,32 +12,36 @@ public class BossUI : GameBehaviour
     private TextMeshProUGUI bossName;
     [SerializeField]
     private CanvasGroup canvasGroup;
+    [SerializeField]
+    private UIOverlayChecker checker;
     
     private Enemy boss = null;
-    private float maxHP;
 
     public override void GameStart()
     {
+        checker.update = false;
         EnemyManager.instance.OnBossSpawn.AddListener(ShowBossUI);
     }
 
     public override void GameUpdate()
     {
         if (boss != null)
-            healthBar.value = boss.hp / maxHP;
+            healthBar.value = boss.hp / boss.maxHP;
     }
 
     private void ShowBossUI(Enemy inputBoss)
     {
         boss = inputBoss;
-        maxHP = boss.maxHP;
+        bossName.text = inputBoss.Name;
         boss.OnDeath += HideBossUI;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 1, 0.5f);
         healthBar.value = 1;
+        checker.update = true;
     }
 
     private void HideBossUI()
     {
+        checker.update = false;
         boss = null;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 0.5f);
     }

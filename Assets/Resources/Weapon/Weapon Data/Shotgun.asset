@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   _weaponName: Shotgun
-  _icon: {fileID: 21300000, guid: b37a481720027714e9462e1ef2007ed6, type: 3}
+  _icon: {fileID: 21300000, guid: 14771c626d20a604e9ac8d189992bf6d, type: 3}
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
   _damage: 4
   _spreadAngle: 30
@@ -23,3 +23,4 @@ MonoBehaviour:
   _cps: 6
   _shootType: 0
   _chargeTime: 0
+  _weaponChargeVFX: {fileID: 0}

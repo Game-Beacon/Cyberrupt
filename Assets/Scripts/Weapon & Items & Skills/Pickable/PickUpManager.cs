@@ -5,9 +5,13 @@ public class PickUpManager : GameBehaviour
 {
     public static PickUpManager instance { get; private set; }
 
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool alwaysSpawn = false;
+#endif
+
     [SerializeField]
     private PickUpInstance pickUp;
-    [SerializeField]
     private LayerMask playerMask;
     private List<ScriptableObject> pickables = new List<ScriptableObject>();
     private float spawnPickUpChance = 0f;
@@ -21,6 +25,8 @@ public class PickUpManager : GameBehaviour
             KillBehaviour(true);
             return;
         }
+
+        playerMask = CollisionLayer.instance.playerMask;
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
         foreach(Object obj in objects)
@@ -43,6 +49,17 @@ public class PickUpManager : GameBehaviour
 
     void SpawnPickUp(Enemy enemy)
     {
+#if UNITY_EDITOR
+        if (alwaysSpawn)
+        {
+            Spawn(enemy.transform);
+            return;
+        }
+#endif
+
+        if (enemy.addSpawnPickUpChance == 0)
+            return;
+
         spawnPickUpChance += enemy.addSpawnPickUpChance;
 
         while(spawnPickUpChance >= 100)

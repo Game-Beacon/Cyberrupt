@@ -4796,8 +4796,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 825687553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -4889,8 +4889,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 825687553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f42d9563c5d59314787da66a9340c38a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.03137255}
@@ -9712,8 +9712,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 825687553
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -9938,6 +9938,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 0}
+  _name: 
   _maxHP: 250
   _hp: 250
   _score: 0
@@ -10292,6 +10293,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   property: {fileID: 11400000, guid: b49f7d7b9c58fdf499a6ea8186a80a1c, type: 2}
+  _name: Singularity
   _maxHP: 250
   _hp: 250
   _score: 0
@@ -10356,7 +10358,7 @@ MonoBehaviour:
   OnDeath:
     _PersistentCalls: []
   parent: {fileID: 8930571900753017793}
-  speed: 0.75
+  speed: 1
 --- !u!114 &946748186589469802
 MonoBehaviour:
   m_ObjectHideFlags: 0

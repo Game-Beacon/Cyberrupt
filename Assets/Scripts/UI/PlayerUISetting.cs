@@ -13,10 +13,6 @@ public class PlayerUISetting : SingletonScriptableObject<PlayerUISetting>
     private Sprite _heart;
     public Sprite heart { get { return _heart; } }
 
-    [SerializeField]
-    private Sprite _heartEmpty;
-    public Sprite heartEmpty { get { return _heartEmpty; } }
-
     [Space(20), SerializeField]
     private GameObject _bombSpriteDisplayer;
     public GameObject bombSpriteDisplayer { get { return _bombSpriteDisplayer; } }

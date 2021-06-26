@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bec4cb975b5a1c4f9b76515742aab57, type: 3}
+  m_Name: Easy_204
+  m_EditorClassIdentifier: 
+  _spawns:
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10, y: 2.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10, y: 2.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10, y: -2.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10, y: -2.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 4, y: 5.75}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -4, y: 5.75}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -4, y: -5.75}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 4, y: -5.75}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 11, y: 5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -11, y: 5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -11, y: -5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 11, y: -5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 8, y: 6.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -8, y: 6.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -8, y: -6.5}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 8, y: -6.5}
+  _isBossWave: 0
+  _nextWaveDelay: 0
+  _difficulty: 2

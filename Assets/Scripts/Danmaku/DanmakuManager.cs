@@ -65,7 +65,7 @@ public class DanmakuManager : GameBehaviour
             particlePool.Enqueue(ps);
         }
 
-        update = false;
+        //update = false;
     }
 
     public override void GameFixedUpdate()
