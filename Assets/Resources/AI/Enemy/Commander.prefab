@@ -1056,6 +1056,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  barGroup: {fileID: 3697805242769107343}
   initRotateSpeed: 60
 --- !u!1 &6189702638321665712
 GameObject:
