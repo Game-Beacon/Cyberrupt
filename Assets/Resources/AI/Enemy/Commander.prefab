@@ -1018,6 +1018,25 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 6331706922678241761}
+      _MethodName: SetRotateRatio
+      _PersistentArguments:
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 10
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnUpdate:
     _PersistentCalls: []
   OnExit:
