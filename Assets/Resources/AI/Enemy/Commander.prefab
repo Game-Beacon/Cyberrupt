@@ -1024,7 +1024,7 @@ MonoBehaviour:
       - _Type: 5
         _Int: 0
         _String: 
-        _X: 10
+        _X: 8
         _Y: 0
         _Z: 0
         _W: 0
@@ -1040,7 +1040,26 @@ MonoBehaviour:
   OnUpdate:
     _PersistentCalls: []
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 6331706922678241761}
+      _MethodName: RotateTriangle
+      _PersistentArguments:
+      - _Type: 3
+        _Int: -2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 1
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 0.1
 --- !u!114 &6331706922678241761
 MonoBehaviour:
@@ -1057,6 +1076,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   barGroup: {fileID: 3697805242769107343}
+  triangleGroup: {fileID: 138593099785651369}
   initRotateSpeed: 60
 --- !u!1 &6189702638321665712
 GameObject:
