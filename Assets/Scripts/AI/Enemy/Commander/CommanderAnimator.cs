@@ -84,8 +84,8 @@ public class CommanderAnimator : GameBehaviour
         {
             var triangle = triangleRoot.GetChild(0);
             tempTries.Add(triangle);
-            triangleRoot.OnDestroyAsObservable()
-                .Subscribe(_ => triangleRoot.DOKill());
+            triangle.OnDestroyAsObservable()
+                .Subscribe(_ => triangle.DOKill());
         }
         this.triangles = tempTries.ToArray();
     }
