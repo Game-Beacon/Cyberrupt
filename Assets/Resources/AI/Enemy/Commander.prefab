@@ -811,6 +811,7 @@ GameObject:
   - component: {fileID: 6189702637793147784}
   - component: {fileID: 6189702637793147787}
   - component: {fileID: 6331706922678241761}
+  - component: {fileID: 5271617220973082437}
   m_Layer: 9
   m_Name: Commander
   m_TagString: Untagged
@@ -1078,6 +1079,21 @@ MonoBehaviour:
   barGroup: {fileID: 3697805242769107343}
   triangleGroup: {fileID: 138593099785651369}
   initRotateSpeed: 60
+--- !u!114 &5271617220973082437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189702637793147797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 2
 --- !u!1 &6189702638321665712
 GameObject:
   m_ObjectHideFlags: 0
