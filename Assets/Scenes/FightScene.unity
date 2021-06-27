@@ -478,7 +478,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: -1899924581
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -3863,7 +3863,7 @@ PrefabInstance:
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
