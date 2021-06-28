@@ -75,6 +75,8 @@ public class Weapon
         if (coolDown > 0)
             return;
 
+        AudioManager.instance.PlaySFX(data.shootClip);
+
         CreateBullets();
         coolDown = coolDownTime;
         _ammoCount--;
@@ -97,6 +99,8 @@ public class Weapon
     {
         if (chargeMeter >= _data.chargeTime)
         {
+            AudioManager.instance.PlaySFX(data.shootClip);
+
             CreateBullets();
             coolDown = coolDownTime;
             _ammoCount--;

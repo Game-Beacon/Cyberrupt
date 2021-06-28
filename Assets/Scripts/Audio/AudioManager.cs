@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : GameBehaviour
 {
     private static AudioManager _instance = null;
     public static AudioManager instance { get { return _instance; } private set { } }
@@ -17,12 +17,12 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioSource _sfxSourcesIgnore;
 
-    private void Awake()
+    public override void GameAwake()
     {
         if (_instance == null)
         {
             _instance = this;
-            DontDestroyOnLoad(gameObject);
+            DontKillSelfOnLoad();
         }
         else
         {

@@ -109,6 +109,18 @@ MonoBehaviour:
   iTimeAfterDash: 0.05
   dashCoolDown: 0.2
   hurtTime: 2
+  dashSFX:
+    clip: {fileID: 8300000, guid: 3c5bc2c300a984823a79cab96a8622f7, type: 3}
+    volume: 1
+    loop: 0
+  hurtSFX:
+    clip: {fileID: 8300000, guid: 689142bc163624f5d98a60ccbad28ef2, type: 3}
+    volume: 1
+    loop: 0
+  dieSFX:
+    clip: {fileID: 8300000, guid: 3d092573da9534b17b43c7c2cb7cf337, type: 3}
+    volume: 1
+    loop: 0
 --- !u!114 &2689939325969876541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +139,10 @@ MonoBehaviour:
   bomb: {fileID: 4364431964054768916, guid: e07904d86f8da20429bbb3829bc1097e, type: 3}
   _bombCount: 2
   baseWeapon: {fileID: 11400000, guid: 4d0b028ef74169843823afc5ee33e951, type: 2}
+  weaponChangeSFX:
+    clip: {fileID: 8300000, guid: cd773f59ddb7246df8caad9ac9bdd56f, type: 3}
+    volume: 1
+    loop: 0
   timeScale: 1
 --- !u!114 &3505950212219808537
 MonoBehaviour:

@@ -37,11 +37,11 @@ public class Player : GameBehaviour, IDanmakuTarget
     private float hurtTime;
 
     [Space(20), SerializeField]
-    private UltEvent OnDash_Self = new UltEvent();
-    [SerializeField]
-    private UltEvent OnHurt_Self = new UltEvent();
-    [SerializeField]
-    private UltEvent OnDied_Self = new UltEvent();
+    private ClipSetting dashSFX;
+    [Space(20), SerializeField]
+    private ClipSetting hurtSFX;
+    [Space(20), SerializeField]
+    private ClipSetting dieSFX;
 
     private Rigidbody2D rb;
     private WeaponController _weaponController;
@@ -87,14 +87,14 @@ public class Player : GameBehaviour, IDanmakuTarget
         if (!isImmune)
         {
             _hp--;
-            OnHurt_Self.Invoke();
+            AudioManager.instance.PlaySFX(hurtSFX);
             OnReceiveDamage.Invoke();
             OnHpChange.Invoke(_hp);
             if(_hp == 0)
             {
                 isDead = true;
                 update = false;
-                OnDied_Self.Invoke();
+                AudioManager.instance.PlaySFX(dieSFX);
                 OnDied.Invoke();
             }
             StartCoroutine(AfterHurt(hurtTime));
@@ -142,7 +142,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 
         if (canDash && Input.GetKeyDown(KeyCode.Space) && dir.magnitude > 0)
         {
-            OnDash_Self.Invoke();
+            AudioManager.instance.PlaySFX(dashSFX);
             StartCoroutine(Dash(dir));
             return;
         }
