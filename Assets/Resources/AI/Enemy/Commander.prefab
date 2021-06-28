@@ -397,7 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: d7590349369113a40accbd1524cc4ff0, type: 2}
+  property: {fileID: 11400000, guid: d90242bda5598e745bfa653e49886d6c, type: 2}
   _name: Commander
   _maxHP: 50
   _hp: 50
