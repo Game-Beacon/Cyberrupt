@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: fd118b186da93a34085cd68fe04a505b, type: 2}
+  property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
   _name: 
   _maxHP: 15
   _hp: 15
@@ -542,7 +542,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: d90242bda5598e745bfa653e49886d6c, type: 2}
+  property: {fileID: 11400000, guid: ea807ff914523d242930c0f4494749a0, type: 2}
   _name: Turret
   _maxHP: 15
   _hp: 15
@@ -801,7 +801,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: fd118b186da93a34085cd68fe04a505b, type: 2}
+  property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
   _name: 
   _maxHP: 15
   _hp: 15

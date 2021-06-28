@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d952b04dc3a1c16448af72ec2bb534a8, type: 3}
-  m_Name: Wanderer
+  m_Name: Property_Meltdown
   m_EditorClassIdentifier: 
-  _hp: 1
-  _score: 100
-  _addSpawnPickUpChance: 0.1
+  _hp: 125
+  _score: 8000
+  _addSpawnPickUpChance: 10
