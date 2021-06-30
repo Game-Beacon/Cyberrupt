@@ -5201,6 +5201,7 @@ GameObject:
   - component: {fileID: 5756876681318020067}
   - component: {fileID: 5756876681318020063}
   - component: {fileID: 5756876681318020056}
+  - component: {fileID: 4753145303963829493}
   m_Layer: 9
   m_Name: Meltdown
   m_TagString: Untagged
@@ -5566,11 +5567,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 1
   OnEnter:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 4753145303963829493}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnUpdate:
     _PersistentCalls: []
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 4753145303963829493}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 2
   laserPrefab: {fileID: 3427751624078174019, guid: a6ea360ead9256b49807e334b19045b5,
     type: 3}
@@ -5581,6 +5604,23 @@ MonoBehaviour:
   speed: 1
   rotateForce: 75
   rotateIncrement: 0.05
+--- !u!111 &4753145303963829493
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9ff9ade7c5b11c74888ee58391ce82e7, type: 2}
+  - {fileID: 7400000, guid: f69512c705522b0459f45c1e973895fb, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5756876681438818701
 GameObject:
   m_ObjectHideFlags: 0
