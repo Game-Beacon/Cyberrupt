@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 {
@@ -12,6 +13,7 @@ public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private SpawnDanmakuHelper _danmakuHelper;
     public SpawnDanmakuHelper danmakuHelper { get { return _danmakuHelper; } }
 
+    public UnityEvent OnUpdateTransform => this.stateMachine.OnUpdateTransform;    
     //====================
 
     private Player player;
@@ -74,11 +76,10 @@ public class Commander : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 
     private void UpdateTransform()
     {
+        // Move to target
         Vector2 direction = (target.position - transform.position).normalized;
         transform.position += (Vector3)direction * speed * Time.fixedDeltaTime;
-
-        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + angularSpeed * Time.fixedDeltaTime);
-
+        // Aim target
         direction = target.position - muzzle.position;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         muzzle.rotation = Quaternion.Euler(0, 0, angle);
