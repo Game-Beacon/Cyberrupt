@@ -60,17 +60,23 @@ public class WeaponData : ScriptableObject
     private WeaponShootType _shootType;
     public WeaponShootType shootType { get { return _shootType; } }
 
+    //充能時間
     [SerializeField]
     private float _chargeTime;
     public float chargeTime { get { return _chargeTime; } }
 
+    //充能特效
     [SerializeField]
     private GameObject _weaponChargeVFX;
     public GameObject weaponChargeVFX { get { return _weaponChargeVFX; } }
 
-    /* Something that could (should) be added in the future
-     * 1. 射擊時的音效
-     * 2. 充能時的音效
-     * 3. 充能時的特效(某種遊戲物件?)
-     */
+    //射擊音效
+    [Space(10), SerializeField]
+    private ClipSetting _shootClip;
+    public ClipSetting shootClip { get { return _shootClip; } }
+
+    //充能音效
+    [Space(10), SerializeField]
+    private ClipSetting _chargeClip;
+    public ClipSetting chagreClip { get { return _chargeClip; } }
 }

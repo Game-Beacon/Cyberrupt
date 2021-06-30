@@ -21,6 +21,9 @@ public class Bomb : GameBehaviour, IDanmakuTarget
     [SerializeField]
     private Easing ease;
 
+    [Space(10), SerializeField]
+    private ClipSetting bombSFX;
+
     private DanmakuManager danmakuManager;
     private DanmakuObstacle obstacle;
     private CircleCollider2D circleCollider;
@@ -28,6 +31,8 @@ public class Bomb : GameBehaviour, IDanmakuTarget
 
     public override void GameStart()
     {
+        AudioManager.instance.PlaySFX(bombSFX);
+
         danmakuManager = DanmakuManager.instance;
         obstacle = danmakuManager.AddObstacle(this);
         circleCollider = GetComponent<CircleCollider2D>();

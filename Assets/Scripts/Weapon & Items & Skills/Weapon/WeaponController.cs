@@ -15,6 +15,9 @@ public class WeaponController : GameBehaviour
     [SerializeField]
     private WeaponData baseWeapon;
 
+    [Space(20), SerializeField]
+    private ClipSetting weaponChangeSFX;
+
     private Weapon _currentWeapon;
     public Weapon currentWeapon { get { return _currentWeapon; } }
     
@@ -22,6 +25,7 @@ public class WeaponController : GameBehaviour
 
     private bool keyDown, keyUp;
 
+    [HideInInspector]
     public float timeScale = 1;
 
     public FloatEvent OnKeyDown { get; } = new FloatEvent();
@@ -75,6 +79,8 @@ public class WeaponController : GameBehaviour
     {
         int index = weapons.IndexOf(_currentWeapon);
         index = (index + 1) % weapons.Count;
+
+        AudioManager.instance.PlaySFX(weaponChangeSFX);
 
         _currentWeapon.OnDeselected();
         _currentWeapon = weapons[index];

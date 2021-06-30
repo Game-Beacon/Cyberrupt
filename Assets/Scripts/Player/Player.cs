@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UniRx;
+using UltEvents;
 
 public class Player : GameBehaviour, IDanmakuTarget
 {
@@ -34,6 +35,13 @@ public class Player : GameBehaviour, IDanmakuTarget
     private float dashCoolDown;
     [SerializeField]
     private float hurtTime;
+
+    [Space(20), SerializeField]
+    private ClipSetting dashSFX;
+    [Space(20), SerializeField]
+    private ClipSetting hurtSFX;
+    [Space(20), SerializeField]
+    private ClipSetting dieSFX;
 
     private Rigidbody2D rb;
     private WeaponController _weaponController;
@@ -79,12 +87,14 @@ public class Player : GameBehaviour, IDanmakuTarget
         if (!isImmune)
         {
             _hp--;
+            AudioManager.instance.PlaySFX(hurtSFX);
             OnReceiveDamage.Invoke();
             OnHpChange.Invoke(_hp);
             if(_hp == 0)
             {
                 isDead = true;
                 update = false;
+                AudioManager.instance.PlaySFX(dieSFX);
                 OnDied.Invoke();
             }
             StartCoroutine(AfterHurt(hurtTime));
@@ -132,10 +142,10 @@ public class Player : GameBehaviour, IDanmakuTarget
 
         if (canDash && Input.GetKeyDown(KeyCode.Space) && dir.magnitude > 0)
         {
+            AudioManager.instance.PlaySFX(dashSFX);
             StartCoroutine(Dash(dir));
             return;
         }
-
         
         rb.velocity = dir.normalized * speed;
     }
