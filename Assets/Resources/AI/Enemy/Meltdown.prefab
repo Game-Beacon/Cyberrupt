@@ -4912,7 +4912,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7}
 --- !u!212 &5756876680714786147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5104,7 +5104,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!212 &5756876681272879180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5547,10 +5547,32 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 4753145303963829493}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeShoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnUpdate:
     _PersistentCalls: []
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 4753145303963829493}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterShoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 1.5
   lookAtStrenth: 0.15
 --- !u!114 &5756876681318020056
@@ -5617,6 +5639,8 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: 9ff9ade7c5b11c74888ee58391ce82e7, type: 2}
   - {fileID: 7400000, guid: f69512c705522b0459f45c1e973895fb, type: 2}
+  - {fileID: 7400000, guid: 0fbe5e352615f434984eb65fb58faa8b, type: 2}
+  - {fileID: 7400000, guid: fa82ac91c240d4347b1267333ccdca94, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -5719,7 +5743,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!212 &5756876681883583411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5800,7 +5824,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7}
 --- !u!212 &5756876681929604952
 SpriteRenderer:
   m_ObjectHideFlags: 0
