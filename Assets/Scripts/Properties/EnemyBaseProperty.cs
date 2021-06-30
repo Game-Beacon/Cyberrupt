@@ -19,4 +19,9 @@ public class EnemyBaseProperty : ScriptableObject
     [SerializeField,Tooltip("擊殺所帶來的掉寶率增加值(%)")]
     private float _addSpawnPickUpChance;
     public float addSpawnPickUpChance { get { return _addSpawnPickUpChance; } private set { } }
+
+    public void WTF()
+    {
+        
+    }
 }

@@ -52,6 +52,10 @@ MonoBehaviour:
   bombTime: 2.5
   expandTime: 1
   ease: 6
+  bombSFX:
+    clip: {fileID: 8300000, guid: 24b40394adff44498963293e8d1c05a3, type: 3}
+    volume: 1
+    loop: 0
 --- !u!58 &-2058585873532719479
 CircleCollider2D:
   m_ObjectHideFlags: 0
