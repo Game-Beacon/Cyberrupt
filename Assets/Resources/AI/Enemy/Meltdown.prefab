@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 5756876680714786146}
   - component: {fileID: 5756876680714786147}
   m_Layer: 9
-  m_Name: elite_1
+  m_Name: Body Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 5756876680747699125}
   - component: {fileID: 5756876680747699126}
   m_Layer: 9
-  m_Name: elite_3
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5085,7 +5085,7 @@ GameObject:
   - component: {fileID: 5756876681272879187}
   - component: {fileID: 5756876681272879180}
   m_Layer: 9
-  m_Name: elite_4
+  m_Name: Arm Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5660,7 +5660,7 @@ GameObject:
   - component: {fileID: 5756876681883583410}
   - component: {fileID: 5756876681883583411}
   m_Layer: 9
-  m_Name: elite_5
+  m_Name: Arm Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5741,7 +5741,7 @@ GameObject:
   - component: {fileID: 5756876681929604959}
   - component: {fileID: 5756876681929604952}
   m_Layer: 9
-  m_Name: elite_2
+  m_Name: Body Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5889,7 +5889,7 @@ GameObject:
   - component: {fileID: 5756876682466514803}
   - component: {fileID: 5756876682466514796}
   m_Layer: 9
-  m_Name: elite_6
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
