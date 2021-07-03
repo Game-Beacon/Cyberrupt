@@ -371,6 +371,7 @@ GameObject:
   - component: {fileID: 3984703758171734343}
   - component: {fileID: 3984703758171734342}
   - component: {fileID: 3984703758171734341}
+  - component: {fileID: 5793388757940773175}
   - component: {fileID: 4305618190054480745}
   - component: {fileID: 3371854197094663336}
   - component: {fileID: 4157780920542793556}
@@ -514,6 +515,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.35}
   m_EdgeRadius: 0
+--- !u!114 &5793388757940773175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984703758171734459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: c514ae761612e65439242695fd58bdec, type: 2}
 --- !u!114 &4305618190054480745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,8 +678,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 5793388757940773175}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
     _PersistentCalls: []
   time: 0.5

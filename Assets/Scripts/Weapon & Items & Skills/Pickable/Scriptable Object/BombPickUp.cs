@@ -10,6 +10,7 @@ public class BombPickUp : ScriptableObject, IPickable
     [SerializeField]
     private int count;
     Sprite IPickable.icon { get { return _icon; } }
+    PickUpType IPickable.type { get { return PickUpType.Other; } }
 
     public void OnPick(Player player)
     {

@@ -78,5 +78,5 @@ public class WeaponData : ScriptableObject
     //充能音效
     [Space(10), SerializeField]
     private ClipSetting _chargeClip;
-    public ClipSetting chagreClip { get { return _chargeClip; } }
+    public ClipSetting chargeClip { get { return _chargeClip; } }
 }

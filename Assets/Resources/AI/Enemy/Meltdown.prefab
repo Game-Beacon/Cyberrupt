@@ -5196,6 +5196,7 @@ GameObject:
   - component: {fileID: 5756876681318020071}
   - component: {fileID: 5756876681318020064}
   - component: {fileID: 353190522879999444}
+  - component: {fileID: 536635687800966825}
   - component: {fileID: 5756876681318020066}
   - component: {fileID: 5756876681318020065}
   - component: {fileID: 5756876681318020067}
@@ -5285,6 +5286,21 @@ PolygonCollider2D:
       - {x: 0.825, y: -0.6}
       - {x: 0.825, y: 0.6}
       - {x: 0.5, y: 0.9}
+--- !u!114 &536635687800966825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: b008ddee02ba93549b6cf5e23db3ac01, type: 2}
 --- !u!114 &5756876681318020066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5403,7 +5419,10 @@ MonoBehaviour:
   OnHit:
     _PersistentCalls: []
   OnDeath:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AllAudioStop
+      _PersistentArguments: []
   speed: 5
   slowDownRadius: 4.5
   stopRadius: 2
@@ -5546,10 +5565,38 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 1.5
   lookAtStrenth: 0.15
 --- !u!114 &5756876681318020056
@@ -5566,11 +5613,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 1
   OnEnter:
-    _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 2
   laserPrefab: {fileID: 3427751624078174019, guid: a6ea360ead9256b49807e334b19045b5,
     type: 3}

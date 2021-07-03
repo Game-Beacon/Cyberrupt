@@ -11,6 +11,8 @@ public class WeaponPickUp : ScriptableObject, IPickable
     private int ammoCount;
     Sprite IPickable.icon { get { return weapon.icon; } }
 
+    PickUpType IPickable.type { get { return PickUpType.Weapon; } }
+
     public void OnPick(Player player)
     {
         player.weaponController.AddWeapon(weapon, ammoCount);

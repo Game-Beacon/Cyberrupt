@@ -12,11 +12,11 @@ public abstract class AIState : MonoBehaviour
     public bool overrideTransformUpdate { get { return _overrideTransformUpdate; } private set { } }
 
     [SerializeField]
-    protected UltEvent OnEnter = new UltEvent();
+    public UltEvent OnEnter = new UltEvent();
+    /*[SerializeField]
+    public UltEvent OnUpdate = new UltEvent();*/
     [SerializeField]
-    protected UltEvent OnUpdate = new UltEvent();
-    [SerializeField]
-    protected UltEvent OnExit = new UltEvent();
+    public UltEvent OnExit = new UltEvent();
 
     public void SetMachine(AIStateMachine machine)
     {
@@ -39,7 +39,7 @@ public abstract class AIState : MonoBehaviour
 
     public void StateUpdate(float delta)
     {
-        OnUpdate.Invoke();
+        //OnUpdate.Invoke();
         
         if (_overrideTransformUpdate)
             UpdateTransform(delta);

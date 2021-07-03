@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8b2ecc0ef5a0e40b383d7c57016d28, type: 3}
+  m_Name: FightSceneMusic
+  m_EditorClassIdentifier: 
+  _clips:
+  - clip: {fileID: 8300000, guid: e6f91785c9ee241a094b237de240180d, type: 3}
+    name: Base BGM
+    volume: 0.5
+    loop: 1

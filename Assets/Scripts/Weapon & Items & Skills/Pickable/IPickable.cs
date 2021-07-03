@@ -6,5 +6,7 @@ public interface IPickable
 {
     Sprite icon { get; }
 
+    PickUpType type { get; }
+
     void OnPick(Player player);
 }

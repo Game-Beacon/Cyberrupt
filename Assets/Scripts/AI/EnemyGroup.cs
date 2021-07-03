@@ -8,6 +8,8 @@ public class EnemyGroup : MonoBehaviour
 {
     List<SpriteRenderer> srs = new List<SpriteRenderer>();
     List<Collider2D> colliders = new List<Collider2D>();
+    [SerializeField]
+    List<ParticleSystem> pss = new List<ParticleSystem>();
 
     [SerializeField, Range(0, 1f)]
     public float alpha = 1;
@@ -20,7 +22,7 @@ public class EnemyGroup : MonoBehaviour
         colliders = GetComponentsInChildren<Collider2D>().ToList();
     }
 
-    private void  Update()
+    private void Update()
     {
         foreach (SpriteRenderer sr in srs)
             if (sr != null)
@@ -28,5 +30,17 @@ public class EnemyGroup : MonoBehaviour
         foreach (Collider2D collider in colliders)
             if(collider != null)
                 collider.enabled = enableColliders;
+    }
+
+    public void StopParticles()
+    {
+        foreach (ParticleSystem ps in pss)
+            ps.Stop();
+    }
+
+    public void StartParticles()
+    {
+        foreach (ParticleSystem ps in pss)
+            ps.Play();
     }
 }

@@ -279,8 +279,6 @@ MonoBehaviour:
   _overrideTransformUpdate: 0
   OnEnter:
     _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
   time: 0.1
