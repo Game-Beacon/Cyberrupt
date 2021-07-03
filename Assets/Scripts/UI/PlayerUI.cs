@@ -46,7 +46,7 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private Image skillIconFront;
     [SerializeField]
-    private Image skillIconBack;
+    private Image skillIconBase;
     [SerializeField]
     private TextMeshProUGUI skillName;
     [SerializeField]
@@ -113,13 +113,6 @@ public class PlayerUI : GameBehaviour
             bombBar.Add(bomb.GetComponent<Image>());
             bombBar[i].sprite = setting.bomb;
         }
-    }
-
-    private void SetWeapon()
-    {
-        weaponIcon.sprite = player.weaponController.currentWeapon.data.icon;
-        weaponName.text = player.weaponController.currentWeapon.data.weaponName;
-        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
     }
 
     public void UpdateHp(int hp)
@@ -211,6 +204,13 @@ public class PlayerUI : GameBehaviour
     }
 
     //Weapon
+    private void SetWeapon()
+    {
+        weaponIcon.sprite = player.weaponController.currentWeapon.data.icon;
+        weaponName.text = player.weaponController.currentWeapon.data.weaponName;
+        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
+    }
+
     public void UpdateWeapon(Weapon weapon)
     {
         weaponIcon.sprite = weapon.data.icon;
@@ -229,15 +229,14 @@ public class PlayerUI : GameBehaviour
         if(skills.Count == 0)
         {
             skillIconFront.color = Color.clear;
-            skillIconBack.color = Color.clear;
+            skillIconBase.color = new Color(skillIconBase.color.r, skillIconBase.color.g, skillIconBase.color.b, 0);
             skillName.text = "";
         }
         else
         {
             skillIconFront.color = Color.white;
-            skillIconBack.color = new Color(1, 1, 1, 0.25f);
+            skillIconBase.color = new Color(skillIconBase.color.r, skillIconBase.color.g, skillIconBase.color.b, 1);
             skillIconFront.sprite = skills[0].icon;
-            skillIconBack.sprite = skills[0].icon;
             skillName.text = skills[0].skillName;
         }
 
@@ -278,11 +277,13 @@ public class PlayerUI : GameBehaviour
     {
         skillIsActive = false;
         skillIconFront.fillAmount = 1;
+        skillIconBase.fillAmount = 1;
     }
 
     private void UpdateSkillProgress()
     {
         skillIconFront.fillAmount = 1 - playerSkillController.currentSkillTask.progress;
+        skillIconBase.fillAmount = 1 - playerSkillController.currentSkillTask.progress;
     }
 
     //Wave

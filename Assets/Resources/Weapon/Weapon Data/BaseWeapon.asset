@@ -26,9 +26,11 @@ MonoBehaviour:
   _weaponChargeVFX: {fileID: 0}
   _shootClip:
     clip: {fileID: 8300000, guid: f5890820584364b29b255b33a8d8e962, type: 3}
-    volume: 1
+    name: 
+    volume: 0.6
     loop: 0
   _chargeClip:
     clip: {fileID: 0}
+    name: 
     volume: 0
     loop: 0

@@ -36,13 +36,6 @@ public class Player : GameBehaviour, IDanmakuTarget
     [SerializeField]
     private float hurtTime;
 
-    [Space(20), SerializeField]
-    private ClipSetting dashSFX;
-    [Space(20), SerializeField]
-    private ClipSetting hurtSFX;
-    [Space(20), SerializeField]
-    private ClipSetting dieSFX;
-
     private Rigidbody2D rb;
     private WeaponController _weaponController;
     private SkillController _skillController;
@@ -54,9 +47,10 @@ public class Player : GameBehaviour, IDanmakuTarget
     public WeaponController weaponController { get { return _weaponController; } }
     public SkillController skillController { get { return _skillController; } }
 
-    public GameEvent OnReceiveDamage { get; } = new GameEvent();
-    public IntEvent OnHpChange { get; } = new IntEvent();
-    public GameEvent OnDied { get; } = new GameEvent();
+    public GameEvent OnReceiveDamage = new GameEvent();
+    public IntEvent OnHpChange = new IntEvent();
+    public Vector2Event OnDash = new Vector2Event();
+    public GameEvent OnDied = new GameEvent();
 
     private bool isHurt = false;
     private BoolReactiveProperty isDashing = new BoolReactiveProperty();
@@ -87,14 +81,12 @@ public class Player : GameBehaviour, IDanmakuTarget
         if (!isImmune)
         {
             _hp--;
-            AudioManager.instance.PlaySFX(hurtSFX);
             OnReceiveDamage.Invoke();
             OnHpChange.Invoke(_hp);
             if(_hp == 0)
             {
                 isDead = true;
                 update = false;
-                AudioManager.instance.PlaySFX(dieSFX);
                 OnDied.Invoke();
             }
             StartCoroutine(AfterHurt(hurtTime));
@@ -142,7 +134,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 
         if (canDash && Input.GetKeyDown(KeyCode.Space) && dir.magnitude > 0)
         {
-            AudioManager.instance.PlaySFX(dashSFX);
+            OnDash.Invoke(dir);
             StartCoroutine(Dash(dir));
             return;
         }

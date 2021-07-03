@@ -15,9 +15,6 @@ public class WeaponController : GameBehaviour
     [SerializeField]
     private WeaponData baseWeapon;
 
-    [Space(20), SerializeField]
-    private ClipSetting weaponChangeSFX;
-
     private Weapon _currentWeapon;
     public Weapon currentWeapon { get { return _currentWeapon; } }
     
@@ -33,6 +30,10 @@ public class WeaponController : GameBehaviour
     public FloatEvent OnKeyUp { get; } = new FloatEvent();
     public ObjectEvent<Weapon> OnWeaponChange { get; } = new ObjectEvent<Weapon>();
     public IntEvent OnBombCountChange { get; } = new IntEvent();
+
+    public GameEvent OnShoot = new GameEvent();
+    public GameEvent OnChargeStart = new GameEvent();
+    public GameEvent OnChargeStop = new GameEvent();
 
     public override void GameAwake()
     {
@@ -79,8 +80,6 @@ public class WeaponController : GameBehaviour
     {
         int index = weapons.IndexOf(_currentWeapon);
         index = (index + 1) % weapons.Count;
-
-        AudioManager.instance.PlaySFX(weaponChangeSFX);
 
         _currentWeapon.OnDeselected();
         _currentWeapon = weapons[index];

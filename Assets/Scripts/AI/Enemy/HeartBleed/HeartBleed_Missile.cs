@@ -14,28 +14,43 @@ public class HeartBleed_Missile : AIState
     [SerializeField]
     private float spawnDelay;
     [SerializeField]
-    private float recover;
-    [SerializeField]
     private UltEvent OnSpawn = new UltEvent();
+
+    private List<GameObject> missiles = new List<GameObject>();
+    private int missileCounter = 0;
 
     protected override void OnStateEnter()
     {
         base.OnStateEnter();
 
+        missileCounter = 0;
         StartCoroutine(SpawnMissiles());
+    }
+
+    protected override void OnStateUpdate(float delta)
+    {
+        base.OnStateUpdate(delta);
+
+        for(int i = missiles.Count - 1; i >= 0; i--)
+        {
+            if (missiles[i] == null)
+                missiles.RemoveAt(i);
+        }
+
+        if (missiles.Count == 0)
+            SelfEndState();
     }
 
     IEnumerator SpawnMissiles()
     {
-        for(int i = 0; i < spawnCount; i ++)
+        missileCounter = spawnCount;
+
+        for (int i = 0; i < spawnCount; i ++)
         {
-            Instantiate(missile, muzzle.position, Quaternion.identity);
+            GameObject go = Instantiate(missile, muzzle.position, Quaternion.identity);
+            missiles.Add(go);
             OnSpawn.Invoke();
             yield return new WaitForSeconds(spawnDelay);
         }
-
-        yield return new WaitForSeconds(recover);
-
-        SelfEndState();
     }
 }

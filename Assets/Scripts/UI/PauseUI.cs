@@ -34,7 +34,7 @@ public class PauseUI : GameBehaviour
         canvasGroup.alpha = (isUIEnable)? 1 : 0;
         canvasGroup.blocksRaycasts = isUIEnable;
         canvasGroup.interactable = isUIEnable;
-        Time.timeScale = (isUIEnable) ? 0 : 1;
+        TimeManager.PauseGame();
     }
 
     public void ClosePauseUI()

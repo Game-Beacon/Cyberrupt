@@ -16,9 +16,11 @@ public class Petya_KeyAttack : AIState
     private float haltTime;
 
     [Space(20), SerializeField]
-    private UltEvent OnAttack = new UltEvent();
+    public UltEvent OnWarn = new UltEvent();
     [SerializeField]
-    private UltEvent OnRecover = new UltEvent();
+    public UltEvent OnAttack = new UltEvent();
+    [SerializeField]
+    public UltEvent OnFinalAttack = new UltEvent();
 
     [Space(20), SerializeField]
     private GameObject projectile;
@@ -46,6 +48,7 @@ public class Petya_KeyAttack : AIState
 
     IEnumerator Fade()
     {
+        group.StopParticles();
         group.enableColliders = false;
         DOTween.To(() => group.alpha, x => group.alpha = x, 0, fadeTime);
         yield return new WaitForSeconds(fadeTime + haltTime);
@@ -66,7 +69,8 @@ public class Petya_KeyAttack : AIState
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 projectiles[j].transform.rotation = Quaternion.Euler(0, 0, angle);
             }
-            
+
+            OnWarn.Invoke();
             yield return new WaitForSeconds(attackWarnTime);
 
             OnAttack.Invoke();
@@ -87,9 +91,10 @@ public class Petya_KeyAttack : AIState
             final[j].transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
+        OnWarn.Invoke();
         yield return new WaitForSeconds(attackWarnTime);
 
-        OnAttack.Invoke();
+        OnFinalAttack.Invoke();
         for (int j = 0; j < 8; j++)
             final[j].SpawnProjectile();
 
@@ -97,8 +102,8 @@ public class Petya_KeyAttack : AIState
         group.enableColliders = true;
 
         yield return new WaitForSeconds(attackWarnTime);
-        
-        OnRecover.Invoke();
+        group.StartParticles();
+
         SelfEndState();
     }
 }

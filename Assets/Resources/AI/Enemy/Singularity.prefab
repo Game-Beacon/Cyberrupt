@@ -9991,8 +9991,6 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
   time: 0.1
@@ -10098,6 +10096,7 @@ GameObject:
   - component: {fileID: 8930571900753017793}
   - component: {fileID: 4997838701400752191}
   - component: {fileID: 5897807803867696326}
+  - component: {fileID: 6543210317209850651}
   - component: {fileID: 8371442552513921764}
   - component: {fileID: 4451583914443901018}
   - component: {fileID: 4201574794462203847}
@@ -10165,6 +10164,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1
+--- !u!114 &6543210317209850651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930571900753017795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: 9e0f114d7994cbe4baebcd8643f92510, type: 2}
 --- !u!114 &8371442552513921764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10217,7 +10231,18 @@ MonoBehaviour:
   _score: 0
   _addSpawnPickUpChance: 0
   OnSpawn:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 6543210317209850651}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnHit:
     _PersistentCalls:
     - _Target: {fileID: 8371442552513921764}
@@ -10274,7 +10299,10 @@ MonoBehaviour:
         _W: 0
         _Object: {fileID: 0}
   OnDeath:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 6543210317209850651}
+      _MethodName: AllAudioStop
+      _PersistentArguments: []
   parent: {fileID: 8930571900753017793}
   speed: 1
 --- !u!114 &946748186589469802
@@ -10345,8 +10373,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 6543210317209850651}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
     _PersistentCalls: []
   time: 0.1

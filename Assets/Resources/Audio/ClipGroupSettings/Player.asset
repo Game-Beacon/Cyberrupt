@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8b2ecc0ef5a0e40b383d7c57016d28, type: 3}
+  m_Name: Player
+  m_EditorClassIdentifier: 
+  _clips:
+  - clip: {fileID: 8300000, guid: 3c5bc2c300a984823a79cab96a8622f7, type: 3}
+    name: Dash
+    volume: 1
+    loop: 0
+  - clip: {fileID: 8300000, guid: cd773f59ddb7246df8caad9ac9bdd56f, type: 3}
+    name: Switch
+    volume: 1
+    loop: 0

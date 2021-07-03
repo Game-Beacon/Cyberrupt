@@ -27,6 +27,8 @@ public class HeartBeat : GameBehaviour
     private SpriteRenderer sr;
 
     [SerializeField]
+    private UltEvent OnWarn = new UltEvent();
+    [SerializeField]
     private UltEvent OnHeartBeat = new UltEvent();
 
     public override void GameAwake()
@@ -44,6 +46,7 @@ public class HeartBeat : GameBehaviour
 
     IEnumerator HeartBeatEvent()
     {
+        OnWarn.Invoke();
         transform.DOShakePosition(warnTime, 0.1f, 50, 90, false, false).SetEase(Ease.Linear);
         transform.DOScale(scale, warnTime);
         sr.DOFade(0.75f, warnTime);

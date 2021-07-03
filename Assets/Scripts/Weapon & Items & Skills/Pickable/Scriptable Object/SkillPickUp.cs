@@ -8,7 +8,9 @@ public class SkillPickUp : ScriptableObject, IPickable
     [SerializeField]
     private Skill skill;
     Sprite IPickable.icon { get { return skill.icon; } }
-    
+
+    PickUpType IPickable.type { get { return PickUpType.Skill; } }
+
     public void OnPick(Player player)
     {
         Skill newSkill = Instantiate(skill.gameObject, player.transform).GetComponent<Skill>();

@@ -30,7 +30,8 @@ public class PickUpManager : GameBehaviour
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
         foreach(Object obj in objects)
-            pickables.Add(obj as ScriptableObject);
+            if(obj is IPickable)
+                pickables.Add(obj as ScriptableObject);
     }
 
     public override void GameStart()

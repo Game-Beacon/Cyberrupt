@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fbcc307a4e18ac449e15247c7f74a9b, type: 3}
+  m_Name: PickUpHelper
+  m_EditorClassIdentifier: 
+  _data:
+  - type: 0
+    color: {r: 1, g: 0.29411766, b: 0.29411766, a: 1}
+    clip:
+      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      name: 
+      volume: 1
+      loop: 0
+  - type: 1
+    color: {r: 0, g: 0.5882353, b: 1, a: 1}
+    clip:
+      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      name: 
+      volume: 1
+      loop: 0
+  - type: 2
+    color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    clip:
+      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      name: 
+      volume: 1
+      loop: 0
+  _defaultData:
+    type: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    clip:
+      clip: {fileID: 8300000, guid: 228b44a3d4baf47d8914c4704d00c8e3, type: 3}
+      name: 
+      volume: 1
+      loop: 0

@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 5756876680714786146}
   - component: {fileID: 5756876680714786147}
   m_Layer: 9
-  m_Name: Body Left
+  m_Name: elite_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4912,7 +4912,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5756876680714786147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 5756876680747699125}
   - component: {fileID: 5756876680747699126}
   m_Layer: 9
-  m_Name: Back
+  m_Name: elite_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5085,7 +5085,7 @@ GameObject:
   - component: {fileID: 5756876681272879187}
   - component: {fileID: 5756876681272879180}
   m_Layer: 9
-  m_Name: Arm Right
+  m_Name: elite_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5104,7 +5104,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5756876681272879180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5196,12 +5196,12 @@ GameObject:
   - component: {fileID: 5756876681318020071}
   - component: {fileID: 5756876681318020064}
   - component: {fileID: 353190522879999444}
+  - component: {fileID: 536635687800966825}
   - component: {fileID: 5756876681318020066}
   - component: {fileID: 5756876681318020065}
   - component: {fileID: 5756876681318020067}
   - component: {fileID: 5756876681318020063}
   - component: {fileID: 5756876681318020056}
-  - component: {fileID: 4753145303963829493}
   m_Layer: 9
   m_Name: Meltdown
   m_TagString: Untagged
@@ -5286,6 +5286,21 @@ PolygonCollider2D:
       - {x: 0.825, y: -0.6}
       - {x: 0.825, y: 0.6}
       - {x: 0.5, y: 0.9}
+--- !u!114 &536635687800966825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: b008ddee02ba93549b6cf5e23db3ac01, type: 2}
 --- !u!114 &5756876681318020066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5404,7 +5419,10 @@ MonoBehaviour:
   OnHit:
     _PersistentCalls: []
   OnDeath:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AllAudioStop
+      _PersistentArguments: []
   speed: 5
   slowDownRadius: 4.5
   stopRadius: 2
@@ -5547,28 +5565,34 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-    - _Target: {fileID: 4753145303963829493}
-      _MethodName: Play
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: PlaySFXInterruptable
       _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: BeforeShoot
+      - _Type: 3
+        _Int: 1
+        _String: 
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493}
-      _MethodName: Play
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AudioFadeOut
       _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: AfterShoot
+      - _Type: 3
+        _Int: 1
+        _String: 
         _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
         _Y: 0
         _Z: 0
         _W: 0
@@ -5590,28 +5614,34 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493}
-      _MethodName: Play
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: PlaySFXInterruptable
       _PersistentArguments:
-      - _Type: 2
+      - _Type: 3
         _Int: 0
-        _String: BeforeLaser
+        _String: 
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493}
-      _MethodName: Play
+    - _Target: {fileID: 536635687800966825}
+      _MethodName: AudioFadeOut
       _PersistentArguments:
-      - _Type: 2
+      - _Type: 3
         _Int: 0
-        _String: AfterLaser
+        _String: 
         _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
         _Y: 0
         _Z: 0
         _W: 0
@@ -5626,25 +5656,6 @@ MonoBehaviour:
   speed: 1
   rotateForce: 75
   rotateIncrement: 0.05
---- !u!111 &4753145303963829493
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5756876681318020070}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 9ff9ade7c5b11c74888ee58391ce82e7, type: 2}
-  - {fileID: 7400000, guid: f69512c705522b0459f45c1e973895fb, type: 2}
-  - {fileID: 7400000, guid: 0fbe5e352615f434984eb65fb58faa8b, type: 2}
-  - {fileID: 7400000, guid: fa82ac91c240d4347b1267333ccdca94, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1 &5756876681438818701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5724,7 +5735,7 @@ GameObject:
   - component: {fileID: 5756876681883583410}
   - component: {fileID: 5756876681883583411}
   m_Layer: 9
-  m_Name: Arm Left
+  m_Name: elite_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5743,7 +5754,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5756876681883583411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5805,7 +5816,7 @@ GameObject:
   - component: {fileID: 5756876681929604959}
   - component: {fileID: 5756876681929604952}
   m_Layer: 9
-  m_Name: Body Right
+  m_Name: elite_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5824,7 +5835,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 7}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5756876681929604952
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5953,7 +5964,7 @@ GameObject:
   - component: {fileID: 5756876682466514803}
   - component: {fileID: 5756876682466514796}
   m_Layer: 9
-  m_Name: Core
+  m_Name: elite_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
