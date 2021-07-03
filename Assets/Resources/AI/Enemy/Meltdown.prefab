@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 5756876680714786146}
   - component: {fileID: 5756876680714786147}
   m_Layer: 9
-  m_Name: elite_1
+  m_Name: Body Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 5756876680747699125}
   - component: {fileID: 5756876680747699126}
   m_Layer: 9
-  m_Name: elite_3
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5085,7 +5085,7 @@ GameObject:
   - component: {fileID: 5756876681272879187}
   - component: {fileID: 5756876681272879180}
   m_Layer: 9
-  m_Name: elite_4
+  m_Name: Arm Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5202,6 +5202,7 @@ GameObject:
   - component: {fileID: 5756876681318020067}
   - component: {fileID: 5756876681318020063}
   - component: {fileID: 5756876681318020056}
+  - component: {fileID: -4175184368502942395}
   m_Layer: 9
   m_Name: Meltdown
   m_TagString: Untagged
@@ -5443,7 +5444,8 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls:
-    - _Target: {fileID: 5756876681318020066}
+    - _Target: {fileID: 5756876681318020066, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
       _MethodName: SpawnParticle
       _PersistentArguments:
       - _Type: 13
@@ -5504,7 +5506,8 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-    - _Target: {fileID: 5756876681318020066}
+    - _Target: {fileID: 5756876681318020066, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
       _MethodName: SpawnParticle
       _PersistentArguments:
       - _Type: 13
@@ -5565,6 +5568,18 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeShoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
     - _Target: {fileID: 536635687800966825}
       _MethodName: PlaySFXInterruptable
       _PersistentArguments:
@@ -5578,6 +5593,18 @@ MonoBehaviour:
         _Object: {fileID: 0}
   OnExit:
     _PersistentCalls:
+    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterShoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
     - _Target: {fileID: 536635687800966825}
       _MethodName: AudioFadeOut
       _PersistentArguments:
@@ -5614,7 +5641,20 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls:
-    - _Target: {fileID: 536635687800966825}
+    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 262025692789610741, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
       _MethodName: PlaySFXInterruptable
       _PersistentArguments:
       - _Type: 3
@@ -5627,6 +5667,18 @@ MonoBehaviour:
         _Object: {fileID: 0}
   OnExit:
     _PersistentCalls:
+    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
+        type: 3}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
     - _Target: {fileID: 536635687800966825}
       _MethodName: AudioFadeOut
       _PersistentArguments:
@@ -5656,6 +5708,25 @@ MonoBehaviour:
   speed: 1
   rotateForce: 75
   rotateIncrement: 0.05
+--- !u!111 &-4175184368502942395
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9ff9ade7c5b11c74888ee58391ce82e7, type: 2}
+  - {fileID: 7400000, guid: f69512c705522b0459f45c1e973895fb, type: 2}
+  - {fileID: 7400000, guid: 0fbe5e352615f434984eb65fb58faa8b, type: 2}
+  - {fileID: 7400000, guid: fa82ac91c240d4347b1267333ccdca94, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &5756876681438818701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,7 +5806,7 @@ GameObject:
   - component: {fileID: 5756876681883583410}
   - component: {fileID: 5756876681883583411}
   m_Layer: 9
-  m_Name: elite_5
+  m_Name: Arm Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5816,7 +5887,7 @@ GameObject:
   - component: {fileID: 5756876681929604959}
   - component: {fileID: 5756876681929604952}
   m_Layer: 9
-  m_Name: elite_2
+  m_Name: Body Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5964,7 +6035,7 @@ GameObject:
   - component: {fileID: 5756876682466514803}
   - component: {fileID: 5756876682466514796}
   m_Layer: 9
-  m_Name: elite_6
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
