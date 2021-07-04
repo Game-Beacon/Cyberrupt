@@ -8,7 +8,8 @@ public class Enemy : GameBehaviour
     protected static ScreenBound screen = null;
 
     [SerializeField]
-    protected EnemyBaseProperty property;
+    protected EnemyBaseProperty _property;
+    public EnemyBaseProperty property { get { return _property; } }
 
     [SerializeField]
     protected string _name;
@@ -21,14 +22,6 @@ public class Enemy : GameBehaviour
     [SerializeField]
     protected float _hp;
     public float hp { get { return _hp; } }
-
-    [SerializeField]
-    protected int _score;
-    public int score { get { return _score; } }
-
-    [SerializeField]
-    private float _addSpawnPickUpChance;
-    public float addSpawnPickUpChance { get { return _addSpawnPickUpChance; } private set { } }
 
     //這個怪物是其他怪召喚出來的嗎？（比方說砲台的盾，以及生砲灰的生出的砲灰）
     /*[SerializeField]
@@ -53,10 +46,8 @@ public class Enemy : GameBehaviour
     {
         OnDeath += Die;
 
-        _maxHP = property.hp;
-        _hp = property.hp;
-        _score = property.score;
-        _addSpawnPickUpChance = property.addSpawnPickUpChance;
+        _maxHP = _property.hp;
+        _hp = _property.hp;
 
         EnemyAwake();
     }
@@ -105,7 +96,7 @@ public class Enemy : GameBehaviour
 
     public void OverrideProperty(EnemyBaseProperty newProperty)
     {
-        property = newProperty;
+        _property = newProperty;
     }
 
     public void Die()

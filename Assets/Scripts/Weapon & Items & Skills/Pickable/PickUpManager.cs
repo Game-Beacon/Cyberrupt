@@ -50,6 +50,9 @@ public class PickUpManager : GameBehaviour
 
     void SpawnPickUp(Enemy enemy)
     {
+        if (!enemy.property.dieCountAsKill)
+            return;
+
 #if UNITY_EDITOR
         if (alwaysSpawn)
         {
@@ -58,10 +61,7 @@ public class PickUpManager : GameBehaviour
         }
 #endif
 
-        if (enemy.addSpawnPickUpChance == 0)
-            return;
-
-        spawnPickUpChance += enemy.addSpawnPickUpChance;
+        spawnPickUpChance += enemy.property.addSpawnPickUpChance;
 
         while(spawnPickUpChance >= 100)
         {

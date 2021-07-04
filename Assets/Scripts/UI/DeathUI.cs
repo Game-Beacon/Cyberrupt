@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class DeathUI : GameBehaviour
 {
     [SerializeField]
     private GameObject deathUI;
+    [SerializeField]
+    private TextMeshProUGUI scoreText;
+    [SerializeField]
+    private TextMeshProUGUI killCountText;
+    [SerializeField]
+    private TextMeshProUGUI timeText;
     [SerializeField]
     private CanvasGroup canvasGroup;
     private Player player;
@@ -36,10 +42,14 @@ public class DeathUI : GameBehaviour
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
 
+        scoreText.text = GameplayDataManager.instance.score.ToString();
+        killCountText.text = GameplayDataManager.instance.killCount.ToString();
+        timeText.text = GameplayDataManager.instance.timeInString;
+
         foreach (GameBehaviour behaviour in uiBehaviours)
             if (behaviour != this)
                 behaviour.update = false;
 
-        Time.timeScale = 0;
+        TimeManager.PauseGame();
     }
 }

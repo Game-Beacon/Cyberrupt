@@ -95,7 +95,7 @@ Transform:
   m_GameObject: {fileID: 2568402953608215656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 8930571900338321659}
   m_RootOrder: 1
@@ -175,7 +175,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -4849,7 +4849,7 @@ Transform:
   m_GameObject: {fileID: 2837717773676207170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 8930571900338321659}
   m_RootOrder: 0
@@ -4929,7 +4929,7 @@ ParticleSystem:
       m_RotationOrder: 4
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
-  scalingMode: 1
+  scalingMode: 0
   randomSeed: 0
   InitialModule:
     serializedVersion: 3
@@ -9856,7 +9856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 0}
+  _property: {fileID: 0}
   _name: 
   _maxHP: 250
   _hp: 250
@@ -10022,7 +10022,7 @@ Transform:
   m_GameObject: {fileID: 8930571900338321660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 2345672291099926276}
   - {fileID: 7156819314412853856}
@@ -10079,6 +10079,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  size: 4
+  expandTime: 1.75
   weaponLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -10116,7 +10118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8930571900753017795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8930571899641550800}
@@ -10224,7 +10226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: b49f7d7b9c58fdf499a6ea8186a80a1c, type: 2}
+  _property: {fileID: 11400000, guid: b49f7d7b9c58fdf499a6ea8186a80a1c, type: 2}
   _name: Singularity
   _maxHP: 250
   _hp: 250

@@ -80,8 +80,6 @@ public class Petya_KeyAttack : AIState
             yield return new WaitForSeconds(attackHaltTime);
         }
 
-        
-
         Projectile[] final = new Projectile[8];
         for (int j = 0; j < 8; j++)
         {

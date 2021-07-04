@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class AudioManager : GameBehaviour
@@ -43,6 +44,7 @@ public class AudioManager : GameBehaviour
         {
             _instance = this;
             DontKillSelfOnLoad();
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
         else
         {
@@ -227,5 +229,15 @@ public class AudioManager : GameBehaviour
         /*if (phaseShiftCoroutine != null)
             StopCoroutine(phaseShiftCoroutine);*/
         //phaseShiftCoroutine = StartCoroutine(DoPhaseShift());
+    }
+
+    private void OnSceneUnloaded(Scene current)
+    {
+        foreach (AudioSource source in _musicSources)
+            source.Stop();
+        foreach (AudioSource source in _sfxSources)
+            source.Stop();
+        _sfxOneShotSource.Stop();
+        _sfxOneShotSourceIgnore.Stop();
     }
 }

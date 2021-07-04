@@ -33,5 +33,6 @@ MonoBehaviour:
     position: {x: -10.5, y: 2}
   - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
     position: {x: -10.5, y: 4}
+  _isBossWave: 0
   _nextWaveDelay: 0
   _difficulty: 2

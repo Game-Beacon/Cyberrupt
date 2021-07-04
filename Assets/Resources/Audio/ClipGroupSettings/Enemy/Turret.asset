@@ -15,5 +15,5 @@ MonoBehaviour:
   _clips:
   - clip: {fileID: 8300000, guid: a50e8c93197fd3b4aacb2ed221dbd377, type: 3}
     name: Shoot
-    volume: 0.25
+    volume: 0.15
     loop: 0

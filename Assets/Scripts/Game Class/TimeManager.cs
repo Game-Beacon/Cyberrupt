@@ -5,7 +5,8 @@ using UnityEngine.Events;
 
 public static class TimeManager
 {
-    public static bool paused = false;
+    private static bool _paused = false;
+    public static bool paused { get { return _paused; } }
 
     public static UnityEvent OnGamePause { get; } = new UnityEvent();
     public static UnityEvent OnGameUnpause { get; } = new UnityEvent();
@@ -15,13 +16,17 @@ public static class TimeManager
         if (Time.timeScale != 0)
         {
             Time.timeScale = 0;
-            paused = true;
+            _paused = true;
             OnGamePause.Invoke();
         }
-        else
+    }
+
+    public static void UnpauseGame()
+    {
+        if(Time.timeScale == 0)
         {
             Time.timeScale = 1;
-            paused = false;
+            _paused = false;
             OnGameUnpause.Invoke();
         }
     }

@@ -19,5 +19,5 @@ MonoBehaviour:
     loop: 1
   - clip: {fileID: 8300000, guid: 1d00c997e90c11643b8999add8fcf322, type: 3}
     name: Shoot
-    volume: 1
+    volume: 0.7
     loop: 0

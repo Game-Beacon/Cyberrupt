@@ -5027,7 +5027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
+  _property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
   _name: Petya
   _maxHP: 1250
   _hp: 1250

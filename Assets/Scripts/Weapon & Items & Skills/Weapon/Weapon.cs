@@ -128,7 +128,14 @@ public class Weapon
             WeaponBullet bullet = Object.Instantiate(_data.bullet, muzzle.position, rotation);
 
             float multiplier = 1 + Random.Range(-_data.speedRand / 2f, _data.speedRand / 2f);
-            bullet.SetBulletProperty(_data.damage, _data.speed * multiplier, direction);
+            float damage = _data.damage;
+
+#if UNITY_EDITOR
+            if (controller.oneShotKill)
+                damage = 99999999;
+#endif
+
+            bullet.SetBulletProperty(damage, _data.speed * multiplier, direction);
         }
     }
 }

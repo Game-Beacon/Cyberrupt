@@ -15,3 +15,5 @@ MonoBehaviour:
   _hp: 15
   _score: 700
   _addSpawnPickUpChance: 1
+  _dieCountAsKill: 1
+  _rank: 0

@@ -8,7 +8,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 {
     public Transform target { get { return transform; } }
     public float hitRadius { get { return _hitRadius; } }
-    public bool isImmune { get { return isDashing.Value | isHurt | isInIFrame | isDead | isInvulnerable; } }
+    public bool isImmune { get { return isDashing.Value | isHurt | isInIFrame | isDead | _isInvulnerable; } }
     public ReadOnlyReactiveProperty<bool> IsDashing { get; private set; }
     public Vector2 velocity => this.rb.velocity;
 
@@ -56,7 +56,8 @@ public class Player : GameBehaviour, IDanmakuTarget
     private BoolReactiveProperty isDashing = new BoolReactiveProperty();
     private bool isInIFrame = false;
     private bool isDead = false;
-    private bool isInvulnerable = false;
+    private bool _isInvulnerable = false;
+    public bool isInvulnerable { get { return _isInvulnerable; } }
     private bool canDash = true;
 
     public override void GameAwake()
@@ -102,6 +103,9 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     public override void GameUpdate()
     {
+        if (TimeManager.paused)
+            return;
+
         LookAtMouse();
         MoveAndDash();
         _weaponController.UpdateController();
@@ -144,7 +148,7 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     public void SetInvulnerability(bool value)
     {
-        isInvulnerable = value;
+        _isInvulnerable = value;
     }
 
     IEnumerator Dash(Vector2 dir)

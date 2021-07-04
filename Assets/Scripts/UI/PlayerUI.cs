@@ -27,12 +27,10 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private Slider multiplierSlider;
 
-    private float scoreMultipler = 1;
-    private float multiplierExp = 0;
-    private const float multiplierThreshold = 50;
-    private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
-
-    private int score = 0;
+    //private float scoreMultipler = 1;
+    //private float multiplierExp = 0;
+    //private const float multiplierThreshold = 50;
+    //private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
 
     //Weapon
     [SerializeField]
@@ -72,10 +70,11 @@ public class PlayerUI : GameBehaviour
         SetHPAndBomb();
 
         //Score
-        EnemyManager.instance.OnEnemyDied.AddListener(UpdateScore);
-        player.OnReceiveDamage.AddListener(ResetMultiplier);
-        EnemyManager.instance.OnEnemySpawned.AddListener(SubscribeEnemy);
-        EnemyManager.instance.OnEnemyDied.AddListener(UnsubscribeEnemy);
+        GameplayDataManager.instance.OnScoreChange.AddListener(UpdateScore);
+        GameplayDataManager.instance.OnMultiplierChange.AddListener(UpdateMultiplier);
+        //player.OnReceiveDamage.AddListener(ResetMultiplier);
+        //EnemyManager.instance.OnEnemySpawned.AddListener(SubscribeEnemy);
+        //EnemyManager.instance.OnEnemyDied.AddListener(UnsubscribeEnemy);
 
         //Weapon
         player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
@@ -161,46 +160,16 @@ public class PlayerUI : GameBehaviour
     }
 
     //Score
-    public void UpdateScore(Enemy enemy)
+    public void UpdateScore(int score)
     {
-        score += (int)(enemy.score * scoreMultipler);
         string scoreString = score.ToString().PadLeft(8, '0');
         scoreText.text = scoreString;
     }
 
-    public void UpdateMultiplier(float exp)
+    public void UpdateMultiplier(Vector3 data)
     {
-        multiplierExp += exp;
-
-        int level = 0;
-        float trueThreshold = multiplierThreshold * thresholdAmp[level];
-        while (multiplierExp >= trueThreshold)
-        {
-            level++;
-            if (level == thresholdAmp.Length)
-                break;
-            trueThreshold = multiplierThreshold * thresholdAmp[level];
-        }
-
-        scoreMultipler = 1 + 0.5f * level;
-        multiplierSlider.value = Mathf.Clamp01(multiplierExp / trueThreshold);
-        multiplerText.text = "x" + scoreMultipler.ToString();
-    }
-
-    public void ResetMultiplier()
-    {
-        multiplierExp = 0;
-        UpdateMultiplier(0);
-    }
-
-    public void SubscribeEnemy(Enemy enemy)
-    {
-        enemy.OnReceiveDamage.AddListener(UpdateMultiplier);
-    }
-
-    public void UnsubscribeEnemy(Enemy enemy)
-    {
-        enemy.OnReceiveDamage.RemoveListener(UpdateMultiplier);
+        multiplierSlider.value = Mathf.Clamp01(data.x / data.y);
+        multiplerText.text = "x" + data.z.ToString();
     }
 
     //Weapon

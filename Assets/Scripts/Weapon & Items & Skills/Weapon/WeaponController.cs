@@ -5,6 +5,12 @@ using UnityEngine.Events;
 
 public class WeaponController : GameBehaviour
 {
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool _oneShotKill;
+    public bool oneShotKill { get { return _oneShotKill; } }
+#endif
+
     [SerializeField]
     private Transform muzzle;
     [SerializeField]

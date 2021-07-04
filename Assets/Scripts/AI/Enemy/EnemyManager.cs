@@ -7,10 +7,17 @@ public class EnemyManager : GameBehaviour
 {
     public static EnemyManager instance { get; private set; }
 
+    private ScreenBound bound = null;
+    private WarningUI warning = null;
+
     private List<Enemy> enemies = new List<Enemy>();
 
     [SerializeField]
+    private GameObject enemySpawnZone;
+    [SerializeField]
     private EnemyWaveGroup waveGroup;
+    [SerializeField]
+    private int skipWaveCount;
     [SerializeField]
     private bool spawnSpecificWave = false;
     [SerializeField]
@@ -23,7 +30,11 @@ public class EnemyManager : GameBehaviour
     public ObjectEvent<Enemy> OnEnemySpawned { get; } = new ObjectEvent<Enemy>();
     public ObjectEvent<Enemy> OnEnemyDied { get; } = new ObjectEvent<Enemy>();
     public IntEvent OnWaveAdvance { get; } = new IntEvent();
+
+    public GameEvent OnEnterBossWave = new GameEvent();
     public ObjectEvent<Enemy> OnBossSpawn { get; } = new ObjectEvent<Enemy>();
+    public GameEvent OnExitBossWave { get; } = new GameEvent();
+    public GameEvent OnGameClear { get; } = new GameEvent();
 
     public override void GameAwake()
     {
@@ -35,8 +46,16 @@ public class EnemyManager : GameBehaviour
             return;
         }
 
+        waveIndex = skipWaveCount;
+
         if (waveGroup != null)
             waves = waveGroup.GetWaves();
+    }
+
+    public override void GameStart()
+    {
+        bound = ScreenBound.instance;
+        warning = DependencyContainer.GetDependency<WarningUI>() as WarningUI;
     }
 
     public override void GameUpdate()
@@ -81,23 +100,52 @@ public class EnemyManager : GameBehaviour
         }
 #endif
         if (waveIndex <= waves.Length)
+        {
+            if (waves[waveIndex - 1].isBossWave)
+                OnEnterBossWave.Invoke();
+            if (waveIndex - 2 >= 0 && waves[waveIndex - 2].isBossWave)
+                OnExitBossWave.Invoke();
             SpawnWave(waves[waveIndex - 1]);
+        }  
+        else
+            OnGameClear.Invoke();
     }
 
     private void SpawnWave(EnemyWave wave)
     {
         if(wave.isBossWave)
         {
-            //TODO: 目前這方法是假設在打BOSS時只有1隻BOSS，如果BOSS的形式是多隻的話會出事
-            //或許有更好的解法?
-            EnemySpawnData data = wave.spawns[0];
-            Enemy boss = Instantiate(data.enemy, data.position, Quaternion.identity).GetComponent<Enemy>();
-            OnBossSpawn.Invoke(boss);
+            warning.OnWarningDone += () => SpawnBoss(wave);
+            warning.StartWarning();
         }
         else
         {
             foreach (EnemySpawnData data in wave.spawns)
-                Instantiate(data.enemy, data.position, Quaternion.identity);
+            {
+                if (bound.InScreen(data.position))
+                    Instantiate(enemySpawnZone, data.position, Quaternion.identity).GetComponent<EnemySpawnZone>().InjectData(data);
+                else
+                    Instantiate(data.enemy, data.position, Quaternion.identity);
+            }
+        }
+    }
+
+    private void SpawnBoss(EnemyWave wave)
+    {
+        //TODO: 目前這方法是假設在打BOSS時只有1隻BOSS，如果BOSS的形式是多隻的話會出事
+        //或許有更好的解法?
+        EnemySpawnData data = wave.spawns[0];
+
+        if (bound.InScreen(data.position))
+        {
+            EnemySpawnZone zone = Instantiate(enemySpawnZone, data.position, Quaternion.identity).GetComponent<EnemySpawnZone>();
+            zone.InjectData(data);
+            zone.OnEnemySpawn += x => OnBossSpawn.Invoke(x);
+        }
+        else
+        {
+            Enemy boss = Instantiate(data.enemy, data.position, Quaternion.identity).GetComponent<Enemy>();
+            OnBossSpawn.Invoke(boss);
         }
     }
 }

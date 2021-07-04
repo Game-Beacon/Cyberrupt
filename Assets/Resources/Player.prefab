@@ -163,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+  _oneShotKill: 0
   muzzle: {fileID: 2689939326612116246}
   bomb: {fileID: 4364431964054768916, guid: e07904d86f8da20429bbb3829bc1097e, type: 3}
   _bombCount: 2
