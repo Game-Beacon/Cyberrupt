@@ -9,13 +9,14 @@ public class PauseUI : GameBehaviour
     private GameObject pauseUI;
     [SerializeField]
     private CanvasGroup canvasGroup;
+    [SerializeField]
+    private Slider master, music, sfx;
     
     private bool isUIEnable = false;
 
     //These are for god mode, should be removed on the final build.
     [SerializeField]
     private Button godModeButton;
-    private Player player;
 
     public override void GameAwake()
     {
@@ -27,7 +28,7 @@ public class PauseUI : GameBehaviour
 
     public override void GameStart()
     {
-        player = DependencyContainer.GetDependency<Player>() as Player;
+        Player player = DependencyContainer.GetDependency<Player>() as Player;
         godModeButton.onClick.AddListener(() =>
         {
             player.SetInvulnerability(!player.isInvulnerable);
@@ -37,6 +38,14 @@ public class PauseUI : GameBehaviour
             block.selectedColor = block.normalColor;
             godModeButton.colors = block;
         });
+
+        AudioManager manager = AudioManager.instance;
+        master.value = manager.GetVolume("MasterVol");
+        music.value = manager.GetVolume("MusicVol");
+        sfx.value = manager.GetVolume("SfxVol");
+        master.onValueChanged.AddListener(x => manager.SetVolume("MasterVol",x));
+        music.onValueChanged.AddListener(x => manager.SetVolume("MusicVol", x));
+        sfx.onValueChanged.AddListener(x => manager.SetVolume("SfxVol", x));
     }
 
     public override void GameUpdate()
@@ -60,9 +69,9 @@ public class PauseUI : GameBehaviour
             TimeManager.PauseGame();
     }
 
-    /*public void ClosePauseUI()
+    public void ClosePauseUI()
     {
         isUIEnable = false;
         SetPauseUI();
-    }*/
+    }
 }

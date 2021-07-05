@@ -63,6 +63,10 @@ public class AudioManager : GameBehaviour
             requesterDictionary.Add(source, null);
         foreach (AudioSource source in _sfxSources)
             requesterDictionary.Add(source, null);
+
+        SetVolume("MasterVol", 0.75f);
+        SetVolume("MusicVol", 0.75f);
+        SetVolume("SfxVol", 0.75f);
     }
 
     public override void GameUpdate()
@@ -212,16 +216,28 @@ public class AudioManager : GameBehaviour
         return null;
     }
 
+    public float GetVolume(string name)
+    {
+        float value;
+        mixer.GetFloat(name, out value);
+        return Mathf.Pow(10, value / 20f);
+    }
+
+    public void SetVolume(string name, float value)
+    {
+        bool whatever = mixer.SetFloat(name, Mathf.Log10(value) * 20);
+    }
+
     private void OnPause()
     {
         AudioListener.pause = true;
-        mixer.SetFloat("musicLowPass", musicLowPassOn);
+        mixer.SetFloat("MusicLowPass", musicLowPassOn);
     }
 
     private void OnUnpause()
     {
         AudioListener.pause = false;
-        mixer.SetFloat("musicLowPass", musicLowPassOff);
+        mixer.SetFloat("MusicLowPass", musicLowPassOff);
     }
 
     public void MusicPhaseShift()
