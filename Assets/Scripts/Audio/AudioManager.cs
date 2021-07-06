@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -30,6 +31,7 @@ public class AudioManager : GameBehaviour
     private int musicLowPassOff;
     [SerializeField]
     private AnimationCurve musicPhaseShiftCurve;
+    private Coroutine phaseShiftCoroutine = null;
 
     public override void GameAwake()
     {
@@ -227,9 +229,24 @@ public class AudioManager : GameBehaviour
 
     public void MusicPhaseShift()
     {
-        /*if (phaseShiftCoroutine != null)
-            StopCoroutine(phaseShiftCoroutine);*/
-        //phaseShiftCoroutine = StartCoroutine(DoPhaseShift());
+        if (phaseShiftCoroutine != null)
+            StopCoroutine(phaseShiftCoroutine);
+        phaseShiftCoroutine = StartCoroutine(DoPhaseShift());
+    }
+
+    IEnumerator DoPhaseShift()
+    {
+        float time = musicPhaseShiftCurve.keys[musicPhaseShiftCurve.keys.Length - 1].time;
+        float timer = 0;
+
+        while(timer < time)
+        {
+            mixer.SetFloat("MusicPitch", musicPhaseShiftCurve.Evaluate(timer));
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        mixer.SetFloat("MusicPitch", musicPhaseShiftCurve.keys[musicPhaseShiftCurve.keys.Length - 1].value);
     }
 
     private void OnSceneUnloaded(Scene current)

@@ -75,4 +75,9 @@ public class AudioPlayRequester : GameBehaviour
         AudioSource source = manager.PlaySFXInterruptable(this, group.clips[index]);
         playingDictionary[index] = source;
     }
+
+    public void MusicPhaseShift()
+    {
+        manager.MusicPhaseShift();
+    }
 }

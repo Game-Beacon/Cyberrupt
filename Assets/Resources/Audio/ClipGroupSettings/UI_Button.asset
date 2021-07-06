@@ -10,18 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d8b2ecc0ef5a0e40b383d7c57016d28, type: 3}
-  m_Name: Player
+  m_Name: UI_Button
   m_EditorClassIdentifier: 
   _clips:
-  - clip: {fileID: 8300000, guid: 3c5bc2c300a984823a79cab96a8622f7, type: 3}
-    name: Dash
+  - clip: {fileID: 8300000, guid: a308bb3fcfa174ca7a60801952ae6c86, type: 3}
+    name: Hover
     volume: 1
     loop: 0
-  - clip: {fileID: 8300000, guid: cd773f59ddb7246df8caad9ac9bdd56f, type: 3}
-    name: Switch
+  - clip: {fileID: 8300000, guid: c3bc9060b7c1b4b8aa4bb5615b5a4c74, type: 3}
+    name: Click
     volume: 1
-    loop: 0
-  - clip: {fileID: 8300000, guid: 15f38be68a41745498aba70d26a0725f, type: 3}
-    name: Hurt
-    volume: 0.4
     loop: 0

@@ -95,6 +95,8 @@ public class PlayerUI : GameBehaviour
         UpdateAmmoText();
         if (skillIsActive)
             UpdateSkillProgress();
+        if (EnemyManager.instance.delayTimer > 0)
+            SetDelayText();
     }
 
     //Health and Bomb
@@ -256,6 +258,15 @@ public class PlayerUI : GameBehaviour
     }
 
     //Wave
+    public void SetDelayText()
+    {
+        //這也太髒了= =
+        //但我想不到其他比較好的寫法
+        waveText.color = Color.white;
+        waveText.text = "NEXT WAVE WILL BE SPAWNED IN " + Mathf.CeilToInt(EnemyManager.instance.delayTimer).ToString() + "...\n";
+        waveText.text += "[F] FASTFOWARD";
+    }
+
     public void SetWaveText(int wave)
     {
         waveText.text = "Wave " + wave.ToString();

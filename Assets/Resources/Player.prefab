@@ -170,6 +170,20 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 9000501702689615179}
+      _MethodName: MusicPhaseShift
+      _PersistentArguments: []
+    - _Target: {fileID: 9000501702689615179}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnHpChange:
     m_PersistentCalls:
       m_Calls: []

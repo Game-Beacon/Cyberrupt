@@ -1025,8 +1025,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  muteMusic: 0
-  muteSFX: 0
   mixer: {fileID: 24100000, guid: fcb21d9a2a0a49443818c6f938ad1efd, type: 2}
   _musicSources:
   - {fileID: 66677532525783484}

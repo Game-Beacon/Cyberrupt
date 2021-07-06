@@ -10,7 +10,12 @@ public class EnemyManager : GameBehaviour
     private ScreenBound bound = null;
     private WarningUI warning = null;
 
+    private bool startUp = false;
+    private bool isFirstWave = true;
+    private int waveIndex = 0;
+    private EnemyWave[] waves;
     private List<Enemy> enemies = new List<Enemy>();
+    public int enemyCount { get { return enemies.Count; } }
 
     [SerializeField]
     private GameObject enemySpawnZone;
@@ -19,19 +24,21 @@ public class EnemyManager : GameBehaviour
     [SerializeField]
     private int skipWaveCount;
     [SerializeField]
+    private float defaultWaveDelay;
+    [SerializeField]
     private bool spawnSpecificWave = false;
     [SerializeField]
     private EnemyWave specificWave;
 
-    private int waveIndex = 0;
-    public int enemyCount { get { return enemies.Count; } }
-    private EnemyWave[] waves;
+    private float _delayTimer = 0;
+    public float delayTimer { get { return _delayTimer; } }
 
     public ObjectEvent<Enemy> OnEnemySpawned { get; } = new ObjectEvent<Enemy>();
     public ObjectEvent<Enemy> OnEnemyDied { get; } = new ObjectEvent<Enemy>();
+
     public IntEvent OnWaveAdvance { get; } = new IntEvent();
 
-    public GameEvent OnEnterBossWave = new GameEvent();
+    public GameEvent OnEnterBossWave { get; } = new GameEvent();
     public ObjectEvent<Enemy> OnBossSpawn { get; } = new ObjectEvent<Enemy>();
     public GameEvent OnExitBossWave { get; } = new GameEvent();
     public GameEvent OnGameClear { get; } = new GameEvent();
@@ -63,8 +70,14 @@ public class EnemyManager : GameBehaviour
         //訂閱者要在GameStart才能安全獲取EnemyManager的instance（無法保證GameAwake的執行順序）
         //為了確保所有訂閱者都不會漏接事件，把事件最早發生的情形挪到第一個frame的update中
         //但是這感覺不是個好方法...
-        MoveToNextWave();
-        update = false;
+        if(!startUp)
+        {
+            MoveToNextWave();
+            startUp = true;
+        }
+
+        if (_delayTimer > 0 && Input.GetKeyDown(KeyCode.F))
+            _delayTimer = 0;
     }
 
     public void AddEnemy(Enemy enemy)
@@ -90,25 +103,46 @@ public class EnemyManager : GameBehaviour
     {
         waveIndex++;
 
-        OnWaveAdvance.Invoke(waveIndex);
+        if (waveIndex - 2 >= 0 && waves[waveIndex - 2].isBossWave)
+            OnExitBossWave.Invoke();
 
-#if UNITY_EDITOR
-        if(spawnSpecificWave)
+        if (waveIndex > waves.Length)
         {
-            SpawnWave(specificWave);
+            OnGameClear.Invoke();
             return;
         }
-#endif
-        if (waveIndex <= waves.Length)
+
+        StartCoroutine(WaitAndSpawn());
+    }
+
+    IEnumerator WaitAndSpawn()
+    {
+        //生第一波怪的時候不應該出現延遲
+        if(!isFirstWave)
         {
-            if (waves[waveIndex - 1].isBossWave)
-                OnEnterBossWave.Invoke();
-            if (waveIndex - 2 >= 0 && waves[waveIndex - 2].isBossWave)
-                OnExitBossWave.Invoke();
-            SpawnWave(waves[waveIndex - 1]);
-        }  
-        else
-            OnGameClear.Invoke();
+            _delayTimer = (waves[waveIndex - 2].haveWaveDelay) ? waves[waveIndex - 2].nextWaveDelay : defaultWaveDelay;
+
+            while (_delayTimer > 0)
+            {
+                _delayTimer -= Time.deltaTime;
+                yield return null;
+            }
+            _delayTimer = 0;
+        }
+
+        OnWaveAdvance.Invoke(waveIndex);
+        isFirstWave = false;
+
+#if UNITY_EDITOR
+        if (spawnSpecificWave)
+        {
+            SpawnWave(specificWave);
+            yield break;
+        }
+#endif
+        if (waves[waveIndex - 1].isBossWave)
+            OnEnterBossWave.Invoke();
+        SpawnWave(waves[waveIndex - 1]);
     }
 
     private void SpawnWave(EnemyWave wave)
