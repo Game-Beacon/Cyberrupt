@@ -37,7 +37,7 @@ public class WeaponController : GameBehaviour
     public ObjectEvent<Weapon> OnWeaponChange { get; } = new ObjectEvent<Weapon>();
     public IntEvent OnBombCountChange { get; } = new IntEvent();
 
-    public GameEvent OnShoot = new GameEvent();
+    public UltVector2Event OnShoot = new UltVector2Event();
     public GameEvent OnChargeStart = new GameEvent();
     public GameEvent OnChargeStop = new GameEvent();
 

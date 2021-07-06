@@ -47,9 +47,11 @@ public class Player : GameBehaviour, IDanmakuTarget
     public WeaponController weaponController { get { return _weaponController; } }
     public SkillController skillController { get { return _skillController; } }
 
-    public GameEvent OnReceiveDamage = new GameEvent();
+    public UltEvent OnReceiveDamage = new UltEvent();
+    [HideInInspector]
     public IntEvent OnHpChange = new IntEvent();
-    public Vector2Event OnDash = new Vector2Event();
+    public UltVector2Event OnDash = new UltVector2Event();
+    [HideInInspector]
     public GameEvent OnDied = new GameEvent();
 
     private bool isHurt = false;

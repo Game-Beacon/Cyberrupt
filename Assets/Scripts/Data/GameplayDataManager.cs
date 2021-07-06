@@ -52,7 +52,7 @@ public class GameplayDataManager : GameBehaviour
         enemyManager = EnemyManager.instance;
         
         Player player = DependencyContainer.GetDependency<Player>() as Player;
-        player.OnReceiveDamage.AddListener(ResetMultiplier);
+        player.OnReceiveDamage += ResetMultiplier;
 
         enemyManager.OnEnemySpawned.AddListener(SubscribeEnemy);
         enemyManager.OnEnemyDied.AddListener(UnsubscribeEnemy);

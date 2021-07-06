@@ -10,13 +10,6 @@ public class AudioManager : GameBehaviour
     private static AudioManager _instance = null;
     public static AudioManager instance { get { return _instance; } private set { } }
 
-#if UNITY_EDITOR
-    [SerializeField]
-    private bool muteMusic = false;
-    [SerializeField]
-    private bool muteSFX = false;
-#endif
-
     [Space(10), SerializeField]
     private AudioMixer mixer;
     [SerializeField]
@@ -67,14 +60,6 @@ public class AudioManager : GameBehaviour
         SetVolume("MasterVol", 0.75f);
         SetVolume("MusicVol", 0.75f);
         SetVolume("SfxVol", 0.75f);
-    }
-
-    public override void GameUpdate()
-    {
-#if UNITY_EDITOR
-        mixer.SetFloat("musicVol", muteMusic? -80 : 0);
-        mixer.SetFloat("sfxVol", muteSFX ? -80 : 0);
-#endif
     }
 
     private void SetAudioData(AudioSource source, ClipSetting setting)

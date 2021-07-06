@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2689939325969876540}
   - component: {fileID: 2689939325969876543}
   - component: {fileID: 9000501702689615179}
+  - component: {fileID: 425519213825655109}
   - component: {fileID: 2689939325969876537}
   - component: {fileID: 2689939325969876541}
   - component: {fileID: 3505950212219808537}
@@ -103,6 +104,20 @@ MonoBehaviour:
   _executeOrder: 0
   group: {fileID: 11400000, guid: da9875883cc52584fb4924e85a6f369b, type: 2}
   switchWeaponClipIndex: 1
+--- !u!114 &425519213825655109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2689939325969876536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a37df0d7beed643a0de85b8022d356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
 --- !u!114 &2689939325969876537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,25 +142,85 @@ MonoBehaviour:
   dashCoolDown: 0.2
   hurtTime: 2
   OnReceiveDamage:
-    m_PersistentCalls:
-      m_Calls: []
+    _PersistentCalls:
+    - _Target: {fileID: 425519213825655109}
+      _MethodName: CamShake
+      _PersistentArguments:
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.25
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnHpChange:
     m_PersistentCalls:
       m_Calls: []
   OnDash:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9000501702689615179}
-        m_MethodName: PlaySFXOneShot
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    _PersistentCalls:
+    - _Target: {fileID: 9000501702689615179}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 425519213825655109}
+      _MethodName: CamShakeDirectional
+      _PersistentArguments:
+      - _Type: 14
+        _Int: 0
+        _String: 
+        _X: 6
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.4
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.075
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnDied:
     m_PersistentCalls:
       m_Calls: []
@@ -170,19 +245,45 @@ MonoBehaviour:
   baseWeapon: {fileID: 11400000, guid: 4d0b028ef74169843823afc5ee33e951, type: 2}
   timeScale: 1
   OnShoot:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9000501702689615179}
-        m_MethodName: PlayWeaponShootSFX
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+    _PersistentCalls:
+    - _Target: {fileID: 9000501702689615179}
+      _MethodName: PlayWeaponShootSFX
+      _PersistentArguments: []
+    - _Target: {fileID: 425519213825655109}
+      _MethodName: CamShakeDirectional
+      _PersistentArguments:
+      - _Type: 14
+        _Int: 0
+        _String: 
+        _X: 6
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.25
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.05
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnChargeStart:
     m_PersistentCalls:
       m_Calls:
