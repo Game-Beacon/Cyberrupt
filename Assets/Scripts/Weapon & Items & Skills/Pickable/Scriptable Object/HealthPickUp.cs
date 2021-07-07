@@ -11,6 +11,8 @@ public class HealthPickUp : ScriptableObject, IPickable
     private int heal;
     Sprite IPickable.icon { get { return _icon; } }
 
+    PickUpType IPickable.type { get { return PickUpType.Other; } }
+
     public void OnPick(Player player)
     {
         player.AddHp(heal);    

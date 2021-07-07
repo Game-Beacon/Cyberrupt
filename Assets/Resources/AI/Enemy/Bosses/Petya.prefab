@@ -47,7 +47,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4887,6 +4887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8885105824843755120}
   - component: {fileID: 8885105824843755121}
+  - component: {fileID: 408995098708482767}
   - component: {fileID: 8885105824843755114}
   - component: {fileID: 8885105824843755117}
   - component: {fileID: 8885105824843755116}
@@ -4946,6 +4947,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &408995098708482767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885105824843755123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: 11bb6be2be5e9d44e942081ebb5f78fc, type: 2}
 --- !u!114 &8885105824843755114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4972,6 +4988,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747b44041b1d441408f2f162795fd78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pss:
+  - {fileID: 8670706858827966389}
   alpha: 1
   enableColliders: 1
 --- !u!114 &8885105824843755116
@@ -5009,7 +5027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
+  _property: {fileID: 11400000, guid: e19075908a0ff974b852ae4ec0a2fd97, type: 2}
   _name: Petya
   _maxHP: 1250
   _hp: 1250
@@ -5023,6 +5041,9 @@ MonoBehaviour:
     _PersistentCalls:
     - _Target: {fileID: 8885105824843755114}
       _MethodName: KillAll
+      _PersistentArguments: []
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: AllAudioStop
       _PersistentArguments: []
   up: {fileID: 8885105825961994830}
   left: {fileID: 8885105824625593231}
@@ -5047,10 +5068,27 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 4
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 8
   OnTweenOver:
     _PersistentCalls:
@@ -5115,6 +5153,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 4
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   tweenTime: 0.5
 --- !u!114 &8885105824843755115
 MonoBehaviour:
@@ -5130,11 +5179,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 1
   OnEnter:
-    _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 8
   AfterHalfSecond:
     _PersistentCalls:
@@ -5284,11 +5361,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 1
   OnEnter:
-    _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnSpawnRing:
     _PersistentCalls:
     - _Target: {fileID: 8885105824843755114}
@@ -5344,6 +5449,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   startDelay: 1
   spawnCount: 5
   spawnGap: 1.25
@@ -5369,16 +5485,49 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
   fadeTime: 0.5
   haltTime: 0.5
+  OnWarn:
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 5
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnAttack:
-    _PersistentCalls: []
-  OnRecover:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 6
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+  OnFinalAttack:
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 7
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   projectile: {fileID: 2589362944240245619, guid: b03a837788e45b847bb653cf5142c849,
     type: 3}
   attackCount: 5
@@ -5400,10 +5549,27 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 7
   OnTweenOver:
     _PersistentCalls:
@@ -5462,6 +5628,17 @@ MonoBehaviour:
         _Object: {fileID: 0}
       - _Type: 3
         _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 408995098708482767}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 3
         _String: 
         _X: 0
         _Y: 0

@@ -50,6 +50,9 @@ public class PickUpInstance : GameBehaviour
         iconDisplayer.sprite = pickable.icon;
         playerLayer = mask;
         remainTime = remain;
+
+        PickUpTypeData d = PickUpHelper.instance.GetData(data.type);
+        background.color = d.color;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -57,6 +60,7 @@ public class PickUpInstance : GameBehaviour
         if((1 << collision.gameObject.layer & playerLayer) != 0)
         {
             Player player = collision.gameObject.GetComponent<Player>();
+            AudioManager.instance.PlaySFXOneShot(PickUpHelper.instance.GetData(pickable.type).clip);
             pickable.OnPick(player);
             // Ensure that tweeners are killed
             this.clearTween();

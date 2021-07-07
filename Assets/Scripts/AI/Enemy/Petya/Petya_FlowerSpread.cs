@@ -7,7 +7,7 @@ using UltEvents;
 public class Petya_FlowerSpread : AITimerState
 {
     [SerializeField]
-    private UltEvent OnTweenOver = new UltEvent();
+    public UltEvent OnTweenOver = new UltEvent();
     [SerializeField]
     private float tweenTime;
 

@@ -38,6 +38,7 @@ public class HeartBleed_HeartBeat : AIState
 
     IEnumerator StartHeartBeat()
     {
+        enemyGroup.StopParticles();
         enemyGroup.enableColliders = false;
         DOTween.To(() => enemyGroup.alpha, x => enemyGroup.alpha = x, 0, fadeTime);
         yield return new WaitForSeconds(fadeTime);
@@ -56,6 +57,7 @@ public class HeartBleed_HeartBeat : AIState
         DOTween.To(() => enemyGroup.alpha, x => enemyGroup.alpha = x, 1, fadeTime);
         enemyGroup.enableColliders = true;
         yield return new WaitForSeconds(fadeTime);
+        enemyGroup.StartParticles();
         SelfEndState();
     }
 }

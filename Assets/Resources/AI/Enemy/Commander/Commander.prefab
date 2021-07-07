@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 6189702637793147786}
   - component: {fileID: 6189702637793147788}
   - component: {fileID: 6189702637793147791}
+  - component: {fileID: 8452425531505955042}
   - component: {fileID: 6189702637793147790}
   - component: {fileID: 6189702637793147785}
   - component: {fileID: 6189702637793147784}
@@ -389,6 +390,21 @@ PolygonCollider2D:
     - - {x: 1, y: 0}
       - {x: -0.5, y: 0.865}
       - {x: -0.5, y: -0.865}
+--- !u!114 &8452425531505955042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189702637793147797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: 3d611f095b406f341aebfd38a16503d8, type: 2}
 --- !u!114 &6189702637793147790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -434,7 +450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: d90242bda5598e745bfa653e49886d6c, type: 2}
+  _property: {fileID: 11400000, guid: d90242bda5598e745bfa653e49886d6c, type: 2}
   _name: Commander
   _maxHP: 50
   _hp: 50
@@ -542,8 +558,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 8452425531505955042}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
     _PersistentCalls:
     - _Target: {fileID: 4781832175904518458}

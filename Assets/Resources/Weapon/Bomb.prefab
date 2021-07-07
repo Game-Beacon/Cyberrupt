@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4364431964054768917}
+  - component: {fileID: 8882536009069652042}
+  - component: {fileID: 673627620625107253}
   - component: {fileID: 4364431964054768906}
   - component: {fileID: -2058585873532719479}
   - component: {fileID: 7927375959564235417}
@@ -34,6 +36,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8882536009069652042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364431964054768916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a37df0d7beed643a0de85b8022d356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+--- !u!114 &673627620625107253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4364431964054768916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: ca5fbbdee58bca04590ae69c09ec5193, type: 2}
 --- !u!114 &4364431964054768906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,10 +83,46 @@ MonoBehaviour:
   bombTime: 2.5
   expandTime: 1
   ease: 6
-  bombSFX:
-    clip: {fileID: 8300000, guid: 24b40394adff44498963293e8d1c05a3, type: 3}
-    volume: 1
-    loop: 0
+  OnBomb:
+    _PersistentCalls:
+    - _Target: {fileID: 673627620625107253}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 8882536009069652042}
+      _MethodName: CamShake
+      _PersistentArguments:
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.2
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 1
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!58 &-2058585873532719479
 CircleCollider2D:
   m_ObjectHideFlags: 0

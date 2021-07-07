@@ -68,7 +68,7 @@ public class HomingMissile : Enemy, ITarget, ISpawnDanmaku
             OnDeath.Invoke();
 
         if (CollisionLayer.CollideWithMask(collision.gameObject, CollisionLayer.instance.bombMask))
-            OnDeath.Invoke();
+            Die();
     }
 
     public override void OnKilled()

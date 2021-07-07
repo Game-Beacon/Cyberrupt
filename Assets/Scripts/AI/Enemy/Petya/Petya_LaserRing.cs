@@ -6,7 +6,7 @@ using UltEvents;
 public class Petya_LaserRing : AIState
 {
     [Space(20), SerializeField]
-    private UltEvent OnSpawnRing = new UltEvent();
+    public UltEvent OnSpawnRing = new UltEvent();
     [SerializeField]
     private float startDelay;
     [SerializeField]

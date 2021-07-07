@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5005766055670091836}
   - component: {fileID: 5005766055670091833}
   - component: {fileID: 5005766055670091838}
+  - component: {fileID: 6399919727703793787}
   - component: {fileID: 5005766055670091835}
   - component: {fileID: 5005766055670091832}
   m_Layer: 15
@@ -71,9 +72,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 825687553
+  m_SortingLayer: 1
+  m_SortingOrder: 9999
   m_Sprite: {fileID: 21300000, guid: 8015e218841d4b643ad4d2bba5ebed6f, type: 3}
   m_Color: {r: 1, g: 0.2509804, b: 0.2509804, a: 0}
   m_FlipX: 0
@@ -160,6 +161,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6399919727703793787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5005766055670091837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: ad5a8cd5974f0aa459c104e21b81eefd, type: 2}
 --- !u!114 &5005766055670091835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +210,19 @@ MonoBehaviour:
   warnColor: {r: 1, g: 0.2509804, b: 0.2509804, a: 1}
   trigger: {fileID: 5005766055670091833}
   sr: {fileID: 5005766055670091836}
+  OnWarn:
+    _PersistentCalls:
+    - _Target: {fileID: 6399919727703793787}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnHeartBeat:
     _PersistentCalls:
     - _Target: {fileID: 5005766055670091835}
@@ -243,6 +272,28 @@ MonoBehaviour:
         _Object: {fileID: 0}
       - _Type: 3
         _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 6399919727703793787}
+      _MethodName: AudioStop
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 6399919727703793787}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
         _String: 
         _X: 0
         _Y: 0

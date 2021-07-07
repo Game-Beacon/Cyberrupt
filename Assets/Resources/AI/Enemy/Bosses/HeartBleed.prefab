@@ -127,7 +127,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -4882,7 +4882,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 1
+  prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
@@ -14820,6 +14820,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7687829999302750035}
   - component: {fileID: 7687829999302750047}
+  - component: {fileID: 3829289949131161058}
   - component: {fileID: 7687829999302750046}
   - component: {fileID: 7687829999302750042}
   - component: {fileID: 7687829999302750033}
@@ -14877,6 +14878,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3829289949131161058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 522736dcd3b4f4640bdf0e870819001d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 11400000, guid: c29d7c86f771c25419d2a739abd7e6fd, type: 2}
 --- !u!114 &7687829999302750046
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14903,6 +14919,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747b44041b1d441408f2f162795fd78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pss:
+  - {fileID: 548091687677459733}
+  - {fileID: 2219810637799106307}
   alpha: 1
   enableColliders: 1
 --- !u!114 &7687829999302750033
@@ -14919,7 +14938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: 8f35527e26874464a901297ff701734c, type: 2}
+  _property: {fileID: 11400000, guid: 8f35527e26874464a901297ff701734c, type: 2}
   _name: Heart Bleed
   _maxHP: 1250
   _hp: 1250
@@ -14933,6 +14952,9 @@ MonoBehaviour:
     _PersistentCalls:
     - _Target: {fileID: 7687829999302750046}
       _MethodName: KillAll
+      _PersistentArguments: []
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: AllAudioStop
       _PersistentArguments: []
   speed: 0.75
 --- !u!114 &7687829999302750032
@@ -15093,10 +15115,38 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 0
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 6.5
 --- !u!114 &7687829999302750045
 MonoBehaviour:
@@ -15112,9 +15162,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 0
   OnEnter:
+    _PersistentCalls: []
+  OnExit:
+    _PersistentCalls: []
+  count: 6
+  delay: 1
+  OnAttack:
     _PersistentCalls:
     - _Target: {fileID: 7687829999302750046}
-      _MethodName: SpawnParticle
+      _MethodName: SpawnOneShot
       _PersistentArguments:
       - _Type: 13
         _Int: 0
@@ -15134,14 +15190,6 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 7687829999419426637}
-      - _Type: 5
-        _Int: 0
-        _String: 
-        _X: 6.05
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
       - _Type: 1
         _Int: 1
         _String: 
@@ -15174,11 +15222,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
-  OnExit:
-    _PersistentCalls: []
-  time: 6.05
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 2
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!114 &7687829999302750043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15193,8 +15247,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _overrideTransformUpdate: 1
   OnEnter:
-    _PersistentCalls: []
-  OnUpdate:
     _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
@@ -15220,17 +15272,25 @@ MonoBehaviour:
   _overrideTransformUpdate: 0
   OnEnter:
     _PersistentCalls: []
-  OnUpdate:
-    _PersistentCalls: []
   OnExit:
     _PersistentCalls: []
   muzzle: {fileID: 7687829999842499341}
   missile: {fileID: 3777722982980106084, guid: 50959e2ec2cd32e4b83eda2be62c7e2b, type: 3}
-  spawnCount: 10
+  spawnCount: 12
   spawnDelay: 0.1
-  recover: 5
   OnSpawn:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 3
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
 --- !u!114 &7687829999302750041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15307,10 +15367,38 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnUpdate:
-    _PersistentCalls: []
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 1
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 1.5
   muzzle: {fileID: 7687830000904834822}
 --- !u!1 &7687829999369061220

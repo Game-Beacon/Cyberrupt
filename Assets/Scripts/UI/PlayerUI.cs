@@ -27,12 +27,10 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private Slider multiplierSlider;
 
-    private float scoreMultipler = 1;
-    private float multiplierExp = 0;
-    private const float multiplierThreshold = 50;
-    private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
-
-    private int score = 0;
+    //private float scoreMultipler = 1;
+    //private float multiplierExp = 0;
+    //private const float multiplierThreshold = 50;
+    //private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
 
     //Weapon
     [SerializeField]
@@ -46,7 +44,7 @@ public class PlayerUI : GameBehaviour
     [SerializeField]
     private Image skillIconFront;
     [SerializeField]
-    private Image skillIconBack;
+    private Image skillIconBase;
     [SerializeField]
     private TextMeshProUGUI skillName;
     [SerializeField]
@@ -72,10 +70,11 @@ public class PlayerUI : GameBehaviour
         SetHPAndBomb();
 
         //Score
-        EnemyManager.instance.OnEnemyDied.AddListener(UpdateScore);
-        player.OnReceiveDamage.AddListener(ResetMultiplier);
-        EnemyManager.instance.OnEnemySpawned.AddListener(SubscribeEnemy);
-        EnemyManager.instance.OnEnemyDied.AddListener(UnsubscribeEnemy);
+        GameplayDataManager.instance.OnScoreChange.AddListener(UpdateScore);
+        GameplayDataManager.instance.OnMultiplierChange.AddListener(UpdateMultiplier);
+        //player.OnReceiveDamage.AddListener(ResetMultiplier);
+        //EnemyManager.instance.OnEnemySpawned.AddListener(SubscribeEnemy);
+        //EnemyManager.instance.OnEnemyDied.AddListener(UnsubscribeEnemy);
 
         //Weapon
         player.weaponController.OnWeaponChange.AddListener(UpdateWeapon);
@@ -96,6 +95,8 @@ public class PlayerUI : GameBehaviour
         UpdateAmmoText();
         if (skillIsActive)
             UpdateSkillProgress();
+        if (EnemyManager.instance.delayTimer > 0)
+            SetDelayText();
     }
 
     //Health and Bomb
@@ -113,13 +114,6 @@ public class PlayerUI : GameBehaviour
             bombBar.Add(bomb.GetComponent<Image>());
             bombBar[i].sprite = setting.bomb;
         }
-    }
-
-    private void SetWeapon()
-    {
-        weaponIcon.sprite = player.weaponController.currentWeapon.data.icon;
-        weaponName.text = player.weaponController.currentWeapon.data.weaponName;
-        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
     }
 
     public void UpdateHp(int hp)
@@ -168,49 +162,26 @@ public class PlayerUI : GameBehaviour
     }
 
     //Score
-    public void UpdateScore(Enemy enemy)
+    public void UpdateScore(int score)
     {
-        score += (int)(enemy.score * scoreMultipler);
         string scoreString = score.ToString().PadLeft(8, '0');
         scoreText.text = scoreString;
     }
 
-    public void UpdateMultiplier(float exp)
+    public void UpdateMultiplier(Vector3 data)
     {
-        multiplierExp += exp;
-
-        int level = 0;
-        float trueThreshold = multiplierThreshold * thresholdAmp[level];
-        while (multiplierExp >= trueThreshold)
-        {
-            level++;
-            if (level == thresholdAmp.Length)
-                break;
-            trueThreshold = multiplierThreshold * thresholdAmp[level];
-        }
-
-        scoreMultipler = 1 + 0.5f * level;
-        multiplierSlider.value = Mathf.Clamp01(multiplierExp / trueThreshold);
-        multiplerText.text = "x" + scoreMultipler.ToString();
-    }
-
-    public void ResetMultiplier()
-    {
-        multiplierExp = 0;
-        UpdateMultiplier(0);
-    }
-
-    public void SubscribeEnemy(Enemy enemy)
-    {
-        enemy.OnReceiveDamage.AddListener(UpdateMultiplier);
-    }
-
-    public void UnsubscribeEnemy(Enemy enemy)
-    {
-        enemy.OnReceiveDamage.RemoveListener(UpdateMultiplier);
+        multiplierSlider.value = Mathf.Clamp01(data.x / data.y);
+        multiplerText.text = "x" + data.z.ToString();
     }
 
     //Weapon
+    private void SetWeapon()
+    {
+        weaponIcon.sprite = player.weaponController.currentWeapon.data.icon;
+        weaponName.text = player.weaponController.currentWeapon.data.weaponName;
+        weaponAmmo.text = (player.weaponController.currentWeapon.ammoCount < 0) ? "∞" : player.weaponController.currentWeapon.ammoCount.ToString();
+    }
+
     public void UpdateWeapon(Weapon weapon)
     {
         weaponIcon.sprite = weapon.data.icon;
@@ -229,15 +200,14 @@ public class PlayerUI : GameBehaviour
         if(skills.Count == 0)
         {
             skillIconFront.color = Color.clear;
-            skillIconBack.color = Color.clear;
+            skillIconBase.color = new Color(skillIconBase.color.r, skillIconBase.color.g, skillIconBase.color.b, 0);
             skillName.text = "";
         }
         else
         {
             skillIconFront.color = Color.white;
-            skillIconBack.color = new Color(1, 1, 1, 0.25f);
+            skillIconBase.color = new Color(skillIconBase.color.r, skillIconBase.color.g, skillIconBase.color.b, 1);
             skillIconFront.sprite = skills[0].icon;
-            skillIconBack.sprite = skills[0].icon;
             skillName.text = skills[0].skillName;
         }
 
@@ -278,14 +248,25 @@ public class PlayerUI : GameBehaviour
     {
         skillIsActive = false;
         skillIconFront.fillAmount = 1;
+        skillIconBase.fillAmount = 1;
     }
 
     private void UpdateSkillProgress()
     {
         skillIconFront.fillAmount = 1 - playerSkillController.currentSkillTask.progress;
+        skillIconBase.fillAmount = 1 - playerSkillController.currentSkillTask.progress;
     }
 
     //Wave
+    public void SetDelayText()
+    {
+        //這也太髒了= =
+        //但我想不到其他比較好的寫法
+        waveText.color = Color.white;
+        waveText.text = "NEXT WAVE WILL BE SPAWNED IN " + Mathf.CeilToInt(EnemyManager.instance.delayTimer).ToString() + "...\n";
+        waveText.text += "[F] FASTFOWARD";
+    }
+
     public void SetWaveText(int wave)
     {
         waveText.text = "Wave " + wave.ToString();

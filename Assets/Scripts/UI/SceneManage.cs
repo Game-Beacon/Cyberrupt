@@ -8,7 +8,7 @@ public class SceneManage : MonoBehaviour
     {
         //這是為了確保不會陷入遊戲開始時time scale為0的情況
         //總覺得這麼做好像不太好...?
-        Time.timeScale = 1;
+        TimeManager.UnpauseGame();
         SceneManager.LoadScene(1);
     }
 
@@ -16,7 +16,7 @@ public class SceneManage : MonoBehaviour
     {
         //這是為了確保不會陷入遊戲開始時time scale為0的情況
         //總覺得這麼做好像不太好...?
-        Time.timeScale = 1;
+        TimeManager.UnpauseGame();
         SceneManager.LoadScene(0);
     }
 

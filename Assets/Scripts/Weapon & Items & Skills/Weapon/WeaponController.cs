@@ -5,6 +5,12 @@ using UnityEngine.Events;
 
 public class WeaponController : GameBehaviour
 {
+#if UNITY_EDITOR
+    [SerializeField]
+    private bool _oneShotKill;
+    public bool oneShotKill { get { return _oneShotKill; } }
+#endif
+
     [SerializeField]
     private Transform muzzle;
     [SerializeField]
@@ -14,9 +20,6 @@ public class WeaponController : GameBehaviour
     public int bombCount { get { return _bombCount; } }
     [SerializeField]
     private WeaponData baseWeapon;
-
-    [Space(20), SerializeField]
-    private ClipSetting weaponChangeSFX;
 
     private Weapon _currentWeapon;
     public Weapon currentWeapon { get { return _currentWeapon; } }
@@ -33,6 +36,10 @@ public class WeaponController : GameBehaviour
     public FloatEvent OnKeyUp { get; } = new FloatEvent();
     public ObjectEvent<Weapon> OnWeaponChange { get; } = new ObjectEvent<Weapon>();
     public IntEvent OnBombCountChange { get; } = new IntEvent();
+
+    public UltVector2Event OnShoot = new UltVector2Event();
+    public GameEvent OnChargeStart = new GameEvent();
+    public GameEvent OnChargeStop = new GameEvent();
 
     public override void GameAwake()
     {
@@ -79,8 +86,6 @@ public class WeaponController : GameBehaviour
     {
         int index = weapons.IndexOf(_currentWeapon);
         index = (index + 1) % weapons.Count;
-
-        AudioManager.instance.PlaySFX(weaponChangeSFX);
 
         _currentWeapon.OnDeselected();
         _currentWeapon = weapons[index];

@@ -30,7 +30,8 @@ public class PickUpManager : GameBehaviour
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
         foreach(Object obj in objects)
-            pickables.Add(obj as ScriptableObject);
+            if(obj is IPickable)
+                pickables.Add(obj as ScriptableObject);
     }
 
     public override void GameStart()
@@ -49,6 +50,9 @@ public class PickUpManager : GameBehaviour
 
     void SpawnPickUp(Enemy enemy)
     {
+        if (!enemy.property.dieCountAsKill)
+            return;
+
 #if UNITY_EDITOR
         if (alwaysSpawn)
         {
@@ -57,10 +61,7 @@ public class PickUpManager : GameBehaviour
         }
 #endif
 
-        if (enemy.addSpawnPickUpChance == 0)
-            return;
-
-        spawnPickUpChance += enemy.addSpawnPickUpChance;
+        spawnPickUpChance += enemy.property.addSpawnPickUpChance;
 
         while(spawnPickUpChance >= 100)
         {

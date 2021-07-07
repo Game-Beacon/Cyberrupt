@@ -57,6 +57,7 @@ public class Weapon
             controller.OnKeyUp.RemoveListener(Discharge);
             if (charger != null)
                 Object.Destroy(charger.gameObject);
+            controller.OnChargeStop.Invoke();
         }
     }
 
@@ -75,8 +76,6 @@ public class Weapon
         if (coolDown > 0)
             return;
 
-        AudioManager.instance.PlaySFX(data.shootClip);
-
         CreateBullets();
         coolDown = coolDownTime;
         _ammoCount--;
@@ -90,17 +89,19 @@ public class Weapon
 
         chargeMeter += delta;
         if(charger == null)
+        {
             charger = Object.Instantiate(_data.weaponChargeVFX.gameObject, muzzle).GetComponent<WeaponCharger>();
+            controller.OnChargeStart.Invoke();
+        } 
         if(charger != null)
             charger.Charge(Mathf.Clamp01(chargeMeter / _data.chargeTime));
     }
 
     public void Discharge(float delta)
     {
+        controller.OnChargeStop.Invoke();
         if (chargeMeter >= _data.chargeTime)
         {
-            AudioManager.instance.PlaySFX(data.shootClip);
-
             CreateBullets();
             coolDown = coolDownTime;
             _ammoCount--;
@@ -116,7 +117,13 @@ public class Weapon
         //TODO: Let the data be modified dynamically by the modifiers.
         //For example: a buff that increase the cps and spread, then the data needs to be modified.
 
-        //TODO2: Perhaps this should move to WeaponData (The scriptable object that stores weapon information.)? 
+        //TODO2: Perhaps this should move to WeaponData (The scriptable object that stores weapon information.)?
+
+        float angleRaw = muzzle.rotation.eulerAngles.z * Mathf.Deg2Rad;
+        Vector2 dirRaw = new Vector2(Mathf.Cos(angleRaw), Mathf.Sin(angleRaw));
+
+        controller.OnShoot.Invoke(dirRaw);
+
         for (int i = 0; i < _data.cps; i++)
         {
             float angle = muzzle.rotation.eulerAngles.z + Random.Range(-_data.spreadAngle / 2f, _data.spreadAngle / 2f);
@@ -125,7 +132,14 @@ public class Weapon
             WeaponBullet bullet = Object.Instantiate(_data.bullet, muzzle.position, rotation);
 
             float multiplier = 1 + Random.Range(-_data.speedRand / 2f, _data.speedRand / 2f);
-            bullet.SetBulletProperty(_data.damage, _data.speed * multiplier, direction);
+            float damage = _data.damage;
+
+#if UNITY_EDITOR
+            if (controller.oneShotKill)
+                damage = 99999999;
+#endif
+
+            bullet.SetBulletProperty(damage, _data.speed * multiplier, direction);
         }
     }
 }
