@@ -5203,6 +5203,7 @@ GameObject:
   - component: {fileID: 5756876681318020063}
   - component: {fileID: 5756876681318020056}
   - component: {fileID: -4175184368502942395}
+  - component: {fileID: 6034095290009669263}
   m_Layer: 9
   m_Name: Meltdown
   m_TagString: Untagged
@@ -5352,8 +5353,6 @@ MonoBehaviour:
   _name: Meltdown
   _maxHP: 150
   _hp: 150
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls:
     - _Target: {fileID: 5756876681318020066}
@@ -5720,6 +5719,21 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &6034095290009669263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 1.5
 --- !u!1 &5756876681438818701
 GameObject:
   m_ObjectHideFlags: 0
