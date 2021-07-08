@@ -5104,7 +5104,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!212 &5756876681272879180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5444,8 +5444,7 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls:
-    - _Target: {fileID: 5756876681318020066, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
+    - _Target: {fileID: 5756876681318020066}
       _MethodName: SpawnParticle
       _PersistentArguments:
       - _Type: 13
@@ -5506,8 +5505,7 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-    - _Target: {fileID: 5756876681318020066, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
+    - _Target: {fileID: 5756876681318020066}
       _MethodName: SpawnParticle
       _PersistentArguments:
       - _Type: 13
@@ -5568,18 +5566,6 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
-      _MethodName: Play
-      _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: BeforeShoot
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
     - _Target: {fileID: 536635687800966825}
       _MethodName: PlaySFXInterruptable
       _PersistentArguments:
@@ -5591,20 +5577,19 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnExit:
-    _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
+    - _Target: {fileID: -4175184368502942395}
       _MethodName: Play
       _PersistentArguments:
       - _Type: 2
         _Int: 0
-        _String: AfterShoot
+        _String: BeforeShoot
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  OnExit:
+    _PersistentCalls:
     - _Target: {fileID: 536635687800966825}
       _MethodName: AudioFadeOut
       _PersistentArguments:
@@ -5620,6 +5605,17 @@ MonoBehaviour:
         _Int: 0
         _String: 
         _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
         _Y: 0
         _Z: 0
         _W: 0
@@ -5641,20 +5637,7 @@ MonoBehaviour:
   _overrideTransformUpdate: 1
   OnEnter:
     _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
-      _MethodName: Play
-      _PersistentArguments:
-      - _Type: 2
-        _Int: 0
-        _String: BeforeLaser
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-    - _Target: {fileID: 262025692789610741, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
+    - _Target: {fileID: 536635687800966825}
       _MethodName: PlaySFXInterruptable
       _PersistentArguments:
       - _Type: 3
@@ -5665,20 +5648,19 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  OnExit:
-    _PersistentCalls:
-    - _Target: {fileID: 4753145303963829493, guid: 853830f2a868d624e983aa7fab9ddd33,
-        type: 3}
+    - _Target: {fileID: -4175184368502942395}
       _MethodName: Play
       _PersistentArguments:
       - _Type: 2
         _Int: 0
-        _String: AfterLaser
+        _String: BeforeLaser
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  OnExit:
+    _PersistentCalls:
     - _Target: {fileID: 536635687800966825}
       _MethodName: AudioFadeOut
       _PersistentArguments:
@@ -5694,6 +5676,17 @@ MonoBehaviour:
         _Int: 0
         _String: 
         _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
         _Y: 0
         _Z: 0
         _W: 0
@@ -5825,7 +5818,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!212 &5756876681883583411
 SpriteRenderer:
   m_ObjectHideFlags: 0
