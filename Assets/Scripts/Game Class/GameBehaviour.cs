@@ -8,7 +8,7 @@ public class GameBehaviour : MonoBehaviour
     private int _id = -1;   //ID，初始化之前值應該要是-1，初始化之後是任意不重複且不小於零的整數
     public int id { get { return _id; } private set { } }
 
-    [HideInInspector]
+    //[HideInInspector]
     public bool update = true;
     
     private bool _persistent = false;

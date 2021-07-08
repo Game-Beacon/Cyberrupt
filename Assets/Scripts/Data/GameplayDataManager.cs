@@ -53,10 +53,12 @@ public class GameplayDataManager : GameBehaviour
         
         Player player = DependencyContainer.GetDependency<Player>() as Player;
         player.OnReceiveDamage += ResetMultiplier;
+        player.OnDied.AddListener(() => UpdateSaveData(false));
 
         enemyManager.OnEnemySpawned.AddListener(SubscribeEnemy);
         enemyManager.OnEnemyDied.AddListener(UnsubscribeEnemy);
         enemyManager.OnEnemyDied.AddListener(x => UpdateScoreAndKill(x));
+        enemyManager.OnGameClear.AddListener(() => UpdateSaveData(true));
     }
 
     public override void GameUpdate()
@@ -108,5 +110,12 @@ public class GameplayDataManager : GameBehaviour
 
             OnScoreChange.Invoke(_score);
         }
+    }
+
+    public void UpdateSaveData(bool completeGame)
+    {
+        SaveData.current.score = (score > SaveData.current.score) ? score : SaveData.current.score;
+        SaveData.current.completeGame |= completeGame;
+        SaveLoadManager.instance.SaveFile();
     }
 }

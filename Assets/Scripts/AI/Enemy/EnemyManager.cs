@@ -93,10 +93,11 @@ public class EnemyManager : GameBehaviour
     {
         if (enemies.Contains(enemy))
             enemies.Remove(enemy);
-        if (enemyCount == 0)
-            MoveToNextWave();
 
         OnEnemyDied.Invoke(enemy);
+
+        if (enemyCount == 0)
+            MoveToNextWave();
     }
 
     public void MoveToNextWave()
