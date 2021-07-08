@@ -14938,7 +14938,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: 8f35527e26874464a901297ff701734c, type: 2}
+  _property: {fileID: 11400000, guid: 8f35527e26874464a901297ff701734c, type: 2}
   _name: Heart Bleed
   _maxHP: 1250
   _hp: 1250

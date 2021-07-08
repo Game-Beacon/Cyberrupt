@@ -1,20 +1,15 @@
 ﻿using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class AudioManager : GameBehaviour
 {
     private static AudioManager _instance = null;
     public static AudioManager instance { get { return _instance; } private set { } }
-
-#if UNITY_EDITOR
-    [SerializeField]
-    private bool muteMusic = false;
-    [SerializeField]
-    private bool muteSFX = false;
-#endif
 
     [Space(10), SerializeField]
     private AudioMixer mixer;
@@ -36,6 +31,7 @@ public class AudioManager : GameBehaviour
     private int musicLowPassOff;
     [SerializeField]
     private AnimationCurve musicPhaseShiftCurve;
+    private Coroutine phaseShiftCoroutine = null;
 
     public override void GameAwake()
     {
@@ -43,6 +39,7 @@ public class AudioManager : GameBehaviour
         {
             _instance = this;
             DontKillSelfOnLoad();
+            SceneManager.sceneUnloaded += OnSceneUnloaded;
         }
         else
         {
@@ -61,14 +58,10 @@ public class AudioManager : GameBehaviour
             requesterDictionary.Add(source, null);
         foreach (AudioSource source in _sfxSources)
             requesterDictionary.Add(source, null);
-    }
 
-    public override void GameUpdate()
-    {
-#if UNITY_EDITOR
-        mixer.SetFloat("musicVol", muteMusic? -80 : 0);
-        mixer.SetFloat("sfxVol", muteSFX ? -80 : 0);
-#endif
+        SetVolume("MasterVol", 0.75f);
+        SetVolume("MusicVol", 0.75f);
+        SetVolume("SfxVol", 0.75f);
     }
 
     private void SetAudioData(AudioSource source, ClipSetting setting)
@@ -210,22 +203,59 @@ public class AudioManager : GameBehaviour
         return null;
     }
 
+    public float GetVolume(string name)
+    {
+        float value;
+        mixer.GetFloat(name, out value);
+        return Mathf.Pow(10, value / 20f);
+    }
+
+    public void SetVolume(string name, float value)
+    {
+        bool whatever = mixer.SetFloat(name, Mathf.Log10(value) * 20);
+    }
+
     private void OnPause()
     {
         AudioListener.pause = true;
-        mixer.SetFloat("musicLowPass", musicLowPassOn);
+        mixer.SetFloat("MusicLowPass", musicLowPassOn);
     }
 
     private void OnUnpause()
     {
         AudioListener.pause = false;
-        mixer.SetFloat("musicLowPass", musicLowPassOff);
+        mixer.SetFloat("MusicLowPass", musicLowPassOff);
     }
 
     public void MusicPhaseShift()
     {
-        /*if (phaseShiftCoroutine != null)
-            StopCoroutine(phaseShiftCoroutine);*/
-        //phaseShiftCoroutine = StartCoroutine(DoPhaseShift());
+        if (phaseShiftCoroutine != null)
+            StopCoroutine(phaseShiftCoroutine);
+        phaseShiftCoroutine = StartCoroutine(DoPhaseShift());
+    }
+
+    IEnumerator DoPhaseShift()
+    {
+        float time = musicPhaseShiftCurve.keys[musicPhaseShiftCurve.keys.Length - 1].time;
+        float timer = 0;
+
+        while(timer < time)
+        {
+            mixer.SetFloat("MusicPitch", musicPhaseShiftCurve.Evaluate(timer));
+            timer += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        mixer.SetFloat("MusicPitch", musicPhaseShiftCurve.keys[musicPhaseShiftCurve.keys.Length - 1].value);
+    }
+
+    private void OnSceneUnloaded(Scene current)
+    {
+        foreach (AudioSource source in _musicSources)
+            source.Stop();
+        foreach (AudioSource source in _sfxSources)
+            source.Stop();
+        _sfxOneShotSource.Stop();
+        _sfxOneShotSourceIgnore.Stop();
     }
 }

@@ -15,5 +15,9 @@ MonoBehaviour:
   _clips:
   - clip: {fileID: 8300000, guid: e6f91785c9ee241a094b237de240180d, type: 3}
     name: Base BGM
+    volume: 0.4
+    loop: 1
+  - clip: {fileID: 8300000, guid: 16144a04ff2cb514e8bb5bef50a83026, type: 3}
+    name: Boss BGM
     volume: 0.5
     loop: 1

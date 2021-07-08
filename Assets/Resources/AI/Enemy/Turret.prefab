@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
+  _property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
   _name: 
   _maxHP: 15
   _hp: 15
@@ -558,7 +558,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: ea807ff914523d242930c0f4494749a0, type: 2}
+  _property: {fileID: 11400000, guid: ea807ff914523d242930c0f4494749a0, type: 2}
   _name: Turret
   _maxHP: 15
   _hp: 15
@@ -826,7 +826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
+  _property: {fileID: 11400000, guid: bf5e05ea7a4716e4a92b25eed12a44d5, type: 2}
   _name: 
   _maxHP: 15
   _hp: 15
@@ -977,7 +977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3984703758475839824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7694837920568816233}

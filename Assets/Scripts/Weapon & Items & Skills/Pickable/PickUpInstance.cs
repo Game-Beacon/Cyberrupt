@@ -53,7 +53,6 @@ public class PickUpInstance : GameBehaviour
 
         PickUpTypeData d = PickUpHelper.instance.GetData(data.type);
         background.color = d.color;
-        AudioManager.instance.PlaySFXOneShot(d.clip);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

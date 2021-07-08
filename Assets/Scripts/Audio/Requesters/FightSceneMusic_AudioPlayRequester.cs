@@ -4,12 +4,29 @@ using UnityEngine;
 
 public class FightSceneMusic_AudioPlayRequester : AudioPlayRequester
 {
-    private AudioSource music = null;
+    [SerializeField]
+    private float enterBossFadeTime;
+    [SerializeField]
+    private float exitBossFadeTime;
 
     public override void Setup()
     {
         EnemyManager enemyManager = GetComponent<EnemyManager>();
+        PlayMusic(0);
 
-        music = manager.PlayMusic(this, group.clips[0]);
+        enemyManager.OnEnterBossWave.AddListener(EnterBoss);
+        enemyManager.OnBossSpawn.AddListener(_ => PlayMusic(1));
+        enemyManager.OnExitBossWave.AddListener(ExitBoss);
+    }
+
+    public void EnterBoss()
+    {
+        AudioFadeOut(0, enterBossFadeTime);
+    }
+
+    public void ExitBoss()
+    {
+        AudioFadeOut(1, exitBossFadeTime);
+        PlayMusicFadeIn(0, exitBossFadeTime);
     }
 }

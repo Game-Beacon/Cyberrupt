@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Singularity_ForceField : GameBehaviour
 {
+    [SerializeField]
+    private float size;
+    [SerializeField]
+    private float expandTime;
     [SerializeField]
     private LayerMask weaponLayer;
     [SerializeField]
@@ -30,6 +35,9 @@ public class Singularity_ForceField : GameBehaviour
             weakenMask = weakenMask >> 1;
             weaken++;
         }
+
+        Vector3 finalVector = new Vector3(size,size,1);
+        transform.DOScale(finalVector, expandTime);
     }
 
 

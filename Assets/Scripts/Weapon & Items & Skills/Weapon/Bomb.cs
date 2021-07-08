@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UltEvents;
 
 public class Bomb : GameBehaviour, IDanmakuTarget
 {
@@ -20,6 +21,8 @@ public class Bomb : GameBehaviour, IDanmakuTarget
     private float expandTime;
     [SerializeField]
     private Easing ease;
+    [SerializeField]
+    public UltEvent OnBomb = new UltEvent();
 
     private DanmakuManager danmakuManager;
     private DanmakuObstacle obstacle;
@@ -31,6 +34,7 @@ public class Bomb : GameBehaviour, IDanmakuTarget
         danmakuManager = DanmakuManager.instance;
         obstacle = danmakuManager.AddObstacle(this);
         circleCollider = GetComponent<CircleCollider2D>();
+        OnBomb.Invoke();
     }
 
     public override void GameUpdate()

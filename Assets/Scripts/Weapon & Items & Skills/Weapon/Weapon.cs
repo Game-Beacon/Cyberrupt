@@ -118,7 +118,11 @@ public class Weapon
         //For example: a buff that increase the cps and spread, then the data needs to be modified.
 
         //TODO2: Perhaps this should move to WeaponData (The scriptable object that stores weapon information.)?
-        controller.OnShoot.Invoke();
+
+        float angleRaw = muzzle.rotation.eulerAngles.z * Mathf.Deg2Rad;
+        Vector2 dirRaw = new Vector2(Mathf.Cos(angleRaw), Mathf.Sin(angleRaw));
+
+        controller.OnShoot.Invoke(dirRaw);
 
         for (int i = 0; i < _data.cps; i++)
         {
@@ -128,7 +132,14 @@ public class Weapon
             WeaponBullet bullet = Object.Instantiate(_data.bullet, muzzle.position, rotation);
 
             float multiplier = 1 + Random.Range(-_data.speedRand / 2f, _data.speedRand / 2f);
-            bullet.SetBulletProperty(_data.damage, _data.speed * multiplier, direction);
+            float damage = _data.damage;
+
+#if UNITY_EDITOR
+            if (controller.oneShotKill)
+                damage = 99999999;
+#endif
+
+            bullet.SetBulletProperty(damage, _data.speed * multiplier, direction);
         }
     }
 }

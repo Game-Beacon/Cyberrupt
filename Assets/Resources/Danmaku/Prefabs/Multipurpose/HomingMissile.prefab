@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  property: {fileID: 11400000, guid: 74aee48ffdd6725419cfb9023120b9e9, type: 2}
+  _property: {fileID: 11400000, guid: 74aee48ffdd6725419cfb9023120b9e9, type: 2}
   _name: 
   _maxHP: 1
   _hp: 1
@@ -230,61 +230,6 @@ MonoBehaviour:
     - _Target: {fileID: 3202968057635070222}
       _MethodName: PlaySFXOneShot
       _PersistentArguments:
-      - _Type: 3
-        _Int: 0
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-  OnDeathByBomb:
-    _PersistentCalls:
-    - _Target: {fileID: 3777722982980106088}
-      _MethodName: SpawnOneShot
-      _PersistentArguments:
-      - _Type: 13
-        _Int: 0
-        _String: DanmakuParticleData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 11400000, guid: 898092c951f5dc04ba2cfc464d3b7daf, type: 2}
-      - _Type: 13
-        _Int: 0
-        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 3777722982254112941}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
       - _Type: 3
         _Int: 0
         _String: 

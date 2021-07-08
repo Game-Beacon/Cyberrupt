@@ -21,3 +21,7 @@ MonoBehaviour:
     name: Switch
     volume: 1
     loop: 0
+  - clip: {fileID: 8300000, guid: 15f38be68a41745498aba70d26a0725f, type: 3}
+    name: Hurt
+    volume: 0.4
+    loop: 0

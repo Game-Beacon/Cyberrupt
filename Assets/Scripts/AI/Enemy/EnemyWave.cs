@@ -29,6 +29,11 @@ public class EnemyWave : ScriptableObject
     private bool _isBossWave;
     public bool isBossWave { get { return _isBossWave; } private set { } }
 
+    //Use delay?
+    [SerializeField]
+    private bool _haveWaveDelay;
+    public bool haveWaveDelay { get { return _haveWaveDelay; } }
+
     //The delay to start the new wave after the current wave is finished.
     [SerializeField]
     private int _nextWaveDelay;
