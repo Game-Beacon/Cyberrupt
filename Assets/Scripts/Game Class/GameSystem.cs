@@ -37,6 +37,9 @@ public class GameSystem : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (TimeManager.paused)
+            return;
+
         foreach (GameBehaviour behaviour in behaviours)
             if (behaviour != null && behaviour.update)
                 behaviour.GameUpdate();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using DG.Tweening;
 
 public class DeathUI : GameBehaviour
 {
@@ -15,6 +16,14 @@ public class DeathUI : GameBehaviour
     private TextMeshProUGUI timeText;
     [SerializeField]
     private CanvasGroup canvasGroup;
+
+    [Space(10), SerializeField]
+    private GameObject killHide;
+    [SerializeField]
+    private float shakeTime;
+    [SerializeField]
+    private float uiFadeTime;
+
     private Player player;
 
     private GameBehaviour[] uiBehaviours;
@@ -30,15 +39,26 @@ public class DeathUI : GameBehaviour
     public override void GameStart()
     {
         player = DependencyContainer.GetDependency<Player>() as Player;
-        player.OnDied.AddListener(OpenDeathUI);
+        player.OnDied.AddListener(Death);
 
         uiBehaviours = GetComponents<GameBehaviour>();
     }
 
-    private void OpenDeathUI()
+    public void Death()
     {
         deathUI.SetActive(true);
-        canvasGroup.alpha = 1;
+        StartCoroutine(OpenDeathUI());
+    }
+
+    IEnumerator OpenDeathUI()
+    {
+        Instantiate(killHide, new Vector3(0, 0, -1), Quaternion.identity);
+        AudioManager.instance.StopAllAudio();
+        CameraController.instance.CamShake(shakeTime, 0.3f, true, true);
+
+        yield return new WaitForSecondsRealtime(shakeTime);
+
+        TimeManager.PauseGame();
         canvasGroup.interactable = true;
         canvasGroup.blocksRaycasts = true;
 
@@ -50,6 +70,6 @@ public class DeathUI : GameBehaviour
             if (behaviour != this)
                 behaviour.update = false;
 
-        TimeManager.PauseGame();
+        canvasGroup.DOFade(1, uiFadeTime).SetUpdate(true);
     }
 }

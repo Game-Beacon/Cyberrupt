@@ -375,6 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56003553}
   - component: {fileID: 56003554}
+  - component: {fileID: 56003555}
   m_Layer: 5
   m_Name: PauseUI
   m_TagString: Untagged
@@ -419,6 +420,26 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &56003555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56003552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1603eed7c6f1eea45b15c3dfad7907e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  pauseUI: {fileID: 56003552}
+  canvasGroup: {fileID: 56003554}
+  master: {fileID: 1859425236}
+  music: {fileID: 1391990954}
+  sfx: {fileID: 1365008572}
+  godModeButton: {fileID: 1997303753}
 --- !u!1 &56464788
 GameObject:
   m_ObjectHideFlags: 0
@@ -2010,6 +2031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 316230157}
   - component: {fileID: 316230158}
+  - component: {fileID: 316230159}
   m_Layer: 5
   m_Name: DeathUI
   m_TagString: Untagged
@@ -2053,6 +2075,29 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &316230159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 316230156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc41532963117949a428e59598ac2ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  deathUI: {fileID: 316230156}
+  scoreText: {fileID: 1203982841}
+  killCountText: {fileID: 1193967720}
+  timeText: {fileID: 1646993604}
+  canvasGroup: {fileID: 316230158}
+  killHide: {fileID: 4497365965027463900, guid: 00261b5be9985ad40b0bb727d981ec42,
+    type: 3}
+  shakeTime: 1
+  uiFadeTime: 1
 --- !u!1 &334822028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2637,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Parallex Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossColor.b
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossColor.g
+      value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: exitBossTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: enterBossTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossVerticalSpeed
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
+        type: 3}
+      propertyPath: bossHorizontalTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1054680017717767887, guid: 62f49732840453544ae257a4877cca54,
         type: 3}
@@ -4812,6 +4897,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1117815509}
   - component: {fileID: 1117815510}
+  - component: {fileID: 1117815511}
   m_Layer: 5
   m_Name: WinUI
   m_TagString: Untagged
@@ -4854,6 +4940,31 @@ CanvasGroup:
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
+--- !u!114 &1117815511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117815508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72dddb71f7eb5ab44b248bd4784a636a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  winUI: {fileID: 1117815508}
+  background: {fileID: 153722122}
+  scoreText: {fileID: 1512613363}
+  killCountText: {fileID: 1260063699}
+  timeText: {fileID: 1376390171}
+  canvasGroup: {fileID: 1117815510}
+  waitTime: 2
+  bgFadeTime: 5
+  uiFadeTime: 0.5
+  camShakeStrenth: 0.3
+  camShakeEase: 2
 --- !u!1 &1142805224
 GameObject:
   m_ObjectHideFlags: 0
@@ -6892,11 +7003,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 2689939325969876541, guid: ecc1538b5f7be5f46929321b4a1a82e1,
-        type: 3}
-      propertyPath: _oneShotKill
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
       propertyPath: m_RootOrder
@@ -6915,7 +7021,7 @@ PrefabInstance:
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
@@ -7325,7 +7431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: 52268df8eab73df4084f7bf966721455, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_Maskable: 1
@@ -8257,11 +8363,6 @@ GameObject:
   - component: {fileID: 1712293513}
   - component: {fileID: 1712293512}
   - component: {fileID: 1712293521}
-  - component: {fileID: 1712293517}
-  - component: {fileID: 1712293516}
-  - component: {fileID: 1712293518}
-  - component: {fileID: 1712293519}
-  - component: {fileID: 1712293520}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -8354,115 +8455,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1712293516
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712293511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78a03031b4ef21e4bb09f20db3de8340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  healthBar: {fileID: 442855270}
-  bossName: {fileID: 619861163}
-  canvasGroup: {fileID: 1901202574}
-  checker: {fileID: 1901202575}
---- !u!114 &1712293517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712293511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b9570df657a89f4ebba74a0c7a89c19, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  playerHpBar: {fileID: 1490962109}
-  playerBombBar: {fileID: 81369145}
-  scoreText: {fileID: 741658089}
-  multiplerText: {fileID: 1167593946}
-  multiplierSlider: {fileID: 282969191}
-  weaponIcon: {fileID: 1757711423}
-  weaponName: {fileID: 313585966}
-  weaponAmmo: {fileID: 1104296023}
-  skillIconFront: {fileID: 1910317992}
-  skillIconBase: {fileID: 1925032815}
-  skillName: {fileID: 907044687}
-  playerSkillList: {fileID: 852190871}
-  waveText: {fileID: 72456556}
---- !u!114 &1712293518
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712293511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1603eed7c6f1eea45b15c3dfad7907e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  pauseUI: {fileID: 56003552}
-  canvasGroup: {fileID: 56003554}
-  master: {fileID: 1859425236}
-  music: {fileID: 1391990954}
-  sfx: {fileID: 1365008572}
-  godModeButton: {fileID: 1997303753}
---- !u!114 &1712293519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712293511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc41532963117949a428e59598ac2ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  deathUI: {fileID: 316230156}
-  scoreText: {fileID: 1203982841}
-  killCountText: {fileID: 1193967720}
-  timeText: {fileID: 1646993604}
-  canvasGroup: {fileID: 316230158}
---- !u!114 &1712293520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1712293511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72dddb71f7eb5ab44b248bd4784a636a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  winUI: {fileID: 1117815508}
-  background: {fileID: 153722122}
-  scoreText: {fileID: 1512613363}
-  killCountText: {fileID: 1260063699}
-  timeText: {fileID: 1376390171}
-  canvasGroup: {fileID: 1117815510}
-  waitTime: 2
-  bgFadeTime: 5
-  uiFadeTime: 0.5
-  camShakeStrenth: 0.3
-  camShakeEase: 2
 --- !u!114 &1712293521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9507,6 +9499,7 @@ GameObject:
   - component: {fileID: 1901202573}
   - component: {fileID: 1901202574}
   - component: {fileID: 1901202575}
+  - component: {fileID: 1901202576}
   m_Layer: 5
   m_Name: BossUI
   m_TagString: Untagged
@@ -9561,6 +9554,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+--- !u!114 &1901202576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901202572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a03031b4ef21e4bb09f20db3de8340, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  healthBar: {fileID: 442855270}
+  bossName: {fileID: 619861163}
+  canvasGroup: {fileID: 1901202574}
+  checker: {fileID: 1901202575}
 --- !u!1 &1910317990
 GameObject:
   m_ObjectHideFlags: 0
@@ -10351,6 +10362,7 @@ GameObject:
   - component: {fileID: 2137906989}
   - component: {fileID: 2137906991}
   - component: {fileID: 2137906990}
+  - component: {fileID: 2137906992}
   m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
@@ -10402,6 +10414,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137906988}
   m_CullTransparentMesh: 0
+--- !u!114 &2137906992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137906988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9570df657a89f4ebba74a0c7a89c19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  group: {fileID: 2137906990}
+  playerHpBar: {fileID: 1490962109}
+  playerBombBar: {fileID: 81369145}
+  scoreText: {fileID: 741658089}
+  multiplerText: {fileID: 1167593946}
+  multiplierSlider: {fileID: 282969191}
+  weaponIcon: {fileID: 1757711423}
+  weaponName: {fileID: 313585966}
+  weaponAmmo: {fileID: 1104296023}
+  skillIconFront: {fileID: 1910317992}
+  skillIconBase: {fileID: 1925032815}
+  skillName: {fileID: 907044687}
+  playerSkillList: {fileID: 852190871}
+  waveText: {fileID: 72456556}
 --- !u!1001 &66677532838995101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10888,7 +10928,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1712293518}
+      - m_Target: {fileID: 56003555}
         m_MethodName: ClosePauseUI
         m_Mode: 1
         m_Arguments:

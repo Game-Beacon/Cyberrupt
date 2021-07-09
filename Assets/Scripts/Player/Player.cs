@@ -37,6 +37,7 @@ public class Player : GameBehaviour, IDanmakuTarget
     private float hurtTime;
 
     private Rigidbody2D rb;
+    private Collider2D c2D;
     private WeaponController _weaponController;
     private SkillController _skillController;
     private DanmakuManager danmakuManager;
@@ -76,6 +77,7 @@ public class Player : GameBehaviour, IDanmakuTarget
         danmakuManager.SetDanmakuTarget(this);
         danmakuManager.bulletHitTarget.AddListener(OnHit);
         rb = GetComponent<Rigidbody2D>();
+        c2D = GetComponent<Collider2D>();
         cam = Camera.main;
     }
 
@@ -90,6 +92,8 @@ public class Player : GameBehaviour, IDanmakuTarget
             {
                 isDead = true;
                 update = false;
+                c2D.enabled = false;
+                rb.velocity = Vector2.zero;
                 OnDied.Invoke();
             }
             StartCoroutine(AfterHurt(hurtTime));
@@ -98,14 +102,13 @@ public class Player : GameBehaviour, IDanmakuTarget
 
     public void AddHp(int count)
     {
-        //_hp = (_hp + count > _maxHp) ? _maxHp : _hp + count;
         _hp += count;
         OnHpChange.Invoke(_hp);
     }
 
     public override void GameUpdate()
     {
-        if (TimeManager.paused)
+        if (_hp <= 0)
             return;
 
         LookAtMouse();

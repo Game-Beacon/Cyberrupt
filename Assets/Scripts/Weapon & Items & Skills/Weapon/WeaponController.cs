@@ -71,10 +71,10 @@ public class WeaponController : GameBehaviour
         if (_currentWeapon.ammoCount == 0)
             RemoveWeapon(_currentWeapon);
 
-        if (Input.GetKeyDown(KeyCode.Q))
-            SwitchWeapon();
+        if (Input.mouseScrollDelta.y != 0)
+            SwitchWeapon(Input.mouseScrollDelta.y);
 
-        if (Input.GetKeyDown(KeyCode.R) && _bombCount > 0)
+        if (Input.GetKeyDown(KeyCode.Q) && _bombCount > 0)
         {
             Instantiate(bomb, transform.position, Quaternion.identity);
             _bombCount--;
@@ -82,10 +82,19 @@ public class WeaponController : GameBehaviour
         }  
     }
 
-    private void SwitchWeapon()
+    private void SwitchWeapon(float delta)
     {
+        if (weapons.Count < 2)
+            return;
+
         int index = weapons.IndexOf(_currentWeapon);
-        index = (index + 1) % weapons.Count;
+        if (delta > 0)
+            index = (index + 1) % weapons.Count;
+        else
+            index = (index + weapons.Count - 1) % weapons.Count;
+
+        keyDown = false;
+        keyUp = false;
 
         _currentWeapon.OnDeselected();
         _currentWeapon = weapons[index];

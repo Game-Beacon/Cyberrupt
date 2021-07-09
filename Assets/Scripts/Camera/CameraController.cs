@@ -41,22 +41,22 @@ public class CameraController : GameBehaviour
         cam.transform.position = new Vector3(totalOffset.x, totalOffset.y, cam.transform.position.z);
     }
 
-    public void CamShakeDirectional(Vector2 direction, float time, float strenth, bool burstShake = true)
+    public void CamShakeDirectional(Vector2 direction, float time, float strenth, bool burstShake = true, bool useScaledDeltaTime = true)
     {
-        StartCoroutine(Shake(direction.normalized, time, strenth, burstShake));
+        StartCoroutine(Shake(direction.normalized, time, strenth, burstShake, useScaledDeltaTime));
     }
 
-    public void CamShake(float time, float strenth, bool burstShake = true)
+    public void CamShake(float time, float strenth, bool burstShake = true, bool useScaledDeltaTime = true)
     {
-        StartCoroutine(Shake(Vector2.zero, time, strenth, burstShake));
+        StartCoroutine(Shake(Vector2.zero, time, strenth, burstShake, useScaledDeltaTime));
     }
 
-    public void CamShakeEase(float time, float strenth, Easing ease, bool startFromZero)
+    public void CamShakeEase(float time, float strenth, Easing ease, bool startFromZero, bool useScaledDeltaTime = true)
     {
-        StartCoroutine(ShakeEase(Vector2.zero, time, strenth, ease, startFromZero));
+        StartCoroutine(ShakeEase(Vector2.zero, time, strenth, ease, startFromZero, useScaledDeltaTime));
     }
 
-    IEnumerator Shake(Vector2 dirNormed, float time, float strenth, bool burstShake)
+    IEnumerator Shake(Vector2 dirNormed, float time, float strenth, bool burstShake, bool useScaledDeltaTime)
     {
         int shakeIndex = -1;
         for(int i = 0; i < shakes.Length; i++)
@@ -76,7 +76,7 @@ public class CameraController : GameBehaviour
         float actualStr;
         while (timer < time)
         {
-            timer += Time.deltaTime;
+            timer += (useScaledDeltaTime)? Time.deltaTime : Time.unscaledDeltaTime;
             actualDir = (dirNormed == Vector2.zero) ? Random.insideUnitCircle.normalized : dirNormed;
             actualStr = (burstShake) ? strenth * (1 - EaseLibrary.CallEaseFunction(camShakeEase, timer / time)) : strenth;
             shakes[shakeIndex].offset = actualDir * Mathf.Cos(timer * 6.2832f * vibro) * actualStr;
@@ -87,7 +87,7 @@ public class CameraController : GameBehaviour
         shakes[shakeIndex].locked = false;
     }
 
-    IEnumerator ShakeEase(Vector2 dirNormed, float time, float strenth, Easing ease, bool startFromZero)
+    IEnumerator ShakeEase(Vector2 dirNormed, float time, float strenth, Easing ease, bool startFromZero, bool useScaledDeltaTime)
     {
         int shakeIndex = -1;
         for (int i = 0; i < shakes.Length; i++)
@@ -107,7 +107,7 @@ public class CameraController : GameBehaviour
         float actualStr;
         while (timer < time)
         {
-            timer += Time.deltaTime;
+            timer += (useScaledDeltaTime) ? Time.deltaTime : Time.unscaledDeltaTime;
             actualDir = (dirNormed == Vector2.zero) ? Random.insideUnitCircle.normalized : dirNormed;
             actualStr = strenth * ((startFromZero)? EaseLibrary.CallEaseFunction(ease, timer / time) : (1 - EaseLibrary.CallEaseFunction(ease, timer / time)));
             shakes[shakeIndex].offset = actualDir * Mathf.Cos(timer * 6.2832f * vibro) * actualStr;

@@ -50,6 +50,7 @@ public class WinUI : GameBehaviour
 
     private void OpenWinUI()
     {
+        winUI.SetActive(true);
         StartCoroutine(UIFadeIn());
     }
 

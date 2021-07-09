@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-public class Fake3DBackground : MonoBehaviour
+public class Fake3DBackground : GameBehaviour
 {
     [SerializeField]
     private Color color;
@@ -40,6 +41,22 @@ public class Fake3DBackground : MonoBehaviour
     [SerializeField]
     private float circuitWidth;
 
+    [Space(10), SerializeField]
+    private Color bossColor;
+    [SerializeField]
+    private float bossVerticalSpeed;
+    [SerializeField]
+    private float bossHorizontalTime;
+    [SerializeField]
+    private float enterBossTime;
+    [SerializeField]
+    private float exitBossTime;
+
+    private Color normalColor;
+    private float normalVerticalSpeed;
+    private float normalHorizontalTime;
+
+
     private class HorizontalLineData
     {
         public LineRenderer lr;
@@ -62,7 +79,7 @@ public class Fake3DBackground : MonoBehaviour
     private List<LineRenderer> verticals = new List<LineRenderer>();
     private List<HorizontalLineData> horizontals = new List<HorizontalLineData>();
 
-    private void Start()
+    public override void GameStart()
     {
         cam = Camera.main;
         camHeight = cam.orthographicSize * 2;
@@ -116,11 +133,17 @@ public class Fake3DBackground : MonoBehaviour
         }
 
         previousColor = color;
-
         ModifyColor();
+
+        normalColor = color;
+        normalHorizontalTime = horizontalMoveTime;
+        normalVerticalSpeed = verticalMoveSpeed;
+
+        EnemyManager.instance.OnEnterBossWave.AddListener(EnterBoss);
+        EnemyManager.instance.OnExitBossWave.AddListener(ExitBoss);
     }
 
-    private void FixedUpdate()
+    public override void GameFixedUpdate()
     {
         for (int i = 0; i < verticals.Count; i++)
         {
@@ -189,5 +212,19 @@ public class Fake3DBackground : MonoBehaviour
         lr.SetColors(start, end);
         lr.SetPosition(0, startPos);
         lr.SetPosition(1, endPos);
+    }
+
+    public void EnterBoss()
+    {
+        DOTween.To(() => color, x => color = x, bossColor, enterBossTime);
+        DOTween.To(() => verticalMoveSpeed, x => verticalMoveSpeed = x, bossVerticalSpeed, enterBossTime);
+        DOTween.To(() => horizontalMoveTime, x => horizontalMoveTime = x, bossHorizontalTime, enterBossTime);
+    }
+
+    public void ExitBoss()
+    {
+        DOTween.To(() => color, x => color = x, normalColor, enterBossTime);
+        DOTween.To(() => verticalMoveSpeed, x => verticalMoveSpeed = x, normalVerticalSpeed, exitBossTime);
+        DOTween.To(() => horizontalMoveTime, x => horizontalMoveTime = x, normalHorizontalTime, exitBossTime);
     }
 }

@@ -183,6 +183,20 @@ public class AudioManager : GameBehaviour
         _sfxOneShotSourceIgnore.PlayOneShot(setting.clip, setting.volume);
     }
 
+    public void StopAllAudio()
+    {
+        List<AudioSource> sources = requesterDictionary.Keys.ToList();
+
+        foreach (AudioSource source in sources)
+        {
+            if (source.isPlaying)
+            {
+                source.Stop();
+                requesterDictionary[source] = null;
+            }
+        }
+    }
+
     private AudioSource FindIdleMusicSource()
     {
         foreach (AudioSource source in _musicSources)

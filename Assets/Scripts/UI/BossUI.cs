@@ -20,7 +20,9 @@ public class BossUI : GameBehaviour
     public override void GameStart()
     {
         checker.update = false;
+        Player player = DependencyContainer.GetDependency<Player>() as Player;
         EnemyManager.instance.OnBossSpawn.AddListener(ShowBossUI);
+        player.OnDied.AddListener(DisableUI);
     }
 
     public override void GameUpdate()
@@ -29,6 +31,7 @@ public class BossUI : GameBehaviour
             healthBar.value = boss.hp / boss.maxHP;
     }
 
+    
     private void ShowBossUI(Enemy inputBoss)
     {
         boss = inputBoss;
@@ -44,5 +47,12 @@ public class BossUI : GameBehaviour
         checker.update = false;
         boss = null;
         DOTween.To(() => canvasGroup.alpha, x => canvasGroup.alpha = x, 0, 0.5f);
+    }
+
+    public void DisableUI()
+    {
+        canvasGroup.alpha = 0;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
     }
 }

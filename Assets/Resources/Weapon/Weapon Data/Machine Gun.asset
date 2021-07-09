@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7110771be2f564383f920dcc65494c, type: 3}
   m_Name: Machine Gun
   m_EditorClassIdentifier: 
-  _weaponName: Galting
+  _weaponName: GATLING
   _icon: {fileID: 21300000, guid: 255d28baa7073dc4c9ef8f164c403ffa, type: 3}
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
   _damage: 3
@@ -26,9 +26,11 @@ MonoBehaviour:
   _weaponChargeVFX: {fileID: 0}
   _shootClip:
     clip: {fileID: 8300000, guid: da4ab8eae901249f3861fb652351e139, type: 3}
+    name: 
     volume: 1
     loop: 0
   _chargeClip:
     clip: {fileID: 0}
+    name: 
     volume: 0
     loop: 0

@@ -24,6 +24,7 @@ public class SaveLoadManager : GameBehaviour
 
         //除非確定之後會對存/讀檔有重大更改，不然建議別動這行
         pathString = Application.persistentDataPath + "/SaveFile.save";
+        Debug.Log(pathString);
         LoadFile();
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd7110771be2f564383f920dcc65494c, type: 3}
   m_Name: BaseWeapon
   m_EditorClassIdentifier: 
-  _weaponName: Base
+  _weaponName: SIDEARM
   _icon: {fileID: 21300000, guid: bd8d4974c6af88f4aa4a0beeb22212a2, type: 3}
   _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
   _damage: 4

@@ -11,6 +11,9 @@ public class PlayerUI : GameBehaviour
     private Player player;
     private PlayerUISetting setting;
 
+    [SerializeField]
+    private CanvasGroup group;
+
     //Health and Bomb
     [SerializeField]
     private GameObject playerHpBar;
@@ -64,6 +67,8 @@ public class PlayerUI : GameBehaviour
         setting = PlayerUISetting.instance;
         player = DependencyContainer.GetDependency<Player>() as Player;
 
+        player.OnDied.AddListener(DisableUI);
+
         //Health and Bomb
         player.OnHpChange.AddListener(UpdateHp);
         player.weaponController.OnBombCountChange.AddListener(UpdateBomb);
@@ -97,6 +102,13 @@ public class PlayerUI : GameBehaviour
             UpdateSkillProgress();
         if (EnemyManager.instance.delayTimer > 0)
             SetDelayText();
+    }
+
+    public void DisableUI()
+    {
+        group.alpha = 0;
+        group.interactable = false;
+        group.blocksRaycasts = false;
     }
 
     //Health and Bomb
