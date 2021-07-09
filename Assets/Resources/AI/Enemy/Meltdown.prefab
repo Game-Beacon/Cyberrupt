@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2239225668737473351}
   - component: {fileID: 8445923704207012306}
   m_Layer: 9
-  m_Name: Trail (1)
+  m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,12 +24,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641767009804744551}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.65, y: -0.9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.69949996, y: -0.87299997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5756876681318020071}
-  m_RootOrder: 6
+  m_Father: {fileID: 5756876681272879187}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &8445923704207012306
 TrailRenderer:
@@ -4893,7 +4893,7 @@ GameObject:
   - component: {fileID: 5756876680714786146}
   - component: {fileID: 5756876680714786147}
   m_Layer: 9
-  m_Name: elite_1
+  m_Name: Body Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4974,7 +4974,7 @@ GameObject:
   - component: {fileID: 5756876680747699125}
   - component: {fileID: 5756876680747699126}
   m_Layer: 9
-  m_Name: elite_3
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5085,7 +5085,7 @@ GameObject:
   - component: {fileID: 5756876681272879187}
   - component: {fileID: 5756876681272879180}
   m_Layer: 9
-  m_Name: elite_4
+  m_Name: Arm Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5101,10 +5101,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2239225668737473351}
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -5}
 --- !u!212 &5756876681272879180
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5202,6 +5203,8 @@ GameObject:
   - component: {fileID: 5756876681318020067}
   - component: {fileID: 5756876681318020063}
   - component: {fileID: 5756876681318020056}
+  - component: {fileID: -4175184368502942395}
+  - component: {fileID: 6034095290009669263}
   m_Layer: 9
   m_Name: Meltdown
   m_TagString: Untagged
@@ -5225,8 +5228,6 @@ Transform:
   - {fileID: 5756876681314888508}
   - {fileID: 5756876681236195444}
   - {fileID: 5756876681438818702}
-  - {fileID: 7288074134278281784}
-  - {fileID: 2239225668737473351}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5351,8 +5352,6 @@ MonoBehaviour:
   _name: Meltdown
   _maxHP: 150
   _hp: 150
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls:
     - _Target: {fileID: 5756876681318020066}
@@ -5576,6 +5575,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeShoot
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
     _PersistentCalls:
     - _Target: {fileID: 536635687800966825}
@@ -5593,6 +5603,17 @@ MonoBehaviour:
         _Int: 0
         _String: 
         _X: 0.5
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
         _Y: 0
         _Z: 0
         _W: 0
@@ -5625,6 +5646,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: BeforeLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   OnExit:
     _PersistentCalls:
     - _Target: {fileID: 536635687800966825}
@@ -5646,6 +5678,17 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+    - _Target: {fileID: -4175184368502942395}
+      _MethodName: Play
+      _PersistentArguments:
+      - _Type: 2
+        _Int: 0
+        _String: AfterLaser
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   time: 2
   laserPrefab: {fileID: 3427751624078174019, guid: a6ea360ead9256b49807e334b19045b5,
     type: 3}
@@ -5656,6 +5699,40 @@ MonoBehaviour:
   speed: 1
   rotateForce: 75
   rotateIncrement: 0.05
+--- !u!111 &-4175184368502942395
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 9ff9ade7c5b11c74888ee58391ce82e7, type: 2}
+  - {fileID: 7400000, guid: f69512c705522b0459f45c1e973895fb, type: 2}
+  - {fileID: 7400000, guid: 0fbe5e352615f434984eb65fb58faa8b, type: 2}
+  - {fileID: 7400000, guid: fa82ac91c240d4347b1267333ccdca94, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &6034095290009669263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5756876681318020070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 1.5
 --- !u!1 &5756876681438818701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5735,7 +5812,7 @@ GameObject:
   - component: {fileID: 5756876681883583410}
   - component: {fileID: 5756876681883583411}
   m_Layer: 9
-  m_Name: elite_5
+  m_Name: Arm Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5751,10 +5828,11 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7288074134278281784}
   m_Father: {fileID: 5756876682268577452}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 5}
 --- !u!212 &5756876681883583411
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5816,7 +5894,7 @@ GameObject:
   - component: {fileID: 5756876681929604959}
   - component: {fileID: 5756876681929604952}
   m_Layer: 9
-  m_Name: elite_2
+  m_Name: Body Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5964,7 +6042,7 @@ GameObject:
   - component: {fileID: 5756876682466514803}
   - component: {fileID: 5756876682466514796}
   m_Layer: 9
-  m_Name: elite_6
+  m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6058,12 +6136,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5831638394302901058}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.65, y: 0.9, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.69949996, y: 0.927, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 5756876681318020071}
-  m_RootOrder: 5
+  m_Father: {fileID: 5756876681883583410}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &7692129701044799966
 TrailRenderer:
