@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GaltingPickUp
   m_EditorClassIdentifier: 
   weapon: {fileID: 11400000, guid: 91ba5c4cb26390948bd25049545643f1, type: 2}
-  ammoCount: 150
+  ammoCount: 200

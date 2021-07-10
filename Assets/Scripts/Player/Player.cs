@@ -18,10 +18,10 @@ public class Player : GameBehaviour, IDanmakuTarget
     // TODO: Might have to turn these things into a scriptable object
     /*[Space(20), SerializeField]
     private int _maxHp;*/
-    [Space(20), SerializeField]
+    [Space(10), SerializeField]
     private int _hp;
 
-    [Space(20), SerializeField]
+    [Space(10), SerializeField]
     private float speed;
     [SerializeField]
     private float _hitRadius;
@@ -34,7 +34,8 @@ public class Player : GameBehaviour, IDanmakuTarget
     [SerializeField]
     private float dashCoolDown;
     [SerializeField]
-    private float hurtTime;
+    private float _hurtTime;
+    public float hurtTime { get { return _hurtTime; } }
 
     private Rigidbody2D rb;
     private Collider2D c2D;
@@ -43,10 +44,14 @@ public class Player : GameBehaviour, IDanmakuTarget
     private DanmakuManager danmakuManager;
     private Camera cam;
 
+    [Space(10), SerializeField]
+    private SpriteRenderer _characterBase;
+
     /*public int maxHp { get { return _maxHp; } }*/
     public int hp { get { return _hp; } }
     public WeaponController weaponController { get { return _weaponController; } }
     public SkillController skillController { get { return _skillController; } }
+    public SpriteRenderer characterBase { get { return _characterBase; } }
 
     public UltEvent OnReceiveDamage = new UltEvent();
     [HideInInspector]
@@ -96,7 +101,7 @@ public class Player : GameBehaviour, IDanmakuTarget
                 rb.velocity = Vector2.zero;
                 OnDied.Invoke();
             }
-            StartCoroutine(AfterHurt(hurtTime));
+            StartCoroutine(AfterHurt(_hurtTime));
         } 
     }
 

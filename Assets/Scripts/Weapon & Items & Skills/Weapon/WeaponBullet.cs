@@ -6,6 +6,12 @@ public abstract class WeaponBullet : GameBehaviour
 {
     [SerializeField]
     protected CollisionLayer collisionLayer = null;
+    [SerializeField]
+    protected ParticleSystem deathParticle = null;
+    [SerializeField]
+    protected float _scanRaycastRadius;
+
+    public float scanRaycastRadius { get { return _scanRaycastRadius; } }
 
     protected Rigidbody2D _rb;
     public Rigidbody2D rb { get { return _rb; } protected set { } }
@@ -39,9 +45,19 @@ public abstract class WeaponBullet : GameBehaviour
 
     public override void GameFixedUpdate()
     {
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
+        RaycastHit2D raycast;
+        
+        raycast = (_scanRaycastRadius > 0)? 
+        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask):
+        Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
         if (raycast.collider != null)
             OnHitWall(raycast);
+
+        raycast = (_scanRaycastRadius > 0) ?
+        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.enemyMask) :
+        Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.enemyMask);
+        if (raycast.collider != null)
+            OnHitEnemy(raycast.collider);
     }
 
     protected virtual void OnHitEnemy(Collider2D collision)
@@ -62,6 +78,8 @@ public abstract class WeaponBullet : GameBehaviour
 
     protected virtual void OnHitWall(RaycastHit2D raycast)
     {
+        transform.position = raycast.point;
+
         foreach (BulletModifier modifier in modifiers)
             modifier.OnHitWall(this, raycast);
 
@@ -80,6 +98,16 @@ public abstract class WeaponBullet : GameBehaviour
     public void SetKillBullet(bool value)
     {
         canKillBullet |= value;
+    }
+
+    public override void OnKilled()
+    {
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
+        if (raycast.collider != null)
+            transform.position = raycast.point;
+
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)

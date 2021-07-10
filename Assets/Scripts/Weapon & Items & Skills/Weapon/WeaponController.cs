@@ -119,6 +119,9 @@ public class WeaponController : GameBehaviour
             }
         }
 
+        keyDown = false;
+        keyUp = false;
+
         Weapon newWeapon = new Weapon(this, data, ammo, muzzle);
         weapons.Add(newWeapon);
         _currentWeapon.OnDeselected();

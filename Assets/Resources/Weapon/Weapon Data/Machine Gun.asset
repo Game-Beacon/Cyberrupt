@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: GATLING
   _icon: {fileID: 21300000, guid: 255d28baa7073dc4c9ef8f164c403ffa, type: 3}
-  _bullet: {fileID: 3252490066579443056, guid: 3a9be633dca19d548a676fdad75b75a5, type: 3}
+  _bullet: {fileID: 299703939850435301, guid: e855c1f848aa96546b33708e611b83d2, type: 3}
   _damage: 3
   _spreadAngle: 20
   _speed: 20

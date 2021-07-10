@@ -4768,7 +4768,7 @@ GameObject:
   - component: {fileID: 6676508654551022225}
   - component: {fileID: 2345485212697538154}
   - component: {fileID: 2345485212697538155}
-  - component: {fileID: 2345485212697538156}
+  - component: {fileID: -2487836824091623709}
   m_Layer: 12
   m_Name: SniperRifleBullet
   m_TagString: Untagged
@@ -4784,7 +4784,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2345485212697538145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2345485211764157865}
@@ -4831,7 +4831,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ae221fac032e9f94c97cc08d4845074c, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4877,7 +4877,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.185
+  m_Radius: 0.2
 --- !u!114 &2345485212697538154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4893,6 +4893,8 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   collisionLayer: {fileID: 11400000, guid: e1df639b7a3821041b5f5b4ae8b027e7, type: 2}
+  deathParticle: {fileID: 0}
+  _scanRaycastRadius: 0.3
 --- !u!114 &2345485212697538155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4908,7 +4910,7 @@ MonoBehaviour:
   update: 1
   _executeOrder: 0
   pierceCount: 999999
---- !u!114 &2345485212697538156
+--- !u!114 &-2487836824091623709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4922,4 +4924,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
-  bounceCount: 2
+  bounceCount: 1
