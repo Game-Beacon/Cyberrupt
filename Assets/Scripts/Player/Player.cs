@@ -57,7 +57,6 @@ public class Player : GameBehaviour, IDanmakuTarget
     [HideInInspector]
     public IntEvent OnHpChange = new IntEvent();
     public UltVector2Event OnDash = new UltVector2Event();
-    [HideInInspector]
     public GameEvent OnDied = new GameEvent();
 
     private bool isHurt = false;
@@ -91,7 +90,8 @@ public class Player : GameBehaviour, IDanmakuTarget
         if (!isImmune)
         {
             _hp--;
-            OnReceiveDamage.Invoke();
+            if (_hp != 0)
+                OnReceiveDamage.Invoke();
             OnHpChange.Invoke(_hp);
             if(_hp == 0)
             {

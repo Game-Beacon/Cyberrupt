@@ -105,7 +105,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 400
   m_Sprite: {fileID: 21300000, guid: 5669829c0be2aab42bdc677dab6b8684, type: 3}
-  m_Color: {r: 1, g: 0.5647059, b: 0.88235295, a: 1}
+  m_Color: {r: 1, g: 0.5019608, b: 0.88235295, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -219,7 +219,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 400
   m_Sprite: {fileID: 21300000, guid: f4fba0ac3ca79e941bff8516be0cd528, type: 3}
-  m_Color: {r: 1, g: 0.7529412, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.6666667, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -310,6 +310,7 @@ GameObject:
   - component: {fileID: 6189702637793147791}
   - component: {fileID: 8452425531505955042}
   - component: {fileID: 6189702637793147790}
+  - component: {fileID: 8578044585405252276}
   - component: {fileID: 6189702637793147785}
   - component: {fileID: 6189702637793147784}
   - component: {fileID: 6189702637793147787}
@@ -419,6 +420,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+--- !u!114 &8578044585405252276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189702637793147797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747b44041b1d441408f2f162795fd78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  pss: []
+  alpha: 1
+  enableColliders: 1
 --- !u!114 &6189702637793147785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -454,8 +472,6 @@ MonoBehaviour:
   _name: Commander
   _maxHP: 50
   _hp: 50
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -10256,6 +10272,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 6482087234641223844, guid: f728f9193d0ff7f459b6d0db67343fde,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5176471
+      objectReference: {fileID: 0}
     - target: {fileID: 7119381456508939396, guid: f728f9193d0ff7f459b6d0db67343fde,
         type: 3}
       propertyPath: m_Name
@@ -10330,6 +10351,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482087234641223844, guid: f728f9193d0ff7f459b6d0db67343fde,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5176471
       objectReference: {fileID: 0}
     - target: {fileID: 7119381456508939396, guid: f728f9193d0ff7f459b6d0db67343fde,
         type: 3}
@@ -10630,6 +10656,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6482087234641223844, guid: f728f9193d0ff7f459b6d0db67343fde,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.5176471
       objectReference: {fileID: 0}
     - target: {fileID: 7119381456508939396, guid: f728f9193d0ff7f459b6d0db67343fde,
         type: 3}

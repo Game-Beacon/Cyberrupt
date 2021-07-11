@@ -148,4 +148,4 @@ MonoBehaviour:
   collisionLayer: {fileID: 11400000, guid: e1df639b7a3821041b5f5b4ae8b027e7, type: 2}
   deathParticle: {fileID: 1599544992408538032, guid: 58a0fae3ab183304d95ebb41a946c2a6,
     type: 3}
-  _scanRaycastRadius: 0
+  _scanRaycastRadius: 0.125

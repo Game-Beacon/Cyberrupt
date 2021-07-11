@@ -25,3 +25,7 @@ MonoBehaviour:
     name: Hurt
     volume: 0.4
     loop: 0
+  - clip: {fileID: 8300000, guid: fcfcc1bf83bcfc149864128d281733e3, type: 3}
+    name: Die
+    volume: 0.8
+    loop: 0

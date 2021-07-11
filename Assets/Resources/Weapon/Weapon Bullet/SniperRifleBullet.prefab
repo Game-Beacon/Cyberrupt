@@ -4894,7 +4894,7 @@ MonoBehaviour:
   _executeOrder: 0
   collisionLayer: {fileID: 11400000, guid: e1df639b7a3821041b5f5b4ae8b027e7, type: 2}
   deathParticle: {fileID: 0}
-  _scanRaycastRadius: 0.3
+  _scanRaycastRadius: 0.25
 --- !u!114 &2345485212697538155
 MonoBehaviour:
   m_ObjectHideFlags: 0

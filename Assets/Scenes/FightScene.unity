@@ -1543,7 +1543,7 @@ MonoBehaviour:
   skipWaveCount: 0
   defaultWaveDelay: 3
   spawnSpecificWave: 0
-  specificWave: {fileID: 11400000, guid: c693b0b7a0312814aa8191e991d0e7e8, type: 2}
+  specificWave: {fileID: 11400000, guid: 39d0d866f51107e43ab725b8e49aa3b2, type: 2}
 --- !u!4 &249340756
 Transform:
   m_ObjectHideFlags: 0
@@ -2501,7 +2501,6 @@ RectTransform:
   - {fileID: 1176936624}
   - {fileID: 1708849949}
   - {fileID: 1681000036}
-  - {fileID: 1017982892}
   m_Father: {fileID: 1901202573}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2637,46 +2636,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Parallex Background
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossColor.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossColor.b
-      value: 0.1254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossColor.g
-      value: 0.1254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossColor.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: exitBossTime
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: enterBossTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossVerticalSpeed
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1054680017717767886, guid: 62f49732840453544ae257a4877cca54,
-        type: 3}
-      propertyPath: bossHorizontalTime
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1054680017717767887, guid: 62f49732840453544ae257a4877cca54,
         type: 3}
@@ -2880,7 +2839,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1901202573}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4335,7 +4294,7 @@ GameObject:
   - component: {fileID: 1017982894}
   - component: {fileID: 1017982893}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4348,17 +4307,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017982891}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 442855269}
-  m_RootOrder: 3
+  m_Father: {fileID: 1901202573}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 700, y: 80}
+  m_SizeDelta: {x: 700, y: 81}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1017982893
 MonoBehaviour:
@@ -9519,6 +9478,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 442855269}
+  - {fileID: 1017982892}
   - {fileID: 619861162}
   m_Father: {fileID: 1712293515}
   m_RootOrder: 1

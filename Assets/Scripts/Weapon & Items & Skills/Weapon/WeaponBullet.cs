@@ -1,4 +1,4 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -21,6 +21,7 @@ public abstract class WeaponBullet : GameBehaviour
     protected Vector2 direction;
     protected bool canKillBullet = false;
 
+    protected List<Enemy> hitEnemies = new List<Enemy>();
     protected BulletModifier[] modifiers;
 
     public override void GameAwake()
@@ -67,7 +68,11 @@ public abstract class WeaponBullet : GameBehaviour
         Enemy enemy = hitObject.GetComponent<Enemy>();
         if (enemy == null)
             enemy = hitObject.GetComponentInParent<Enemy>();
-        enemy.ApplyDamage(damage);
+        if (!hitEnemies.Contains(enemy))
+        {
+            enemy.ApplyDamage(damage);
+            hitEnemies.Add(enemy);
+        }
 
         foreach (BulletModifier modifier in modifiers)
             modifier.OnHitEnemy(this, collision);
@@ -79,6 +84,7 @@ public abstract class WeaponBullet : GameBehaviour
     protected virtual void OnHitWall(RaycastHit2D raycast)
     {
         transform.position = raycast.point;
+        hitEnemies.Clear();
 
         foreach (BulletModifier modifier in modifiers)
             modifier.OnHitWall(this, raycast);
@@ -89,8 +95,8 @@ public abstract class WeaponBullet : GameBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.enemyMask))
-            OnHitEnemy(collision);
+        /*if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.enemyMask))
+            OnHitEnemy(collision);*/
         /*if (CollisionLayer.CollideWithMask(collision.gameObject, collisionLayer.screenMask))
             OnHitWall(collision);*/
     }
@@ -102,12 +108,17 @@ public abstract class WeaponBullet : GameBehaviour
 
     public override void OnKilled()
     {
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask | collisionLayer.enemyMask);
         if (raycast.collider != null)
             transform.position = raycast.point;
 
         if (deathParticle != null)
             Instantiate(deathParticle, transform.position, Quaternion.identity);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _scanRaycastRadius);
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)

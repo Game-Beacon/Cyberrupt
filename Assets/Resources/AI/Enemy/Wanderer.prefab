@@ -282,8 +282,6 @@ MonoBehaviour:
   _name: Wanderer
   _maxHP: 0
   _hp: 0
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls:
     - _Target: {fileID: 2176259114862401921}

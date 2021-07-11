@@ -104,6 +104,11 @@ public class EnemyManager : GameBehaviour
     {
         waveIndex++;
 
+#if UNITY_EDITOR
+        if (spawnSpecificWave && specificWave.isBossWave && waveIndex - 2 >= 0)
+            OnExitBossWave.Invoke();
+#endif
+
         if (waveIndex - 2 >= 0 && waves[waveIndex - 2].isBossWave)
             OnExitBossWave.Invoke();
 
@@ -137,6 +142,8 @@ public class EnemyManager : GameBehaviour
 #if UNITY_EDITOR
         if (spawnSpecificWave)
         {
+            if (specificWave.isBossWave)
+                OnEnterBossWave.Invoke();
             SpawnWave(specificWave);
             yield break;
         }

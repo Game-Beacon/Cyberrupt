@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [ExecuteInEditMode]
-public class EnemyGroup : MonoBehaviour
+public class EnemyGroup : GameBehaviour
 {
     List<SpriteRenderer> srs = new List<SpriteRenderer>();
     List<Collider2D> colliders = new List<Collider2D>();
@@ -16,13 +17,21 @@ public class EnemyGroup : MonoBehaviour
     [SerializeField]
     public bool enableColliders = true;
 
-    private void Awake()
+    private static EnemyMaterialSetting materials = null;
+    private Coroutine hurtCoroutine = null;
+
+    public override void GameAwake()
     {
+        if (materials == null)
+            materials = EnemyMaterialSetting.instance;
+
         srs = GetComponentsInChildren<SpriteRenderer>().ToList();
         colliders = GetComponentsInChildren<Collider2D>().ToList();
+
+        GetComponent<Enemy>().OnHit += () => HurtVFX();
     }
 
-    private void Update()
+    public override void GameUpdate()
     {
         foreach (SpriteRenderer sr in srs)
             if (sr != null)
@@ -42,5 +51,39 @@ public class EnemyGroup : MonoBehaviour
     {
         foreach (ParticleSystem ps in pss)
             ps.Play();
+    }
+
+    public void HurtVFX()
+    {
+        hurtCoroutine = StartCoroutine(ChangeMaterialOnHurt());
+    }
+
+    IEnumerator ChangeMaterialOnHurt()
+    {
+        Vector2[] rands = new Vector2[srs.Count];
+
+        for(int i = 0; i < srs.Count; i ++)
+        {
+            SpriteRenderer sr = srs[i];
+            if (sr != null)
+            {
+                sr.material = materials.hurtMaterial;
+                Vector2 rand = Random.insideUnitCircle.normalized * 0.03f;
+                sr.transform.position += (Vector3)rand;
+                rands[i] = rand;
+            }
+        }
+        
+        yield return new WaitForSeconds(0.02f);
+
+        for (int i = 0; i < srs.Count; i++)
+        {
+            SpriteRenderer sr = srs[i];
+            if (sr != null)
+            {
+                sr.material = materials.normalMaterial;
+                sr.transform.position -= (Vector3)rands[i];
+            }
+        }
     }
 }

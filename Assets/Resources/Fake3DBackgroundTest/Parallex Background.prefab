@@ -4983,6 +4983,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a5b4dc775022418b62981d3d88f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
   color: {r: 0, g: 0.5019608, b: 1, a: 1}
   bg: {fileID: 1054680016147634433}
   ps: {fileID: 1054680017485651285}
@@ -5010,6 +5012,11 @@ MonoBehaviour:
   - {fileID: 3688993655174755585}
   - {fileID: 1460403229332520875}
   circuitWidth: 2.56
+  bossColor: {r: 1, g: 0.1254902, b: 0.1254902, a: 1}
+  bossVerticalSpeed: -3
+  bossHorizontalTime: 10
+  enterBossTime: 3
+  exitBossTime: 1
 --- !u!1 &1123360259645420565
 GameObject:
   m_ObjectHideFlags: 0

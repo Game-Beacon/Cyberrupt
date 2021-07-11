@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8930571900753017793}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &226436752910719463
 CircleCollider2D:
@@ -9605,7 +9605,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8930571900753017793}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4548090631685126976
 SpriteRenderer:
@@ -9647,7 +9647,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: 98363f4014a4424418bb2697e6c4a9b2, type: 3}
-  m_Color: {r: 0.81568635, g: 0.81568635, b: 1, a: 1}
+  m_Color: {r: 0.6862745, g: 0.6862745, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9686,7 +9686,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8930571900753017793}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &723693044860990442
 SpriteRenderer:
@@ -9728,7 +9728,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 500
   m_Sprite: {fileID: 21300000, guid: 4be80bcfddd55c041ab6f62f7f99e6fe, type: 3}
-  m_Color: {r: 0.627451, g: 0.627451, b: 1, a: 1}
+  m_Color: {r: 0.47058824, g: 0.47058824, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -9738,262 +9738,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 2
   m_SpriteSortPoint: 0
---- !u!1 &8930571899641550801
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8930571899641550800}
-  - component: {fileID: 8930571899641550830}
-  - component: {fileID: 8930571899641550831}
-  - component: {fileID: 8930571899641550827}
-  - component: {fileID: 8930571899641550828}
-  - component: {fileID: 8930571899641550829}
-  - component: {fileID: 362938149}
-  m_Layer: 14
-  m_Name: Main
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8930571899641550800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 8930571900753017793}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &8930571899641550830
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!58 &8930571899641550831
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1
---- !u!114 &8930571899641550827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7280103964a573418d1d04cf25a4ad9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
---- !u!114 &8930571899641550828
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7190ca79c243acf4c873894e6a9dd5d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  AIStates:
-  - {fileID: 362938149}
-  pickStateTime: 3.5
---- !u!114 &8930571899641550829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7c2393696d20874dbcfd7c3181e1518, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  update: 1
-  _executeOrder: 0
-  _property: {fileID: 0}
-  _name: 
-  _maxHP: 250
-  _hp: 250
-  _score: 0
-  _addSpawnPickUpChance: 0
-  OnSpawn:
-    _PersistentCalls: []
-  OnHit:
-    _PersistentCalls:
-    - _Target: {fileID: 8930571899641550827}
-      _MethodName: SpawnOneShot
-      _PersistentArguments:
-      - _Type: 13
-        _Int: 0
-        _String: DanmakuParticleData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 11400000, guid: 33c81a5266b5f2d4196b388ded6c69e8, type: 2}
-      - _Type: 13
-        _Int: 0
-        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 8930571899641550801}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 3
-        _Int: -1000
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-  OnDeath:
-    _PersistentCalls: []
-  parent: {fileID: 8930571900753017793}
-  speed: 0.75
---- !u!114 &362938149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930571899641550801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a12f3765dd7903846b5095c49aeec46c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _overrideTransformUpdate: 0
-  OnEnter:
-    _PersistentCalls:
-    - _Target: {fileID: 8930571899641550827}
-      _MethodName: SpawnOneShot
-      _PersistentArguments:
-      - _Type: 13
-        _Int: 0
-        _String: DanmakuParticleData, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 11400000, guid: c16a83755c283e2478f10290b5a60d6e, type: 2}
-      - _Type: 13
-        _Int: 0
-        _String: UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 8930571899641550801}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 1
-        _Int: 1
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-      - _Type: 3
-        _Int: 0
-        _String: 
-        _X: 0
-        _Y: 0
-        _Z: 0
-        _W: 0
-        _Object: {fileID: 0}
-  OnExit:
-    _PersistentCalls: []
-  time: 0.1
 --- !u!1 &8930571900338321660
 GameObject:
   m_ObjectHideFlags: 0
@@ -10027,7 +9771,7 @@ Transform:
   - {fileID: 2345672291099926276}
   - {fileID: 7156819314412853856}
   m_Father: {fileID: 8930571900753017793}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &8930571900338321657
 CircleCollider2D:
@@ -10100,6 +9844,7 @@ GameObject:
   - component: {fileID: 5897807803867696326}
   - component: {fileID: 6543210317209850651}
   - component: {fileID: 8371442552513921764}
+  - component: {fileID: 8023657153928831566}
   - component: {fileID: 4451583914443901018}
   - component: {fileID: 4201574794462203847}
   - component: {fileID: 946748186589469802}
@@ -10121,7 +9866,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8930571899641550800}
   - {fileID: 8930571900338321659}
   - {fileID: 4872439009380440650}
   - {fileID: 6835201672557703781}
@@ -10195,6 +9939,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   update: 1
   _executeOrder: 0
+--- !u!114 &8023657153928831566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930571900753017795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 747b44041b1d441408f2f162795fd78a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
+  pss: []
+  alpha: 1
+  enableColliders: 1
 --- !u!114 &4451583914443901018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10230,8 +9991,6 @@ MonoBehaviour:
   _name: Singularity
   _maxHP: 250
   _hp: 250
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls:
     - _Target: {fileID: 6543210317209850651}
