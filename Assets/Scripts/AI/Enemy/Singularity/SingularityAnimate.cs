@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class SingularityAnimate : GameBehaviour
@@ -43,6 +44,7 @@ public class SingularityAnimate : GameBehaviour
                     this.outerRotationDirection *= -1;
             })
             .AddTo(this);
+        // Attack animation
         GetComponent<Singularity_Ring>().OnEnter += () =>
         {
             var scalor = new Vector3(
@@ -52,6 +54,9 @@ public class SingularityAnimate : GameBehaviour
             );
             outer.DOPunchScale(scalor, 1, 1);
         };
+        // Ensure the tweeners are released
+        outer.gameObject.OnDestroyAsObservable()
+            .Subscribe(_ => outer.DOKill());
     }
 
     public override void GameUpdate()
