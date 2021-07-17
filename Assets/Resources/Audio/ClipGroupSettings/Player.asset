@@ -15,7 +15,7 @@ MonoBehaviour:
   _clips:
   - clip: {fileID: 8300000, guid: 3c5bc2c300a984823a79cab96a8622f7, type: 3}
     name: Dash
-    volume: 1
+    volume: 0.4
     loop: 0
   - clip: {fileID: 8300000, guid: cd773f59ddb7246df8caad9ac9bdd56f, type: 3}
     name: Switch
@@ -27,5 +27,5 @@ MonoBehaviour:
     loop: 0
   - clip: {fileID: 8300000, guid: fcfcc1bf83bcfc149864128d281733e3, type: 3}
     name: Die
-    volume: 0.8
+    volume: 1
     loop: 0

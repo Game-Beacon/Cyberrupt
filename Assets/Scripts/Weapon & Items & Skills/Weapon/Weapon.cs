@@ -94,7 +94,11 @@ public class Weapon
             controller.OnChargeStart.Invoke();
         } 
         if(charger != null)
+        {
             charger.Charge(Mathf.Clamp01(chargeMeter / _data.chargeTime));
+            if((chargeMeter / _data.chargeTime) >= 1 && ((chargeMeter - delta) / _data.chargeTime) < 1)
+                controller.OnChargeStop.Invoke();
+        }
     }
 
     public void Discharge(float delta)

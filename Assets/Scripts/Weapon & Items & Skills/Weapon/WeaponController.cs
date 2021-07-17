@@ -138,6 +138,10 @@ public class WeaponController : GameBehaviour
         {
             int index = weapons.IndexOf(_currentWeapon);
             index = (index + 1) % weapons.Count;
+
+            keyDown = false;
+            keyUp = false;
+
             _currentWeapon.OnDeselected();
             _currentWeapon = weapons[index];
             _currentWeapon.OnSelected();

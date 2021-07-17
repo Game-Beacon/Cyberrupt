@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Petya
   m_EditorClassIdentifier: 
   _clips:
-  - clip: {fileID: 8300000, guid: 51c4c3b3ff82e4d168a46a0406eea3ee, type: 3}
+  - clip: {fileID: 8300000, guid: 12a3cba2ec554473290854c1cb7c9029, type: 3}
     name: 360Laser
-    volume: 1
+    volume: 0.85
     loop: 0
   - clip: {fileID: 8300000, guid: bd1774b050a64c14b8926b64c596cf30, type: 3}
     name: 360LaserRing
-    volume: 0.5
+    volume: 0.4
     loop: 0
   - clip: {fileID: 8300000, guid: 83f129441353d495a9029069316f0965, type: 3}
     name: BigLaser
@@ -29,7 +29,7 @@ MonoBehaviour:
     name: FlowerSpread
     volume: 1
     loop: 0
-  - clip: {fileID: 8300000, guid: 08f44a75a5bc74597b24ba85df5fe61e, type: 3}
+  - clip: {fileID: 8300000, guid: 00512d17b638f4910a2e57611d20abc4, type: 3}
     name: Bitcoin
     volume: 1
     loop: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
     name: KeyShoot
     volume: 1
     loop: 0
-  - clip: {fileID: 8300000, guid: 74cb90e24bcad554e97848e4d426c4e3, type: 3}
+  - clip: {fileID: 8300000, guid: b4bfe174b00a841e1ad85b20674adc89, type: 3}
     name: KeyShootAllDirection
     volume: 1
     loop: 0
