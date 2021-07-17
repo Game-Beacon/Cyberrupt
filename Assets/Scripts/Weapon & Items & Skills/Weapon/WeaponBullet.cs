@@ -108,9 +108,12 @@ public abstract class WeaponBullet : GameBehaviour
 
     public override void OnKilled()
     {
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask | collisionLayer.enemyMask);
-        if (raycast.collider != null)
-            transform.position = raycast.point;
+        if(gameObject != null)
+        {
+            RaycastHit2D raycast = Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask | collisionLayer.enemyMask);
+            if (raycast.collider != null)
+                transform.position = raycast.point;
+        }
 
         if (deathParticle != null)
             Instantiate(deathParticle, transform.position, Quaternion.identity);

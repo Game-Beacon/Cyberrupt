@@ -387,8 +387,8 @@ MonoBehaviour:
   _executeOrder: 0
   face: {fileID: 2689939326601590856}
   idle: {fileID: 21300000, guid: 33adfa10a2df6ed4087c6d43bab7237c, type: 3}
-  statis: {fileID: 21300000, guid: abeb5a5129c2e5b409ecde29e60c87c4, type: 3}
-  hurt: {fileID: 21300000, guid: c65a7b9e4423edf46920fa406d57e746, type: 3}
+  statis: {fileID: 21300000, guid: c65a7b9e4423edf46920fa406d57e746, type: 3}
+  hurt: {fileID: 21300000, guid: fc8605a087290e14f951d826ff96f996, type: 3}
   dead: {fileID: 21300000, guid: 0da167e534aaf8f4a90f2b1390ce87e0, type: 3}
 --- !u!1 &2689939326495457883
 GameObject:
