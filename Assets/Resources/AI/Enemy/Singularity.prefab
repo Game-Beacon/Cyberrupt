@@ -9857,12 +9857,6 @@ MonoBehaviour:
   _executeOrder: 0
   size: 4
   expandTime: 1.75
-  weaponLayer:
-    serializedVersion: 2
-    m_Bits: 4096
-  weakenLayer:
-    serializedVersion: 2
-    m_Bits: 8192
 --- !u!1 &8930571900753017795
 GameObject:
   m_ObjectHideFlags: 0
@@ -9881,6 +9875,7 @@ GameObject:
   - component: {fileID: 4201574794462203847}
   - component: {fileID: 946748186589469802}
   - component: {fileID: 555999979921796958}
+  - component: {fileID: 2839594494547772313}
   m_Layer: 14
   m_Name: Singularity
   m_TagString: Untagged
@@ -10199,3 +10194,19 @@ MonoBehaviour:
   coreRotationSpeedBase: 30
   outerRotationSpeedBase: 40
   attackScalor: 0.5
+  body: {fileID: 7993331051691749404}
+--- !u!114 &2839594494547772313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930571900753017795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 2

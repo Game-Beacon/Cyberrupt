@@ -18,6 +18,8 @@ public class SingularityAnimate : GameBehaviour
     private float outerRotationSpeedBase;
     [SerializeField]
     private float attackScalor;
+    [SerializeField]
+    private Transform body;
 
     private int coreRotationDirection = 1;
     private int outerRotationDirection = 1;
@@ -57,11 +59,35 @@ public class SingularityAnimate : GameBehaviour
         // Ensure the tweeners are released
         outer.gameObject.OnDestroyAsObservable()
             .Subscribe(_ => outer.DOKill());
+        // Play death animtion before die
+        GetComponent<Singularity>().Death
+            .AddEnumerator(this.DeathAnimation());
     }
 
     public override void GameUpdate()
     {
         core.Rotate(Vector3.forward * (this.coreRotationSpeed * Time.deltaTime));
         outer.Rotate(Vector3.forward * (this.outerRotationSpeed * Time.deltaTime));
+    }
+
+    private IEnumerator DeathAnimation()
+    {
+        // Disable attack
+        GetComponent<AIStateMachine>().update = false;
+        GetComponent<EnemyGroup>().enableColliders = false;
+        // Play animtion
+        var seq = DOTween.Sequence()
+            .Join(body.DOShakePosition(1, 0.5f, 30, fadeOut : true))
+            .Append(
+                DOTween.Sequence()
+                .Append(
+                    body.DOScale(Vector3.zero, 0.25f)
+                    .SetEase(Ease.OutBounce)
+                ).Insert(
+                    0.1f,
+                    transform.DOScale(Vector3.zero, 0.25f)
+                )
+            );
+        yield return seq.WaitForCompletion();
     }
 }
