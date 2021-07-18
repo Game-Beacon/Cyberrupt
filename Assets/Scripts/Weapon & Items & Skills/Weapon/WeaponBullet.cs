@@ -23,6 +23,8 @@ public abstract class WeaponBullet : GameBehaviour
 
     protected List<Enemy> hitEnemies = new List<Enemy>();
     protected BulletModifier[] modifiers;
+    
+    public bool weakened = false;
 
     public override void GameAwake()
     {
@@ -44,22 +46,28 @@ public abstract class WeaponBullet : GameBehaviour
         direction = Direction;
     }
 
-    public override void GameFixedUpdate()
+    public override sealed void GameFixedUpdate()
     {
+        BulletUpdate();
+
         RaycastHit2D raycast;
-        
-        raycast = (_scanRaycastRadius > 0)? 
-        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask):
+
+        raycast = (_scanRaycastRadius > 0) ?
+        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask) :
         Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.screenMask);
         if (raycast.collider != null)
             OnHitWall(raycast);
 
+        LayerMask enemyMask = (weakened) ? collisionLayer.phantomEnemyMask : (LayerMask)(collisionLayer.phantomEnemyMask | collisionLayer.enemyMask);
+
         raycast = (_scanRaycastRadius > 0) ?
-        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.enemyMask) :
-        Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, collisionLayer.enemyMask);
+        Physics2D.CircleCast(transform.position, _scanRaycastRadius, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, enemyMask) :
+        Physics2D.Raycast(transform.position, rb.velocity, rb.velocity.magnitude * Time.fixedDeltaTime, enemyMask);
         if (raycast.collider != null)
-            OnHitEnemy(raycast.collider);
+            OnHitEnemy(raycast.collider);       
     }
+
+    protected virtual void BulletUpdate() { }
 
     protected virtual void OnHitEnemy(Collider2D collision)
     {

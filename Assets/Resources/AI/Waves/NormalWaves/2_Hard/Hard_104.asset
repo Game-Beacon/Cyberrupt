@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: Hard_104
   m_EditorClassIdentifier: 
   _spawns:
-  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
-    position: {x: -11, y: 4}
-  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
-    position: {x: 11, y: -4}
   - enemy: {fileID: 8930571900753017795, guid: 9325458a580c3d34988ac78823d1c0aa, type: 3}
-    position: {x: 0, y: -6.5}
+    position: {x: 1.5, y: 0}
   - enemy: {fileID: 6189702637793147797, guid: bd44c5555571daa4ebe304aabcbdb1a9, type: 3}
-    position: {x: 0, y: 6.5}
+    position: {x: -1.5, y: 0}
   _isBossWave: 0
   _haveWaveDelay: 0
   _nextWaveDelay: 0

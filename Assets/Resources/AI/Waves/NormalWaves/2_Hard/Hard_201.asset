@@ -14,9 +14,55 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawns:
   - enemy: {fileID: 5756876681318020070, guid: c81ca2336697f8b458637e0846dd8e56, type: 3}
-    position: {x: 11, y: 7}
-  - enemy: {fileID: 5756876681318020070, guid: c81ca2336697f8b458637e0846dd8e56, type: 3}
-    position: {x: -11, y: -7}
+    position: {x: 0, y: 0}
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: 11, y: 0}
+  - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
+    position: {x: -11, y: 0}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -9, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -6, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -3, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 0, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 3, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 6, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 9, y: 4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -9, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -6, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: -3, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 0, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 3, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 6, y: -4}
+  - enemy: {fileID: 3269894792829722944, guid: 71ec3ec754d2eb4418828f6a6c3b757c, type: 3}
+    position: {x: 9, y: -4}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10.5, y: 4}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10.5, y: 2}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10.5, y: -2}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: -10.5, y: -4}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10.5, y: -4}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10.5, y: -2}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10.5, y: 2}
+  - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
+    position: {x: 10.5, y: 4}
   _isBossWave: 0
   _haveWaveDelay: 0
   _nextWaveDelay: 0

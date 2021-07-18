@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-[ExecuteInEditMode]
 public class EnemyGroup : GameBehaviour
 {
     List<SpriteRenderer> srs = new List<SpriteRenderer>();

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d952b04dc3a1c16448af72ec2bb534a8, type: 3}
   m_Name: Property_Shield
   m_EditorClassIdentifier: 
-  _hp: 15
+  _hp: 10
   _score: 0
   _addSpawnPickUpChance: 0
+  _dieCountAsKill: 0
+  _rank: 0
