@@ -34,10 +34,14 @@ public class Enemy : GameBehaviour
     public UltEvent OnHit = new UltEvent();
     [SerializeField]
     public UltEvent OnDeath = new UltEvent();
+
+    public AsyncEvent Death { get; } = new AsyncEvent();
+
     [HideInInspector]
     public FloatEvent OnReceiveDamage { get; } = new FloatEvent();
 
     private bool dead = false;
+    private bool dieInvoke = false;
     protected bool _canAttack = false;
     protected bool _inScreen = false;
     public bool canAttack { get { return _canAttack; } }
@@ -45,6 +49,7 @@ public class Enemy : GameBehaviour
     public override sealed void GameAwake()
     {
         OnDeath += Die;
+        Death.OnEventComplete.AddListener(() => OnDeath.Invoke());
 
         _maxHP = _property.hp;
         _hp = _property.hp;
@@ -74,8 +79,11 @@ public class Enemy : GameBehaviour
         if (_canAttack == false)
             _canAttack = _inScreen;
         EnemyUpdate();
-        if (_hp <= 0)
-            OnDeath.Invoke();
+        if (_hp <= 0 && !dead)
+        {
+            dead = true;
+            Death.Invoke(this);
+        }   
     }
 
     protected virtual void EnemyUpdate() { }
@@ -102,9 +110,9 @@ public class Enemy : GameBehaviour
     public void Die()
     {
         //確保此函式不會執行超過兩次以上
-        if (dead)
+        if (dieInvoke)
             return;
-        dead = true;
+        dieInvoke = true;
 
         if (manager != null /*&& !_isSideProduction*/)
             manager.RemoveEnemy(this);

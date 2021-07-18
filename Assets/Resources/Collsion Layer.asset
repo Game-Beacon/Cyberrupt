@@ -17,7 +17,13 @@ MonoBehaviour:
     m_Bits: 256
   _enemyMask:
     serializedVersion: 2
-    m_Bits: 147968
+    m_Bits: 131584
+  _phantomEnemyMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  _weaponMask:
+    serializedVersion: 2
+    m_Bits: 4096
   _screenMask:
     serializedVersion: 2
     m_Bits: 1024

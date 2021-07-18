@@ -27,7 +27,6 @@ public class GameBehaviour : MonoBehaviour
             game = GameSystem.instance;
 
         game.AddBehaviour(this, ref _id);
-        //Debug.Log("Start");
     }
 
     public virtual void GameAwake() { }

@@ -19,5 +19,5 @@ MonoBehaviour:
     loop: 0
   - clip: {fileID: 8300000, guid: cb437a61022d14e37921be0d9cf72e09, type: 3}
     name: Strafe
-    volume: 1
+    volume: 0.75
     loop: 0

@@ -16,21 +16,21 @@ MonoBehaviour:
   - type: 0
     color: {r: 1, g: 0.29411766, b: 0.29411766, a: 1}
     clip:
-      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      clip: {fileID: 8300000, guid: 02620b24fda9347dbad6d4bcf836b138, type: 3}
       name: 
       volume: 1
       loop: 0
   - type: 1
     color: {r: 0, g: 0.5882353, b: 1, a: 1}
     clip:
-      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      clip: {fileID: 8300000, guid: 02620b24fda9347dbad6d4bcf836b138, type: 3}
       name: 
       volume: 1
       loop: 0
   - type: 2
     color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
     clip:
-      clip: {fileID: 8300000, guid: 04abb2e4c3cbe4301bfc4f57ac70a14d, type: 3}
+      clip: {fileID: 8300000, guid: 02620b24fda9347dbad6d4bcf836b138, type: 3}
       name: 
       volume: 1
       loop: 0

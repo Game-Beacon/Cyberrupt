@@ -14,11 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawns:
   - enemy: {fileID: 8930571900753017795, guid: 9325458a580c3d34988ac78823d1c0aa, type: 3}
-    position: {x: 11, y: 0}
+    position: {x: 0, y: 0}
   - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
     position: {x: -11, y: 1.5}
   - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
-    position: {x: -11, y: -1.5}
+    position: {x: 11, y: -1.5}
   _isBossWave: 0
+  _haveWaveDelay: 0
   _nextWaveDelay: 0
   _difficulty: 11

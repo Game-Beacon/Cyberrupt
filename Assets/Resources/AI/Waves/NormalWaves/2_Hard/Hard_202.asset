@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawns:
   - enemy: {fileID: 8930571900753017795, guid: 9325458a580c3d34988ac78823d1c0aa, type: 3}
-    position: {x: 0, y: -6.5}
+    position: {x: 0, y: 0}
   - enemy: {fileID: 5756876681318020070, guid: c81ca2336697f8b458637e0846dd8e56, type: 3}
     position: {x: 11, y: 0}
   _isBossWave: 0
+  _haveWaveDelay: 0
   _nextWaveDelay: 0
   _difficulty: 22
