@@ -16,7 +16,7 @@ TagManager:
   - Player
   - Enemy
   - Screen
-  - 
+  - PickUp
   - Weapon
   - 
   - PhantomEnemy
