@@ -16,9 +16,9 @@ MonoBehaviour:
   - enemy: {fileID: 6189702637793147797, guid: bd44c5555571daa4ebe304aabcbdb1a9, type: 3}
     position: {x: -11, y: 0}
   - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
-    position: {x: -11, y: 2.5}
+    position: {x: 11, y: 2.5}
   - enemy: {fileID: 3984703758475839824, guid: c3993166c967c5a499d100b31a43c4cb, type: 3}
-    position: {x: -11, y: -2.5}
+    position: {x: 11, y: -2.5}
   - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
     position: {x: 0, y: 6}
   - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
@@ -32,5 +32,6 @@ MonoBehaviour:
   - enemy: {fileID: 2176259114862401916, guid: 7749521fd3790884bb7d5e330735ddda, type: 3}
     position: {x: 3, y: -6}
   _isBossWave: 0
+  _haveWaveDelay: 0
   _nextWaveDelay: 0
   _difficulty: 12

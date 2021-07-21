@@ -16,9 +16,9 @@ TagManager:
   - Player
   - Enemy
   - Screen
-  - 
+  - PickUp
   - Weapon
-  - WeakWeapon
+  - 
   - PhantomEnemy
   - Hazardous
   - Bomb

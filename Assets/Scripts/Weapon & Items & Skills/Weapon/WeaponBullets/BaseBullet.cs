@@ -9,11 +9,9 @@ public class BaseBullet : WeaponBullet
         _rb.velocity = direction * speed;
     }
 
-    public override void GameUpdate()
+    protected override void BulletUpdate()
     {
-        float currentSpeed = Mathf.Clamp(_rb.velocity.magnitude, speed / 1.5f, speed);
-
-        _rb.velocity = _rb.velocity.normalized * currentSpeed;
+        _rb.velocity = _rb.velocity.normalized * Mathf.Clamp(_rb.velocity.magnitude, 0.6f * speed, 1.2f * speed);
 
         float angle = Mathf.Atan2(_rb.velocity.y, _rb.velocity.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);

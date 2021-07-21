@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hp: 1250
   _score: 25000
-  _addSpawnPickUpChance: 300
+  _addSpawnPickUpChance: 400
   _dieCountAsKill: 1
   _rank: 2

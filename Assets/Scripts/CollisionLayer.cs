@@ -15,6 +15,16 @@ public class CollisionLayer : SingletonScriptableObject<CollisionLayer>
     private LayerMask _enemyMask;
     public LayerMask enemyMask { get { return _enemyMask; } }
 
+    //定義哪些Layer是敵人
+    [SerializeField]
+    private LayerMask _phantomEnemyMask;
+    public LayerMask phantomEnemyMask { get { return _phantomEnemyMask; } }
+
+    //定義哪些Layer是武器
+    [SerializeField]
+    private LayerMask _weaponMask;
+    public LayerMask weaponMask { get { return _weaponMask; } }
+
     //定義哪些Layer是螢幕邊界
     [SerializeField]
     private LayerMask _screenMask;

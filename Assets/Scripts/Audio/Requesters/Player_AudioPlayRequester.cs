@@ -45,6 +45,6 @@ public class Player_AudioPlayRequester : AudioPlayRequester
     public void StopWeaponChargeSFX()
     {
         if (weaponChargeAudioSource != null)
-            manager.StopRequesterSingleAudio(this, weaponChargeAudioSource);
+            manager.StopRequesterSingleAudioFadeOut(this, weaponChargeAudioSource, 0.25f);
     }
 }

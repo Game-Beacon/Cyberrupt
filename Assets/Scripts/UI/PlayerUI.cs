@@ -15,7 +15,7 @@ public class PlayerUI : GameBehaviour
     private CanvasGroup group;
 
     //Health and Bomb
-    [SerializeField]
+    [Space(10), SerializeField]
     private GameObject playerHpBar;
     private List<Image> hpBar = new List<Image>();
     [SerializeField]
@@ -23,12 +23,19 @@ public class PlayerUI : GameBehaviour
     private List<Image> bombBar = new List<Image>();
 
     //Score
-    [SerializeField]
+    [Space(10), SerializeField]
     private TextMeshProUGUI scoreText;
     [SerializeField]
     private TextMeshProUGUI multiplerText;
     [SerializeField]
     private Slider multiplierSlider;
+    [SerializeField]
+    private TextMeshProUGUI mutiplierNotificationText;
+    [SerializeField]
+    private Color multiplierUpgradeColor;
+    [SerializeField]
+    private Color multiplierDowngradeColor;
+    private float currentMultiplier = 1;
 
     //private float scoreMultipler = 1;
     //private float multiplierExp = 0;
@@ -36,7 +43,7 @@ public class PlayerUI : GameBehaviour
     //private int[] thresholdAmp = { 1, 2, 4, 8, 16, 48 };
 
     //Weapon
-    [SerializeField]
+    [Space(10), SerializeField]
     private Image weaponIcon;
     [SerializeField]
     private TextMeshProUGUI weaponName;
@@ -44,7 +51,7 @@ public class PlayerUI : GameBehaviour
     private TextMeshProUGUI weaponAmmo;
 
     //Skill
-    [SerializeField]
+    [Space(10), SerializeField]
     private Image skillIconFront;
     [SerializeField]
     private Image skillIconBase;
@@ -58,7 +65,7 @@ public class PlayerUI : GameBehaviour
 
 
     //Wave
-    [SerializeField]
+    [Space(10), SerializeField]
     private TextMeshProUGUI waveText;
 
     public override void GameStart()
@@ -183,7 +190,30 @@ public class PlayerUI : GameBehaviour
     public void UpdateMultiplier(Vector3 data)
     {
         multiplierSlider.value = Mathf.Clamp01(data.x / data.y);
-        multiplerText.text = "x" + data.z.ToString();
+        if(data.z > currentMultiplier)
+        {
+            multiplerText.text = "x" + data.z.ToString();
+            currentMultiplier = data.z;
+            mutiplierNotificationText.text = "// SCORE MULTIPLIER INCREASED //";
+            mutiplierNotificationText.color = multiplierUpgradeColor;
+            StartCoroutine(MutiplierNotificationTextFade());
+        }
+        else if(data.z < currentMultiplier)
+        {
+            multiplerText.text = "x" + data.z.ToString();
+            currentMultiplier = data.z;
+            mutiplierNotificationText.text = "// SCORE MULTIPLIER RESET //";
+            mutiplierNotificationText.color = multiplierDowngradeColor;
+            StartCoroutine(MutiplierNotificationTextFade());
+        }
+    }
+
+    IEnumerator MutiplierNotificationTextFade()
+    {
+        yield return new WaitForSeconds(2.5f);
+        mutiplierNotificationText.DOFade(0, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        mutiplierNotificationText.text = "";
     }
 
     //Weapon
