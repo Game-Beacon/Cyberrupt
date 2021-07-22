@@ -1741,7 +1741,7 @@ MonoBehaviour:
   skipWaveCount: 0
   defaultWaveDelay: 5
   spawnSpecificWave: 0
-  specificWave: {fileID: 11400000, guid: a01fa411c39bbf8409dc363f0822fb89, type: 2}
+  specificWave: {fileID: 11400000, guid: 6fb1552c85858034b9d21710316d0e26, type: 2}
 --- !u!4 &249340756
 Transform:
   m_ObjectHideFlags: 0
