@@ -12,21 +12,37 @@ public class FightSceneMusic_AudioPlayRequester : AudioPlayRequester
     public override void Setup()
     {
         EnemyManager enemyManager = GetComponent<EnemyManager>();
-        PlayMusic(0);
+        BaseBGM();
 
         enemyManager.OnEnterBossWave.AddListener(EnterBoss);
-        enemyManager.OnBossSpawn.AddListener(_ => PlayMusic(1));
+        enemyManager.OnBossSpawn.AddListener(_ => BossBGM());
         enemyManager.OnExitBossWave.AddListener(ExitBoss);
+    }
+
+    public void BaseBGM()
+    {
+        double clipLength = (double)group.clips[0].clip.samples / group.clips[0].clip.frequency;
+        PlayMusicScheduled(0, AudioSettings.dspTime + 0.1);
+        PlayMusicScheduled(1, AudioSettings.dspTime + 0.1 + clipLength);
+    }
+
+    public void BossBGM()
+    {
+        double clipLength = (double)group.clips[2].clip.samples / group.clips[2].clip.frequency;
+        PlayMusicScheduled(2, AudioSettings.dspTime + 0.1);
+        PlayMusicScheduled(3, AudioSettings.dspTime + 0.1 + clipLength);
     }
 
     public void EnterBoss()
     {
         AudioFadeOut(0, enterBossFadeTime);
+        AudioFadeOut(1, enterBossFadeTime);
     }
 
     public void ExitBoss()
     {
-        AudioFadeOut(1, exitBossFadeTime);
-        PlayMusicFadeIn(0, exitBossFadeTime);
+        AudioFadeOut(2, exitBossFadeTime);
+        AudioFadeOut(3, exitBossFadeTime);
+        BaseBGM();
     }
 }
