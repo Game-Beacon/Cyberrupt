@@ -10195,6 +10195,9 @@ MonoBehaviour:
   outerRotationSpeedBase: 40
   attackScalor: 0.5
   body: {fileID: 7993331051691749404}
+  shakeDuration: 0.5
+  shakeStrength: 0.8
+  shakeVirboCount: 30
 --- !u!114 &2839594494547772313
 MonoBehaviour:
   m_ObjectHideFlags: 0
