@@ -12,7 +12,6 @@ public class PickUpManager : GameBehaviour
 
     [SerializeField]
     private PickUpInstance pickUp;
-    private LayerMask playerMask;
     private List<ScriptableObject> pickables = new List<ScriptableObject>();
     private float spawnPickUpChance = 0f;
 
@@ -25,8 +24,6 @@ public class PickUpManager : GameBehaviour
             KillBehaviour(true);
             return;
         }
-
-        playerMask = CollisionLayer.instance.playerMask;
 
         Object[] objects = Resources.LoadAll("PickUp", typeof(ScriptableObject));
         foreach(Object obj in objects)
@@ -42,10 +39,10 @@ public class PickUpManager : GameBehaviour
     public void Spawn(Transform target)
     {
         PickUpInstance emptyPickUp = Instantiate(pickUp, target.position, Quaternion.identity);
-        emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, playerMask, 10);
-        emptyPickUp.transform
+        emptyPickUp.InjectData(pickables[Random.Range(0, pickables.Count)] as IPickable, 10);
+        /*emptyPickUp.transform
             .DOMove(emptyPickUp.transform.position + (Vector3)Random.insideUnitCircle, 3)
-            .SetEase(Ease.OutCubic);
+            .SetEase(Ease.OutCubic);*/
     }
 
     void SpawnPickUp(Enemy enemy)

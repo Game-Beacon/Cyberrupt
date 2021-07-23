@@ -4883,7 +4883,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 50
+  m_SortingOrder: 200
   m_RenderMode: 4
   m_SortMode: 3
   m_MinParticleSize: 0
@@ -5012,9 +5012,9 @@ MonoBehaviour:
   - {fileID: 3688993655174755585}
   - {fileID: 1460403229332520875}
   circuitWidth: 2.56
-  bossColor: {r: 1, g: 0.1254902, b: 0.1254902, a: 1}
-  bossVerticalSpeed: -3
-  bossHorizontalTime: 10
+  bossColor: {r: 0.5882353, g: 0.11764706, b: 0.7058824, a: 1}
+  bossVerticalSpeed: -4
+  bossHorizontalTime: 7.5
   enterBossTime: 3
   exitBossTime: 1
 --- !u!1 &1123360259645420565
