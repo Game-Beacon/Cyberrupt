@@ -37,6 +37,12 @@ public class AudioPlayRequester : GameBehaviour
         playingDictionary[index] = source;
     }
 
+    public void PlayMusicScheduled(int index, double time)
+    {
+        AudioSource source = manager.PlayMusicScheduled(this, group.clips[index], time);
+        playingDictionary[index] = source;
+    }
+
     public void AudioStop(int index)
     {
         if(playingDictionary.ContainsKey(index) && playingDictionary[index] != null)
