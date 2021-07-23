@@ -128,6 +128,11 @@ public class GameSystem : MonoBehaviour
         int len = behaviours.Count - 1;
         for (int i = len; i >= 0; i--)
         {
+            if (behaviours[i] == null)
+            {
+                behaviours.RemoveAt(i);
+                continue;
+            }
             if (behaviours[i] != null && !behaviours[i].persistent)
             {
                 behaviours[i].OnKilled();

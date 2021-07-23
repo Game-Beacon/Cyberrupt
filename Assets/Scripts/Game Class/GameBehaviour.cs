@@ -36,6 +36,8 @@ public class GameBehaviour : MonoBehaviour
 
     public virtual void OnKilled() { }
 
+    public virtual void OnAutoDestroy() { }
+
     public void KillBehaviour(bool killGameObject = false)
     {
         update = false;
@@ -54,6 +56,11 @@ public class GameBehaviour : MonoBehaviour
             _destroyGameObjectWhenKilled = false;
 
         OnKilled();
+    }
+
+    private void OnDestroy()
+    {
+        OnAutoDestroy();
     }
 
     protected void DontKillSelfOnLoad()

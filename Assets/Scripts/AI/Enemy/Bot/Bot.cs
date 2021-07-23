@@ -143,6 +143,11 @@ public class Bot : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         bots.Remove(this);
     }
 
+    public override void OnAutoDestroy()
+    {
+        bots.Remove(this);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
