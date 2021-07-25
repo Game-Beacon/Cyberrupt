@@ -34,6 +34,12 @@ public class AIStateMachine : GameBehaviour
     public sealed override void GameAwake()
     {
         enemy = GetComponent<Enemy>();
+        enemy.Death.AddAction(() => { update = false; });
+        enemy.Death.AddAction(() => 
+        {
+            if (_currentState != null)
+                _currentState.StopAllCoroutines();
+        });
         pickStateTimer = pickStateTime;
         foreach (AIState state in AIStates)
             state.SetMachine(this);

@@ -19,6 +19,11 @@ public class SceneManage : MonoBehaviour
         GameSystem.instance.StartCoroutine(LoadScene(1));
     }
 
+    public void GoToHiddenScene()
+    {
+        GameSystem.instance.StartCoroutine(LoadScene(2));
+    }
+
     public void GoToTitleScene()
     {
         //這是為了確保不會陷入遊戲開始時time scale為0的情況

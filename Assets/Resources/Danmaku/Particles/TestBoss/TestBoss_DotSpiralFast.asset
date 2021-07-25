@@ -16,7 +16,7 @@ MonoBehaviour:
     _patterns:
     - {fileID: 11400000, guid: 601ccc06c821c8d47b79b9d402e041a2, type: 2}
     _liveTime: 10
-    _rateOverTime: 20
+    _rateOverTime: 15
   _shapeModule:
     _shapeType: 0
     _distributeType: 1
@@ -25,6 +25,7 @@ MonoBehaviour:
     _radiusThickness: 0
     _edgeWidth: 0
     _cycleTime: 0.85
+    _reverseCycle: 0
     _burstCount: 1
   _patternModule:
     _easeType: 9

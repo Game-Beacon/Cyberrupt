@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _emitModule:
     _patterns:
-    - {fileID: 11400000, guid: e8fd1b80c083ca34ca067e88034bd5da, type: 2}
+    - {fileID: 11400000, guid: 3d302f17eb471a344b37c7603a0687a3, type: 2}
+    - {fileID: 11400000, guid: e26d7fead521324439da7681ce207b2b, type: 2}
     _liveTime: 10
     _rateOverTime: 50
   _shapeModule:
@@ -25,6 +26,7 @@ MonoBehaviour:
     _radiusThickness: 0.25
     _edgeWidth: 0
     _cycleTime: 0.35
+    _reverseCycle: 0
     _burstCount: 5
   _patternModule:
     _easeType: 3
@@ -41,8 +43,8 @@ MonoBehaviour:
     _pathType: 0
     _speedType: 1
     _speed: 7.5
-    _minSpeed: 6
-    _maxSpeed: 8.5
+    _minSpeed: 7
+    _maxSpeed: 9.5
     _waveAmp: 3
     _waveHz: 0.5
     _waveOffest: 0

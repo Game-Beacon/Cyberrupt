@@ -29,3 +29,15 @@ MonoBehaviour:
     name: HomingMissile
     volume: 0.2
     loop: 0
+  - clip: {fileID: 8300000, guid: 3a55c3ebcba622847a4c78113f8bfa1a, type: 3}
+    name: DyingExplosion
+    volume: 0.6
+    loop: 0
+  - clip: {fileID: 8300000, guid: 28fcb16c537a1024ca6592513635f066, type: 3}
+    name: DyingLongBeep
+    volume: 0.3
+    loop: 0
+  - clip: {fileID: 8300000, guid: fcfcc1bf83bcfc149864128d281733e3, type: 3}
+    name: Die
+    volume: 1
+    loop: 0
