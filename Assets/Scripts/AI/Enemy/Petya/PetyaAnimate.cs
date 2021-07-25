@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using DG.Tweening;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 
 public class PetyaAnimate : GameBehaviour
@@ -84,6 +84,8 @@ public class PetyaAnimate : GameBehaviour
         var laserRing = GetComponent<Petya_LaserRing>();
         laserRing.OnEnter += this.beforeLaserRing;
         laserRing.OnExit += this.afterLaserRing;
+        GetComponent<Petya>().Death
+            .AddEnumerator(this.deathAnimation());
     }
 
     private void resetTransforms()
@@ -121,9 +123,10 @@ public class PetyaAnimate : GameBehaviour
 
     private Tween strecth(float length, float duration)
     {
+        var delta = Vector3.up * length;
         return DOTween.Sequence()
-            .Join(this.left.DOLocalMoveY(this.originLeft.position.y + length, duration))
-            .Join(this.right.DOLocalMoveY(this.originRight.position.y - length, duration));
+            .Join(this.left.DOLocalMove(this.originLeft.position + delta, duration))
+            .Join(this.right.DOLocalMove(this.originRight.position - delta, duration));
     }
 
     private Tween pingPongMoveX(float boundA, float boundB, float duration)
@@ -226,5 +229,43 @@ public class PetyaAnimate : GameBehaviour
     {
         this.ensureTween();
         this.currentTween = this.doResetTransform(this.resetTransformDuration);
+    }
+
+    private IEnumerator deathAnimation()
+    {
+        // Disable attack
+        GetComponent<AIStateMachine>().update = false;
+        GetComponent<EnemyGroup>().enableColliders = false;
+        GetComponent<SpawnDanmakuHelper>().KillAll();
+        GetComponent<AudioPlayRequester>().AllAudioStop();
+        yield return this.body.DORotate(Vector3.forward * -90, 0.1f);
+        CameraController.instance.CamShake(0.5f, 0.8f);
+        yield return this.strecth(2, 0.5f).WaitForCompletion();
+        var cubes = new [] { this.left, this.right };
+        for(int i = 0; i < 4; i++)
+        {
+            var stepDuration = 0.3f;
+            CameraController.instance.CamShake(stepDuration, 0.8f);
+            this.body.DORotate(Vector3.forward * -90, stepDuration, RotateMode.WorldAxisAdd);
+            foreach(var cube in cubes)
+            {
+                var nextPoint = this.body.position + Random.onUnitSphere * 4;
+                nextPoint.z = cube.position.z;
+                cube.DORotate(Vector3.forward * Random.Range(0, 360f), stepDuration);
+                cube.DOMove(nextPoint, stepDuration);
+            }
+            yield return new WaitForSeconds(stepDuration + 0.1f);
+        }
+        yield return this.strecth(2, 0.5f).WaitForCompletion();
+        var infRotate =  this.shoulder
+            .DORotate(Vector3.forward * 360, 0.6f, RotateMode.WorldAxisAdd)
+            .SetLoops(-1, LoopType.Incremental);
+        this.shoulder.OnDestroyAsObservable()
+            .Subscribe(_ => infRotate.Kill());
+        yield return DOTween.Sequence()
+            .Append(this.body.DOScale(Vector3.one * 2, 0.3f).SetEase(Ease.OutQuint))
+            .Append(this.body.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutQuint))
+            .WaitForCompletion();
+        CameraController.instance.CamShake(0.5f, 0.8f);
     }
 }
