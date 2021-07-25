@@ -39,6 +39,8 @@ public class PetyaAnimate : GameBehaviour
     private Transform left;
     [SerializeField]
     private Transform right;
+    [SerializeField]
+    private GameObject burst;
 
     [Header("Animation params")]
     [SerializeField]
@@ -237,13 +239,15 @@ public class PetyaAnimate : GameBehaviour
         GetComponent<AIStateMachine>().update = false;
         GetComponent<EnemyGroup>().enableColliders = false;
         GetComponent<SpawnDanmakuHelper>().KillAll();
-        GetComponent<AudioPlayRequester>().AllAudioStop();
+        var audioRequester = GetComponent<AudioPlayRequester>();
+        audioRequester.AllAudioStop();
         yield return this.body.DORotate(Vector3.forward * -90, 0.1f);
         CameraController.instance.CamShake(0.5f, 0.8f);
         yield return this.strecth(2, 0.5f).WaitForCompletion();
         var cubes = new [] { this.left, this.right };
         for(int i = 0; i < 4; i++)
         {
+            audioRequester.PlaySFXOneShot(9);
             var stepDuration = 0.3f;
             CameraController.instance.CamShake(stepDuration, 0.8f);
             this.body.DORotate(Vector3.forward * -90, stepDuration, RotateMode.WorldAxisAdd);
@@ -253,11 +257,12 @@ public class PetyaAnimate : GameBehaviour
                 nextPoint.z = cube.position.z;
                 cube.DORotate(Vector3.forward * Random.Range(0, 360f), stepDuration);
                 cube.DOMove(nextPoint, stepDuration);
+                Instantiate(this.burst, cube.position, Quaternion.identity);
             }
             yield return new WaitForSeconds(stepDuration + 0.1f);
         }
         yield return this.strecth(2, 0.5f).WaitForCompletion();
-        var infRotate =  this.shoulder
+        var infRotate = this.shoulder
             .DORotate(Vector3.forward * 360, 0.6f, RotateMode.WorldAxisAdd)
             .SetLoops(-1, LoopType.Incremental);
         this.shoulder.OnDestroyAsObservable()
@@ -267,5 +272,6 @@ public class PetyaAnimate : GameBehaviour
             .Append(this.body.DOScale(Vector3.zero, 0.3f).SetEase(Ease.OutQuint))
             .WaitForCompletion();
         CameraController.instance.CamShake(0.5f, 0.8f);
+        audioRequester.PlaySFXOneShot(8);
     }
 }
