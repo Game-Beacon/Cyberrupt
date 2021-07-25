@@ -197,7 +197,9 @@ public class PetyaAnimate : GameBehaviour
     private void beforeBigLaser()
     {
         this.ensureTween();
-        this.currentTween = this.strecth(this.strecthLength, this.strecthDuration);
+        this.currentTween = DOTween.Sequence()
+            .Append(this.strecth(this.strecthLength, this.strecthDuration))
+            .Append(this.shoulder.DOLocalMoveX(-1, 12));
     }
 
     private void afterBigLaser()
