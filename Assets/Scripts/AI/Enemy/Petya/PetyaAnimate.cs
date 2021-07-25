@@ -32,7 +32,9 @@ public class PetyaAnimate : GameBehaviour
     };
 
     [SerializeField]
-    private Transform root;
+    private Transform body;
+    [SerializeField]
+    private Transform shoulder;
     [SerializeField]
     private Transform left;
     [SerializeField]
@@ -43,8 +45,12 @@ public class PetyaAnimate : GameBehaviour
     private float strecthDuration = .1f;
     [SerializeField]
     private float waveDuration = .1f;
+    [Header("Flower")]
+    [SerializeField]
+    private float flowerRotateDuration = 1;
 
-    private TransformBackup originRoot;
+    private TransformBackup originBody;
+    private TransformBackup originShoulder;
     private TransformBackup originLeft;
     private TransformBackup originRight;
 
@@ -52,7 +58,8 @@ public class PetyaAnimate : GameBehaviour
 
     public override void GameAwake()
     {
-        this.originRoot = new TransformBackup(this.root);
+        this.originBody = new TransformBackup(this.body);
+        this.originShoulder = new TransformBackup(this.shoulder);
         this.originLeft = new TransformBackup(this.left);
         this.originRight = new TransformBackup(this.right);
     }
@@ -62,22 +69,35 @@ public class PetyaAnimate : GameBehaviour
         var bitcoin = GetComponent<Petya_BitCoin>();
         bitcoin.OnEnter += this.beforeCoinAttack;
         bitcoin.OnExit += this.afterCoinAttack;
+        var flower = GetComponent<Petya_FlowerSpread>();
+        flower.OnEnter += this.beforeFlower;
+        flower.OnExit += this.afterFlower;
     }
 
     private void resetTransforms()
     {
-        this.originRoot.Recover(this.root);
+        this.originBody.Recover(this.body);
+        this.originShoulder.Recover(this.shoulder);
         this.originLeft.Recover(this.left);
         this.originRight.Recover(this.right);
     }
 
     private Tween doResetTransform(float duration)
     {
-        duration /= 2;
-        return DOTween.Sequence()
-            .Append(this.root.DOLocalMove(this.originRoot.position, duration))
+        duration /= 3;
+        var resetShoulder = DOTween.Sequence()
+            .Append(this.shoulder.DOLocalMove(this.originShoulder.position, duration))
+            .Append(this.shoulder.DOLocalRotate(this.originShoulder.rotation.eulerAngles, duration));
+        var resetArm = DOTween.Sequence()
             .Append(this.right.DOLocalMove(this.originRight.position, duration))
-            .Join(this.left.DOLocalMove(this.originLeft.position, duration))
+            .Join(this.left.DOLocalMove(this.originLeft.position, duration));
+        var resetBody = DOTween.Sequence()
+            .Append(this.body.DOLocalMove(this.originBody.position, duration))
+            .Append(this.body.DOLocalRotate(this.originBody.rotation.eulerAngles, duration));
+        return DOTween.Sequence()
+            .Append(resetShoulder)
+            .Append(resetArm)
+            .Append(resetBody)
             .OnKill(this.resetTransforms);
     }
 
@@ -98,9 +118,9 @@ public class PetyaAnimate : GameBehaviour
     {
         float part = duration / 4;
         return DOTween.Sequence()
-            .Append(this.root.DOLocalMoveX(boundA, part))
-            .Append(this.root.DOLocalMoveX(boundB, part * 2))
-            .Append(this.root.DOLocalMoveX(this.originRoot.position.x, part));
+            .Append(this.shoulder.DOLocalMoveX(boundA, part))
+            .Append(this.shoulder.DOLocalMoveX(boundB, part * 2))
+            .Append(this.shoulder.DOLocalMoveX(this.originShoulder.position.x, part));
     }
 
     private void beforeCoinAttack()
@@ -108,11 +128,45 @@ public class PetyaAnimate : GameBehaviour
         this.ensureTween();
         var tempSeq = DOTween.Sequence();
         tempSeq.Append(this.strecth(0.8f, this.strecthDuration));
-        tempSeq.Append(this.pingPongMoveX(1, -1, this.waveDuration).SetLoops(10086, LoopType.Restart));
+        tempSeq.Append(
+            this.pingPongMoveX(1, -1, this.waveDuration)
+            // Infinte loop is ignored inside sequence
+            // set a large number to do that
+            .SetLoops(10086, LoopType.Restart)
+        );
         this.currentTween = tempSeq;
     }
 
     private void afterCoinAttack()
+    {
+        this.ensureTween();
+        this.currentTween = this.doResetTransform(0.1f);
+    }
+
+    private Tween bodyRotate(float duration)
+    {
+        return DOTween.Sequence()
+            .Join(
+                this.shoulder.DOLocalRotate(
+                    Vector3.forward * 360,
+                    duration,
+                    RotateMode.LocalAxisAdd
+                )
+                .SetEase(Ease.Linear)
+                .SetLoops(10086, LoopType.Restart)
+            );
+    }
+
+    private void beforeFlower()
+    {
+        this.ensureTween();
+        var tempSeq = DOTween.Sequence();
+        tempSeq.Append(this.strecth(0.8f, this.strecthDuration));
+        tempSeq.Append(this.bodyRotate(this.flowerRotateDuration));
+        this.currentTween = tempSeq;
+    }
+
+    private void afterFlower()
     {
         this.ensureTween();
         this.currentTween = this.doResetTransform(0.1f);
