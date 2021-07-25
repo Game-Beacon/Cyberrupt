@@ -147,8 +147,17 @@ public class PetyaAnimate : GameBehaviour
     {
         return DOTween.Sequence()
             .Join(
-                this.shoulder.DOLocalRotate(
+                this.shoulder.DORotate(
                     Vector3.forward * 360,
+                    duration,
+                    RotateMode.LocalAxisAdd
+                )
+                .SetEase(Ease.Linear)
+                .SetLoops(10086, LoopType.Restart)
+            )
+            .Join(
+                this.body.DOLocalRotate(
+                    Vector3.forward * -360,
                     duration,
                     RotateMode.LocalAxisAdd
                 )
