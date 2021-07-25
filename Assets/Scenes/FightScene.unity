@@ -1740,7 +1740,7 @@ MonoBehaviour:
   waveGroup: {fileID: 11400000, guid: 6c5406e0f90428d48a9fdde21b056d0a, type: 2}
   skipWaveCount: 0
   defaultWaveDelay: 5
-  spawnSpecificWave: 1
+  spawnSpecificWave: 0
   specificWave: {fileID: 11400000, guid: 6fb1552c85858034b9d21710316d0e26, type: 2}
 --- !u!4 &249340756
 Transform:
@@ -7159,11 +7159,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 2689939325969876541, guid: ecc1538b5f7be5f46929321b4a1a82e1,
-        type: 3}
-      propertyPath: _oneShotKill
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2689939325969876542, guid: ecc1538b5f7be5f46929321b4a1a82e1,
         type: 3}
