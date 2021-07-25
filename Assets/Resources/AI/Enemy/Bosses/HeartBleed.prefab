@@ -15433,6 +15433,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 382e6895e96cf9147ad618d5cb1f651e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnDyingSmallExplosion:
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 4
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+  OnDyingBigExplosion:
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXInterruptable
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 5
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+  OnDead:
+    _PersistentCalls:
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: AudioFadeOut
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 5
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+      - _Type: 5
+        _Int: 0
+        _String: 
+        _X: 0.25
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
+    - _Target: {fileID: 3829289949131161058}
+      _MethodName: PlaySFXOneShot
+      _PersistentArguments:
+      - _Type: 3
+        _Int: 6
+        _String: 
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 0}
   beatCount: 8
   lastBeatDuration: 1.5
   burst: {fileID: 6382897618455798456, guid: da79b21d1539d8a4faa8b5bf7884699f, type: 3}

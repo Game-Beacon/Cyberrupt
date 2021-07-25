@@ -3,9 +3,16 @@ using DG.Tweening;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
+using UltEvents;
 
 public class HeartBleedAnimate : MonoBehaviour
 {
+    [SerializeField]
+    private UltEvent OnDyingSmallExplosion = new UltEvent();
+    [SerializeField]
+    private UltEvent OnDyingBigExplosion = new UltEvent();
+    [SerializeField]
+    private UltEvent OnDead = new UltEvent();
     [SerializeField]
     private int beatCount;
     [SerializeField]
@@ -30,10 +37,12 @@ public class HeartBleedAnimate : MonoBehaviour
         GetComponent<AIStateMachine>().update = false;
         GetComponent<EnemyGroup>().enableColliders = false;
         GetComponent<SpawnDanmakuHelper>().KillAll();
+        GetComponent<AudioPlayRequester>().AllAudioStop();
         // Move to center
         yield return transform.DOMove(Vector3.zero, 1).WaitForCompletion();
         for(int i = 0; i < this.beatCount; i++)
         {
+            OnDyingSmallExplosion.Invoke();
             CameraController.instance.CamShake(0.3f, 0.4f);
             var nextPoint = Random.onUnitSphere * Random.Range(0.5f, 1);
             nextPoint.z = transform.position.z;
@@ -49,7 +58,7 @@ public class HeartBleedAnimate : MonoBehaviour
                 .WaitForCompletion();
             yield return new WaitForSeconds(0.2f);
         }
-        var step = 15;
+        /*var step = 15;
         for(int i = 0; i < 360; i += step)
         {
             foreach(var angle in new [] { i, i + 180 })
@@ -68,8 +77,10 @@ public class HeartBleedAnimate : MonoBehaviour
                 vibrato : 15,
                 fadeOut : true)
             .WaitForCompletion();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.3f);*/
         // Big burst
+        OnDyingBigExplosion.Invoke();
+        GetComponent<EnemyGroup>().StopParticles();
         Instantiate(this.burst, transform.position, Quaternion.identity).GetComponent<ParticleSystem>()?.Play();
         // Start death animation clip
         var clip = "Dead";
@@ -92,5 +103,6 @@ public class HeartBleedAnimate : MonoBehaviour
             yield return null;
         }
         CameraController.instance.CamShake(1, 0.8f);
+        OnDead.Invoke();
     }
 }
