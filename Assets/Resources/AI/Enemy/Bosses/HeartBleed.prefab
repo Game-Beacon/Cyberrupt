@@ -9676,9 +9676,9 @@ Transform:
   m_Children:
   - {fileID: 7687829999831341147}
   - {fileID: 7687829999375699086}
+  - {fileID: 7687829999180147838}
   - {fileID: 7687830000245647792}
   - {fileID: 7687830001021407829}
-  - {fileID: 7687829999180147838}
   - {fileID: 7687829999369061221}
   - {fileID: 7687830000610005988}
   - {fileID: 7687829999510657080}
@@ -14673,7 +14673,7 @@ GameObject:
   - component: {fileID: 7687829999180147839}
   - component: {fileID: 7687829999180147836}
   m_Layer: 9
-  m_Name: heartbleed_5
+  m_Name: left-down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14691,7 +14691,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1678915132713900954}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7687829999180147839
 SpriteRenderer:
@@ -14830,6 +14830,9 @@ GameObject:
   - component: {fileID: 7687829999302750043}
   - component: {fileID: 7687829999302750040}
   - component: {fileID: 7687829999302750041}
+  - component: {fileID: 567634242769934774}
+  - component: {fileID: 3728940301109412493}
+  - component: {fileID: 3413904067356952959}
   m_Layer: 9
   m_Name: HeartBleed
   m_TagString: Untagged
@@ -14919,6 +14922,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747b44041b1d441408f2f162795fd78a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  update: 1
+  _executeOrder: 0
   pss:
   - {fileID: 548091687677459733}
   - {fileID: 2219810637799106307}
@@ -14942,8 +14947,6 @@ MonoBehaviour:
   _name: Heart Bleed
   _maxHP: 1250
   _hp: 1250
-  _score: 0
-  _addSpawnPickUpChance: 0
   OnSpawn:
     _PersistentCalls: []
   OnHit:
@@ -15401,6 +15404,56 @@ MonoBehaviour:
         _Object: {fileID: 0}
   time: 1.5
   muzzle: {fileID: 7687830000904834822}
+--- !u!111 &567634242769934774
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: aa5005d08d807a2439dbd76adf5e046c, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: aa5005d08d807a2439dbd76adf5e046c, type: 2}
+  - {fileID: 7400000, guid: 96b2f254d4bbc8944a30122628b64b4d, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!114 &3728940301109412493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382e6895e96cf9147ad618d5cb1f651e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatCount: 8
+  lastBeatDuration: 1.5
+  burst: {fileID: 6382897618455798456, guid: da79b21d1539d8a4faa8b5bf7884699f, type: 3}
+  dirBurst: {fileID: 9088399221033364901, guid: f118e46cba395b349af5d3533466c542,
+    type: 3}
+  burstRadius: 1.5
+--- !u!114 &3413904067356952959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 3
 --- !u!1 &7687829999369061220
 GameObject:
   m_ObjectHideFlags: 0
@@ -15413,7 +15466,7 @@ GameObject:
   - component: {fileID: 7687829999369061218}
   - component: {fileID: 7687829999369061219}
   m_Layer: 9
-  m_Name: heartbleed_6
+  m_Name: eye
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15512,7 +15565,7 @@ GameObject:
   - component: {fileID: 7687829999375699087}
   - component: {fileID: 7687829999375699084}
   m_Layer: 9
-  m_Name: heartbleed_2
+  m_Name: left-mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15711,7 +15764,7 @@ GameObject:
   - component: {fileID: 7687829999510657081}
   - component: {fileID: 7687829999510657222}
   m_Layer: 9
-  m_Name: heartbleed_8
+  m_Name: heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15836,7 +15889,7 @@ GameObject:
   - component: {fileID: 7687829999831341144}
   - component: {fileID: 7687829999831341145}
   m_Layer: 9
-  m_Name: heartbleed_1
+  m_Name: up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16086,7 +16139,7 @@ GameObject:
   - component: {fileID: 7687830000245647793}
   - component: {fileID: 7687830000245647806}
   m_Layer: 9
-  m_Name: heartbleed_3
+  m_Name: right-mid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16104,7 +16157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1678915132713900954}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7687830000245647793
 SpriteRenderer:
@@ -16201,7 +16254,7 @@ GameObject:
   - component: {fileID: 7687830000610005989}
   - component: {fileID: 7687830000610005986}
   m_Layer: 9
-  m_Name: heartbleed_7
+  m_Name: down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16366,7 +16419,7 @@ GameObject:
   - component: {fileID: 7687830001021407826}
   - component: {fileID: 7687830001021407827}
   m_Layer: 9
-  m_Name: heartbleed_4
+  m_Name: right-down
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16384,7 +16437,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1678915132713900954}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7687830001021407826
 SpriteRenderer:

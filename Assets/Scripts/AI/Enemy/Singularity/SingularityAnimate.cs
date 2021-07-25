@@ -20,6 +20,14 @@ public class SingularityAnimate : GameBehaviour
     private float attackScalor;
     [SerializeField]
     private Transform body;
+    [Header("Death animation parameters")]
+    [SerializeField]
+    private float shakeDuration;
+    [SerializeField]
+    private float shakeStrength;
+    [SerializeField]
+    private int shakeVirboCount;
+
 
     private int coreRotationDirection = 1;
     private int outerRotationDirection = 1;
@@ -77,7 +85,12 @@ public class SingularityAnimate : GameBehaviour
         GetComponent<EnemyGroup>().enableColliders = false;
         // Play animtion
         var seq = DOTween.Sequence()
-            .Join(body.DOShakePosition(1, 0.5f, 30, fadeOut : true))
+            .Join(body.DOShakePosition(
+                this.shakeDuration,
+                this.shakeStrength,
+                this.shakeVirboCount,
+                fadeOut : true
+            ))
             .Append(
                 DOTween.Sequence()
                 .Append(
