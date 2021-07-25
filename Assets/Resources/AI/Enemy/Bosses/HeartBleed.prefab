@@ -14831,6 +14831,8 @@ GameObject:
   - component: {fileID: 7687829999302750040}
   - component: {fileID: 7687829999302750041}
   - component: {fileID: 567634242769934774}
+  - component: {fileID: 3728940301109412493}
+  - component: {fileID: 3413904067356952959}
   m_Layer: 9
   m_Name: HeartBleed
   m_TagString: Untagged
@@ -15414,10 +15416,44 @@ Animation:
   m_Animation: {fileID: 7400000, guid: aa5005d08d807a2439dbd76adf5e046c, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: aa5005d08d807a2439dbd76adf5e046c, type: 2}
+  - {fileID: 7400000, guid: 96b2f254d4bbc8944a30122628b64b4d, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
+--- !u!114 &3728940301109412493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 382e6895e96cf9147ad618d5cb1f651e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatCount: 8
+  lastBeatDuration: 1.5
+  burst: {fileID: 6382897618455798456, guid: da79b21d1539d8a4faa8b5bf7884699f, type: 3}
+  dirBurst: {fileID: 9088399221033364901, guid: f118e46cba395b349af5d3533466c542,
+    type: 3}
+  burstRadius: 1.5
+--- !u!114 &3413904067356952959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7687829999302750034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b35f664f18231d4188d22addcdcda3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathVFX: {fileID: 3888922900566526728, guid: 3b25f5692e2fac7459ec261c7acff2c4,
+    type: 3}
+  scaleFactor: 3
 --- !u!1 &7687829999369061220
 GameObject:
   m_ObjectHideFlags: 0
