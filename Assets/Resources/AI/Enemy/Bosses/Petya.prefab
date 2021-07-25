@@ -5863,6 +5863,7 @@ MonoBehaviour:
   strecthDuration: 0.1
   waveDuration: 0.5
   flowerRotateDuration: 1
+  laserRingBeatInterval: 0.3
 --- !u!1 &8885105825029673153
 GameObject:
   m_ObjectHideFlags: 0

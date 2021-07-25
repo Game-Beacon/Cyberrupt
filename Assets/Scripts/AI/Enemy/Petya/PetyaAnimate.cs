@@ -40,14 +40,18 @@ public class PetyaAnimate : GameBehaviour
     [SerializeField]
     private Transform right;
 
-    [Header("Bitcoin")]
+    [Header("Animation params")]
     [SerializeField]
     private float strecthDuration = .1f;
+    [Header("Bitcoin")]
     [SerializeField]
     private float waveDuration = .1f;
     [Header("Flower")]
     [SerializeField]
     private float flowerRotateDuration = 1;
+    [Header("Laser ring")]
+    [SerializeField]
+    private float laserRingBeatInterval = .1f;
 
     private float strecthLength = 0.8f;
     private float resetTransformDuration = 0.3f;
@@ -74,16 +78,12 @@ public class PetyaAnimate : GameBehaviour
         var flower = GetComponent<Petya_FlowerSpread>();
         flower.OnEnter += this.beforeFlower;
         flower.OnExit += this.afterFlower;
-        var lasers = new AIState[]
-        {
-            GetComponent<Petya_BigLaser>(),
-            GetComponent<Petya_LaserRing>(),
-        };
-        foreach(var laser in lasers)
-        {
-            laser.OnEnter += this.beforeLaser;
-            laser.OnExit += this.afterLaser;
-        }
+        var bigLaser = GetComponent<Petya_BigLaser>();
+        bigLaser.OnEnter += this.beforeBigLaser;
+        bigLaser.OnExit += this.afterBigLaser;
+        var laserRing = GetComponent<Petya_LaserRing>();
+        laserRing.OnEnter += this.beforeLaserRing;
+        laserRing.OnExit += this.afterLaserRing;
     }
 
     private void resetTransforms()
@@ -139,7 +139,7 @@ public class PetyaAnimate : GameBehaviour
     {
         this.ensureTween();
         var tempSeq = DOTween.Sequence();
-        tempSeq.Append(this.strecth(0.8f, this.strecthDuration));
+        tempSeq.Append(this.strecth(this.strecthLength, this.strecthDuration));
         tempSeq.Append(
             this.pingPongMoveX(1, -1, this.waveDuration)
             // Infinte loop is ignored inside sequence
@@ -182,7 +182,7 @@ public class PetyaAnimate : GameBehaviour
     {
         this.ensureTween();
         var tempSeq = DOTween.Sequence();
-        tempSeq.Append(this.strecth(0.8f, this.strecthDuration));
+        tempSeq.Append(this.strecth(this.strecthLength, this.strecthDuration));
         tempSeq.Append(this.body.DORotate(Vector3.zero, 0.3f));
         tempSeq.Append(this.bodyRotate(this.flowerRotateDuration));
         this.currentTween = tempSeq;
@@ -194,13 +194,33 @@ public class PetyaAnimate : GameBehaviour
         this.currentTween = this.doResetTransform(this.resetTransformDuration);
     }
 
-    private void beforeLaser()
+    private void beforeBigLaser()
     {
         this.ensureTween();
-        this.currentTween = this.strecth(0.8f, this.strecthDuration);
+        this.currentTween = this.strecth(this.strecthLength, this.strecthDuration);
     }
 
-    private void afterLaser()
+    private void afterBigLaser()
+    {
+        this.ensureTween();
+        this.currentTween = this.doResetTransform(this.resetTransformDuration);
+    }
+
+    private void beforeLaserRing()
+    {
+        this.ensureTween();
+        var tempSeq = DOTween.Sequence()
+            .Append(this.strecth(this.strecthLength, this.strecthDuration))
+            .Join(
+                DOTween.Sequence()
+                .Append(this.shoulder.DOLocalRotate(Vector3.forward * -90, .1f))
+                .AppendInterval(this.laserRingBeatInterval)
+                .SetLoops(10086, LoopType.Incremental)
+            );
+        this.currentTween = tempSeq;
+    }
+
+    private void afterLaserRing()
     {
         this.ensureTween();
         this.currentTween = this.doResetTransform(this.resetTransformDuration);
