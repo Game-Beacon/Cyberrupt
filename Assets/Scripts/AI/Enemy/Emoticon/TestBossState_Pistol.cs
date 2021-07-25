@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UltEvents;
+using DG.Tweening;
 
 public class TestBossState_Pistol : AIState
 {
@@ -14,6 +16,8 @@ public class TestBossState_Pistol : AIState
     private Transform shooter;
 
     [Space(20)]
+    [SerializeField]
+    private UltEvent OnShootBullet = new UltEvent();
     [SerializeField]
     private float shootSpread;
     [SerializeField]
@@ -64,6 +68,8 @@ public class TestBossState_Pistol : AIState
             float spread = Random.Range(-shootSpread / 2f, shootSpread / 2f);
             Quaternion rotation = Quaternion.Euler(0, 0, shooter.rotation.eulerAngles.z + spread);
             Instantiate(Bullet, shooter.position, rotation);
+            transform.DOShakePosition(0.5f, 0.2f, 25);
+            OnShootBullet.Invoke();
             shootTimes += 1;
             if(shootTimes == totalShootTimes)
             {

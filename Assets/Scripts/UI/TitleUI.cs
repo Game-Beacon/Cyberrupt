@@ -14,6 +14,13 @@ public class TitleUI : GameBehaviour
     public override void GameStart()
     {
         highScoreText.text = SaveData.current.score.ToString();
-        creditButton.interactable = SaveData.current.completeGame;
+
+        var colors = creditButton.colors;
+        colors.normalColor = (SaveData.current.completeGame) ? Color.yellow : colors.normalColor;
+        colors.highlightedColor = (SaveData.current.completeGame) ? Color.yellow * 0.9f : colors.highlightedColor;
+        colors.pressedColor = (SaveData.current.completeGame) ? Color.yellow * 0.8f : colors.pressedColor;
+        creditButton.colors = colors;
+
+        //creditButton.interactable = SaveData.current.completeGame;
     }
 }

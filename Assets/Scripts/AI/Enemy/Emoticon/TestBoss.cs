@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class TestBoss : Enemy, ITarget, IStateMachine, ISpawnDanmaku
 {
+    /*
+     Twemoji
+      - Copyright 2020 Twitter, Inc and other contributors
+      - Graphics licensed under CC-BY 4.0: 
+        https://creativecommons.org/licenses/by/4.0/
+    */
+
     private Transform _target;
     public Transform target { get { return _target; } }
 

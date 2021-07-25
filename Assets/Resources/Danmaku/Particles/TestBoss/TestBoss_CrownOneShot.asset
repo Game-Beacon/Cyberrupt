@@ -25,12 +25,13 @@ MonoBehaviour:
     _radiusThickness: 0
     _edgeWidth: 0
     _cycleTime: 0
+    _reverseCycle: 0
     _burstCount: 1
   _patternModule:
     _easeType: 1
     _scaleType: 0
     _rotationType: 0
-    _easeTime: 20
+    _easeTime: 16
     _scale: 100
     _minScale: 0
     _maxScale: 0
