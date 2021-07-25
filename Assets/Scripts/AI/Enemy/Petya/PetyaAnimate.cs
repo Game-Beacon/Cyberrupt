@@ -49,6 +49,8 @@ public class PetyaAnimate : GameBehaviour
     [SerializeField]
     private float flowerRotateDuration = 1;
 
+    private float strecthLength = 0.8f;
+    private float resetTransformDuration = 0.3f;
     private TransformBackup originBody;
     private TransformBackup originShoulder;
     private TransformBackup originLeft;
@@ -72,6 +74,16 @@ public class PetyaAnimate : GameBehaviour
         var flower = GetComponent<Petya_FlowerSpread>();
         flower.OnEnter += this.beforeFlower;
         flower.OnExit += this.afterFlower;
+        var lasers = new AIState[]
+        {
+            GetComponent<Petya_BigLaser>(),
+            GetComponent<Petya_LaserRing>(),
+        };
+        foreach(var laser in lasers)
+        {
+            laser.OnEnter += this.beforeLaser;
+            laser.OnExit += this.afterLaser;
+        }
     }
 
     private void resetTransforms()
@@ -140,7 +152,7 @@ public class PetyaAnimate : GameBehaviour
     private void afterCoinAttack()
     {
         this.ensureTween();
-        this.currentTween = this.doResetTransform(0.1f);
+        this.currentTween = this.doResetTransform(this.resetTransformDuration);
     }
 
     private Tween bodyRotate(float duration)
@@ -150,19 +162,19 @@ public class PetyaAnimate : GameBehaviour
                 this.shoulder.DORotate(
                     Vector3.forward * 360,
                     duration,
-                    RotateMode.LocalAxisAdd
+                    RotateMode.WorldAxisAdd
                 )
                 .SetEase(Ease.Linear)
-                .SetLoops(10086, LoopType.Restart)
+                .SetLoops(10086, LoopType.Incremental)
             )
             .Join(
-                this.body.DOLocalRotate(
+                this.body.DORotate(
                     Vector3.forward * -360,
                     duration,
-                    RotateMode.LocalAxisAdd
+                    RotateMode.WorldAxisAdd
                 )
                 .SetEase(Ease.Linear)
-                .SetLoops(10086, LoopType.Restart)
+                .SetLoops(10086, LoopType.Incremental)
             );
     }
 
@@ -171,6 +183,7 @@ public class PetyaAnimate : GameBehaviour
         this.ensureTween();
         var tempSeq = DOTween.Sequence();
         tempSeq.Append(this.strecth(0.8f, this.strecthDuration));
+        tempSeq.Append(this.body.DORotate(Vector3.zero, 0.3f));
         tempSeq.Append(this.bodyRotate(this.flowerRotateDuration));
         this.currentTween = tempSeq;
     }
@@ -178,6 +191,18 @@ public class PetyaAnimate : GameBehaviour
     private void afterFlower()
     {
         this.ensureTween();
-        this.currentTween = this.doResetTransform(0.1f);
+        this.currentTween = this.doResetTransform(this.resetTransformDuration);
+    }
+
+    private void beforeLaser()
+    {
+        this.ensureTween();
+        this.currentTween = this.strecth(0.8f, this.strecthDuration);
+    }
+
+    private void afterLaser()
+    {
+        this.ensureTween();
+        this.currentTween = this.doResetTransform(this.resetTransformDuration);
     }
 }
