@@ -22,16 +22,13 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     private List<Enemy> shields;
     [Header("Path")]
     [SerializeField]
-    private LineRenderer lr;
+    private Rail path;
     [SerializeField]
     private float pathLength;
     [SerializeField]
     private float pathSpeed;
     [SerializeField]
     private float pathDuration;
-    [SerializeField]
-    [Tooltip("A GameObject that will be placed the end of path during generation")]
-    private GameObject pathPeek;
     // Add this for padding
     [Header("")]
     [SerializeField, Range(0, 0.5f)]
@@ -80,20 +77,8 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         Vector2 pinpoint = screen.GetRandomPointInScreen(2.5f);
         endPosition = startPosition + (pinpoint - startPosition).normalized * pathLength;
         pathDirection = (endPosition - startPosition).normalized;
-        var peek = Instantiate(this.pathPeek, this.root);
-        // Setup path start point
-        lr.positionCount = 2;
-        lr.SetPosition(0, currentPosition);
-        // Iterate endpoint overtime
-        for(float t = 0; t < this.pathDuration; t += Time.deltaTime)
-        {
-            var railEnd = Vector3.Lerp(currentPosition, endPosition, t / this.pathDuration);
-            lr.SetPosition(1, railEnd);
-            peek.transform.position = railEnd;
-            yield return null;
-        }
-        // Mark path as ready
-        Destroy(peek);
+        this.path.PreparePath(startPosition, endPosition, pathDuration);
+        yield return this.path.StartCoroutine(this.path.Create());
     }
 
     private void UpdateTransform()
@@ -113,6 +98,13 @@ public class Turret : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         foreach (Enemy enemy in shields)
             if (enemy != null)
                 enemy.Die();
+        // Detach path and clear it
+        this.path.transform.parent = null;
+        // Call `StartCoroutine` by this.path so that
+        // the coroutine will not be killed by Turret.
+        // This ensure that the coroutine will be
+        // correctly finished.
+        this.path.StartCoroutine(this.path.Clear());
 
         if (parent != null)
             DestroySafe(parent.gameObject/*, 0.03f*/);
