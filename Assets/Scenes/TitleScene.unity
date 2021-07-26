@@ -525,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 248.29999
+      value: 315.13
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
@@ -596,6 +596,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPopUp (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779209611624231405, guid: a1076cb2b3101ab42b75513d75cc901c,
+        type: 3}
+      propertyPath: m_text
+      value: YURI GAME SAIKOU!!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1076cb2b3101ab42b75513d75cc901c, type: 3}
@@ -1208,12 +1213,12 @@ PrefabInstance:
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 248.29999
+      value: 445.21
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 49.760002
+      value: 88.41
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
@@ -1279,6 +1284,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPopUp (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779209611624231405, guid: a1076cb2b3101ab42b75513d75cc901c,
+        type: 3}
+      propertyPath: m_text
+      value: 'HELLO, WORLD! HELLO, SYNTH!
+
+        -THE BRIAN BANG THEORY'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1076cb2b3101ab42b75513d75cc901c, type: 3}
@@ -1566,12 +1578,12 @@ PrefabInstance:
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 248.29999
+      value: 569.92
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 49.760002
+      value: 88.41
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
@@ -1637,6 +1649,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPopUp (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779209611624231405, guid: a1076cb2b3101ab42b75513d75cc901c,
+        type: 3}
+      propertyPath: m_text
+      value: "ADD DONGQUAN CHILI SAUCE \n<color=\"red\">INTO</color> YOUR PAN-FRIED
+        STUFFED BUN. IN!"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1076cb2b3101ab42b75513d75cc901c, type: 3}
@@ -2596,7 +2614,7 @@ PrefabInstance:
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 248.29999
+      value: 481.61
       objectReference: {fileID: 0}
     - target: {fileID: 2189920441302564332, guid: a1076cb2b3101ab42b75513d75cc901c,
         type: 3}
@@ -2667,6 +2685,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TextPopUp (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8779209611624231405, guid: a1076cb2b3101ab42b75513d75cc901c,
+        type: 3}
+      propertyPath: m_text
+      value: THIS ISN'T EVEN MY FINAL FORM.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1076cb2b3101ab42b75513d75cc901c, type: 3}
