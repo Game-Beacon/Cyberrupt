@@ -374,6 +374,7 @@ MonoBehaviour:
   main: {fileID: 3371854197094663336}
   parent: {fileID: 6656770861361509385}
   angularSpeed: 90
+  knockbackDistance: 0.1
 --- !u!1 &3984703758171734459
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,6 +949,7 @@ MonoBehaviour:
   main: {fileID: 3371854197094663336}
   parent: {fileID: 561785232014449370}
   angularSpeed: 90
+  knockbackDistance: 0.1
 --- !u!1 &3984703758475839824
 GameObject:
   m_ObjectHideFlags: 0
