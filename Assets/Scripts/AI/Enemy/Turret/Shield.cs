@@ -1,6 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
+using UniRx;
+using UniRx.Triggers;
 
 public class Shield : Enemy
 {
@@ -10,11 +11,26 @@ public class Shield : Enemy
     private Transform parent;
     [SerializeField]
     private float angularSpeed;
-
+    [SerializeField]
+    private float knockbackDistance;
 
     protected override void EnemyAwake()
     {
         main.OnDeath += Die;
+        // Subscribe knockback
+        Tween knockback = null;
+        var originX = transform.localPosition.x;
+        this.OnHit += () =>
+        {
+            knockback?.Kill();
+            knockback = transform.DOLocalMoveX(originX - this.knockbackDistance, 0.1f);
+            knockback.OnComplete(() => {
+                knockback = transform.DOLocalMoveX(originX, 1.5f);
+            });
+        };
+        transform.OnDestroyAsObservable()
+            .Subscribe(_ => knockback.Kill())
+            .AddTo(this);
     }
 
     protected override void EnemyUpdate()
