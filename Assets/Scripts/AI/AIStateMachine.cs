@@ -38,7 +38,10 @@ public class AIStateMachine : GameBehaviour
         enemy.Death.AddAction(() => 
         {
             if (_currentState != null)
+            {
                 _currentState.StopAllCoroutines();
+                _currentState.StateExit();
+            }  
         });
         pickStateTimer = pickStateTime;
         foreach (AIState state in AIStates)

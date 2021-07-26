@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 813c682e7ee451c40940e1bef6eeb69e, type: 3}
-  m_Color: {r: 1, g: 0.2509804, b: 0.7058824, a: 1}
+  m_Color: {r: 0.9411765, g: 0.1254902, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4938,7 +4938,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 813c682e7ee451c40940e1bef6eeb69e, type: 3}
-  m_Color: {r: 1, g: 0.2509804, b: 0.7058824, a: 1}
+  m_Color: {r: 0.9411765, g: 0.1254902, b: 0.3764706, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5541,8 +5541,8 @@ MonoBehaviour:
   length: 30
   reachMaxLengthTime: 1.5
   laserEase: 2
-  rotateForce: 90
-  rotateIncrement: 0.03
+  rotateForce: 120
+  rotateIncrement: 0.04
 --- !u!114 &8885105824843755112
 MonoBehaviour:
   m_ObjectHideFlags: 0

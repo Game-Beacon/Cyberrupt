@@ -92,7 +92,7 @@ public class PetyaAnimate : GameBehaviour
 
     private void resetTransforms()
     {
-        this.originBody.Recover(this.body);
+        //this.originBody.Recover(this.body);
         this.originShoulder.Recover(this.shoulder);
         this.originLeft.Recover(this.left);
         this.originRight.Recover(this.right);
@@ -107,13 +107,13 @@ public class PetyaAnimate : GameBehaviour
         var resetArm = DOTween.Sequence()
             .Append(this.right.DOLocalMove(this.originRight.position, duration))
             .Join(this.left.DOLocalMove(this.originLeft.position, duration));
-        var resetBody = DOTween.Sequence()
+        /*var resetBody = DOTween.Sequence()
             .Append(this.body.DOLocalMove(this.originBody.position, duration))
-            .Append(this.body.DOLocalRotate(this.originBody.rotation.eulerAngles, duration));
+            .Append(this.body.DOLocalRotate(this.originBody.rotation.eulerAngles, duration));*/
         return DOTween.Sequence()
             .Append(resetShoulder)
             .Append(resetArm)
-            .Append(resetBody)
+            //.Append(resetBody)
             .OnKill(this.resetTransforms);
     }
 

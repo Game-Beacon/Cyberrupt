@@ -14926,6 +14926,8 @@ MonoBehaviour:
       _MethodName: AllAudioStop
       _PersistentArguments: []
   speed: 0.75
+  clearScreen: {fileID: 6018195405718460263, guid: 765a6dc870a1ca24fa7a690f389ec095,
+    type: 3}
 --- !u!114 &7687829999302750032
 MonoBehaviour:
   m_ObjectHideFlags: 0
