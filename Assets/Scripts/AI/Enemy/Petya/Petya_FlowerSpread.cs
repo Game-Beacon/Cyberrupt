@@ -20,7 +20,6 @@ public class Petya_FlowerSpread : AITimerState
     IEnumerator StartUp()
     {
         transform.DOMove(Vector3.zero, tweenTime);
-        transform.DORotate(new Vector3(0, 0, 0), tweenTime);
         yield return new WaitForSeconds(tweenTime);
         OnTweenOver.Invoke();
     }
