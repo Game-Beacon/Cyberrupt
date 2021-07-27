@@ -34,6 +34,20 @@ public class TestDanmakuObject : GameBehaviour
         OnKill.Invoke();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (CollisionLayer.CollideWithMask(collision.gameObject, CollisionLayer.instance.bombMask))
+        {
+            StartCoroutine(KillAfterFrame());
+        }    
+    }
+
+    IEnumerator KillAfterFrame()
+    {
+        yield return null;
+        KillBehaviour(true);
+    }
+
     IEnumerator KillSelf(float time)
     {
         yield return new WaitForSeconds(killTime);

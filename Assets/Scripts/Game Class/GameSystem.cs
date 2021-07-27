@@ -115,7 +115,7 @@ public class GameSystem : MonoBehaviour
     public void RemoveAndKillBehaviour(GameBehaviour behaviour)
     {
         if(behaviour.id < 0)
-            throw new System.Exception("Invalid id number when trying to remove new behaviour.");
+            throw new System.Exception("Invalid id number when trying to remove behaviour : " + behaviour.id.ToString());
 
         destroyQueue.Enqueue(behaviour);
     }

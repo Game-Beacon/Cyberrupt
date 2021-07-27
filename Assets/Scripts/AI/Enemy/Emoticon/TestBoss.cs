@@ -26,6 +26,8 @@ public class TestBoss : Enemy, ITarget, IStateMachine, ISpawnDanmaku
     
     [SerializeField]
     private float speed;
+    [SerializeField]
+    private GameObject clearScreen;
 
     protected override void EnemyAwake()
     {
@@ -33,6 +35,7 @@ public class TestBoss : Enemy, ITarget, IStateMachine, ISpawnDanmaku
         _danmakuHelper = GetComponent<SpawnDanmakuHelper>();
 
         _stateMachine.OnUpdateTransform.AddListener(UpdateTransform);
+        Death.AddAction(() => Instantiate(clearScreen));
     }
 
     protected override void EnemyStart()

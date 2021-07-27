@@ -14588,6 +14588,8 @@ MonoBehaviour:
   OnDeath:
     _PersistentCalls: []
   speed: 1
+  clearScreen: {fileID: 6018195405718460263, guid: 765a6dc870a1ca24fa7a690f389ec095,
+    type: 3}
 --- !u!114 &8857558748932324756
 MonoBehaviour:
   m_ObjectHideFlags: 0
