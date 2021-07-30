@@ -15,10 +15,10 @@ Cyberrput is a 2D bullet-hell shooter, aims to challenge players with waves of e
 ## Credits
 
 - ABan (Producer) 
-- Tommy (Programmer & Designer) 
-- Toothpick (Artist) 
+- [Tommy](https://tommy-lian.itch.io/) (Programmer & Designer) 
+- [Toothpick](https://www.pixiv.net/users/59312731) (Artist) 
 - Bogay (Animation & VFX) 
-- Julie (Sound Designer & Composer)
+- [Julie](https://soundcloud.com/artenox) (Sound Designer & Composer)
 
 ## Store
 
